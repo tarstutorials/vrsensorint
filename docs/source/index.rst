@@ -10,8 +10,8 @@ Welcome to VRSensorIntegration
    :maxdepth: 3
 
    content/m1/install_unity
-   content/m1/mobile_development
    content/m1/new_project
+   content/m1/mobile_development
    content/m1/basic_techniques
    
    content/m2/unity_vr
