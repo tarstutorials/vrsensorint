@@ -10,7 +10,13 @@ Note that this command is for a Linux Mint installation. Check the sphinx ddocum
 
 3. Open a terminal and navigate to the ~/docs/ folder.
 
-4. Run the following command:
+4. Run the following command to install the correct theme for the site:
+
+ pip install sphinx_rtd_theme
+
+ This will install the Read The Docs theme for the website. If for some reason you can't get it to install correctly, go into the conf.py file and follow the instructions in the "options for HTML output" section.
+
+5. Run the following command:
 
     make html
 
