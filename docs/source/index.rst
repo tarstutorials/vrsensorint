@@ -15,7 +15,7 @@ Welcome to VRSensorIntegration
    content/m1/basic_techniques
    
    content/m2/unity_vr
-   content/m2/new_project
+   content/m2/new_project2
    content/m2/advanced_techniques
    
    
@@ -27,22 +27,12 @@ Welcome to VRSensorIntegration
    content/m3/heart_rate
    
    
-   content/m4/new_project
+   content/m4/new_project3
    content/m4/data_collection
 
-   content/m5/new_project
+   content/m5/new_project4
    content/m5/integration
    
    
    content/m6/data_intro
    content/m6/data_analysis
-
-
-
-
-Indices and tables
-==================
-
-* :ref:`genindex`
-* :ref:`modindex`
-* :ref:`search`
