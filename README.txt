@@ -24,7 +24,7 @@ This will generate the files needed to run the website via HTML. Any time you ma
 Additionally, you can use the command "make clean" to erase all build files from the build folder. This can help if something in the build gets corrupted or you forgot
 to add the build folder to GitIgnore and don't want to individually delete the files.
 
-5. In the build ~/docs/build/ folder, you should now see a folder called "html/". In this folder there should be a file called "index.html". Open this file in Firefox (or any other worse browser) to view the
+6. In the build ~/docs/build/ folder, you should now see a folder called "html/". In this folder there should be a file called "index.html". Open this file in Firefox (or any other worse browser) to view the
 webpage.
 
 That's all! If you have any more questions, send me a Slack DM or email me at matzekec@clarkson.edu
