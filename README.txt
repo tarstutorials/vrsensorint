@@ -6,7 +6,7 @@ To any developers looking to use this site after a Git clone, here are some inst
 
     sudo apt-get install python3-sphinx
 
-Note that this command is for a Linux Mint installation. Check the sphinx ddocumentation for how to do it for your OS if you don't run Mint.
+Note that this command is for a Linux Mint installation. Check the sphinx documentation for how to do it for your OS if you don't run Mint.
 
 3. Open a terminal and navigate to the ~/docs/ folder.
 
