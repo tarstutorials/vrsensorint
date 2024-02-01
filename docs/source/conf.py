@@ -56,7 +56,7 @@ html_theme = "sphinx_rtd_theme"
 # so a file named "default.css" will overwrite the builtin "default.css".
 html_static_path = ['_static']
 #Change the logo that appears on the website. Must be in same directory as conf.py file.
-html_logo = 'tars_logo.jpeg'
+html_logo = 'images/tars_logo.jpeg'
 # Options to change the HTML output for the site. Specific to the theme.
 html_theme_options = {
     

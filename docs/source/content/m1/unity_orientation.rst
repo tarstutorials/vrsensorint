@@ -1,8 +1,12 @@
 .. _install_to_new:
 
-===============
-New Project
-===============
+==================
+Unity Orientation
+==================
+
+---------------------------
+Creating Your First Project
+---------------------------
 
 For our first project, we'll be designing a simple mobile mobile application for Android. Use the following steps to get started:
 
@@ -17,3 +21,43 @@ For our first project, we'll be designing a simple mobile mobile application for
 #. Choose a name for your project. It can be anything you like, but we recommend naming it with one word in order to make file access easier. An example of a good project title would be *MyFirstProject*.
 #. Choose the location where to store your project. Be sure to pick a location that is easy to find.
 #. Click the "Create project" button in the bottom right corner of the application. This will create the project and launch the editor.
+
+--------------------------
+Understanding the Editor
+--------------------------
+
+The Unity Editor can seem overwelming at first, but it can actually be broken down into four simple pieces. The image below visuallizes these pieces.
+
+
+---------------------------------
+Setting Up For Mobile Development
+---------------------------------
+
+Mobile development can be hard, here's how to set it up.
+
+-----------------
+Basic Techniques
+-----------------
+
+Here are some basic techniques for mobile development in Unity.
+
+
+^^^^^^^^^^^^^^^
+Object Creation
+^^^^^^^^^^^^^^^
+
+^^^^^^^^^^^^^
+C# Scripting
+^^^^^^^^^^^^^
+
+^^^^^^^^^^^^^^^
+Physics System
+^^^^^^^^^^^^^^^
+
+^^^^^^^^^^^^^^^
+Tips and Tricks
+^^^^^^^^^^^^^^^
+
+------------------
+Section Review
+------------------
