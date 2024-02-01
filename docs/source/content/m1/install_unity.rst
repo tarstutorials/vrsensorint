@@ -1,7 +1,7 @@
 .. _new_to_install:
 
 ===============
-Install Unity
+Installing Unity
 ===============
 
 **Installing Unity Hub**
