@@ -4,6 +4,8 @@
 Getting Started With Unity
 ===========================
 
+The Unity Game Engine is an incredible tool for application and game development. It allows for building projects on a multitude of platforms, ranging from mobile to desktop to virtual reality. It also has a large development community that support one another and build upon each others work. Unity is an excellent choice for any developer seeking to integrate technologies together or create their dream application, and it is the focus of this tutorial.
+
 ---------------------------
 Creating Your First Project
 ---------------------------
@@ -12,15 +14,15 @@ For our first project, we'll be designing a simple mobile mobile application for
 
 #. Launch Unity Hub and login to your Unity account. If you do not have either of these completed, see :ref:`new_to_install`.
 
-#. On the sidebar on the left side of the application, select the "Projects" tab.
+#. On the sidebar on the left side of the application, select the *Projects* tab.
 
-#. On the top right of the application, press the button titled "New project".
+#. On the top right of the application, press the button titled *New project*.
 
-#. Under the templates section, select the "2D Mobile" option. You may have to download the template if you have not used it already. The button to download it can be seen on the right side of the application after clicking on the template.
+#. Under the templates section, select the *2D Mobile* option. You may have to download the template if you have not used it already. The button to download it can be seen on the right side of the application after clicking on the template.
 
 #. Choose a name for your project. It can be anything you like, but we recommend naming it with one word in order to make file access easier. An example of a good project title would be *MyFirstProject*.
 #. Choose the location where to store your project. Be sure to pick a location that is easy to find.
-#. Click the "Create project" button in the bottom right corner of the application. This will create the project and launch the editor.
+#. Click the *Create project* button in the bottom right corner of the application. This will create the project and launch the editor.
 
 --------------------------
 Understanding the Editor
@@ -52,7 +54,7 @@ Shaded in purple in the image above, the inspector window contains all the infor
     * Scale
     * Components attached to the object
 
-Position, rotation, and scale all control where and how the object appears in the scene. Unity uses two types of coordinate systems, world coordinates and local coordinates. By default, these values are in world coordinates, which are the general coordinates for the scene, however - if the object is a child of another object it will use a coordinate system relative to that object called local coordinates. Components are the most variable parts of the inspector, and can have a variety of functions. Each adds an additonal ability or constraint to an object such as a collision box or a script, and can be added by pressing the "Add Component" at the bottom of the inspector. They can be removed by pressing the three vertical dots to the right of the components name and clicking "delete component".
+Position, rotation, and scale all control where and how the object appears in the scene. Unity uses two types of coordinate systems, world coordinates and local coordinates. By default, these values are in world coordinates, which are the general coordinates for the scene, however - if the object is a child of another object it will use a coordinate system relative to that object called local coordinates. Components are the most variable parts of the inspector, and can have a variety of functions. Each adds an additonal ability or constraint to an object such as a collision box or a script, and can be added by pressing the "Add Component" at the bottom of the inspector. They can be removed by pressing the three vertical dots to the right of the components name and clicking *Remove Component*.
 
 Try changing an objects position, rotation, and scale, as well  as adding and removing and experimenting with what they do.
 
@@ -76,7 +78,13 @@ Try exploring with adding different types of GameObjects to the scene, and creat
 Setting Up For Mobile Development
 ---------------------------------
 
-Mobile development can be hard, here's how to set it up. **FINISH THIS SECTION!**
+Setting up for mobile development is mostly done for you when creating a project using the *2D Mobile* template. However, there are two important menus you should know about that may help you with any last minute configurations you want to make. These are the build settings and project settings menus. The build settings menu can be found by clicking the button labeled *File* on the ribbon at the top of the editor. From there, a dropdown menu will appear, where you can select the *Build Settings* option. In the same ribbon, there is a button labeled *Edit*, where a similar dropdown menu contains a button for *Project Settings*. 
+
+The build settings menu is used for configuring how you want to package the final application. For example, it lets you change what platform you are building for, such as Windows or Android. While you are working on the mobile project, you should keep its build set to Windows. This lets you test the project directly on your computer. However, when you are done developing and want to port it to mobile, you can change the build setting to Android or iOS so it can run on a mobile device. 
+
+The project settings menu allows you to change a multitude of settings for your project, and additionally provides access to settings for any packages you have added to the project. The template has done a good job of setting up the project settings for you, so you don't need to worry about it for this simple tutorial. However, in more advanced tutorials which we will get to later, project settings can be important for optimizing the application.
+
+For now, you can look around at both menus to see what kind of settings exist, but do not change any without knowing what they do, as this could negatively affect your project. If you want to learn more about a specific build or project setting, please check the Unity documentation  for the `project settings <https://docs.unity3d.com/Manual/comp-ManagerGroup.html>`_ and `build settings <https://docs.unity3d.com/Manual/BuildSettings.html>`_.
 
 -----------------
 Basic Techniques
@@ -98,7 +106,7 @@ C# Scripting
 
 C# is a programming language created by Microsoft that is used in Unity. It is very similar to Java and C++, so if you have any experience with those, you will find it intuitive. Teaching programming is beyond the scope of this tutorial, but there are some aspects specific to Unity scripts you should know about.
 
-First, Unity scripts are the most unrestricted way of controlling how an object works, but many of the simple actions that can be implemented using scripts can be done via the inspector instead, avoiding the need for any coding knowledge. If you do want to mkae an object do something and can't seem to find a way to do it with what is provided in the inspector, *then* you should turn to scripting. To attatch a script to a GameObject you can either drag it from the project window into the inspector while the object is selected, or add it using the "Add Component" button. Double clicking on a script in the project window will open it in your chosen script editor, by default Visual Studio. A prewritten template for a script is provided by Unity. You will notice that there are two prebuilt functions that are empty, Start and Update. Start is called once, when the object is first loaded in, and Update is called once every frame of the game. There are additional functions built into Unity, and every GameObject can access these by extending the `MonoBehavior Class <https://docs.unity3d.com/ScriptReference/MonoBehaviour.html>`_ which is automatically done for you. 
+First, Unity scripts are the most unrestricted way of controlling how an object works, but many of the simple actions that can be implemented using scripts can be done via the inspector instead, avoiding the need for any coding knowledge. If you do want to mkae an object do something and can't seem to find a way to do it with what is provided in the inspector, *then* you should turn to scripting. To attatch a script to a GameObject you can either drag it from the project window into the inspector while the object is selected, or add it using the *Add Component* button. Double clicking on a script in the project window will open it in your chosen script editor, by default Visual Studio. A prewritten template for a script is provided by Unity. You will notice that there are two prebuilt functions that are empty, Start and Update. Start is called once, when the object is first loaded in, and Update is called once every frame of the game. There are additional functions built into Unity, and every GameObject can access these by extending the `MonoBehavior Class <https://docs.unity3d.com/ScriptReference/MonoBehaviour.html>`_ which is automatically done for you. 
 
 If you ever get stuck while, don't forget to use the `C# documentation <https://learn.microsoft.com/en-us/dotnet/csharp/>`_. Also, forums such as the `Unity forum <https://forum.unity.com/>`_ and `Stack Overflow <https://stackoverflow.com/>`_ are excellent resources to expand your scripting knowledge. The best way to improve at scripting is to keep practicing. There are no simple words to make you understand it, it is a journey in and of itself. Luckily, for small scale projects you can often avoid it entirely.
 
