@@ -50,7 +50,7 @@ Shaded in purple in the image above, the inspector window contains all the infor
     * Position (X, Y and potentially Z coordinates)
     * Rotation
     * Scale
-    * Components attatched to the object
+    * Components attached to the object
 
 Position, rotation, and scale all control where and how the object appears in the scene. Unity uses two types of coordinate systems, world coordinates and local coordinates. By default, these values are in world coordinates, which are the general coordinates for the scene, however - if the object is a child of another object it will use a coordinate system relative to that object called local coordinates. Components are the most variable parts of the inspector, and can have a variety of functions. Each adds an additonal ability or constraint to an object such as a collision box or a script, and can be added by pressing the "Add Component" at the bottom of the inspector. They can be removed by pressing the three vertical dots to the right of the components name and clicking "delete component".
 
