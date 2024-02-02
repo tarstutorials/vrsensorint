@@ -61,7 +61,7 @@ Try changing an objects position, rotation, and scale, as well  as adding and re
 Scene View
 ^^^^^^^^^^^^^^^^
 
-Shaded in green in the image above, the scene view is where you can see what your game world looks like. It allows you to move objects around in the scene and build the application you want. You move around in the scene view by using the view tool, which can be found in the top left of the scene view. There are also the move, rotate, and scale tools in the same menu in the top left that allow you to move, rotate, and scale the selected object, respectively. There are shortcuts for these tools, but they depend on the device you are using. On a desktop, the middle mouse button swaps to the view tool, for example. Find your devices shortcuts in the `Unity documentation <https://docs.unity.com/>`_. Adding new objects to the scene view is as simple as adding them in the object hierarchy or dragging them in from the project window. 
+Shaded in green in the image above, the scene view is where you can see what your game world looks like. It allows you to move objects around in the scene and build the application you want. You move around in the scene view by using the view tool, which can be found in the top left of the scene view. There are also the move, rotate, and scale tools in the same menu in the top left that allow you to move, rotate, and scale the selected object, respectively. There are shortcuts for these tools, but they depend on the device you are using. On a desktop, the middle mouse button swaps to the view tool, for example. Find your devices shortcuts in the `Unity documentation <https://docs.unity.com/>`_. Adding new objects to the scene view is as simple as adding them in the object hierarchy or dragging them in from the project window. Finally, just above the scene view there are a pause and play button. These allow you to test your game in real time, but note that any changes made while the game is in play mode will be deleted once the game is stopped. Editing should only be done in pause mode, which is the default. 
 
 Practice moving around the scene and getting used to the controls. This will help you better understand what is going on in your game.
 
@@ -76,7 +76,7 @@ Try exploring with adding different types of GameObjects to the scene, and creat
 Setting Up For Mobile Development
 ---------------------------------
 
-Mobile development can be hard, here's how to set it up.
+Mobile development can be hard, here's how to set it up. **FINISH THIS SECTION!**
 
 -----------------
 Basic Techniques
@@ -109,14 +109,24 @@ Camera System
 
 The camera system in Unity is very dependent on the application you desire to create. For instance, one project may involve having a player character serve as the main camera, while another may simply have a stationary overhead camera. Regardless of how you want to set up your camera system, Unity has the tools to help you do it. You can add a camera object by creating an empty object and attatching the "Camera" component to it. You can move this camera around in the scene to position it how you'd like, and can even see a pop-up when the camera is selected that shows its perspective. By default, Unity has a camera set up for you when you create a scene. In simple projects, usually the single default camera is enough, but you may have to move it around to get it to your liking.
 
+Practice moving the camera around, and pressing the play button to see how changing the camera position affects the visuals of the game.
+
 ^^^^^^^^^^^^^^^
 Physics System
 ^^^^^^^^^^^^^^^
+
+The physics system in Unity is used to control how GameObjects interact with one another and with the player. There are different physics systems for 2D and 3D games. In this introduction, we'll be refering to the physics used in a 2D game. By default, the physics system is ignored for most objects but this can be changed by adding specific physics-based components to the object. The main two physics-based components are colliders and rigid bodies. Colliders are invisible, and allow objects to collide with other objects. You can use scripting to make events happen when colliders are triggered, making them very useful for interaction. Rigid bodies are what allow physics-based events to occur with the object. You need a rigid body on an object if you want any physics to occur with it **including** collisions. Rigid bodies also are what allows an object to have mass and react to gravity. These two components combined are all you need to get started with Unity's physics system, but there is much more to explore in the 2D physics system that you can explore in the `documentation <https://docs.unity3d.com/Manual/Physics2DReference.html>`_.
+
+You are encouraged to try adding colliders and rigid bodies to objects, and seeing how they respond when the game is played. 
 
 ^^^^^^^
 Scenes
 ^^^^^^^
 
+Throughout your Unity practice, the canvas that you have been working on is called the scene. By default, Unity projects begin with a single scene, called *Main Scene*. More complex Unity applications can have multiple scenes, and each has its own set of GameObjects. While there are ways to have interactions persist between scenes, for the most part scenes remain seperate from one another. Think of scenes like the levels of a game, for example, you could have a different scene for the main menu, level 1, level 2, and so on. For simple applications, most work can be done in a single scene. You can access scenes from the ~/Assets/Scenes in the project window. You will see more about multi-scene applications in a later part of this tutorial.
+
 ------------------
 Section Review
 ------------------
+
+In this section, you were introduced to the basics of Unity. You learned how to create a new 2D project and get set up for mobile development. You practiced using the editor, and studied its four main pieces, the project window, inspector view, scene view and object hierarchy. Lastly, you became versed in some basic Unity techniques, and developed the skills necessary to move forward into more advanced techniques, which you will learn about in the next section. Keep up the hard work!
