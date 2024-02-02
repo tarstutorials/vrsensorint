@@ -1,8 +1,8 @@
 .. _new_to_install:
 
-===============
+=================
 Installing Unity
-===============
+=================
 
 **Installing Unity Hub**
 
@@ -14,7 +14,7 @@ From here, do the following:
 #. Create a Unity account.
 #. Install the latest LTS Unity Editor
     * A list of all the currently supported releases can be found `here <https://unity.com/releases/editor/qa/lts-releases?major_version=&minor_version=&version=&page=1>`_.
-    * **[Important]** Make sure to install the "Android Build Support" module and Visual Studio Code (if you do not already have it) alongside the editor install.
+    * **[Important]** Make sure to install the "Android Build Support" module and Visual Studio (if you do not already have it) alongside the editor install.
 #. The installation is now complete. You will see how to create a new project in :ref:`install_to_new`.
 
 
