@@ -1,3 +1,19 @@
+To anyone looking to update te Github Pages output:
+
+1. When you have tested a build on your machine and verified that it works, go into the build folder on your machine.
+
+2. Copy all the files in the build folder.
+
+3. Navigate to the docs folder. 
+
+4. Delete any files from the docs folder that have the same name as the ones you copied from build. DO NOT DELETE THE .nojekyll file!
+
+5. Paste the new build files from the build folder into the docs folder.
+
+6. Upload commit. Note that only commits done to main will be reflected on the site. 
+
+7. If you are confused at all, message me! Please don't try it yourself if you are unsure, we don't want to brick the site. Thanks!
+
 To any developers looking to use this site after a Git clone, here are some instructions:
 
 1. Create a directory called "build" in the ~/docs/ folder. Add this to the GitIgnore so that any build files don't get added into the repo.
@@ -8,7 +24,7 @@ To any developers looking to use this site after a Git clone, here are some inst
 
 Note that this command is for a Linux Mint installation. Check the sphinx documentation for how to do it for your OS if you don't run Mint.
 
-3. Open a terminal and navigate to the ~/docs/ folder.
+3. Open a terminal.
 
 4. Run the following command to install the correct theme for the site:
 
