@@ -30,7 +30,7 @@ Understanding the Editor
 
 The Unity Editor can seem overwelming at first, but it can actually be broken down into four simple pieces. The image below visualizes these pieces.
 
-.. image:: ../../../../../../../docs/source/images/Unity2DEditorFilled.png
+.. image:: ../../images/Unity2DEditorFilled.png
   :width: 800
   :alt: An Image of the Unity Editor: Highlighted are: Project Window, Inspector Window, Scene View, and Object Hierarchy.
 
