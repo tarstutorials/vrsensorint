@@ -124,7 +124,7 @@ Basic Techniques
 Here are some basic techniques for mobile development in Unity. Be sure to mess around with all of these techniques until you feel comfortable with them. The `Unity documentation <https://docs.unity.com/>`_ contains additional in depth information about each, but this tutorial should give you all the fundamentals you need to get started. Additonally, watch the video below to see a mobile project created in Unity. You will see videos for the scripting of the project in the scripting section.
 
 
-.. image:: https://img.youtube.com/vi/FGuuR0CaXLw/maxresdefault.jpg
+.. image:: ../../images/maxresdefault.png
     :alt: Youtube Video showing off a simple mobile game created using Unity.
     :target: https://youtu.be/FGuuR0CaXLw
 
