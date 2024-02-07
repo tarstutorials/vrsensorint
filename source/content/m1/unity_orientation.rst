@@ -148,7 +148,9 @@ C# is a programming language created by Microsoft that is used in Unity. It is v
     :alt: Youtube Video showing off a the script for the PlayerController in our mobile application.
     :target: https://youtu.be/sMAZMGS8JF4
 
-**[Click on the above image for our Youtube tutorial on the PlayerController Script.]**
+**[Click on the above image for our Youtube tutorial on the PlayerController Script. See code below.]**
+
+.. literalinclude:: ../../scripts/PlayerController.cs
 
 First, Unity scripts are the most unrestricted way of controlling how an object works, but many of the simple actions that can be implemented using scripts can be done via the inspector instead, avoiding the need for any coding knowledge. If you do want to make an object do something and can't seem to find a way to do it with what is provided in the inspector, *then* you should turn to scripting. To attatch a script to a ``GameObject`` you can either drag it from the project window into the inspector while the object is selected, or add it using the *Add Component* button. Double clicking on a script in the project window will open it in your chosen script editor (the default is Visual Studio). A prewritten template for a script is provided by Unity. You will notice that there are two prebuilt functions that are empty: ``Start`` and ``Update``. ``Start`` is called once, when the object is first loaded in, and ``Update`` is called once every frame of the game. There are additional functions built into Unity, and every ``GameObject`` can access these by extending the `MonoBehavior Class <https://docs.unity3d.com/ScriptReference/MonoBehaviour.html>`_ which is automatically done for you. 
 
@@ -156,7 +158,9 @@ First, Unity scripts are the most unrestricted way of controlling how an object 
     :alt: Youtube Video showing off a the script for the PlayerController in our mobile application.
     :target: https://youtu.be/V8K47wKSYRM
 
-**[Click on the above image for our Youtube tutorial on the GameController Script.]**
+**[Click on the above image for our Youtube tutorial on the GameController Script. See code below.]**
+
+.. literalinclude:: ../../scripts/GameController.cs
 
 If you ever get stuck while programming, don't forget to use the `C# documentation <https://learn.microsoft.com/en-us/dotnet/csharp/>`_. Also, forums such as the `Unity forum <https://forum.unity.com/>`_ and `Stack Overflow <https://stackoverflow.com/>`_ are excellent resources to expand your scripting knowledge. The best way to improve at scripting is to keep practicing. There are no simple words to make you understand it, it is a journey in and of itself. Luckily, for small scale projects you can often avoid it entirely.
 
@@ -164,7 +168,9 @@ If you ever get stuck while programming, don't forget to use the `C# documentati
     :alt: Youtube Video showing off a the script for the TreasureController in our mobile application.
     :target: https://youtu.be/bG2EUjmzxOI
 
-**[Click on the above image for our Youtube tutorial on the TreasureController Script.]**
+**[Click on the above image for our Youtube tutorial on the TreasureController Script. See code below.]**
+
+.. literalinclude:: ../../scripts/TreasureController.cs
 
 ^^^^^^^^^^^^^^^
 Camera System
