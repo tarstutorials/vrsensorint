@@ -221,18 +221,25 @@ Module Self-Assessment
    > Visit the "Understanding the Editor" section.
 
    1. [ ] Scene View
+        > The correct answer is Script Manager.
    2. [ ] Inspector Window
+        > The correct answer is Script Manager.
    3. [ ] Project Window
+        > The correct answer is Script Manager.
    4. [x] Script Manager
    5. [ ] Object Hierarchy
+        > The correct answer is Script Manager.
 
-   ## Which of these is a built-in class in Unity?
+   ## Which of these is not a built-in class in Unity?
 
    > Watch the videos contained in the "C# Scripting" section.
 
    1. [ ] GameObject
+        > The correct answer is Visual.
    2. [ ] Time
+        > The correct answer is Visual.
    3. [ ] Input
+        > The correct answer is Visual.
    4. [x] Visual
 
    ## Which of the following is not a tool found in the Scene View?
@@ -241,5 +248,8 @@ Module Self-Assessment
 
    1. [x] Transform
    2. [ ] Scale
+        > The correct answer is Transform.
    3. [ ] Move
+        > The correct answer is Transform.
    4. [ ] Rotate
+        > The correct answer is Transform.
