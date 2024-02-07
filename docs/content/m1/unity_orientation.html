@@ -18,6 +18,8 @@
         <script src="../../_static/documentation_options.js?v=2709fde1"></script>
         <script src="../../_static/doctools.js?v=888ff710"></script>
         <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+        <script src="https://cdn.jsdelivr.net/gh/bonartm/quizdown-js@latest/public/build/quizdown.js"></script>
+        <script>quizdown.init({"quizdown_js": "https://cdn.jsdelivr.net/gh/bonartm/quizdown-js@latest/public/build/quizdown.js"});</script>
     <script src="../../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
@@ -66,7 +68,10 @@
 <li class="toctree-l3"><a class="reference internal" href="#scenes">Scenes</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="#section-review">Section Review</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#section-review">Section Review</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#module-self-assessment">Module Self-Assessment</a></li>
+</ul>
+</li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../m2/unity_vr.html">Unity VR Development</a></li>
@@ -184,17 +189,116 @@
 <h3>C# Scripting<a class="headerlink" href="#c-scripting" title="Link to this heading"></a></h3>
 <p>C# is a programming language created by Microsoft that is used in Unity. It is very similar to Java and C++, so if you have any experience with those, you will find it intuitive. Teaching programming is beyond the scope of this tutorial, but there are some aspects specific to Unity scripts you should know about. Scattered Throughout this section are videos explaining the scripts for the mobile project mentioned earlier in this tutorial. Watch them for some additional information. The code used will be linked beneath the video, and you are free to use it to develop your own similar project.</p>
 <a class="reference external image-reference" href="https://youtu.be/sMAZMGS8JF4"><img alt="Youtube Video showing off a the script for the PlayerController in our mobile application." src="https://img.youtube.com/vi/sMAZMGS8JF4/maxresdefault.jpg" /></a>
-<p><strong>[Click on the above image for our Youtube tutorial on the PlayerController Script.]</strong></p>
-<p>First, Unity scripts are the most unrestricted way of controlling how an object works, but many of the simple actions that can be implemented using scripts can be done via the inspector instead, avoiding the need for any coding knowledge. If you do want to make an object do something and can’t seem to find a way to do it with what is provided in the inspector, <em>then</em> you should turn to scripting. To attatch a script to a <code class="docutils literal notranslate"><span class="pre">GameObject</span></code> you can either drag it from the project window into the inspector while the object is selected, or add it using the <em>Add Component</em> button. Double clicking on a script in the project window will open it in your chosen script editor (the default is Visual Studio). A prewritten template for a script is provided by Unity. You will notice that there are two prebuilt functions that are empty: <code class="docutils literal notranslate"><span class="pre">Start</span></code> and <code class="docutils literal notranslate"><span class="pre">Update</span></code>. <code class="docutils literal notranslate"><span class="pre">Start</span></code> is called once, when the object is first loaded in, and <code class="docutils literal notranslate"><span class="pre">Update</span></code> is called once every frame of the game. There are additional functions built into Unity, and every <code class="docutils literal notranslate"><span class="pre">GameObject</span></code> can access these by extending the <a class="reference external" href="https://docs.unity3d.com/ScriptReference/MonoBehaviour.html">MonoBehavior Class</a> which is automatically done for you.</p>
+<p><strong>[Click on the above image for our Youtube tutorial on the PlayerController Script. See code below.]</strong></p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">using</span> <span class="n">System</span><span class="o">.</span><span class="n">Collections</span><span class="p">;</span>
+<span class="n">using</span> <span class="n">System</span><span class="o">.</span><span class="n">Collections</span><span class="o">.</span><span class="n">Generic</span><span class="p">;</span>
+<span class="n">using</span> <span class="n">UnityEngine</span><span class="p">;</span>
+
+<span class="n">public</span> <span class="k">class</span> <span class="nc">PlayerController</span> <span class="p">:</span> <span class="n">MonoBehaviour</span>
+<span class="p">{</span>
+    <span class="o">//</span> <span class="n">Start</span> <span class="ow">is</span> <span class="n">called</span> <span class="n">before</span> <span class="n">the</span> <span class="n">first</span> <span class="n">frame</span> <span class="n">update</span>
+    <span class="n">void</span> <span class="n">Start</span><span class="p">()</span>
+    <span class="p">{</span>
+
+    <span class="p">}</span>
+
+    <span class="o">//</span> <span class="n">Update</span> <span class="ow">is</span> <span class="n">called</span> <span class="n">once</span> <span class="n">per</span> <span class="n">frame</span>
+    <span class="n">void</span> <span class="n">Update</span><span class="p">()</span>
+    <span class="p">{</span>
+            <span class="k">if</span> <span class="p">(</span><span class="n">Input</span><span class="o">.</span><span class="n">GetKey</span><span class="p">(</span><span class="s2">&quot;w&quot;</span><span class="p">)){</span>
+                <span class="n">transform</span><span class="o">.</span><span class="n">Translate</span><span class="p">(</span><span class="mf">0.0</span><span class="n">f</span><span class="p">,</span><span class="mf">0.02</span><span class="n">f</span><span class="p">,</span> <span class="mf">0.0</span><span class="n">f</span><span class="p">);</span>
+            <span class="p">}</span>
+            <span class="k">if</span> <span class="p">(</span><span class="n">Input</span><span class="o">.</span><span class="n">GetKey</span><span class="p">(</span><span class="s2">&quot;a&quot;</span><span class="p">)){</span>
+                <span class="n">transform</span><span class="o">.</span><span class="n">Translate</span><span class="p">(</span><span class="o">-</span><span class="mf">0.02</span><span class="n">f</span><span class="p">,</span> <span class="mf">0.0</span><span class="n">f</span><span class="p">,</span><span class="mf">0.0</span><span class="n">f</span><span class="p">);</span>
+            <span class="p">}</span>
+            <span class="k">if</span> <span class="p">(</span><span class="n">Input</span><span class="o">.</span><span class="n">GetKey</span><span class="p">(</span><span class="s2">&quot;s&quot;</span><span class="p">)){</span>
+                <span class="n">transform</span><span class="o">.</span><span class="n">Translate</span><span class="p">(</span><span class="mf">0.0</span><span class="n">f</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.02</span><span class="n">f</span><span class="p">,</span> <span class="mf">0.0</span><span class="n">f</span><span class="p">);</span>
+            <span class="p">}</span>
+            <span class="k">if</span> <span class="p">(</span><span class="n">Input</span><span class="o">.</span><span class="n">GetKey</span><span class="p">(</span><span class="s2">&quot;d&quot;</span><span class="p">)){</span>
+                <span class="n">transform</span><span class="o">.</span><span class="n">Translate</span><span class="p">(</span><span class="mf">0.02</span><span class="n">f</span><span class="p">,</span> <span class="mf">0.0</span><span class="n">f</span><span class="p">,</span> <span class="mf">0.0</span><span class="n">f</span><span class="p">);</span>
+            <span class="p">}</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>First, Unity scripts are the most unrestricted way of controlling how an object works, but many of the simple actions that can be implemented using scripts can be done via the inspector instead, avoiding the need for any coding knowledge. If you do want to make an object do something and can’t seem to find a way to do it with what is provided in the inspector, <em>then</em> you should turn to scripting. To attach a script to a <code class="docutils literal notranslate"><span class="pre">GameObject</span></code> you can either drag it from the project window into the inspector while the object is selected, or add it using the <em>Add Component</em> button. Double clicking on a script in the project window will open it in your chosen script editor (the default is Visual Studio). A prewritten template for a script is provided by Unity. You will notice that there are two prebuilt functions that are empty: <code class="docutils literal notranslate"><span class="pre">Start</span></code> and <code class="docutils literal notranslate"><span class="pre">Update</span></code>. <code class="docutils literal notranslate"><span class="pre">Start</span></code> is called once, when the object is first loaded in, and <code class="docutils literal notranslate"><span class="pre">Update</span></code> is called once every frame of the game. There are additional functions built into Unity, and every <code class="docutils literal notranslate"><span class="pre">GameObject</span></code> can access these by extending the <a class="reference external" href="https://docs.unity3d.com/ScriptReference/MonoBehaviour.html">MonoBehavior Class</a> which is automatically done for you.</p>
 <a class="reference external image-reference" href="https://youtu.be/V8K47wKSYRM"><img alt="Youtube Video showing off a the script for the PlayerController in our mobile application." src="https://img.youtube.com/vi/V8K47wKSYRM/maxresdefault.jpg" /></a>
-<p><strong>[Click on the above image for our Youtube tutorial on the GameController Script.]</strong></p>
+<p><strong>[Click on the above image for our Youtube tutorial on the GameController Script. See code below.]</strong></p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">using</span> <span class="n">System</span><span class="o">.</span><span class="n">Collections</span><span class="p">;</span>
+<span class="n">using</span> <span class="n">System</span><span class="o">.</span><span class="n">Collections</span><span class="o">.</span><span class="n">Generic</span><span class="p">;</span>
+<span class="n">using</span> <span class="n">UnityEngine</span><span class="p">;</span>
+<span class="n">using</span> <span class="n">TMPro</span><span class="p">;</span>
+
+<span class="n">public</span> <span class="k">class</span> <span class="nc">GameController</span> <span class="p">:</span> <span class="n">MonoBehaviour</span>
+<span class="p">{</span>
+    <span class="n">static</span> <span class="n">public</span> <span class="nb">int</span> <span class="n">score</span><span class="p">;</span>
+    <span class="n">static</span> <span class="n">private</span> <span class="nb">int</span> <span class="n">finalTime</span><span class="p">;</span>
+    <span class="n">public</span> <span class="n">TextMeshProUGUI</span> <span class="n">timeText</span><span class="p">;</span>
+    <span class="n">public</span> <span class="n">TextMeshProUGUI</span> <span class="n">scoreText</span><span class="p">;</span>
+    <span class="n">static</span> <span class="n">public</span> <span class="nb">bool</span> <span class="n">running</span><span class="p">;</span>
+    <span class="n">void</span> <span class="n">Start</span><span class="p">()</span>
+    <span class="p">{</span>
+        <span class="n">score</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+        <span class="n">finalTime</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+    <span class="p">}</span>
+
+    <span class="o">//</span> <span class="n">Update</span> <span class="ow">is</span> <span class="n">called</span> <span class="n">once</span> <span class="n">per</span> <span class="n">frame</span>
+    <span class="n">void</span> <span class="n">Update</span><span class="p">()</span>
+    <span class="p">{</span>
+        <span class="k">if</span> <span class="p">(</span><span class="n">score</span> <span class="o">&lt;</span> <span class="mi">10</span><span class="p">){</span>
+            <span class="n">timeText</span><span class="o">.</span><span class="n">text</span> <span class="o">=</span> <span class="p">(</span><span class="s2">&quot;Time: &quot;</span> <span class="o">+</span> <span class="p">(</span><span class="nb">int</span><span class="p">)</span><span class="n">Time</span><span class="o">.</span><span class="n">time</span><span class="p">);</span>
+            <span class="n">scoreText</span><span class="o">.</span><span class="n">text</span> <span class="o">=</span> <span class="p">(</span><span class="s2">&quot;Score: &quot;</span> <span class="o">+</span> <span class="n">score</span><span class="p">);</span>
+        <span class="p">}</span>
+        <span class="k">else</span><span class="p">{</span>
+            <span class="k">if</span> <span class="p">(</span><span class="n">finalTime</span> <span class="o">==</span> <span class="mi">0</span><span class="p">){</span>
+                <span class="n">finalTime</span> <span class="o">=</span> <span class="p">(</span><span class="nb">int</span><span class="p">)</span><span class="n">Time</span><span class="o">.</span><span class="n">time</span><span class="p">;</span>
+            <span class="p">}</span>
+            <span class="n">timeText</span><span class="o">.</span><span class="n">text</span> <span class="o">=</span> <span class="p">(</span><span class="s2">&quot;&quot;</span><span class="p">);</span>
+            <span class="n">scoreText</span><span class="o">.</span><span class="n">text</span> <span class="o">=</span> <span class="p">(</span><span class="s2">&quot;Congratulations! You got 10 score in &quot;</span> <span class="o">+</span> <span class="n">finalTime</span> <span class="o">+</span> <span class="s2">&quot; seconds!&quot;</span><span class="p">);</span>
+        <span class="p">}</span>
+
+    <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
 <p>If you ever get stuck while programming, don’t forget to use the <a class="reference external" href="https://learn.microsoft.com/en-us/dotnet/csharp/">C# documentation</a>. Also, forums such as the <a class="reference external" href="https://forum.unity.com/">Unity forum</a> and <a class="reference external" href="https://stackoverflow.com/">Stack Overflow</a> are excellent resources to expand your scripting knowledge. The best way to improve at scripting is to keep practicing. There are no simple words to make you understand it, it is a journey in and of itself. Luckily, for small scale projects you can often avoid it entirely.</p>
 <a class="reference external image-reference" href="https://youtu.be/bG2EUjmzxOI"><img alt="Youtube Video showing off a the script for the TreasureController in our mobile application." src="https://img.youtube.com/vi/bG2EUjmzxOI/maxresdefault.jpg" /></a>
-<p><strong>[Click on the above image for our Youtube tutorial on the TreasureController Script.]</strong></p>
+<p><strong>[Click on the above image for our Youtube tutorial on the TreasureController Script. See code below.]</strong></p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">using</span> <span class="n">System</span><span class="o">.</span><span class="n">Collections</span><span class="p">;</span>
+<span class="n">using</span> <span class="n">System</span><span class="o">.</span><span class="n">Collections</span><span class="o">.</span><span class="n">Generic</span><span class="p">;</span>
+<span class="n">using</span> <span class="n">UnityEngine</span><span class="p">;</span>
+
+<span class="n">public</span> <span class="k">class</span> <span class="nc">TreasureController</span> <span class="p">:</span> <span class="n">MonoBehaviour</span>
+<span class="p">{</span> 
+    <span class="n">private</span> <span class="nb">float</span> <span class="n">timePassed</span><span class="p">;</span>
+    <span class="o">//</span> <span class="n">Start</span> <span class="ow">is</span> <span class="n">called</span> <span class="n">before</span> <span class="n">the</span> <span class="n">first</span> <span class="n">frame</span> <span class="n">update</span>
+    <span class="n">void</span> <span class="n">Start</span><span class="p">()</span>
+    <span class="p">{</span>
+        <span class="n">timePassed</span> <span class="o">=</span> <span class="mi">0</span><span class="n">f</span><span class="p">;</span>
+    <span class="p">}</span>
+
+    <span class="o">//</span> <span class="n">Update</span> <span class="ow">is</span> <span class="n">called</span> <span class="n">once</span> <span class="n">per</span> <span class="n">frame</span>
+    <span class="n">void</span> <span class="n">Update</span><span class="p">()</span>
+    <span class="p">{</span>
+        <span class="n">timePassed</span> <span class="o">+=</span> <span class="n">Time</span><span class="o">.</span><span class="n">deltaTime</span><span class="p">;</span>
+        <span class="k">if</span> <span class="p">(</span><span class="n">timePassed</span> <span class="o">&gt;</span> <span class="mi">1</span><span class="n">f</span><span class="p">)</span>
+        <span class="p">{</span>
+            <span class="n">transform</span><span class="o">.</span><span class="n">position</span> <span class="o">=</span> <span class="n">new</span> <span class="n">Vector3</span><span class="p">(</span><span class="n">Random</span><span class="o">.</span><span class="n">Range</span><span class="p">(</span><span class="o">-</span><span class="mi">5</span><span class="n">f</span><span class="p">,</span> <span class="mi">5</span><span class="n">f</span><span class="p">),</span> <span class="n">Random</span><span class="o">.</span><span class="n">Range</span><span class="p">(</span><span class="o">-</span><span class="mi">5</span><span class="n">f</span><span class="p">,</span> <span class="mi">5</span><span class="n">f</span><span class="p">),</span> <span class="mf">0.0</span><span class="n">f</span><span class="p">);</span>
+            <span class="n">timePassed</span> <span class="o">=</span> <span class="mi">0</span><span class="n">f</span><span class="p">;</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+    <span class="n">void</span> <span class="n">OnTriggerExit2D</span><span class="p">(</span><span class="n">Collider2D</span> <span class="n">other</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="n">p</span><span class="o">.</span><span class="n">score</span> <span class="o">+=</span> <span class="mi">1</span><span class="p">;</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+
+</pre></div>
+</div>
 </section>
 <section id="camera-system">
 <h3>Camera System<a class="headerlink" href="#camera-system" title="Link to this heading"></a></h3>
-<p>The camera system in Unity is very dependent on the application you desire to create. For instance, one project may involve having a player character serve as the main camera, while another may simply have a stationary overhead camera. Regardless of how you want to set up your camera system, Unity has the tools to help you do it. You can add a camera object by creating an empty object and attatching the “Camera” component to it. You can move this camera around in the scene to position it how you’d like, and can even see a pop-up when the camera is selected that shows its perspective. By default, Unity has a camera set up for you when you create a scene. In simple projects, usually the single default camera is enough, but you may have to move it around to get it to your liking.</p>
+<p>The camera system in Unity is very dependent on the application you desire to create. For instance, one project may involve having a player character serve as the main camera, while another may simply have a stationary overhead camera. Regardless of how you want to set up your camera system, Unity has the tools to help you do it. You can add a camera object by creating an empty object and attaching the “Camera” component to it. You can move this camera around in the scene to position it how you’d like, and can even see a pop-up when the camera is selected that shows its perspective. By default, Unity has a camera set up for you when you create a scene. In simple projects, usually the single default camera is enough, but you may have to move it around to get it to your liking.</p>
 <p>Practice moving the camera around, and pressing the play button to see how changing the camera position affects the visuals of the game.</p>
 </section>
 <section id="physics-system">
@@ -210,6 +314,39 @@
 <section id="section-review">
 <h2>Section Review<a class="headerlink" href="#section-review" title="Link to this heading"></a></h2>
 <p>In this section, you were introduced to the basics of Unity. You learned how to create a new 2D project and get set up for mobile development. You practiced using the editor, and studied its four main pieces, the project window, inspector view, scene view and object hierarchy. Lastly, you became versed in some basic Unity techniques, and developed the skills necessary to move forward into more advanced techniques, which you will learn about in the next section. Keep up the hard work!</p>
+<section id="module-self-assessment">
+<h3>Module Self-Assessment<a class="headerlink" href="#module-self-assessment" title="Link to this heading"></a></h3>
+<div class="quizdown">---
+shuffle_answers: false
+---
+
+## Which of these is not one of the four main aspects of the Unity Editor?
+
+&gt; Visit the &quot;Understanding the Editor&quot; section.
+
+1. [ ] Scene View
+2. [ ] Inspector Window
+3. [ ] Project Window
+4. [x] Script Manager
+5. [ ] Object Hierarchy
+
+## Which of these is a built-in class in Unity?
+
+&gt; Watch the videos contained in the &quot;C# Scripting&quot; section.
+
+1. [ ] GameObject
+2. [ ] Time
+3. [ ] Input
+4. [x] Visual
+
+## Which of the following is not a tool found in the Scene View?
+
+&gt;Visit the &quot;Scene View subsection.&quot;
+
+1. [x] Transform
+2. [ ] Scale
+3. [ ] Move
+4. [ ] Rotate</div></section>
 </section>
 </section>
 

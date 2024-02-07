@@ -148,15 +148,19 @@ C# is a programming language created by Microsoft that is used in Unity. It is v
     :alt: Youtube Video showing off a the script for the PlayerController in our mobile application.
     :target: https://youtu.be/sMAZMGS8JF4
 
-**[Click on the above image for our Youtube tutorial on the PlayerController Script.]**
+**[Click on the above image for our Youtube tutorial on the PlayerController Script. See code below.]**
 
-First, Unity scripts are the most unrestricted way of controlling how an object works, but many of the simple actions that can be implemented using scripts can be done via the inspector instead, avoiding the need for any coding knowledge. If you do want to make an object do something and can't seem to find a way to do it with what is provided in the inspector, *then* you should turn to scripting. To attatch a script to a ``GameObject`` you can either drag it from the project window into the inspector while the object is selected, or add it using the *Add Component* button. Double clicking on a script in the project window will open it in your chosen script editor (the default is Visual Studio). A prewritten template for a script is provided by Unity. You will notice that there are two prebuilt functions that are empty: ``Start`` and ``Update``. ``Start`` is called once, when the object is first loaded in, and ``Update`` is called once every frame of the game. There are additional functions built into Unity, and every ``GameObject`` can access these by extending the `MonoBehavior Class <https://docs.unity3d.com/ScriptReference/MonoBehaviour.html>`_ which is automatically done for you. 
+.. literalinclude:: ../../scripts/PlayerController.cs
+
+First, Unity scripts are the most unrestricted way of controlling how an object works, but many of the simple actions that can be implemented using scripts can be done via the inspector instead, avoiding the need for any coding knowledge. If you do want to make an object do something and can't seem to find a way to do it with what is provided in the inspector, *then* you should turn to scripting. To attach a script to a ``GameObject`` you can either drag it from the project window into the inspector while the object is selected, or add it using the *Add Component* button. Double clicking on a script in the project window will open it in your chosen script editor (the default is Visual Studio). A prewritten template for a script is provided by Unity. You will notice that there are two prebuilt functions that are empty: ``Start`` and ``Update``. ``Start`` is called once, when the object is first loaded in, and ``Update`` is called once every frame of the game. There are additional functions built into Unity, and every ``GameObject`` can access these by extending the `MonoBehavior Class <https://docs.unity3d.com/ScriptReference/MonoBehaviour.html>`_ which is automatically done for you. 
 
 .. image:: https://img.youtube.com/vi/V8K47wKSYRM/maxresdefault.jpg
     :alt: Youtube Video showing off a the script for the PlayerController in our mobile application.
     :target: https://youtu.be/V8K47wKSYRM
 
-**[Click on the above image for our Youtube tutorial on the GameController Script.]**
+**[Click on the above image for our Youtube tutorial on the GameController Script. See code below.]**
+
+.. literalinclude:: ../../scripts/GameController.cs
 
 If you ever get stuck while programming, don't forget to use the `C# documentation <https://learn.microsoft.com/en-us/dotnet/csharp/>`_. Also, forums such as the `Unity forum <https://forum.unity.com/>`_ and `Stack Overflow <https://stackoverflow.com/>`_ are excellent resources to expand your scripting knowledge. The best way to improve at scripting is to keep practicing. There are no simple words to make you understand it, it is a journey in and of itself. Luckily, for small scale projects you can often avoid it entirely.
 
@@ -164,13 +168,15 @@ If you ever get stuck while programming, don't forget to use the `C# documentati
     :alt: Youtube Video showing off a the script for the TreasureController in our mobile application.
     :target: https://youtu.be/bG2EUjmzxOI
 
-**[Click on the above image for our Youtube tutorial on the TreasureController Script.]**
+**[Click on the above image for our Youtube tutorial on the TreasureController Script. See code below.]**
+
+.. literalinclude:: ../../scripts/TreasureController.cs
 
 ^^^^^^^^^^^^^^^
 Camera System
 ^^^^^^^^^^^^^^^
 
-The camera system in Unity is very dependent on the application you desire to create. For instance, one project may involve having a player character serve as the main camera, while another may simply have a stationary overhead camera. Regardless of how you want to set up your camera system, Unity has the tools to help you do it. You can add a camera object by creating an empty object and attatching the "Camera" component to it. You can move this camera around in the scene to position it how you'd like, and can even see a pop-up when the camera is selected that shows its perspective. By default, Unity has a camera set up for you when you create a scene. In simple projects, usually the single default camera is enough, but you may have to move it around to get it to your liking.
+The camera system in Unity is very dependent on the application you desire to create. For instance, one project may involve having a player character serve as the main camera, while another may simply have a stationary overhead camera. Regardless of how you want to set up your camera system, Unity has the tools to help you do it. You can add a camera object by creating an empty object and attaching the "Camera" component to it. You can move this camera around in the scene to position it how you'd like, and can even see a pop-up when the camera is selected that shows its perspective. By default, Unity has a camera set up for you when you create a scene. In simple projects, usually the single default camera is enough, but you may have to move it around to get it to your liking.
 
 Practice moving the camera around, and pressing the play button to see how changing the camera position affects the visuals of the game.
 
@@ -193,3 +199,41 @@ Section Review
 ------------------
 
 In this section, you were introduced to the basics of Unity. You learned how to create a new 2D project and get set up for mobile development. You practiced using the editor, and studied its four main pieces, the project window, inspector view, scene view and object hierarchy. Lastly, you became versed in some basic Unity techniques, and developed the skills necessary to move forward into more advanced techniques, which you will learn about in the next section. Keep up the hard work!
+
+^^^^^^^^^^^^^^^^^^^^^^^
+Module Self-Assessment
+^^^^^^^^^^^^^^^^^^^^^^^
+
+.. quizdown::
+
+   ---
+   shuffle_answers: false
+   ---
+
+   ## Which of these is not one of the four main aspects of the Unity Editor?
+
+   > Visit the "Understanding the Editor" section.
+
+   1. [ ] Scene View
+   2. [ ] Inspector Window
+   3. [ ] Project Window
+   4. [x] Script Manager
+   5. [ ] Object Hierarchy
+
+   ## Which of these is a built-in class in Unity?
+
+   > Watch the videos contained in the "C# Scripting" section.
+
+   1. [ ] GameObject
+   2. [ ] Time
+   3. [ ] Input
+   4. [x] Visual
+
+   ## Which of the following is not a tool found in the Scene View?
+
+   >Visit the "Scene View subsection."
+
+   1. [x] Transform
+   2. [ ] Scale
+   3. [ ] Move
+   4. [ ] Rotate
