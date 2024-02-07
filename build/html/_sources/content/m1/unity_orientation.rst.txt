@@ -10,6 +10,12 @@ The Unity Game Engine is an incredible tool for application and game development
 Creating Your First Project
 ---------------------------
 
+.. image:: https://img.youtube.com/vi/UpcgKQ234s8/maxresdefault.jpg
+    :alt: Youtube Video Explaining Creating a New Unity Project.
+    :target: https://youtu.be/UpcgKQ234s8
+
+**[Click on the above image for our Youtube tutorial on Creaaing a New Unity Project.]**
+
 For our first project, we'll be designing a simple mobile mobile application for Android. Use the following steps to get started:
 
 .. image:: ../../images/UnityLogin.png
