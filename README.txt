@@ -41,7 +41,7 @@ Note that you may also have to run "git config --global url.https://github.com/.
 This will generate the files needed to run the website via HTML. Any time you make changes to the website, you must run this command again to update the files.
 Additionally, you can use the command "make clean" to erase all build files from the build folder.
 
-6. In the build ~/build/ folder, you should now see a folder called "html/". In this folder there should be a file called "index.html". Open this file in Firefox (or any other worse browser) to view the
+5. In the build ~/build/ folder, you should now see a folder called "html/". In this folder there should be a file called "index.html". Open this file in Firefox (or any other worse browser) to view the
 webpage.
 
 That's all! If you have any more questions, send me a Slack DM or email me at matzekec@clarkson.edu
