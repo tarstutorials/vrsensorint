@@ -4,7 +4,7 @@
 Introduction to Physiological Sensors
 ======================================
 
-**How can we use technology to help diagnose disorders, improve athletic performance, and guide rehabilitation?** We will start to answer this question in this section of the tutorial by giving an overview of the sensors used to measure physiological information about the human body. By studying how strong muscles are, how much air the lungs can circulate, how fast the heart can pump blood throughout the body, and more, we can gain a better understanding of how the human body behaves and design tools that help people achieve their goals.
+*How can we use technology to help diagnose disorders, improve athletic performance, and guide rehabilitation?* We will start to answer this question in this section of the tutorial by giving an overview of the sensors used to measure physiological information about the human body. By studying how strong muscles are, how much air the lungs can circulate, how fast the heart can pump blood throughout the body, and more, we can gain a better understanding of how the human body behaves and design tools that help people achieve their goals.
 
 The information on each sensor will be organized as follows: first, we'll give a brief overview of what it's used for, then some instruction on how it is worn and what it measures (including reliability of the data), and perhaps most importantly, some discussion on what you could study or build using it.
 
@@ -12,7 +12,7 @@ The information on each sensor will be organized as follows: first, we'll give a
 Surface Electromyography: Delsys Trigno
 ---------------------------------------
 
-Surface electromyography (sEMG) is a technique used to measure electromyographic signals that correspond to muscle activity. Muscles throughout the human body are activated in response to neural stimulation from the brain, and as they contract, they release an electrical impulse that circulates throughout bones and tissue. These impulses are captured by the sEMG sensor, and after applying some signal processing techniques that we'll see later in this tutorial, they can be incredibly useful in studying the patterns of our muscles.
+**Surface electromyography (sEMG)** is a technique used to measure electromyographic signals that correspond to muscle activity. Muscles throughout the human body are activated in response to neural stimulation from the brain, and as they contract, they release an electrical impulse that circulates throughout bones and tissue. These impulses are captured by the sEMG sensor, and after applying some signal processing techniques that we'll see later in this tutorial, they can be incredibly useful in studying the patterns of our muscles.
 
 ^^^^^^^^^^^^^^^^^^^^^^^
 Placement & Measurement
@@ -49,9 +49,9 @@ As mentioned previously, sEMG can be used to study a wide variety of behaviors. 
 Heart Rate: Polar H10
 ---------------------
 
-Heart rate (HR) sensors are used to record the rate at which the heart pumps blood throughout the body, measured as the number of contractions (beats) per minute (bpm). Various factors can affect a person's heart rate, including fitness, stress, diet, genetics, medications, or disease/illness. The average HR for a normal, healthy person is between 60-100 bpm at rest, and that could drop to 40 bpm or lower in endurance athletes. 
+**Heart rate (HR) sensors** are used to record the rate at which the heart pumps blood throughout the body, measured as the number of contractions (beats) per minute (bpm). Various factors can affect a person's heart rate, including fitness, stress, diet, genetics, medications, or disease/illness. The average HR for a normal, healthy person is between 60-100 bpm at rest, and that could drop to 40 bpm or lower in endurance athletes. 
 
-**Heart rate variability (HRV)** is a measure of the variation in time (milliseconds) between consecutive heartbeats. The heartbeat isn't exactly regular all the time, so HRV serves as an indicator for how well your body can respond to stress or exercise. It's usually measured over a period of at least five minutes, and a higher value is better as it indicates a faster recovery.
+**Heart rate variability (HRV)** is a measure of the variation in time (milliseconds) between consecutive heartbeats. The heartbeat isn't exactly regular all the time, so HRV serves as an indicator for how well your body can respond to stress or exercise. It's usually measured over a period of at least five minutes, and a higher value is better as it indicates that the heart can recover faster.
 
 HR and HRV are widely considered as essential metrics for understanding human health and performance.
 
@@ -85,22 +85,26 @@ As we've discussed, there are a wide variety of clinical and fitness-related app
 Muscle Oxygen: Moxy Monitor
 ---------------------------
 
-A Muscle Oxygen sensor is used to measure the saturation of oxygen levels within various muscle groups in the human body.
+A **muscle oxygen sensor** is used to measure the saturation of oxygen levels (SmO\ :sub:`2`\) within various muscle groups in the human body. It represents the percentage of hemoglobin that is carrying oxygen in muscle tissue, and can be thought of as a measure of balance between supply and demand for oxygen in the muscle. With low intensity activity, SmO\ :sub:`2`\ generally increases as the heart rate increases and blood vessels dilate, allowing for more blood flow; conversely, with high intensity activity, SmO\ :sub:`2`\  drops as the heart struggles to keep up supplying oxygen to the muscles.
+
+For more information on SmO\ :sub:`2`\  (and the sources of the information here), please refer to the Moxy website for a `scientific explanation <https://www.moxymonitor.com/wp-content/themes/moxymonitor/documents/Moxy_Scientific_Explanation_march2014.pdf>`_ and `the physiology surrounding training zones <https://my.moxymonitor.com/blog/bid/344620/Training-Intensity-Zones-Muscle-Oxygen-and-the-Limiting-System>`_.
 
 ^^^^^^^^^^^^^^^^^^^^^^^
 Placement & Measurement
 ^^^^^^^^^^^^^^^^^^^^^^^
 
+For our tutorial, we'll use the `Moxy monitor <https://www.moxymonitor.com/shop/>`_. They sell compression shorts with the sensor attached, and you can also tuck the sensor under your own shorts or strap it elsewhere on the skin using tape or adhesive. 
 
-^^^^^^^^^^^^^^^^^^^^^^^^^^
-Reliability & Alternatives
-^^^^^^^^^^^^^^^^^^^^^^^^^^
-
+The Moxy sensor works by recording a near-infrared spectroscopy (NIRS) signal from a photodetector. Oxygenated and deoxygenated hemoglobin absorb different amounts of light at different wavelengths, and these are reflected back to the sensor to obtain a measurement of SmO\ :sub:`2`\ . Again, refer to the `scientific explanation <https://www.moxymonitor.com/wp-content/themes/moxymonitor/documents/Moxy_Scientific_Explanation_march2014.pdf>`_ for more details.
 
 ^^^^^^^^^^^^
 Applications
 ^^^^^^^^^^^^
 
+Muscle oxygen saturation is gaining popularity as a tool for physiological research.
+
+* It is used in sports science, most notably cardiovascular exercise but also a wide variety of other activities, to assess performance and tailor training programs [#]_ [#]_ [#]_ [#]_.
+* It can be used to help assess the effects of exercise in patients with cardiovascular [#]_ [#]_ [#]_ and neuromuscular [#]_ diseases.
 
 ----------------------------------
 Oxygen Volume: VO2 Master Analyzer
@@ -185,3 +189,23 @@ Heart Rate
 .. [#] \S. Gradl, M. Wirth, T. Zillig, and B.M. Eskofier. "Visualization of Heart Activity in Virtual Reality: a Biofeedback Application using Wearable Sensors." *2018 IEEE 15th International Conference on Wearable and Implantable Body Sensor Networks (BSN)*, Las Vegas, Nevada, USA, pp. 152-155, Mar. 2018, doi: 10.1109/BSN.2018.8329681.
 
 .. [#] \C. Rockstroh, J. Blum, and A.S. Göritz. "Virtual reality in the application of heart rate variability biofeedback." *International Journal of Human-Computer Studies*, vol. 130, pp. 209-220, Oct. 2019, doi: 10.1016/j.ijhcs.2019.06.011.
+
+^^^^^^^^^^^^^
+Muscle Oxygen
+^^^^^^^^^^^^^
+
+.. [#] \S. Perrey and M. Ferrari. "Muscle Oximetry in Sports Science: A Systematic Review." *Sports Medicine*, vol. 48, pp. 597-616, 2018, doi: 10.1007/s40279-017-0820-1.
+
+.. [#] \F. Oueslati, J. Boone, and S. Ahmaidi. "Respiratory muscle endurance, oxygen saturation index in vastus lateralis and performance during heavy exercise." *Respiratory Physiology & Neurobiology*, vol. 227, pp. 41-47, Jun. 2016, doi: 10.1016/j.resp.2016.02.008.
+
+.. [#] D.P. Born, T. Stöggl, M. Swarén, and G. Björklund. "Near-Infrared Spectroscopy: More Accurate Than Heart Rate for Monitoring Intensity in Running in Hilly Terrain." *International Journal of Sports Physiology and Performance*, vol. 12, no. 4, pp. 440-447, 2017, doi: 10.1123/ijspp.2016-0101.
+
+.. [#] \F. Contreras-Briceño, M. Espinosa-Ramírez, A. Rivera-Greene, C. Guerra-Venegas, A. Lungenstrass-Poulsen, V. Villagra-Reyes, R. Caulier-Cisterna, O.F. Araneda, and G. Viscor. "Monitoring Changes in Oxygen Muscle during Exercise with High-Flow Nasal Cannula Using Wearable NIRS Biosensors." *Biosensors*, vol. 13, no. 11, pp. 985, Nov. 2023, doi: 10.3390/bios13110985.
+
+.. [#] D.P. Monteiro, G.A. Ribeiro-Samora, R.R. Britto, and D.A.G. Pereira. "Effects of modified aerobic training on muscle metabolism in individuals with peripheral arterial disease: a randomized clinical trial." *Scientific Reports*, vol. 9, Nov. 2019, doi: 10.1038/s41598-019-52428-7.
+
+.. [#] A.W. Gardner, P.S. Montgomery, M. Wang, and B. Shen. "Association between calf muscle oxygen saturation with ambulatory function and quality of life in symptomatic patients with peripheral artery disease." *Journal of Vascular Surgery*, vol. 72, no. 2, pp. 632-642, Aug. 2020, doi: 10.1016/j.jvs.2019.09.057.
+
+.. [#] \N. Cornelis, P. Chatzinikolaou, R. Buys, I. Fourneau, J. Claes, and V. Cornelissen. "The Use of Near Infrared Spectroscopy to Evaluate the Effect of Exercise on Peripheral Muscle Oxygenation in Patients with Lower Extremity Artery Disease: A Systematic Review." *European Journal of Vascular and Endovascular Surgery*, vol. 61, no. 5, May 2021, pp. 837-847, doi: 10.1016/j.ejvs.2021.02.008.
+
+.. [#] \J. Montes, A.M. Goodwin, M.P. McDermott, D. Uher, F.M. Hernandez, K. Coutts, J. Cocchi, M. Hauschildt, K.M. Cornett, A.K. Rao, U.R. Monani, C.E. Garber, and D.C. De Vivo. "Diminished muscle oxygen uptake and fatigue in spinalmuscular atrophy." *Annals of Clinical and Translational Neurology*, vol. 8, no. 5, pp. 1086-1095, May 2021, doi: 10.1002/acn3.51353.
