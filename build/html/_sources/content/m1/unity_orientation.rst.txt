@@ -104,6 +104,7 @@ Shaded in red in the image above, the object hierarchy contains any ``GameObject
 
 Try exploring by adding different types of ``GameObject`` s to the scene and creating multiple levels of parents and children until you feel comfortable. Note that you can delete any object you create by right clicking on it in the hierarchy and clicking delete.
 
+.. _to_mobile_setup:
 ---------------------------------
 Setting Up For Mobile Development
 ---------------------------------
