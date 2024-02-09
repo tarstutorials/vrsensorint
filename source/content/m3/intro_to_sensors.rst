@@ -18,13 +18,20 @@ Surface Electromyography: Delsys Trigno
 Placement & Measurement
 ^^^^^^^^^^^^^^^^^^^^^^^
 
-For the purposes of this tutorial, we'll be using the Delsys sEMG sensors, widely regarded for their clinical-grade quality in research and industrial settings. Specifically, three of their most common products are the Trigno Avanti, Trigno Mini, and Trigno Quattro sensors.
+For the purposes of this tutorial, we'll be using the Delsys sEMG sensors, widely regarded for their clinical-grade quality in research and industrial settings. Specifically, three of their most common products are the Trigno Avanti, Trigno Mini, and Trigno Quattro, as shown below.
+
+.. image:: ../../images/delsys_avanti.png
+    :width: 49 %
+    :alt: The Trigno Avanti sensor being worn on the leg.
+.. image:: ../../images/delsys_mini.jpg
+    :width: 49 %
+    :alt: The Trigno Mini sensor being worn on the arm.
 
 * The `Trigno Avanti <https://delsys.com/trigno-avanti/>`_ is their "standard" sEMG sensor.
 * The `Trigno Mini <https://delsys.com/trigno-mini/>`_ is a smaller form factor sensor, allowing you to get data from muscles that may be harder to reach with the Avanti.
 * The `Trigno Quattro <https://delsys.com/trigno-quattro/>`_ is similar to the Trigno Mini, but there are four sensing heads, allowing you to get precise data from multiple locations.
 
-Each of these devices also contains an **IMU (inertial measurement unit)** sensor, which reports data on acceleration and orientation. This can be used in conjunction with the sEMG signal to understand the motion of the muscle. 
+Each of these devices also contains an **IMU (inertial measurement unit)** sensor, which reports data on acceleration and orientation. This can be used in conjunction with the sEMG signal to understand the motion of the muscle. They also have LED lights on the top to indicate the status of the sensor.
 
 The sensors are placed on the surface of the skin and stick via a simple adhesive. Be careful as to where you place them, since they should be placed as close to the muscle as possible to achieve high-quality results. The surface of the skin should also be cleaned with an alcohol wipe before placing the sensor to remove any oils or contaminants which could interfere with the electrical signal. For more information on placing the sensors, consult the user guides that come with the products.
 
@@ -59,7 +66,11 @@ HR and HRV are widely considered as essential metrics for understanding human he
 Placement & Measurement
 ^^^^^^^^^^^^^^^^^^^^^^^
 
-For this tutorial, we will focus on the `Polar H10 <https://www.polar.com/us-en/sensors/h10-heart-rate-sensor>`_ HR sensor (some of their older models, such as the H9 or H7, could suffice as well). The device is worn around the chest (typically under the shirt), with a pad placed close to the heart and held in place via a buckle and strap. This relatively unobtrusive design makes it ideal for measuring HR during intense exercise.
+For this tutorial, we will focus on the `Polar H10 <https://www.polar.com/us-en/sensors/h10-heart-rate-sensor>`_ HR sensor (some of their older models, such as the H9 or H7, could suffice as well). The device is worn around the chest (typically under the shirt), with a pad placed close to the heart and held in place via a buckle and strap. This relatively unobtrusive design makes it ideal for measuring HR during intense exercise. An example of wearing the device is shown below (image from `Polar blog <https://www.polar.com/blog/new-polar-h10-heart-rate-sensor-2017/>`_).
+
+.. image:: ../../images/polarh10.jpg
+    :width: 800
+    :alt: The Polar H10 device being worn around a man's chest.
 
 The Polar H10 is an example of an **electrocardiograph**, which is a type of HR sensor that measures the electrical potential of the heart's activity in order to extract the HR information. We refer to the resulting electrical signal as an **electrocardiogram (ECG)**. A typical ECG is shown below (figure from [#]_). You can find a detailed description in the paper, but for now, just know that it shows the stages of depolarization and repolarization (changes in electric charge distribution) of different parts of the heart. In particular, notice the **RR interval** on the graph: the time (seconds) between two successive R peaks. To calculate the heart rate, simply divide 60 (seconds per minute) by the RR interval.
 
@@ -93,7 +104,11 @@ For more information on SmO\ :sub:`2`\  (and the sources of the information here
 Placement & Measurement
 ^^^^^^^^^^^^^^^^^^^^^^^
 
-For our tutorial, we'll use the `Moxy monitor <https://www.moxymonitor.com/shop/>`_. They sell compression shorts with the sensor attached, and you can also tuck the sensor under your own shorts or strap it elsewhere on the skin using tape or adhesive. 
+For our tutorial, we'll use the `Moxy monitor <https://www.moxymonitor.com/shop/>`_. They sell compression shorts with the sensor attached, and you can also tuck the sensor under your own shorts or strap it elsewhere on the skin using tape or adhesive. An example of wearing the device is shown below (image from `Moxy <https://www.moxymonitor.com/>`_).
+
+.. image:: ../../images/moxy.jpg
+    :width: 800
+    :alt: Left: the Moxy monitor being worn on a runner's leg. Right: Close-up view of attaching the Moxy monitor.
 
 The Moxy sensor works by recording a near-infrared spectroscopy (NIRS) signal from a photodetector. Oxygenated and deoxygenated hemoglobin absorb different amounts of light at different wavelengths, and these are reflected back to the sensor to obtain a measurement of SmO\ :sub:`2`\ . Again, refer to the `scientific explanation <https://www.moxymonitor.com/wp-content/themes/moxymonitor/documents/Moxy_Scientific_Explanation_march2014.pdf>`_ for more details.
 
@@ -110,27 +125,34 @@ Muscle oxygen saturation is gaining popularity as a tool for physiological resea
 Oxygen Volume: VO2 Master Analyzer
 ----------------------------------
 
-Oxygen Volume (Vo2) sensors, are used to measure oxygen consumption during aerobic and anaerobic physical activity.
+**Oxygen volume** (VO\ :sub:`2`\) sensors are used to measure oxygen consumption during aerobic and anaerobic physical activity. This information is crucial for determining levels of cardiovascular fitness and can be used to design personalized training regimens for athletes.
 
 ^^^^^^^^^^^^^^^^^^^^^^^
 Placement & Measurement
 ^^^^^^^^^^^^^^^^^^^^^^^
 
+For our tutorial, we'll be using the `VO2 Master Analyzer <https://vo2master.com/store/>`_. The device is composed of a face mask strapped around the head. The mask works by measuring the oxygen and carbon dioxide concentration of air coming into and going out of the body. An example of wearing the VO2 Master Analyzer is shown below (image from `VO2 Master <https://vo2master.com/>`_).
 
-^^^^^^^^^^^^^^^^^^^^^^^^^^
-Reliability & Alternatives
-^^^^^^^^^^^^^^^^^^^^^^^^^^
+.. image:: ../../images/vo2master.jpg
+    :width: 800
+    :alt: The VO2 Master Analyzer face mask being worn by a woman on an indoor exercise bike.
 
+The most important facet of oxygen volume sensing is **maximal oxygen consumption** (VO\ :sub:`2`\max), which is the maximum amount of oxygen that an individual can utilize during intense exercise. This is determined by two factors: the amount of blood the heart can pump per beat and the efficiency with which the muscles can use the oxygen extracted from that blood. Further testing can reveal **ventilatory thresholds**, which are certain inflection points of the body's performance during exercise. During the earlier stages of intensity (before the first threshold, VT1), ventilation increases linearly with oxygen consumption, but at higher stages (between thresholds and after the second threshold, VT2), the increase becomes disproportionate to oxygen consumption. Visit the `VO2 Master Blog Series <https://vo2master.com/blog/intro-to-metabolic-testing/>`_ for more information on VO\ :sub:`2`\max and its use in fitness.
 
 ^^^^^^^^^^^^
 Applications
 ^^^^^^^^^^^^
 
+As mentioned above, oxygen volume sensing is used in a variety of applications related to cardiovascular fitness.
+
+* It can be used to design and compare the effectiveness of training regimens for endurance athletes [#]_ or the general population [#]_, especially for high-intensity interval training (HIIT). It was also shown as a potentially accurate measure of caloric expenditure in atheletes [#]_.
+* It can be used to assess the impacts of musculoskeletal disorders and other chronic pains [#]_ [#]_ [#]_.
 
 ---------------
 Section Review
 ---------------
 
+In this section, you were introduced to different types of physiological sensors. You learned about what data on the human body we can use to assess performance, and how sensors are designed to capture that data. You were also exposed to some of the active research in human health and performance that uses these sensors. All of this will be an important background for the next sections, where we'll take a deep dive into the process of collecting, presenting, and analyzing this data. Keep up the good work!
 
 ----------
 References
@@ -209,3 +231,19 @@ Muscle Oxygen
 .. [#] \N. Cornelis, P. Chatzinikolaou, R. Buys, I. Fourneau, J. Claes, and V. Cornelissen. "The Use of Near Infrared Spectroscopy to Evaluate the Effect of Exercise on Peripheral Muscle Oxygenation in Patients with Lower Extremity Artery Disease: A Systematic Review." *European Journal of Vascular and Endovascular Surgery*, vol. 61, no. 5, May 2021, pp. 837-847, doi: 10.1016/j.ejvs.2021.02.008.
 
 .. [#] \J. Montes, A.M. Goodwin, M.P. McDermott, D. Uher, F.M. Hernandez, K. Coutts, J. Cocchi, M. Hauschildt, K.M. Cornett, A.K. Rao, U.R. Monani, C.E. Garber, and D.C. De Vivo. "Diminished muscle oxygen uptake and fatigue in spinalmuscular atrophy." *Annals of Clinical and Translational Neurology*, vol. 8, no. 5, pp. 1086-1095, May 2021, doi: 10.1002/acn3.51353.
+
+^^^^^^^^^^^^^
+Oxygen Volume
+^^^^^^^^^^^^^
+
+.. [#] \R. Bahtraa, S. Crisarib, W.W. Dinatac, N. Susantod, and Y. Andria. "VO\ :sub:`2`\Max in Soccer Players: Comparison  ofInterval Training and Continuous Running." *Journal of Sport Science and Education*, vol. 8, no. 1, 2023, pp. 46-53, doi: 10.26740/jossae.v8n1.p46-53.
+
+.. [#] \D. Wen, T. Uteschc, J. Wud, S. Robertsone, J. Liuf, G. Hub, and H. Chena. "Effects of different protocols of high intensity interval training for VO\ :sub:`2`\max improvements in adults: A meta-analysis of randomised controlled trials." *Journal of Science and Medicine in Sport*, vol. 22, no. 8, Aug. 2019, pp. 941-947, doi: 10.1016/j.jsams.2019.01.013.
+
+.. [#] M.S. Dasa, O. Friborg, M. Kristoffersen, G. Pettersen, J. Sundgot-Borgen, and J.H. Rosenvinge. "Accuracy of Tracking Devices' Ability to Assess Exercise Energy Expenditure in Professional Female Soccer Players: Implications for Quantifying Energy Availability." *International Journal of Environmental Research and Public Health*, vol. 19, pp. 4470, 2022, doi: 10.3390/ijerph19084770.
+
+.. [#] \P. Maurice, J. Camernik, D. Gorjan, B. Schirrmeister, J. Bornmann, L. Tagliapietra, c. Latella, D. Pucci, L. Fritzsche, S. Ivaldi, and J. Babič. "Objective and Subjective Effects of a Passive Exoskeleton on Overhead Work." *IEEE Transactions on Neural Systems and Rehabilitation Engineering*, vol. 28, no. 1, pp. 152-164, doi: 10.1109/TNSRE.2019.2945368.
+
+.. [#] L.L. Moberg, L.K. Lunde, M. Koch, A.T. Tveter, and K.B. Veiersted. "Association between VO\ :sub:`2max`\, handgrip strength, and musculoskeletal pain among construction and health care workers." *BMC Public Health*, vol. 17, no. 272, 2017, doi: 10.1186/s12889-017-4173-3.
+
+.. [#] \F. Cuenca-Martínez, N. Sempere-Rubio, C. Varangot-Reille, J. Fernández-Carnero, L. Suso-Martí, P. Alba-Quesada, and R. La Touche. "Effects of High-Intensity Interval Training (HIIT) on Patients with Musculoskeletal Disorders: A Systematic Review and Meta-Analysis with a Meta-Regression and Mapping Report." *Diagnostics*, vol. 12, no. 10, pp. 2532, 2022, doi: 10.3390/diagnostics12102532.
