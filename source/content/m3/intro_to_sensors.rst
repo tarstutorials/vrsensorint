@@ -1,4 +1,5 @@
 .. _int_to_sensors:
+.. _analysis_to_sensors:
 
 ======================================
 Introduction to Physiological Sensors
@@ -45,7 +46,7 @@ Finally, an important concept in most sEMG applications is **maximum voluntary c
 Applications
 ^^^^^^^^^^^^
 
-As mentioned previously, sEMG can be used to study a wide variety of behaviors. Many of these applications involve developing machine learning algorithms for automated classification based on sEMG signals, though this is not necessary. The following examles illustrate some of sEMGs versatility:
+As mentioned previously, sEMG can be used to study a wide variety of behaviors. Many of these applications involve developing machine learning algorithms for automated classification based on sEMG signals, though this is not necessary. The following examles illustrate the versatility of sEMG:
 
 * It can help diagnose certain muscular disorders, including muscular dystrophy and chronic pain [#]_ [#]_.
 * It can help identify nerve dysfunction and muscle fatigue [#]_ [#]_ [#]_ [#]_.
@@ -66,13 +67,13 @@ HR and HRV are widely considered as essential metrics for understanding human he
 Placement & Measurement
 ^^^^^^^^^^^^^^^^^^^^^^^
 
-For this tutorial, we will focus on the `Polar H10 <https://www.polar.com/us-en/sensors/h10-heart-rate-sensor>`_ HR sensor (some of their older models, such as the H9 or H7, could suffice as well). The device is worn around the chest (typically under the shirt), with a pad placed close to the heart and held in place via a buckle and strap. This relatively unobtrusive design makes it ideal for measuring HR during intense exercise. An example of wearing the device is shown below (image from `Polar blog <https://www.polar.com/blog/new-polar-h10-heart-rate-sensor-2017/>`_).
+For this tutorial, we will focus on the `Polar H10 <https://www.polar.com/us-en/sensors/h10-heart-rate-sensor>`_ HR sensor (some of their older models, such as the H9 or H7, could suffice as well). The device is worn around the chest (typically under the shirt), with a pad placed close to the heart and held in place via a buckle and strap. This relatively unobtrusive design makes it ideal for measuring HR during intense exercise. An example of wearing the device is shown below (image from the `Polar blog <https://www.polar.com/blog/new-polar-h10-heart-rate-sensor-2017/>`_).
 
 .. image:: ../../images/polarh10.jpg
     :width: 800
     :alt: The Polar H10 device being worn around a man's chest.
 
-The Polar H10 is an example of an **electrocardiograph**, which is a type of HR sensor that measures the electrical potential of the heart's activity in order to extract the HR information. We refer to the resulting electrical signal as an **electrocardiogram (ECG)**. A typical ECG is shown below (figure from [#]_). You can find a detailed description in the paper, but for now, just know that it shows the stages of depolarization and repolarization (changes in electric charge distribution) of different parts of the heart. In particular, notice the **RR interval** on the graph: the time (seconds) between two successive R peaks. To calculate the heart rate, simply divide 60 (seconds per minute) by the RR interval.
+The Polar H10 is an example of an **electrocardiograph**, which is a type of HR sensor that measures the electrical potential of the heart's activity in order to extract the HR information. We refer to the resulting electrical signal as an **electrocardiogram (ECG)**. A typical ECG is shown below (figure from [#]_). You can find a detailed description in the paper, but for now, just know that it shows the stages of depolarization and repolarization (changes in electric charge distribution) of different parts of the heart. In particular, notice the **RR interval** on the graph: the time (seconds) between two successive R peaks. To calculate the heart rate, simply divide 60 (seconds per minute) by the RR interval. We'll explore this process further in :ref:`sensors_to_analysis`.
 
 .. image:: ../../images/ecg_graph.png
   :width: 800
@@ -110,7 +111,7 @@ For our tutorial, we'll use the `Moxy monitor <https://www.moxymonitor.com/shop/
     :width: 800
     :alt: Left: the Moxy monitor being worn on a runner's leg. Right: Close-up view of attaching the Moxy monitor.
 
-The Moxy sensor works by recording a near-infrared spectroscopy (NIRS) signal from a photodetector. Oxygenated and deoxygenated hemoglobin absorb different amounts of light at different wavelengths, and these are reflected back to the sensor to obtain a measurement of SmO\ :sub:`2`\ . Again, refer to the `scientific explanation <https://www.moxymonitor.com/wp-content/themes/moxymonitor/documents/Moxy_Scientific_Explanation_march2014.pdf>`_ for more details.
+The Moxy sensor uses **near-infrared spectroscopy (NIRS)**, which is a system that sends near-infrared light through some medium and measures the light reflected back with a photodetector. Since oxygenated and deoxygenated hemoglobin absorb different amounts of light at different wavelengths, we can obtain a measurement of SmO\ :sub:`2`\  based on differences in reflectance. Again, refer to the `scientific explanation <https://www.moxymonitor.com/wp-content/themes/moxymonitor/documents/Moxy_Scientific_Explanation_march2014.pdf>`_ for more details.
 
 ^^^^^^^^^^^^
 Applications

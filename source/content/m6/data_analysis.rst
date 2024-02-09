@@ -1,3 +1,5 @@
+.. _sensors_to_analysis:
+
 ===============
 Data Analysis
 ===============
