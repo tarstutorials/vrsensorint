@@ -37,7 +37,7 @@ The sensors are placed on the surface of the skin and stick via a simple adhesiv
 
 .. or consult Matt's tutorial once we have a link to it
 
-Traditionally, intramuscular electromyography (iEMG) is another technique used to measure muscle activity by sticking a needle inside the skin next to a particular muscle. While this is still used in some clinical applications, especially when muscles are deep into the skin or have a small cross-sectional area, it is becoming an increasingly less popular approach as it is more invasive for data collection.
+Traditionally, intramuscular electromyography (iEMG) is another technique used to measure muscle activity by sticking a needle inside the skin next to a particular muscle. While this is still used in some clinical applications, especially when muscles are deep into the skin or have a small cross-sectional area, it is losing popularity as it's more invasive for data collection.
 
 Finally, an important concept in most sEMG applications is **maximum voluntary contraction (MVC)**. In order to measure muscle strength, especially in patients with neuromuscular disorders, we have the patient flex a certain muscle as much as they can and use the resulting sEMG value as a baseline. Then, all future readings are compared as a percentage of MVC.
 
@@ -45,7 +45,7 @@ Finally, an important concept in most sEMG applications is **maximum voluntary c
 Applications
 ^^^^^^^^^^^^
 
-As mentioned previously, sEMG can be used to study a wide variety of behaviors. We'll provide some examples here. Many of these applications involve developing machine learning algorithms for automated classification based on sEMG signals, though this is not necessary.
+As mentioned previously, sEMG can be used to study a wide variety of behaviors. Many of these applications involve developing machine learning algorithms for automated classification based on sEMG signals, though this is not necessary. The following examles illustrate some of sEMGs versatility:
 
 * It can help diagnose certain muscular disorders, including muscular dystrophy and chronic pain [#]_ [#]_.
 * It can help identify nerve dysfunction and muscle fatigue [#]_ [#]_ [#]_ [#]_.
@@ -56,7 +56,7 @@ As mentioned previously, sEMG can be used to study a wide variety of behaviors. 
 Heart Rate: Polar H10
 ---------------------
 
-**Heart rate (HR) sensors** are used to record the rate at which the heart pumps blood throughout the body, measured as the number of contractions (beats) per minute (bpm). Various factors can affect a person's heart rate, including fitness, stress, diet, genetics, medications, or disease/illness. The average HR for a normal, healthy person is between 60-100 bpm at rest, and that could drop to 40 bpm or lower in endurance athletes. 
+**Heart rate (HR) sensors** are used to record the rate at which the heart pumps blood throughout the body, measured as the number of contractions (beats) per minute (bpm). Various factors can affect a person's heart rate, including fitness, stress, diet, genetics, medications, or disease/illness. The average HR for a normal, healthy person is between 60-100 bpm at rest, and that could drop to 40 bpm or lower for endurance athletes. 
 
 **Heart rate variability (HRV)** is a measure of the variation in time (milliseconds) between consecutive heartbeats. The heartbeat isn't exactly regular all the time, so HRV serves as an indicator for how well your body can respond to stress or exercise. It's usually measured over a period of at least five minutes, and a higher value is better as it indicates that the heart can recover faster.
 
@@ -82,7 +82,7 @@ The Polar H10 is an example of an **electrocardiograph**, which is a type of HR 
 Reliability & Alternatives
 ^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-There are a variety of other techniques for measuring HR. One common example is **photoplethysmography (PPG)**, which uses LED lights to detect blood volume changes underneath the skin. You've probably seen this on many different kinds of fitness/smart watches, where it could be used for exercise or sleep monitoring. These devices are nice because they're easier to wear than the chest strap, and in most cases, their accuracy is comparable to the chest strap ECG. However, many studies conclude that PPG is not as accurate as ECG during high-intensity activities, or when clinically assessing HRV [#]_ [#]_ [#]_, though some have shown that they may be acceptably close in certain applications [#]_ [#]_.
+There are many other techniques used for measuring HR. One common example is **photoplethysmography (PPG)**, which uses LED lights to detect blood volume changes underneath the skin. You've probably seen this on many different kinds of fitness/smart watches, where it's often used for monitoring exercise or sleep. These devices are convenient because they're easier to wear than the chest strap, and in most cases, their accuracy is comparable to the chest strap ECG. However, many studies conclude that PPG is not as accurate as ECG during high-intensity activities, or when clinically assessing HRV [#]_ [#]_ [#]_, though some have shown that they may be acceptably close in certain applications [#]_ [#]_.
 
 Studies [#]_ [#]_ have shown that the Polar H10 chest strap device is comparably accurate to the Holter medical-grade ECG. As such, these wearable sensors are considered the gold standard when it comes to commercial HR sensing.
 
@@ -96,7 +96,7 @@ As we've discussed, there are a wide variety of clinical and fitness-related app
 Muscle Oxygen: Moxy Monitor
 ---------------------------
 
-A **muscle oxygen sensor** is used to measure the saturation of oxygen levels (SmO\ :sub:`2`\) within various muscle groups in the human body. It represents the percentage of hemoglobin that is carrying oxygen in muscle tissue, and can be thought of as a measure of balance between supply and demand for oxygen in the muscle. With low intensity activity, SmO\ :sub:`2`\ generally increases as the heart rate increases and blood vessels dilate, allowing for more blood flow; conversely, with high intensity activity, SmO\ :sub:`2`\  drops as the heart struggles to keep up supplying oxygen to the muscles.
+A **muscle oxygen sensor** is used to measure the saturation of oxygen levels (SmO\ :sub:`2`\) within various muscle groups in the human body. It represents the percentage of hemoglobin that is carrying oxygen in muscle tissue, and can be thought of as a measure of balance between supply and demand for oxygen in the muscle. With low intensity activity, SmO\ :sub:`2`\  generally increases as the heart rate increases and blood vessels dilate, allowing for more blood flow; conversely, with high intensity activity, SmO\ :sub:`2`\  drops as the heart struggles to keep up supplying oxygen to the muscles.
 
 For more information on SmO\ :sub:`2`\  (and the sources of the information here), please refer to the Moxy website for a `scientific explanation <https://www.moxymonitor.com/wp-content/themes/moxymonitor/documents/Moxy_Scientific_Explanation_march2014.pdf>`_ and `the physiology surrounding training zones <https://my.moxymonitor.com/blog/bid/344620/Training-Intensity-Zones-Muscle-Oxygen-and-the-Limiting-System>`_.
 
@@ -116,7 +116,7 @@ The Moxy sensor works by recording a near-infrared spectroscopy (NIRS) signal fr
 Applications
 ^^^^^^^^^^^^
 
-Muscle oxygen saturation is gaining popularity as a tool for physiological research.
+Muscle oxygen saturation is gaining popularity as a tool for physiological research. See some examples below:
 
 * It is used in sports science, most notably cardiovascular exercise but also a wide variety of other activities, to assess performance and tailor training programs [#]_ [#]_ [#]_ [#]_.
 * It can be used to help assess the effects of exercise in patients with cardiovascular [#]_ [#]_ [#]_ and neuromuscular [#]_ diseases.
@@ -131,10 +131,10 @@ Oxygen Volume: VO2 Master Analyzer
 Placement & Measurement
 ^^^^^^^^^^^^^^^^^^^^^^^
 
-For our tutorial, we'll be using the `VO2 Master Analyzer <https://vo2master.com/store/>`_. The device is composed of a face mask strapped around the head. The mask works by measuring the oxygen and carbon dioxide concentration of air coming into and going out of the body. An example of wearing the VO2 Master Analyzer is shown below (image from `VO2 Master <https://vo2master.com/>`_).
+For our tutorial, we'll be using the `VO2 Master Analyzer <https://vo2master.com/store/>`_. The device is composed of a face mask strapped around the head. The mask works by measuring the oxygen and carbon dioxide concentration of air coming into and going out of the body. An example of someone wearing the VO2 Master Analyzer is shown below (image from `VO2 Master <https://vo2master.com/>`_).
 
 .. image:: ../../images/vo2master.jpg
-    :width: 800
+    :width: 600
     :alt: The VO2 Master Analyzer face mask being worn by a woman on an indoor exercise bike.
 
 The most important facet of oxygen volume sensing is **maximal oxygen consumption** (VO\ :sub:`2`\max), which is the maximum amount of oxygen that an individual can utilize during intense exercise. This is determined by two factors: the amount of blood the heart can pump per beat and the efficiency with which the muscles can use the oxygen extracted from that blood. Further testing can reveal **ventilatory thresholds**, which are certain inflection points of the body's performance during exercise. During the earlier stages of intensity (before the first threshold, VT1), ventilation increases linearly with oxygen consumption, but at higher stages (between thresholds and after the second threshold, VT2), the increase becomes disproportionate to oxygen consumption. Visit the `VO2 Master Blog Series <https://vo2master.com/blog/intro-to-metabolic-testing/>`_ for more information on VO\ :sub:`2`\max and its use in fitness.
@@ -143,7 +143,7 @@ The most important facet of oxygen volume sensing is **maximal oxygen consumptio
 Applications
 ^^^^^^^^^^^^
 
-As mentioned above, oxygen volume sensing is used in a variety of applications related to cardiovascular fitness.
+As mentioned above, oxygen volume sensing is used in a variety of applications related to cardiovascular fitness. Included below are several example use cases:
 
 * It can be used to design and compare the effectiveness of training regimens for endurance athletes [#]_ or the general population [#]_, especially for high-intensity interval training (HIIT). It was also shown as a potentially accurate measure of caloric expenditure in atheletes [#]_.
 * It can be used to assess the impacts of musculoskeletal disorders and other chronic pains [#]_ [#]_ [#]_.
@@ -152,7 +152,7 @@ As mentioned above, oxygen volume sensing is used in a variety of applications r
 Section Review
 ---------------
 
-In this section, you were introduced to different types of physiological sensors. You learned about what data on the human body we can use to assess performance, and how sensors are designed to capture that data. You were also exposed to some of the active research in human health and performance that uses these sensors. All of this will be an important background for the next sections, where we'll take a deep dive into the process of collecting, presenting, and analyzing this data. Keep up the good work!
+In this section, you were introduced to four different types of physiological sensors. You learned about what data on the human body we can use to assess performance, and how sensors are designed to capture that data. You were also exposed to some of the active research in human health and performance that uses these sensors. All of this will be an important background for the next sections, where we'll take a deep dive into the process of collecting, presenting, and analyzing this data. Keep up the good work!
 
 ----------
 References
