@@ -4,7 +4,7 @@
 Getting Started With Unity
 ===========================
 
-The Unity Game Engine is an incredible tool for application and game development. It allows for building projects on a multitude of platforms, ranging from mobile to desktop to virtual reality. It also has a large development community where people support each other and build upon each others' work. Unity is an excellent choice for any developer seeking to integrate technologies together or create their dream application.
+The Unity Game Engine is an incredible tool for application and game development. It allows for building projects on a multitude of platforms, ranging from mobile to desktop to virtual reality. It also has a large development community where people support each other and build upon each others' work. Unity is an excellent choice for any developer seeking to integrate technologies or create their dream application.
 
 ---------------------------
 Creating Your First Project
@@ -65,7 +65,7 @@ Project Window
 
 Shaded blue in the image above, the project window contains the file structure of your project. On the left hand side of the window, you will see a sidebar. This sidebar contains the folders located within your project folder. By default, this is the assets folder and the packages folder. 
 
-The assets folder contains many subfolders with useful files in them. These are where you can create and access any folders, scripts, materials, scenes, and prefabs you use in your project. Additionally, if you install any packages from the package manager, a folder for that package will show up here. Do not worry about these terms now, they will be explained later. Common practice is to keep these folders organized, so that you do not lose track of your files. 
+The assests directory contains any folders, scripts, materials, scenes, and prefabs you use in your project. Additionally, if you install any packages from the package manager, a folder for that package will show up here. Do not worry about these terms now, they will be explained later. Common practice is to keep these folders organized, so that you do not lose track of your files. 
 
 Try exploring the project window and seeing what files are contained in it.
 
@@ -83,7 +83,7 @@ Shaded in purple in the image above, the inspector window contains all the infor
 
 Position, rotation, and scale all control where and how the object appears in the scene. Unity uses two different coordinate systems: world coordinates and local coordinates. By default, these values are in world coordinates, which are the general coordinates for the scene. However, if the object is a child of another object, it will use a coordinate system relative to that object called local coordinates. Components are the most variable parts of the inspector, and can have a variety of functions. Each adds an additonal ability or constraint to an object such as a collision box or a script, and can be added by clicking *Add Component* at the bottom of the inspector. They can be removed by pressing the three vertical dots to the right of the components name and clicking *Remove Component*.
 
-Try changing an object's position, rotation, and scale, as well adding and removing a component, to get a good sense of what each of these controls does.
+Try changing an object's position, rotation, and scale, as well as adding and removing a component, to get a good sense of what each of these controls does.
 
 
 ^^^^^^^^^^^^^^^^
@@ -91,16 +91,16 @@ Scene View
 ^^^^^^^^^^^^^^^^
 
 
-Shaded in green in the image above, the scene view is where you can see what your game world looks like. It allows you to move objects around in the scene and build the application you want. You move around in the scene view by using the view tool, which can be found in the top left of the scene view. There are also the move, rotate, and scale tools in the same menu in the top left that allow you to move, rotate, and scale the selected object, respectively. There are shortcuts for these tools, but they depend on the device you are using (for example, the middle mouse button swaps to the view tool on a desktop). Find more about the shortcuts for your device in the `Unity documentation <https://docs.unity.com/>`_.
+Shaded in green in the image above, the scene view is where you can see what your game world looks like. It allows you to move objects around in the scene and build the application you want. You move around in the scene view by using the view tool, which can be found in the top left of the scene view. There are also the move, rotate, and scale tools in the top left menu. Shortcuts exist for these tools, but they depend on the device you are using (for example, the middle mouse button swaps to the view tool on a desktop). Find more about the shortcuts for your device in the `Unity documentation <https://docs.unity.com/>`_.
 
-Adding new objects to the scene view is as simple as adding them in the object hierarchy or dragging them in from the project window. Finally, just above the scene view there are buttons to pause and play. These allow you to test your game in real time, but note that any changes made while the game is in play mode will be deleted once the game is stopped. While in play mode, the game will be shown in a tab called *Game* in the scene view. You can enlarge and minimize this tab to your liking. Editing should only be done in pause mode, which is the default. Make sure to save your scene after making changes. This can be done using the shortcut *ctrl + S* on PC and *cmd + S* on Mac.
+Adding new objects to the scene view is as simple as adding them in the object hierarchy or dragging them in from the project window. Finally, just above the scene view there are buttons to pause and play. These allow you to test your game in real time, but changes made in play mode will not be saved so editing should only be done while paused. While in play mode, the game will be shown in a tab called *Game* in the scene view. You can enlarge and minimize this tab to your liking. Make sure to save your scene after making changes. This can be done using the shortcut *ctrl + S* on PC and *cmd + S* on Mac.
 
 Practice moving around the scene and getting used to the controls. This will help you better understand what is going on in your game.
 
 ^^^^^^^^^^^^^^^^^^
 Object Hierarchy
 ^^^^^^^^^^^^^^^^^^
-Shaded in red in the image above, the object hierarchy contains any ``GameObject`` s you currently have loaded into the scene. ``GameObject`` s are the building blocks of Unity, and can be created using the "+" button in the top left of the window. See :ref:`oh_to_oc` for more information on ``GameObject`` s. Additionally, you can right click anywhere in the window to open the ``GameObject`` creation menu. There are many built in ``GameObject`` types, but savvy users can create their own type of object if it is not available. The reason for the "hierarchy" in the name is because of the parent-child relationships that objects have. To make an object a child of another, click on the object you want to be the parent in the hierarchy, then right click and create a new object. The created object will be this object's child. 
+Shaded in red in the image above, the object hierarchy contains any ``GameObject`` s you currently have loaded into the scene. ``GameObject`` s are the building blocks of Unity, and can be created using the "+" button in the top left of the window. See :ref:`oh_to_oc` for more information on ``GameObject`` s. Additionally, you can right click anywhere in the window to open the ``GameObject`` creation menu. ``GameObject`` s are structured hierarchically via parent-child relationships. To make an object a child of another, click on the object you want to be the parent in the hierarchy, then right click and create a new object. The created object will be this object’s child. 
 
 Try exploring by adding different types of ``GameObject`` s to the scene and creating multiple levels of parents and children until you feel comfortable. Note that you can delete any object you create by right clicking on it in the hierarchy and clicking delete.
 
@@ -141,8 +141,7 @@ Here are some basic techniques for mobile development in Unity. Be sure to mess 
 Object Creation
 ^^^^^^^^^^^^^^^^
 
-``GameObject`` s are the building blocks of Unity, and can be created using the "+" button in the top left of the window. Additionally, you can right click anywhere in the window to open the ``GameObject`` creation menu. There are many built in ``GameObject`` types, but savvy users can create their own type of object if it is not available. An object can be a "parent" or "child" of another object, and each object can have many levels of parents and children, creating "grandparents" and "grandchildren", so to speak. The purpose of these relationships are that some actions, such as transforming an object, will apply to the children of the object as well. For example, if you had a snowman object, but wanted to add a hat on the snowman, if you made the hat a child of the snowman, moving the snowman would move the hat along with it.
-``GameObject`` s can have components added to them, such as scripts or colliders, that control how they interact with the scene. 
+``GameObject`` s are the building blocks of Unity, and can be created using the "+" button in the top left of the window. Additionally, you can right click anywhere in the window to open the ``GameObject`` creation menu. There are many built in ``GameObject`` types, but savvy users can create their own type of object if it is not available. An object can be a "parent" or "child" of another object, and each object can have many levels of parents and children, creating "grandparents" and "grandchildren", so to speak. The purpose of these relationships are that some actions, such as transforming an object, will apply to the children of the object as well. For example, if you had a snowman object, but wanted to add a hat on the snowman, making the hat a child of the snowman would move the hat along with it. ``GameObject`` s can have components added to them, such as scripts or colliders, that control how they interact with the scene. 
 
 ^^^^^^^^^^^^^
 C# Scripting
@@ -182,7 +181,7 @@ If you ever get stuck while programming, don't forget to use the `C# documentati
 Camera System
 ^^^^^^^^^^^^^^^
 
-The camera system in Unity is very dependent on the application you desire to create. For instance, one project may involve having a player character serve as the main camera, while another may simply have a stationary overhead camera. Regardless of how you want to set up your camera system, Unity has the tools to help you do it. You can add a camera object by creating an empty object and attaching the "Camera" component to it. You can move this camera around in the scene to position it how you'd like, and can even see a pop-up when the camera is selected that shows its perspective. By default, Unity has a camera set up for you when you create a scene. In simple projects, usually the single default camera is enough, but you may have to move it around to get it to your liking.
+The camera system in Unity is very dependent on the application you desire to create. For instance, one project may involve having a player character serve as the main camera, while another may simply have a stationary overhead camera. Regardless of how you want to set up your camera system, Unity has the tools to help you do it. You can add a camera object by creating an empty object and attaching the "Camera" component to it. You can move this camera around in the scene to position it how you'd like, and can even see a pop-up when the camera is selected that shows its perspective. By default, Unity has a camera set up for you when you create a scene. In simple projects, the default camera is usually enough, but you may have to move it around to get it to your liking.
 
 Practice moving the camera around, and pressing the play button to see how changing the camera position affects the visuals of the game.
 
@@ -190,7 +189,7 @@ Practice moving the camera around, and pressing the play button to see how chang
 Physics System
 ^^^^^^^^^^^^^^^
 
-The physics system in Unity is used to control how ``GameObject`` s interact with one another and with the player. There are different physics systems for 2D and 3D games. In this introduction, we'll be refering to the physics used in a 2D game. By default, the physics system is ignored for most objects but this can be changed by adding specific physics-based components to the object. The main two physics-based components are colliders and rigid bodies. Colliders are invisible, and allow objects to collide with other objects. You can use scripting to make events happen when colliders are triggered, making them very useful for interaction. Rigid bodies are what allow physics-based events to occur with the object. You need a rigid body on an object if you want any physics to occur with it **including** collisions. Rigid bodies also are what allows an object to have mass and react to gravity. These two components combined are all you need to get started with Unity's physics system, but there is much more to explore in the 2D physics system that you can explore in the `documentation <https://docs.unity3d.com/Manual/Physics2DReference.html>`_.
+The physics system in Unity is how ``GameObject`` s interact with one another and with the player. There are different physics systems for 2D and 3D games. In this introduction, we'll be refering to the physics used in a 2D game. By default, the physics system is ignored for most objects but this can be changed by adding specific physics-based components to the object. The main two physics-based components are colliders and rigid bodies. Colliders are invisible, and allow objects to collide with other objects. You can use scripting to make events happen when colliders are triggered, making them very useful for interaction. Rigid bodies are what allow physics-based events to occur with the object. You need a rigid body on an object if you want any physics to occur with it **including** collisions. Rigid bodies also allow an object to have mass and react to gravity. These two components are all you need to get started with Unity's physics system, but there is much more to explore in the 2D physics system that you can explore in the `documentation <https://docs.unity3d.com/Manual/Physics2DReference.html>`_.
 
 You are encouraged to try adding colliders and rigid bodies to objects, and seeing how they respond when the game is played. 
 
