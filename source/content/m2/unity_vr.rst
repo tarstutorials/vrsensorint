@@ -82,7 +82,11 @@ Additionally, there are some packages you will need for this project, and since 
 
 #. Open the project you created in :ref:`to_create_vr`.
 
-#. 
+#. On the ribbon in the top left of the editor, select the *Window* option. This will open a drop-down menu with several options.
+
+#. In the drop-down menu that appears, select the *Package manager* option. This will open the Unity package manager in a new window. The Unity package manager is used to install, disable, update, and remove packages from a project.
+
+#.
 
 
 
