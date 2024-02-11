@@ -49,7 +49,7 @@ Creating a new Unity project for VR is very similar to the way you created the m
 
 6. Choose the where you'd like to store your project. Be sure to pick a location that is easy to find.
 
-7. Click the *Create project* button in the bottom right corner of the application. This will create the project and launch the editor.
+7. Click the *Create project* button in the bottom right corner of the application. This will create the project and launch the editor, which will contain a pre-made sample scene for you to start with.
 
 -------------------
 Pre-Project Setup
@@ -74,7 +74,7 @@ If you recall the :ref:`to_mobile_setup` subsection of module one, you will reme
 Essential Packages
 ^^^^^^^^^^^^^^^^^^^^
 
-Additionally, there are some packages you will need for this project, and since you likely haven't used the Unity package manager yet, the following steps will teach you how to install the packages you need for this project, and will also serve as a template for installing any Unity package from the package manager:
+Additionally, there are some packages you will need for this project, and since you likely haven't used the Unity package manager yet, the following steps will teach you how to verify the packages you need for this project are properly installed, and how to install them if they are not. It will also serve as a template for installing any Unity package from the package manager:
 
 1. Launch Unity Hub and login to your Unity account.
 
@@ -86,7 +86,31 @@ Additionally, there are some packages you will need for this project, and since 
 
 #. In the drop-down menu that appears, select the *Package manager* option. This will open the Unity package manager in a new window. The Unity package manager is used to install, disable, update, and remove packages from a project.
 
-#.
+#. Within the package manager, press the drop-down labeled `Packages:`. This should bring up a menu of sources where packages are located. Select the `Packages: In Project` option. You will now see a list of the packages currently installed for this project appear. 
+
+#. Verify that the following packages are installed in your project. If all of them are installed, you can skip the rest of these steps - however, the steps below will teach you how to install a package, so if you plan on using additional packages for your project, it is useful information. If you find that any of the following packages are missing from your project, the next step will help you install them. 
+
+    * XR Interaction Toolkit
+
+    * XR Core Utility
+
+    * XR Legacy Input Helpers
+
+    * XR Plugin Management
+
+    * OpenXR Plugin
+
+    * Oculus XR Plugin
+
+#. If you found that any of the previously listed packages were missing from your project, Click on the "+" button in the top left corner of the package manager. This will present you with options to add a package to your project.
+
+#. Select the *Add package by name...* option. This will prompt you to input the name and version of the package you would like to add. 
+
+#. Enter the name of the missing package and leave the version field blank. Ensure the information you provided is correct, and press the *Add* button. This will install the most recent version of the package to your project.
+
+#. Repeat steps 8 through 10 until all the missing packages are installed. You have now successfully installed the packages you will need for VR development.
+
+
 
 
 
