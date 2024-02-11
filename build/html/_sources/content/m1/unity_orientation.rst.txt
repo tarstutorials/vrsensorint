@@ -47,9 +47,9 @@ For our first project, we'll be designing a simple mobile mobile application for
 Understanding the Editor
 --------------------------
 
-.. image:: https://img.youtube.com/vi/uzsaMCQEnVY/maxresdefault.jpg
+.. image:: https://img.youtube.com/vi/xT6z6wliBq0/maxresdefault.jpg
     :alt: YouTube Video Explaining the editor.
-    :target: https://youtu.be/uzsaMCQEnVY
+    :target: https://youtu.be/xT6z6wliBq0
 
 **[Click on the above image for our YouTube tutorial on Using the Unity Editor.]**
 
@@ -81,7 +81,7 @@ Shaded in purple in the image above, the inspector window contains all the infor
     * Scale
     * Components attached to the object
 
-Position, rotation, and scale all control where and how the object appears in the scene. Unity uses two different coordinate systems: world coordinates and local coordinates. By default, these values are in world coordinates, which are the general coordinates for the scene. However, if the object is a child of another object, it will use a coordinate system relative to that object called local coordinates. Components are the most variable parts of the inspector, and can have a variety of functions. Each adds an additonal ability or constraint to an object such as a collision box or a script, and can be added by clicking *Add Component* at the bottom of the inspector. They can be removed by pressing the three vertical dots to the right of the components name and clicking *Remove Component*.
+Position, rotation, and scale all control where and how the object appears in the scene. Components are the most variable parts of the inspector, and can have a variety of functions. Each adds an additonal ability or constraint to an object such as a collision box or a script, and can be added by clicking *Add Component* at the bottom of the inspector. They can be removed by pressing the three vertical dots to the right of the components name and clicking *Remove Component*.
 
 Try changing an object's position, rotation, and scale, as well as adding and removing a component, to get a good sense of what each of these controls does.
 
@@ -100,7 +100,7 @@ Practice moving around the scene and getting used to the controls. This will hel
 ^^^^^^^^^^^^^^^^^^
 Object Hierarchy
 ^^^^^^^^^^^^^^^^^^
-Shaded in red in the image above, the object hierarchy contains any ``GameObject`` s you currently have loaded into the scene. ``GameObject`` s are the building blocks of Unity, and can be created using the "+" button in the top left of the window. See :ref:`oh_to_oc` for more information on ``GameObject`` s. Additionally, you can right click anywhere in the window to open the ``GameObject`` creation menu. ``GameObject`` s are structured hierarchically via parent-child relationships. To make an object a child of another, click on the object you want to be the parent in the hierarchy, then right click and create a new object. The created object will be this object’s child. 
+Shaded in red in the image above, the object hierarchy contains any ``GameObject`` s you currently have loaded into the scene. ``GameObject`` s are the building blocks of Unity, and can be created using the "+" button in the top left of the window. See :ref:`oh_to_oc` for more information on ``GameObject`` s. Additionally, you can right click anywhere in the window to open the ``GameObject`` creation menu. ``GameObject`` s are structured hierarchically via parent-child relationships. To make an object a child of another, click on the object you want to be the parent in the hierarchy, then right click and create a new object. The created object will be this object’s child. This parent-child relationship is explained later in :ref: `oh_to_oc`. 
 
 Try exploring by adding different types of ``GameObject`` s to the scene and creating multiple levels of parents and children until you feel comfortable. Note that you can delete any object you create by right clicking on it in the hierarchy and clicking delete.
 
@@ -141,7 +141,7 @@ Here are some basic techniques for mobile development in Unity. Be sure to mess 
 Object Creation
 ^^^^^^^^^^^^^^^^
 
-``GameObject`` s are the building blocks of Unity, and can be created using the "+" button in the top left of the window. Additionally, you can right click anywhere in the window to open the ``GameObject`` creation menu. There are many built in ``GameObject`` types, but savvy users can create their own type of object if it is not available. An object can be a "parent" or "child" of another object, and each object can have many levels of parents and children, creating "grandparents" and "grandchildren", so to speak. The purpose of these relationships are that some actions, such as transforming an object, will apply to the children of the object as well. For example, if you had a snowman object, but wanted to add a hat on the snowman, making the hat a child of the snowman would move the hat along with it. ``GameObject`` s can have components added to them, such as scripts or colliders, that control how they interact with the scene. 
+``GameObject`` s are the building blocks of Unity, and can be created using the "+" button in the top left of the window. Additionally, you can right click anywhere in the window to open the ``GameObject`` creation menu. There are many built in ``GameObject`` types, but savvy users can create their own type of object if it is not available. An object can be a "parent" or "child" of another object, and each object can have many levels of parents and children, creating "grandparents" and "grandchildren", so to speak. The purpose of these relationships are that some actions, such as transforming an object, will apply to the children of the object as well. For example, if you had a snowman object, but wanted to add a hat on the snowman, making the hat a child of the snowman would move the hat along with it. ``GameObject`` s can have components added to them, such as scripts or colliders, that control how they interact with the scene. Lastly, Unity uses two different coordinate systems: world coordinates and local coordinates. By default, an objects coordinate values are in world coordinates, which are the general coordinates for the scene. However, if the object is a child of another object, it will use a coordinate system relative to that object called local coordinates.
 
 ^^^^^^^^^^^^^
 C# Scripting
