@@ -130,6 +130,29 @@ Additionally, there are some packages you will need for this project, and since 
 Advanced Techniques in VR
 --------------------------
 
+VR development has a lot more moving pieces than traditional application development. Having a strong foundation in the Unity basics from the last section is a prerequisite to understanding the more advanced techniques discussed here. If you feel you need more practice in the basics, don't hesitate to return to :ref:`install_to_new` to refresh. There is no shame ein extra practice. If you think you have mastered the previous module and are ready to move on, continue reading to delve in to the advanced techniques found in VR development.
+
+^^^^^^^^
+XR Rig
+^^^^^^^^
+
+The XR rig is a prefab object included in the XR Interaction Toolkit. This object allows the user to interact with the virtual environment by providing input in the form of sight, sound, and touch. The XR rig is how the user connects their actions in the headset to the Unity application. As such, it is absolutely necessary for any VR application. The XR rig has two child objects called `Camera Offset` and `Locomotion System` that provide the previously mentioned inputs through their own child objects and their attached scripts. There are a lot of parameters you can change within the XR rig object and its child object, and exploring these can further customize your VR control scheme, but the default parameter settings are completely acceptable for most use cases.
+
+You can access the XR rig individually by searching for `XR Origin (XR Rig)` in the assets folder of the project manager, however, the template project provided by default when using the Unity VR Core project type has an prefab called `Complete XR Origin Set Up Variant` that already has the XR rig as a child object, and has it already set up for use alongside other useful objects you will learn more about in the upcoming subsections. This tutorial will be using this prefab instead, since it facilitates set-up, and provides additional actions for the player. If you wish to set up your own player rig without the extra objects, you can always use the XR rig by itself.
+
+^^^^^^^^^^^^^^^^^^^
+XR UI Input Module
+^^^^^^^^^^^^^^^^^^^
+Included in the afformentioned `Complete XR Origin Set Up Variant` is an empty child object called `EventSystem`. This object has a script attached to it called the `XR UI Input Module`. This script allows the player to use UI elements in virtual reality. The script has multiple parameters set up to control UI actions, connecting each to a preset for that specific action. These actions, like `Point Action` and `Left Click Action` allow you to control what happens when that action occurs. However, the default presets for these actions are intuitive and should remain as-is for most projects. 
+
+.. note::
+    If you add the `XR UI Input Module` to another object, you will have to manually add these presets for the actions, which can be found by searching `XRI UI` in the project window search bar and dragging each Input Ation Reference that appears to its corresponding parameter in the script component. This can be confusing, so it is highly recommended to just use the `Complete XR Origin Set Up Variant` prefab instead.
+
+^^^^^^^^^^^^^^^^^^
+
+^^^^^^^^^^^^^^^^^^
+
+
 ---------------
 Section Review
 ---------------
