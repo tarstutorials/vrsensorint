@@ -14,7 +14,7 @@ Why Unity?
 
 .. image:: ../../images/UnityLogo.png
   :width: 400
-  :alt: An Image of the Unity loo.
+  :alt: An Image of the Unity logo.
 
 As stated in the introduction, Unity will be the tool of choice for development in VR. Unity is *the* best pick for anyone looking to develop for VR, for a multitude of reasons. First, Unity has a large variety of actively updated packages to facilitate building out a VR package, something that other engines lack. Second, Unity has multiple ways to build and test a VR application, by controlling the build of the project. Unity VR projects can be built as standalone Android applications, meaning that they do not require a computer to be connected to the headset to run the app. They can also be built for Windows, allowing them to run alongside a computer for easier testing and modification. Lastly, Unity was chosen due to its thriving development community and ease of access, both of which offer newcomers a level of support that you would be unlikely to come accross elsewhere. These are the main reasons Unity was chosen, and why most VR developers opt to use Unity as well.
 
@@ -75,7 +75,7 @@ If you recall the :ref:`to_mobile_setup` subsection of module one, you will reme
 #. In the drop-down menu that appears, select the *Project Settings* option. This will open the settings for your project in a new window. There are a few changes you will need to make to the default settings to allow your development to run smoothly.
 
 .. warning::
-    At this point in the process, you will have to decide how you want to build your project. VR projects can be built to be run on a standalone headset, or in tandem with a PC. Both build methods have their merits, but the tutorial here will teach you how to develop for a standalone Android device, because this is option is more accessible. This platform does not require a powerful computer, nor does it require a constant connection to the computer to run. If you wish to create a non-standalone application, you will have to adjust your build and project settings according to your desired platform. You can find out more in the Untiy documention on `Platform Development <https://docs.unity3d.com/Manual/PlatformSpecific.html>`_. 
+    At this point in the process, you will have to decide how you want to build your project. VR projects can be built to be run on a standalone headset, or in tandem with a PC. Both build methods have their merits, but the tutorial here will teach you how to develop for a standalone Android device, because this is option is more accessible. This platform does not require a powerful computer, nor does it require a constant connection to the computer to run. If you wish to create a non-standalone application, you will have to adjust your build and project settings according to your desired platform. You can find out more in the Unity documention on `Platform Development <https://docs.unity3d.com/Manual/PlatformSpecific.html>`_. 
 
 ^^^^^^^^^^^^^^^^^^^^
 Essential Packages
