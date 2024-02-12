@@ -13,28 +13,32 @@ The information on each sensor will be organized as follows: first, we'll give a
 Surface Electromyography: Delsys Trigno
 ---------------------------------------
 
-**Surface electromyography (sEMG)** is a technique used to measure electromyographic signals that correspond to muscle activity. Muscles throughout the human body are activated in response to neural stimulation from the brain, and as they contract, they release an electrical impulse that circulates throughout bones and tissue. These impulses are captured by the sEMG sensor, and after applying some signal processing techniques that we'll see later in this tutorial, they can be incredibly useful in studying the patterns of our muscles.
+**Surface electromyography (sEMG)** is a technique used to measure electromyographic signals that correspond to muscle activity. Muscles throughout the human body are activated in response to neural stimulation from the brain, and as they contract, they release an electrical impulse that circulates throughout bones and tissue. These impulses are captured by the sEMG sensor, and after applying some signal processing techniques that we'll see later in the :ref:`sensors_to_analysis` section, they can be incredibly useful in studying the patterns of our muscles.
 
 ^^^^^^^^^^^^^^^^^^^^^^^
 Placement & Measurement
 ^^^^^^^^^^^^^^^^^^^^^^^
 
-For the purposes of this tutorial, we'll be using the Delsys sEMG sensors, widely regarded for their clinical-grade quality in research and industrial settings. Specifically, three of their most common products are the Trigno Avanti, Trigno Mini, and Trigno Quattro, as shown below.
+For the purposes of this tutorial, we'll be using the Delsys sEMG sensors, widely regarded for their clinical-grade quality in research and industrial settings. Specifically, three of their most common products are the Trigno Avanti, Trigno Mini, and Trigno Quattro, as shown below (images from `NASA Spinoff article <https://spinoff.nasa.gov/Electrical-Body-Signals-Help-Researchers-Restore-Movement-and-More>`_).
 
-.. image:: ../../images/delsys_avanti.png
+.. image:: ../../images/trigno_avanti.jpg
     :width: 49 %
-    :alt: The Trigno Avanti sensor being worn on the leg.
-.. image:: ../../images/delsys_mini.jpg
+    :alt: The Trigno Avanti sensor being worn by a patient in rehabilitation, on their legs.
+.. image:: ../../images/trigno_mini.jpg
     :width: 49 %
-    :alt: The Trigno Mini sensor being worn on the arm.
+    :alt: The Trigno Mini sensor being worn by a professional pianist, on their arms and hands.
 
 * The `Trigno Avanti <https://delsys.com/trigno-avanti/>`_ is their "standard" sEMG sensor.
 * The `Trigno Mini <https://delsys.com/trigno-mini/>`_ is a smaller form factor sensor, allowing you to get data from muscles that may be harder to reach with the Avanti.
 * The `Trigno Quattro <https://delsys.com/trigno-quattro/>`_ is similar to the Trigno Mini, but there are four sensing heads, allowing you to get precise data from multiple locations.
 
-Each of these devices also contains an **IMU (inertial measurement unit)** sensor, which reports data on acceleration and orientation. This can be used in conjunction with the sEMG signal to understand the motion of the muscle. They also have LED lights on the top to indicate the status of the sensor.
+Each of these devices also contains an **IMU (inertial measurement unit)** sensor, which reports data on acceleration and orientation. This can be used in conjunction with the sEMG signal to understand the motion of the muscle. Finally, the devices also have LED lights on the top to indicate the status of the sensor.
 
-The sensors are placed on the surface of the skin and stick via a simple adhesive. Be careful as to where you place them, since they should be placed as close to the muscle as possible to achieve high-quality results. The surface of the skin should also be cleaned with an alcohol wipe before placing the sensor to remove any oils or contaminants which could interfere with the electrical signal. For more information on placing the sensors, consult the user guides that come with the products.
+The sensors are placed on the surface of the skin and stick via a simple adhesive. Be careful as to where you place them, since they should be placed as close to the muscle as possible to achieve high-quality results. The surface of the skin should be cleaned with an alcohol wipe before placing the sensor to remove any oils or contaminants which could interfere with the electrical signal. The direction of the sensor must also match the direction of the muscle fibers; an example from the `Delsys Technical Notes on EMG Sensor Placement <https://www.delsys.com/downloads/TECHNICALNOTE/101-emg-sensor-placement.pdf>`_ is shown below.
+
+.. image:: ../../images/trigno_placement.png
+    :width: 800
+    :alt: A diagram showing an EMG sensor being placed along the direction of the muscle fibers.
 
 .. or consult Matt's tutorial once we have a link to it
 
@@ -46,7 +50,7 @@ Finally, an important concept in most sEMG applications is **maximum voluntary c
 Applications
 ^^^^^^^^^^^^
 
-As mentioned previously, sEMG can be used to study a wide variety of behaviors. Many of these applications involve developing machine learning algorithms for automated classification based on sEMG signals, though this is not necessary. The following examles illustrate the versatility of sEMG:
+As mentioned previously, sEMG can be used to study a wide variety of behaviors. Many of these applications involve developing machine learning algorithms for automated classification based on sEMG signals, though this is not necessarily the only use case. The following examles illustrate the versatility of sEMG:
 
 * It can help diagnose certain muscular disorders, including muscular dystrophy and chronic pain [#]_ [#]_.
 * It can help identify nerve dysfunction and muscle fatigue [#]_ [#]_ [#]_ [#]_.
@@ -67,13 +71,13 @@ HR and HRV are widely considered as essential metrics for understanding human he
 Placement & Measurement
 ^^^^^^^^^^^^^^^^^^^^^^^
 
-For this tutorial, we will focus on the `Polar H10 <https://www.polar.com/us-en/sensors/h10-heart-rate-sensor>`_ HR sensor (some of their older models, such as the H9 or H7, could suffice as well). The device is worn around the chest (typically under the shirt), with a pad placed close to the heart and held in place via a buckle and strap. This relatively unobtrusive design makes it ideal for measuring HR during intense exercise. An example of wearing the device is shown below (image from the `Polar blog <https://www.polar.com/blog/new-polar-h10-heart-rate-sensor-2017/>`_).
+For this tutorial, we will focus on the `Polar H10 <https://www.polar.com/us-en/sensors/h10-heart-rate-sensor>`_ HR sensor. The device is worn around the chest (typically under the shirt), with a pad placed close to the heart and held in place via a buckle and strap. This relatively unobtrusive design makes it ideal for measuring HR during intense exercise. An example of wearing the device is shown below (image from the `Polar blog <https://www.polar.com/blog/new-polar-h10-heart-rate-sensor-2017/>`_).
 
 .. image:: ../../images/polarh10.jpg
     :width: 800
     :alt: The Polar H10 device being worn around a man's chest.
 
-The Polar H10 is an example of an **electrocardiograph**, which is a type of HR sensor that measures the electrical potential of the heart's activity in order to extract the HR information. We refer to the resulting electrical signal as an **electrocardiogram (ECG)**. A typical ECG is shown below (figure from [#]_). You can find a detailed description in the paper, but for now, just know that it shows the stages of depolarization and repolarization (changes in electric charge distribution) of different parts of the heart. In particular, notice the **RR interval** on the graph: the time (seconds) between two successive R peaks. To calculate the heart rate, simply divide 60 (seconds per minute) by the RR interval. We'll explore this process further in :ref:`sensors_to_analysis`.
+The Polar H10 is an example of an **electrocardiograph**, which is a type of HR sensor that measures the electrical potential of the heart's activity in order to extract the HR information. We refer to the resulting electrical signal as an **electrocardiogram (ECG, or EKG)**. A typical ECG is shown below (figure from [#]_). You can find a detailed description in the paper, but for now, just know that it shows the stages of depolarization and repolarization (changes in electric charge distribution) of different parts of the heart. In particular, notice the **RR interval** on the graph: the time (seconds) between two successive R peaks. To calculate the heart rate, simply divide 60 (seconds per minute) by the RR interval. We'll explore this process further in :ref:`sensors_to_analysis`.
 
 .. image:: ../../images/ecg_graph.png
   :width: 800
@@ -83,7 +87,7 @@ The Polar H10 is an example of an **electrocardiograph**, which is a type of HR 
 Reliability & Alternatives
 ^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-There are many other techniques used for measuring HR. One common example is **photoplethysmography (PPG)**, which uses LED lights to detect blood volume changes underneath the skin. You've probably seen this on many different kinds of fitness/smart watches, where it's often used for monitoring exercise or sleep. These devices are convenient because they're easier to wear than the chest strap, and in most cases, their accuracy is comparable to the chest strap ECG. However, many studies conclude that PPG is not as accurate as ECG during high-intensity activities, or when clinically assessing HRV [#]_ [#]_ [#]_, though some have shown that they may be acceptably close in certain applications [#]_ [#]_.
+There are many other techniques used for measuring HR. One common example is **photoplethysmography (PPG)**, which uses LED lights to detect blood volume changes underneath the skin. You've probably seen this on many different kinds of fitness/smart watches, where it's often used for monitoring exercise or sleep. These devices are convenient because they're easier to wear than the chest strap, and in most cases, their accuracy is comparable to the chest strap ECG. However, many studies have concluded that PPG is not as accurate as ECG during high-intensity activities, or when clinically assessing HRV [#]_ [#]_ [#]_, though some have shown that they may be acceptably close in certain applications [#]_ [#]_.
 
 Studies [#]_ [#]_ have shown that the Polar H10 chest strap device is comparably accurate to the Holter medical-grade ECG. As such, these wearable sensors are considered the gold standard when it comes to commercial HR sensing.
 
@@ -97,7 +101,7 @@ As we've discussed, there are a wide variety of clinical and fitness-related app
 Muscle Oxygen: Moxy Monitor
 ---------------------------
 
-A **muscle oxygen sensor** is used to measure the saturation of oxygen levels (SmO\ :sub:`2`\) within various muscle groups in the human body. It represents the percentage of hemoglobin that is carrying oxygen in muscle tissue, and can be thought of as a measure of balance between supply and demand for oxygen in the muscle. With low intensity activity, SmO\ :sub:`2`\  generally increases as the heart rate increases and blood vessels dilate, allowing for more blood flow; conversely, with high intensity activity, SmO\ :sub:`2`\  drops as the heart struggles to keep up supplying oxygen to the muscles.
+A **muscle oxygen sensor** is used to measure the saturation of oxygen levels (SmO\ :sub:`2`\) within various muscle groups in the human body. It represents the percentage of hemoglobin that is carrying oxygen in muscle tissue, and can be thought of as a measure of balance between supply and demand for oxygen in the muscle. During low intensity activity, SmO\ :sub:`2`\  generally increases as the heart rate increases and blood vessels dilate, allowing for more blood flow; conversely, during high intensity activity, SmO\ :sub:`2`\  drops as the heart struggles to keep up supplying oxygen to the muscles.
 
 For more information on SmO\ :sub:`2`\  (and the sources of the information here), please refer to the Moxy website for a `scientific explanation <https://www.moxymonitor.com/wp-content/themes/moxymonitor/documents/Moxy_Scientific_Explanation_march2014.pdf>`_ and `the physiology surrounding training zones <https://my.moxymonitor.com/blog/bid/344620/Training-Intensity-Zones-Muscle-Oxygen-and-the-Limiting-System>`_.
 
