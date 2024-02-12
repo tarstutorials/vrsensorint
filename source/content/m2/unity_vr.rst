@@ -64,11 +64,18 @@ Project and Build Settings
 
 If you recall the :ref:`to_mobile_setup` subsection of module one, you will remember the mention of *Project Settings* and *Build Settings*. While the simple mobile application that was made in that module did not require any modification of these settings, that is not the case for this more advanced tutorial. The following changes to these settings are necessary for your project to run correctly, so please make sure to do all of them:
 
-#.
+#. Launch Unity Hub and login to your Unity account.
 
-#.
+#. On the sidebar to the left of the application, select the *Projects* tab.
 
-#.
+#. Open the project you created in :ref:`to_create_vr`.
+
+#. On the ribbon in the top left of the editor, select the *Edit* option. This will open a drop-down menu with several options.
+
+#. In the drop-down menu that appears, select the *Project Settings* option. This will open the settings for your project in a new window. There are a few changes you will need to make to the default settings to allow your development to run smoothly.
+
+.. warning::
+    At this point in the process, you will have to decide how you want to build your project. VR projects can be built to be run on a standalone headset, or in tandem with a PC. Both build methods have their merits, but the tutorial here will teach you how to develop for a standalone Android device, because this is option is more accessible. This platform does not require a powerful computer, nor does it require a constant connection to the computer to run. If you wish to create a non-standalone application, you will have to adjust your build and project settings according to your desired platform. You can find out more in the Untiy documention on `Platform Development <https://docs.unity3d.com/Manual/PlatformSpecific.html>`_. 
 
 ^^^^^^^^^^^^^^^^^^^^
 Essential Packages
