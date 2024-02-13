@@ -10,9 +10,11 @@ Welcome to VRSensorIntegration
    :maxdepth: 3
 
    content/m1/introduction
+   content/m1/contact_page
    content/m1/install_unity
    content/m1/unity_orientation
    
+
    content/m2/unity_vr
    
    content/m3/intro_to_sensors
