@@ -159,6 +159,64 @@ Section Review
 
 In this section, you were introduced to four different types of physiological sensors. You learned about what data on the human body we can use to assess performance, and how sensors are designed to capture that data. You were also exposed to some of the active research in human health and performance that uses these sensors. All of this will be an important background for the next sections, where we'll take a deep dive into the process of collecting, presenting, and analyzing this data. Keep up the good work!
 
+^^^^^^^^^^^^^^^^^^^^^^^
+Module Self-Assessment
+^^^^^^^^^^^^^^^^^^^^^^^
+
+.. quizdown::
+
+   ---
+   shuffle_answers: false
+   ---
+
+   ## Which of the following sensors is used to measure heart rate?
+
+   > Re-read the sections on each sensor.
+
+   1. [ ] Moxy Monitor
+        > The correct answer is Polar H10.
+   2. [x] Polar H10
+   3. [ ] Delsys Trigno
+        > The correct answer is Polar H10.
+   4. [ ] VO2 Master Analyzer
+        > The correct answer is Polar H10.
+
+    ## Which of the following sensors is used to measure surface electromyography?
+
+    > Re-read the sections on each sensor.
+
+    1. [ ] Moxy Monitor
+        > The correct answer is Delsys Trigno.
+    2. [ ] Polar H10
+        > The correct answer is Delsys Trigno.
+    3. [x] Delsys Trigno
+    4. [ ] VO2 Master Analyzer
+        > The correct answer is Delsys Trigno.
+
+    ## Which of the following sensors is used to measure muscle oxygen saturation levels?
+
+    > Re-read the sections on each sensor.
+
+    1. [x] Moxy Monitor
+    2. [ ] Polar H10
+        > The correct answer is Moxy Monitor.
+    3. [ ] Delsys Trigno
+        > The correct answer is Moxy Monitor.
+    4. [ ] VO2 Master Analyzer
+        > The correct answer is Moxy Monitor.
+
+    ## Which of the following sensors is used to measure oxygen consumption?
+
+    > Re-read the sections on each sensor.
+
+    1. [ ] Moxy Monitor
+        > The correct answer is VO2 Master Analyzer.
+    2. [ ] Polar H10
+        > The correct answer is VO2 Master Analyzer.
+    3. [ ] Delsys Trigno
+        > The correct answer is VO2 Master Analyzer.
+    4. [x] VO2 Master Analyzer
+
 ----------
 References
 ----------
