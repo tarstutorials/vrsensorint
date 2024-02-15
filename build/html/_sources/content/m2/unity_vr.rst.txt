@@ -190,7 +190,7 @@ At this point in the process, you will have to decide how you want to build your
 7. In the same window, in the bottom right corner, there will be a button the says *Switch Platform*. Click this button. This will change your platform to Android and cause the editor to rebuild the domain for this new platform. This could take a little bit to do.
 
 .. note::
-    If you ever need to change the build platform for your project, it is a good idea to do this when you first create to project or early on in its development. This is because changing platforms can take a very long time for large projects and increases the likelyhood of bugs appearing when the domain is rebuilt. If you do have to change your build late into development of your application, be ready to wait a while for the swap and to sift through small bugs that appear when the platform change occurs.
+    If you ever need to change the build platform for your project, it is a good idea to do this when you first create the project or early on in its development. This is because changing platforms can take a very long time for large projects and increases the likelihood of bugs appearing when the domain is rebuilt. If you do have to change your build late into development of your application, be ready to wait a while for the swap and to sift through small bugs that appear when the platform change occurs.
 
 8. That is all you have to do to change your build platform. While you changed your build to Android here, the process is the same for switching to any platform; Selecting your desired platform from the *Platform* list before clicking the *Switch Platform* button. 
 
