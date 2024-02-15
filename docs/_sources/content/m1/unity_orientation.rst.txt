@@ -19,13 +19,13 @@ Creating Your First Project
 For our first project, we'll be designing a simple mobile mobile application for Android. Use the following steps to get started:
 
 .. image:: ../../images/UnityLogin.png
-  :width: 400
+  :width: 800
   :alt: An Image of the Unity login screen.
 
 1. Launch Unity Hub and login to your Unity account. If you do not have either of these completed, see :ref:`new_to_install`.
 
 .. image:: ../../images/EmptyProjects.png
-  :width: 400
+  :width: 800
   :alt: An Image of the projects tab in Unity Hub.
 
 2. On the sidebar on the left side of the application, select the *Projects* tab.
@@ -33,7 +33,7 @@ For our first project, we'll be designing a simple mobile mobile application for
 3. On the top right of the application, press the button titled *New project*.
 
 .. image:: ../../images/NewProject.png
-  :width: 400
+  :width: 800
   :alt: An Image of a 2D Mobile template for a project in Unity Hub.
 
 4. Under the templates section, select the *2D Mobile* option. You may have to download the template if you have not used it already. The button to download it can be seen on the right side of the application after clicking on the template.
