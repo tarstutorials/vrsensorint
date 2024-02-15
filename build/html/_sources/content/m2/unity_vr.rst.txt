@@ -26,13 +26,13 @@ Creating a VR Project
 Creating a new Unity project for VR is very similar to the way you created the mobile project in the last section. Do the following to get your VR project created:
 
 .. image:: ../../images/UnityLogin.png
-  :width: 400
+  :width: 800
   :alt: An Image of the Unity login screen.
 
 1. Launch Unity Hub and login to your Unity account. If you do not have either of these completed, see :ref:`new_to_install`.
 
 .. image:: ../../images/EmptyProjects.png
-  :width: 400
+  :width: 800
   :alt: An Image of the projects tab in Unity Hub.
 
 2. On the sidebar on the left side of the application, select the *Projects* tab.
@@ -40,7 +40,7 @@ Creating a new Unity project for VR is very similar to the way you created the m
 3. On the top right of the application, press the button titled *New project*.
 
 .. image:: ../../images/NewVRProject.png
-  :width: 400
+  :width: 800
   :alt: An Image of a 2D Mobile template for a project in Unity Hub.
 
 4. Under the templates section, select the *VR Core* option. You may have to download the template if you have not used it already. The button to download it can be seen on the right side of the application after clicking on the template.
@@ -75,7 +75,7 @@ There are some packages you will need for this project, and since you likely hav
   :width: 800
   :alt: An Image of the package manager tab in the Unity Editor.
 
-#. In the drop-down menu that appears, select the *Package manager* option. This will open the Unity package manager in a new window. The Unity package manager is used to install, disable, update, and remove packages from a project.
+5. In the drop-down menu that appears, select the *Package Manager* option. This will open the Unity package manager in a new window. The Unity package manager is used to install, disable, update, and remove packages from a project.
 
 #. Within the package manager, press the drop-down labeled `Packages:`. This should bring up a menu of sources where packages are located. Select the `Packages: In Project` option. You will now see a list of the packages currently installed for this project appear. 
 
@@ -83,7 +83,7 @@ There are some packages you will need for this project, and since you likely hav
   :width: 800
   :alt: An Image of the necessary packages in the package manager of the Unity Editor.
 
-#. Verify that the following packages are installed in your project. If all of them are installed, you can skip the rest of these steps - however, the steps below will teach you how to install a package, so if you plan on using additional packages for your project, it is useful information. If you find that any of the following packages are missing from your project, the next step will help you install them. 
+7. Verify that the following packages are installed in your project. If all of them are installed, you can skip the rest of these steps - however, the steps below will teach you how to install a package, so if you plan on using additional packages for your project, it is useful information. 
 
     * XR Interaction Toolkit
 
@@ -130,10 +130,7 @@ If you recall the :ref:`to_mobile_setup` subsection of module one, you will reme
   :width: 400
   :alt: An Image of the project settings tab in the Unity Editor.
 
-#. In the drop-down menu that appears, select the *Project Settings* option. This will open the settings for your project in a new window. There are a few changes you will need to make to the default settings to allow your development to run smoothly.
-
-.. warning::
-    At this point in the process, you will have to decide how you want to build your project. VR projects can be built to be run on a standalone headset, or in tandem with a PC. Both build methods have their merits, but the tutorial here will teach you how to develop for a standalone Android device, because this is option is more accessible. This platform does not require a powerful computer, nor does it require a constant connection to the computer to run. If you wish to create a non-standalone application, you will have to adjust your build and project settings according to your desired platform. You can find out more in the Unity documention on `Platform Development <https://docs.unity3d.com/Manual/PlatformSpecific.html>`_. 
+5. In the drop-down menu that appears, select the *Project Settings* option. This will open the settings for your project in a new window. There are a few changes you will need to make to the default settings to allow your development to run smoothly.
 
 6. In the sidebar on the left side of the project settings menu, select the *XR Plugin-Management* option. 
 
@@ -141,7 +138,7 @@ If you recall the :ref:`to_mobile_setup` subsection of module one, you will reme
   :width: 800
   :alt: An Image of the XR Plugin Management settings in the settings menu of the Unity Editor.
 
-#. In the settings that appear for this package, make sure that the box labeled *Initialize XR on Startup* is checked for all platforms.
+7. In the settings that appear for this package, make sure that the box labeled *Initialize XR on Startup* is checked for all platforms.
 
 #. To the left of *XR-Plugin Management* option that you selected before, there is a right-facing arrow. Click this arrow. This will reveal additional options for the package.
 
@@ -151,7 +148,7 @@ If you recall the :ref:`to_mobile_setup` subsection of module one, you will reme
   :width: 800
   :alt: An Image of the XR Interaction Toolkit settings in the settings menu of the Unity Editor.
 
-#. In the settings that appear for this package, check the box labeled *Use XR Device Simulator in scenes*. This may prompt you to add the *XR Device Simulator* prefab to your project. If this appears, select OK. This will allow you to test your game from the the computer without using a headset by using the simulator prefab mentioned earlier when the game is run in play mode.
+10. In the settings that appear for this package, check the box labeled *Use XR Device Simulator in scenes*. This may prompt you to add the *XR Device Simulator* prefab to your project. If this appears, select OK. This will allow you to test your game from the the computer without using a headset by using the simulator prefab mentioned earlier when the game is run in play mode.
 
 #. In the same menu where you found the *XR Interaction Toolkit* option, select the *Project Validation* option. 
 
@@ -159,7 +156,7 @@ If you recall the :ref:`to_mobile_setup` subsection of module one, you will reme
   :width: 800
   :alt: An Image of the Project Validation settings in the settings menu of the Unity Editor.
 
-#. In the settings that appear, select the *Windows, Mac, Linux settings* tab, and check the box labeled *Show All*. Do the same for the *Android settings* tab. This will display any issues found with your project and can help you fix any that occur. This tab is extremely useful for finding bugs in your project, so refer back to it if you ever have errors compiling your project. 
+12. In the settings that appear, select the *Windows, Mac, Linux settings* tab, and check the box labeled *Show All*. Do the same for the *Android settings* tab. This will display any issues found with your project and can help you fix any that occur. This tab is extremely useful for finding bugs in your project, so refer back to it if you ever have errors compiling your project. 
 
 #. Those are all the project settings you need to move froward, but feel free to peruse the menus and see what otehr options there are. Just be careful, because checking certain options could mess with your projects ability to run correctly. The next section will help you set up your projects build settings.
 
@@ -168,8 +165,36 @@ If you recall the :ref:`to_mobile_setup` subsection of module one, you will reme
 Build Settings
 ^^^^^^^^^^^^^^^^^^^^
 
-Following up on the project settings implemented in the previous section, follow the instructions below to make sure you are building your project properly:
+At this point in the process, you will have to decide how you want to build your project. VR projects can be built to be run on a standalone headset, or in tandem with a PC. Both build methods have their merits, but the tutorial here will teach you how to develop for a standalone Android device, as this option is more widely accessible. Android does not require a powerful computer, nor does it require a constant connection to the computer to run. If you wish to create a non-standalone application, you will have to adjust your build and project settings according to your desired platform. You can find out more in the Unity documention on `Platform Development <https://docs.unity3d.com/Manual/PlatformSpecific.html>`_.  Otherwise, follow the steps below to set your project up for an Android build:
 
+#. Launch Unity Hub and login to your Unity account.
+
+#. On the sidebar to the left of the application, select the *Projects* tab.
+
+#. Open the project you created in :ref:`to_create_vr`.
+
+#. On the ribbon in the top left of the editor, select the *File* option. This will open a drop-down menu with several options.
+
+.. image:: ../../images/build_settings.png
+  :width: 800
+  :alt: An Image of the build settings in the top ribbon of the Unity Editor.
+
+5. In the drop-down menu that appears, select the *Build Settings* option. This will open the build settings in a new window. This is where you will change your desired platform to Android.
+
+#. In the window that appears containing the build settings, look to the bottom right corner of the window. You should see a list titled *Platform*, with multiple clickable options below it. Select the *Android* option.
+
+.. image:: ../../images/android_build.png
+  :width: 800
+  :alt: An Image of the build settings window with the Android platform selected.
+
+7. In the same window, in the bottom right corner, there will be a button the says *Switch Platform*. Click this button. This will change your platform to Android and cause the editor to rebuild the domain for this new platform. This could take a little bit to do.
+
+.. note::
+    If you ever need to change the build platform for your project, it is a good idea to do this when you first create to project or early on in its development. This is because changing platforms can take a very long time for large projects and increases the likelyhood of bugs appearing when the domain is rebuilt. If you do have to change your build late into development of your application, be ready to wait a while for the swap and to sift through small bugs that appear when the platform change occurs.
+
+8. That is all you have to do to change your build platform. While you changed your build to Android here, the process is the same for switching to any platform; Selecting your desired platform from the *Platform* list before clicking the *Switch Platform* button. 
+
+When you are ready to actually build your project, return to the build settings window and select the *Build* button. Since your project is for Android, this will produce an APK file that you can then store on your headset and access to run the project. Building the APK can take some time, so it is good practice to perform most basic testing in the Unity editor using the *XR Device Simulator*, building infrequently and only using the actual headset for more complicated testing.
 
 
 --------------------------
