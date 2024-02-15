@@ -114,16 +114,16 @@
 <section id="creating-a-vr-project">
 <span id="to-create-vr"></span><h2>Creating a VR Project<a class="headerlink" href="#creating-a-vr-project" title="Link to this heading"></a></h2>
 <p>Creating a new Unity project for VR is very similar to the way you created the mobile project in the last section. Do the following to get your VR project created:</p>
-<a class="reference internal image-reference" href="../../_images/UnityLogin.png"><img alt="An Image of the Unity login screen." src="../../_images/UnityLogin.png" style="width: 400px;" /></a>
+<a class="reference internal image-reference" href="../../_images/UnityLogin.png"><img alt="An Image of the Unity login screen." src="../../_images/UnityLogin.png" style="width: 800px;" /></a>
 <ol class="arabic simple">
 <li><p>Launch Unity Hub and login to your Unity account. If you do not have either of these completed, see <a class="reference internal" href="../m1/install_unity.html#new-to-install"><span class="std std-ref">Installing Unity</span></a>.</p></li>
 </ol>
-<a class="reference internal image-reference" href="../../_images/EmptyProjects.png"><img alt="An Image of the projects tab in Unity Hub." src="../../_images/EmptyProjects.png" style="width: 400px;" /></a>
+<a class="reference internal image-reference" href="../../_images/EmptyProjects.png"><img alt="An Image of the projects tab in Unity Hub." src="../../_images/EmptyProjects.png" style="width: 800px;" /></a>
 <ol class="arabic simple" start="2">
 <li><p>On the sidebar on the left side of the application, select the <em>Projects</em> tab.</p></li>
 <li><p>On the top right of the application, press the button titled <em>New project</em>.</p></li>
 </ol>
-<a class="reference internal image-reference" href="../../_images/NewVRProject.png"><img alt="An Image of a 2D Mobile template for a project in Unity Hub." src="../../_images/NewVRProject.png" style="width: 400px;" /></a>
+<a class="reference internal image-reference" href="../../_images/NewVRProject.png"><img alt="An Image of a 2D Mobile template for a project in Unity Hub." src="../../_images/NewVRProject.png" style="width: 800px;" /></a>
 <ol class="arabic simple" start="4">
 <li><p>Under the templates section, select the <em>VR Core</em> option. You may have to download the template if you have not used it already. The button to download it can be seen on the right side of the application after clicking on the template.</p></li>
 <li><p>Choose a name for your project. It can be anything you like, but we recommend naming it with one word in order to make file access easier. For now, let’s call it <em>MyFirstVRProject</em>.</p></li>
@@ -144,13 +144,13 @@
 <li><p>On the ribbon in the top left of the editor, select the <em>Window</em> option. This will open a drop-down menu with several options.</p></li>
 </ol>
 <a class="reference internal image-reference" href="../../_images/package_manager.png"><img alt="An Image of the package manager tab in the Unity Editor." src="../../_images/package_manager.png" style="width: 800px;" /></a>
-<ol class="arabic simple">
-<li><p>In the drop-down menu that appears, select the <em>Package manager</em> option. This will open the Unity package manager in a new window. The Unity package manager is used to install, disable, update, and remove packages from a project.</p></li>
+<ol class="arabic simple" start="5">
+<li><p>In the drop-down menu that appears, select the <em>Package Manager</em> option. This will open the Unity package manager in a new window. The Unity package manager is used to install, disable, update, and remove packages from a project.</p></li>
 <li><p>Within the package manager, press the drop-down labeled <cite>Packages:</cite>. This should bring up a menu of sources where packages are located. Select the <cite>Packages: In Project</cite> option. You will now see a list of the packages currently installed for this project appear.</p></li>
 </ol>
 <a class="reference internal image-reference" href="../../_images/package_manager_select.png"><img alt="An Image of the necessary packages in the package manager of the Unity Editor." src="../../_images/package_manager_select.png" style="width: 800px;" /></a>
-<ol class="arabic">
-<li><p>Verify that the following packages are installed in your project. If all of them are installed, you can skip the rest of these steps - however, the steps below will teach you how to install a package, so if you plan on using additional packages for your project, it is useful information. If you find that any of the following packages are missing from your project, the next step will help you install them.</p>
+<ol class="arabic" start="7">
+<li><p>Verify that the following packages are installed in your project. If all of them are installed, you can skip the rest of these steps - however, the steps below will teach you how to install a package, so if you plan on using additional packages for your project, it is useful information.</p>
 <blockquote>
 <div><ul class="simple">
 <li><p>XR Interaction Toolkit</p></li>
@@ -185,36 +185,53 @@
 <li><p>On the ribbon in the top left of the editor, select the <em>Edit</em> option. This will open a drop-down menu with several options.</p></li>
 </ol>
 <a class="reference internal image-reference" href="../../_images/project_settings.png"><img alt="An Image of the project settings tab in the Unity Editor." src="../../_images/project_settings.png" style="width: 400px;" /></a>
-<ol class="arabic simple">
+<ol class="arabic simple" start="5">
 <li><p>In the drop-down menu that appears, select the <em>Project Settings</em> option. This will open the settings for your project in a new window. There are a few changes you will need to make to the default settings to allow your development to run smoothly.</p></li>
-</ol>
-<div class="admonition warning">
-<p class="admonition-title">Warning</p>
-<p>At this point in the process, you will have to decide how you want to build your project. VR projects can be built to be run on a standalone headset, or in tandem with a PC. Both build methods have their merits, but the tutorial here will teach you how to develop for a standalone Android device, because this is option is more accessible. This platform does not require a powerful computer, nor does it require a constant connection to the computer to run. If you wish to create a non-standalone application, you will have to adjust your build and project settings according to your desired platform. You can find out more in the Unity documention on <a class="reference external" href="https://docs.unity3d.com/Manual/PlatformSpecific.html">Platform Development</a>.</p>
-</div>
-<ol class="arabic simple" start="6">
 <li><p>In the sidebar on the left side of the project settings menu, select the <em>XR Plugin-Management</em> option.</p></li>
 </ol>
 <a class="reference internal image-reference" href="../../_images/xr_plugin_management.png"><img alt="An Image of the XR Plugin Management settings in the settings menu of the Unity Editor." src="../../_images/xr_plugin_management.png" style="width: 800px;" /></a>
-<ol class="arabic simple">
+<ol class="arabic simple" start="7">
 <li><p>In the settings that appear for this package, make sure that the box labeled <em>Initialize XR on Startup</em> is checked for all platforms.</p></li>
 <li><p>To the left of <em>XR-Plugin Management</em> option that you selected before, there is a right-facing arrow. Click this arrow. This will reveal additional options for the package.</p></li>
 <li><p>In the list of new options that appear, select the <em>XR Interaction Toolkit</em> option.</p></li>
 </ol>
 <a class="reference internal image-reference" href="../../_images/xr_interaction_toolkit.png"><img alt="An Image of the XR Interaction Toolkit settings in the settings menu of the Unity Editor." src="../../_images/xr_interaction_toolkit.png" style="width: 800px;" /></a>
-<ol class="arabic simple">
+<ol class="arabic simple" start="10">
 <li><p>In the settings that appear for this package, check the box labeled <em>Use XR Device Simulator in scenes</em>. This may prompt you to add the <em>XR Device Simulator</em> prefab to your project. If this appears, select OK. This will allow you to test your game from the the computer without using a headset by using the simulator prefab mentioned earlier when the game is run in play mode.</p></li>
 <li><p>In the same menu where you found the <em>XR Interaction Toolkit</em> option, select the <em>Project Validation</em> option.</p></li>
 </ol>
 <a class="reference internal image-reference" href="../../_images/project_validation.png"><img alt="An Image of the Project Validation settings in the settings menu of the Unity Editor." src="../../_images/project_validation.png" style="width: 800px;" /></a>
-<ol class="arabic simple">
+<ol class="arabic simple" start="12">
 <li><p>In the settings that appear, select the <em>Windows, Mac, Linux settings</em> tab, and check the box labeled <em>Show All</em>. Do the same for the <em>Android settings</em> tab. This will display any issues found with your project and can help you fix any that occur. This tab is extremely useful for finding bugs in your project, so refer back to it if you ever have errors compiling your project.</p></li>
 <li><p>Those are all the project settings you need to move froward, but feel free to peruse the menus and see what otehr options there are. Just be careful, because checking certain options could mess with your projects ability to run correctly. The next section will help you set up your projects build settings.</p></li>
 </ol>
 </section>
 <section id="build-settings">
 <h3>Build Settings<a class="headerlink" href="#build-settings" title="Link to this heading"></a></h3>
-<p>Following up on the project settings implemented in the previous section, follow the instructions below to make sure you are building your project properly:</p>
+<p>At this point in the process, you will have to decide how you want to build your project. VR projects can be built to be run on a standalone headset, or in tandem with a PC. Both build methods have their merits, but the tutorial here will teach you how to develop for a standalone Android device, as this option is more widely accessible. Android does not require a powerful computer, nor does it require a constant connection to the computer to run. If you wish to create a non-standalone application, you will have to adjust your build and project settings according to your desired platform. You can find out more in the Unity documention on <a class="reference external" href="https://docs.unity3d.com/Manual/PlatformSpecific.html">Platform Development</a>.  Otherwise, follow the steps below to set your project up for an Android build:</p>
+<ol class="arabic simple">
+<li><p>Launch Unity Hub and login to your Unity account.</p></li>
+<li><p>On the sidebar to the left of the application, select the <em>Projects</em> tab.</p></li>
+<li><p>Open the project you created in <a class="reference internal" href="#to-create-vr"><span class="std std-ref">Creating a VR Project</span></a>.</p></li>
+<li><p>On the ribbon in the top left of the editor, select the <em>File</em> option. This will open a drop-down menu with several options.</p></li>
+</ol>
+<a class="reference internal image-reference" href="../../_images/build_settings.png"><img alt="An Image of the build settings in the top ribbon of the Unity Editor." src="../../_images/build_settings.png" style="width: 800px;" /></a>
+<ol class="arabic simple" start="5">
+<li><p>In the drop-down menu that appears, select the <em>Build Settings</em> option. This will open the build settings in a new window. This is where you will change your desired platform to Android.</p></li>
+<li><p>In the window that appears containing the build settings, look to the bottom right corner of the window. You should see a list titled <em>Platform</em>, with multiple clickable options below it. Select the <em>Android</em> option.</p></li>
+</ol>
+<a class="reference internal image-reference" href="../../_images/android_build.png"><img alt="An Image of the build settings window with the Android platform selected." src="../../_images/android_build.png" style="width: 800px;" /></a>
+<ol class="arabic simple" start="7">
+<li><p>In the same window, in the bottom right corner, there will be a button the says <em>Switch Platform</em>. Click this button. This will change your platform to Android and cause the editor to rebuild the domain for this new platform. This could take a little bit to do.</p></li>
+</ol>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>If you ever need to change the build platform for your project, it is a good idea to do this when you first create to project or early on in its development. This is because changing platforms can take a very long time for large projects and increases the likelyhood of bugs appearing when the domain is rebuilt. If you do have to change your build late into development of your application, be ready to wait a while for the swap and to sift through small bugs that appear when the platform change occurs.</p>
+</div>
+<ol class="arabic simple" start="8">
+<li><p>That is all you have to do to change your build platform. While you changed your build to Android here, the process is the same for switching to any platform; Selecting your desired platform from the <em>Platform</em> list before clicking the <em>Switch Platform</em> button.</p></li>
+</ol>
+<p>When you are ready to actually build your project, return to the build settings window and select the <em>Build</em> button. Since your project is for Android, this will produce an APK file that you can then store on your headset and access to run the project. Building the APK can take some time, so it is good practice to perform most basic testing in the Unity editor using the <em>XR Device Simulator</em>, building infrequently and only using the actual headset for more complicated testing.</p>
 </section>
 </section>
 <section id="advanced-techniques-in-vr">
