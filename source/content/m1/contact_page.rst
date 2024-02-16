@@ -23,3 +23,9 @@ Points of Contact:
 * Email: tsyankee57@gmail.com
 
 Tyler Yankee is an undergraduate student at Clarkson University pursuing a dual degree in Computer Science and Data Science. His research focuses on multimodal data architectures, visualizations, and statistical analysis with applications in computer vision and virtual reality. His hobbies include running, ice skating, reading, and watching hockey.
+
+------------
+Odin Kohler
+------------
+
+Odin Kohler is an undergraduate student at Clarkson University pursuing a degree in Computer Science as well as a minor in Mathematics and Political Science. His research focuses on a wide variety of computer vision topics. His most recent work was on the hand tracking system for a piano playing form trainer, the results of which were published in AIxVR 2024.
