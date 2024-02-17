@@ -71,7 +71,11 @@
 <li class="toctree-l3"><a class="reference internal" href="#tracked-device-graphic-raycaster">Tracked Device Graphic Raycaster</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="#section-review">Section Review</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#vr-maze">VR Maze</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#section-review">Section Review</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#module-self-assessment">Module Self-Assessment</a></li>
+</ul>
+</li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../m3/intro_to_sensors.html">Introduction to Physiological Sensors</a></li>
@@ -243,7 +247,7 @@
 <p>VR development has a lot more moving pieces than traditional application development. Having a strong foundation in the Unity basics from the last section is a prerequisite to understanding the more advanced techniques discussed here. If you feel you need more practice in the basics, don’t hesitate to return to <a class="reference internal" href="../m1/unity_orientation.html#install-to-new"><span class="std std-ref">Getting Started With Unity</span></a> to refresh. There is no shame in extra practice. If you think you have mastered the previous module and are ready to move on, continue reading to delve in to the advanced techniques found in VR development.</p>
 <section id="interactors-and-interactables">
 <h3>Interactors and Interactables<a class="headerlink" href="#interactors-and-interactables" title="Link to this heading"></a></h3>
-<p>The <em>XR Interaction Toolkit</em> uses an interactor-interactable relationship to define interactions in VR. Objects can be designated as either an interactor or an itneractable, and gain access to different actions as a result. There are lots of available interactors and interactables in the package, but for this tutorial you will only be exploring a few. If you want to delve deeper into the other available interactors and interactables, check out the <a class="reference external" href="https://docs.unity3d.com/Packages/com.unity.xr.interaction.toolkit&#64;1.0/manual/index.html">Unity documentation on the XR Interaction Toolkit</a>.</p>
+<p>The <em>XR Interaction Toolkit</em> uses an interactor-interactable relationship to define interactions in VR. Objects can be designated as either an interactor or an interactable, and gain access to different actions as a result. There are lots of available interactors and interactables in the package, but for this tutorial you will only be exploring a few. If you want to delve deeper into the other available interactors and interactables, check out the <a class="reference external" href="https://docs.unity3d.com/Packages/com.unity.xr.interaction.toolkit&#64;1.0/manual/index.html">Unity documentation on the XR Interaction Toolkit</a>.</p>
 </section>
 <section id="xr-rig">
 <h3>XR Rig<a class="headerlink" href="#xr-rig" title="Link to this heading"></a></h3>
@@ -273,8 +277,74 @@
 <p>There are a lot of paramters you can change on this script, but the main one you need to worry about is the <em>Interaction Manager</em>. If you leave this parameter as empty (the default), Unity will find one for you. When you only have one <em>XR Interaction Manager</em>, you can leave this slot open, but if you have more than one, you need to specifically select one of them to prevent a random selection. If you are working from the sample project provided, the <em>Complete XR Origin Set Up Variant</em> is the only object with an <em>XR Interaction Manager</em> attached to it (via its child) so you can leave this blank.</p>
 </section>
 </section>
+<section id="vr-maze">
+<h2>VR Maze<a class="headerlink" href="#vr-maze" title="Link to this heading"></a></h2>
+<p>Now that you have learned about the most important techniques used in Unity VR development, you should experiment with developing your own VR application. If you ever find yourself lost in the process, look back to this module to jog your memory. If you want to implement anything that is not discreetly mentioned in this section, feel free to explore the <a class="reference external" href="https://docs.unity3d.com/Manual/VROverview.html">Unity VR documentation</a> to learn more niche topics. Included in this section is an example project, <em>VR Maze</em>. This project is larger in scale than anything you are expected to make at this point in your learning, but can serve as inspiration for your own projects and can show off the posibilities for application development when performed by a seasoned Unity developer. Keep reading to find out more about this project.</p>
+</section>
 <section id="section-review">
 <h2>Section Review<a class="headerlink" href="#section-review" title="Link to this heading"></a></h2>
+<p>In this module, you learned how to develop Unity applications for a virtual reality device. You practiced building a Unity VR project for Android, installing packages from the package manager, and properly setting up your build and project settings. You identified the key techniques used with the <em>XR Interaction Toolkit</em> and how the interactor-interactable relationship defines VR iteractions. You recoognized useful objects for VR development such as the <em>XR Rig</em> and the <em>Complete XR Origin Set Up Variant</em> that came with the sample. Lastly, you were introduced to the <em>VR Maze</em> project, and experimented with creating your own virtual reality project in Unity. You are now ready to move on to  the next section and learn about physiological sensors. You will be combining your knowledge of Unity and these sensors later in the course, so look forward to that. Thank you for your hard work, you are doing great!</p>
+<section id="module-self-assessment">
+<h3>Module Self-Assessment<a class="headerlink" href="#module-self-assessment" title="Link to this heading"></a></h3>
+<div class="quizdown">---
+shuffle_answers: false
+---
+
+## What is the purpose of the *XR Rig* gameObject?
+
+&gt; Re-read the sub-section on the XR Rig.
+
+1. [x] To provide a vessel for the player to interact with the VR environment.
+2. [ ] To let the player use UI elements in VR.
+     &gt; The correct answer is to provide a vessel for the player to interact with the VR environment.
+3. [ ] To make the player an interactable so that they can be grabbed.
+     &gt; The correct answer is to provide a vessel for the player to interact with the VR environment.
+
+ ## Why is the *Tracked Device Graphic Raycaster* needed?
+
+ &gt; Re-read the sub-section on the Tracked Device Graphic Raycaster.
+
+ 1. [ ] It lets the player grab interactables.
+     &gt; The correct answer is it marks the attached object as a UI element.
+ 2. [ ] It lets the player interact with UI elements.
+     &gt; The correct answer is it marks the attached object as a UI element.
+ 3. [x] It marks the attached object as a UI element.
+
+ ## Which of the following is *not* a script component?
+
+ &gt; One of these is a package. Re-read the Essential Packages sub-section.
+
+ 1. [x] XR Interaction Toolkit
+ 2. [ ] XR UI Input Module
+     &gt; The correct answer is Complete XR Origin Set Up Variant.
+ 3. [ ] XR Grab Interactable
+     &gt; The correct answer is Complete XR Origin Set Up Variant.
+ 4. [ ] XR Interaction Manager
+     &gt; TThe correct answer is Complete XR Origin Set Up Variant.
+
+ ## What is the relationship that defines interactions in the *XR Interaction Toolkit*?
+
+ &gt; Re-read the sub-section on Interactors and Interactables.
+
+ 1. [ ] Player-Object
+     &gt; The correct answer is Interactor-Interactable.
+ 2. [x] Interactor-Interactable
+ 3. [ ] Script-Component
+     &gt; The correct answer is Interactor-Interactable.
+ 4. [ ] XR-Rig
+     &gt; The correct answer is Interactor-Interactable.
+
+ ## Where in the editor should you go to help debug your project?
+
+ &gt; Re-read the Project Settings section.
+
+ 1. [ ] Package Manager &gt;&gt; In Project
+     &gt; The correct answer is Project Settings &gt;&gt; Project Validation.
+ 2. [ ] Project Setting &gt;&gt; Use XR Device Simulator in scenes
+     &gt; The correct answer is Project Settings &gt;&gt; Project Validation.
+ 3. [ ] Build Settings &gt;&gt; Switch Platform
+     &gt; The correct answer is Project Settings &gt;&gt; Project Validation.
+ 4. [x] Project Settings &gt;&gt; Project Validation</div></section>
 </section>
 </section>
 
