@@ -217,7 +217,7 @@ Module Self-Assessment
    shuffle_answers: false
    ---
 
-   ## Which of these is not one of the four main aspects of the Unity Editor?
+   ## Which of these is *not* one of the four main aspects of the Unity Editor?
 
    > Visit the "Understanding the Editor" section.
 
@@ -231,7 +231,7 @@ Module Self-Assessment
    5. [ ] Object Hierarchy
         > The correct answer is Script Manager.
 
-   ## Which of these is not a built-in class in Unity?
+   ## Which of these is *not* a built-in class in Unity?
 
    > Watch the videos contained in the "C# Scripting" section.
 
@@ -243,7 +243,7 @@ Module Self-Assessment
         > The correct answer is Visual.
    4. [x] Visual
 
-   ## Which of the following is not a tool found in the Scene View?
+   ## Which of the following is *not* a tool found in the Scene View?
 
    >Visit the "Scene View subsection."
 

@@ -207,7 +207,7 @@ VR development has a lot more moving pieces than traditional application develop
 Interactors and Interactables
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-The *XR Interaction Toolkit* uses an interactor-interactable relationship to define interactions in VR. Objects can be designated as either an interactor or an itneractable, and gain access to different actions as a result. There are lots of available interactors and interactables in the package, but for this tutorial you will only be exploring a few. If you want to delve deeper into the other available interactors and interactables, check out the `Unity documentation on the XR Interaction Toolkit <https://docs.unity3d.com/Packages/com.unity.xr.interaction.toolkit@1.0/manual/index.html>`_.
+The *XR Interaction Toolkit* uses an interactor-interactable relationship to define interactions in VR. Objects can be designated as either an interactor or an interactable, and gain access to different actions as a result. There are lots of available interactors and interactables in the package, but for this tutorial you will only be exploring a few. If you want to delve deeper into the other available interactors and interactables, check out the `Unity documentation on the XR Interaction Toolkit <https://docs.unity3d.com/Packages/com.unity.xr.interaction.toolkit@1.0/manual/index.html>`_.
 
 ^^^^^^^^
 XR Rig
@@ -235,6 +235,7 @@ Also included in the *Complete XR Origin Set Up Variant* is another empty child 
 ^^^^^^^^^^^^^^^^^^
 Grab Interactions
 ^^^^^^^^^^^^^^^^^^
+
 Grabbing objects in VR is an important aspect of many applications, so understanding how to implement it is beneficial. This is also where you will learn how to make objects interactables, as mentioned in the previous section. There are a few necessary components to you will need create a robust grab system. The first two components are some that you've seen before, the rigid body component and the collider component. The only difference from the versions of these components you saw in the :ref:`to_physics` section is that these are the 3D versions. They work similarly to the ones you learned about previously, but if want to learn about the minute differences, you can learn more about the 3D-specific versions in the `3D Physics <https://docs.unity3d.com/Manual/PhysicsOverview.html>`_ Unity documentation. 
 
 The next component you'll need is the *XR Grab Interactable* script. This script is included in the XR Interaction Toolkit and is the counterpart to the *XR Interaction Manager* script from above. This script serves as a marker, making the object its attached to an interactable. In doing so, whenever an interactor object performs a grab interaction on the interactable, the interactable will react and link itself to the interactor, as if it were grabbed.
@@ -248,6 +249,82 @@ The *Tracked Device Graphic Raycaster* is used to define objects as UI interacta
 
 There are a lot of paramters you can change on this script, but the main one you need to worry about is the *Interaction Manager*. If you leave this parameter as empty (the default), Unity will find one for you. When you only have one *XR Interaction Manager*, you can leave this slot open, but if you have more than one, you need to specifically select one of them to prevent a random selection. If you are working from the sample project provided, the *Complete XR Origin Set Up Variant* is the only object with an *XR Interaction Manager* attached to it (via its child) so you can leave this blank.
 
+
+-----------
+VR Maze
+-----------
+
+Now that you have learned about the most important techniques used in Unity VR development, you should experiment with developing your own VR application. If you ever find yourself lost in the process, look back to this module to jog your memory. If you want to implement anything that is not discreetly mentioned in this section, feel free to explore the `Unity VR documentation <https://docs.unity3d.com/Manual/VROverview.html>`_ to learn more niche topics. Included in this section is an example project, *VR Maze*. This project is larger in scale than anything you are expected to make at this point in your learning, but can serve as inspiration for your own projects and can show off the posibilities for application development when performed by a seasoned Unity developer. Keep reading to find out more about this project.
+
 ---------------
 Section Review
 ---------------
+
+In this module, you learned how to develop Unity applications for a virtual reality device. You practiced building a Unity VR project for Android, installing packages from the package manager, and properly setting up your build and project settings. You identified the key techniques used with the *XR Interaction Toolkit* and how the interactor-interactable relationship defines VR iteractions. You recoognized useful objects for VR development such as the *XR Rig* and the *Complete XR Origin Set Up Variant* that came with the sample. Lastly, you were introduced to the *VR Maze* project, and experimented with creating your own virtual reality project in Unity. You are now ready to move on to  the next section and learn about physiological sensors. You will be combining your knowledge of Unity and these sensors later in the course, so look forward to that. Thank you for your hard work, you are doing great!
+
+^^^^^^^^^^^^^^^^^^^^^^^
+Module Self-Assessment
+^^^^^^^^^^^^^^^^^^^^^^^
+
+.. quizdown::
+
+   ---
+   shuffle_answers: false
+   ---
+
+   ## What is the purpose of the *XR Rig* gameObject?
+
+   > Re-read the sub-section on the XR Rig.
+
+   1. [x] To provide a vessel for the player to interact with the VR environment.
+   2. [ ] To let the player use UI elements in VR.
+        > The correct answer is to provide a vessel for the player to interact with the VR environment.
+   3. [ ] To make the player an interactable so that they can be grabbed.
+        > The correct answer is to provide a vessel for the player to interact with the VR environment.
+
+    ## Why is the *Tracked Device Graphic Raycaster* needed?
+
+    > Re-read the sub-section on the Tracked Device Graphic Raycaster.
+
+    1. [ ] It lets the player grab interactables.
+        > The correct answer is it marks the attached object as a UI element.
+    2. [ ] It lets the player interact with UI elements.
+        > The correct answer is it marks the attached object as a UI element.
+    3. [x] It marks the attached object as a UI element.
+
+    ## Which of the following is *not* a script component?
+
+    > One of these is a package. Re-read the Essential Packages sub-section.
+
+    1. [x] XR Interaction Toolkit
+    2. [ ] XR UI Input Module
+        > The correct answer is Complete XR Origin Set Up Variant.
+    3. [ ] XR Grab Interactable
+        > The correct answer is Complete XR Origin Set Up Variant.
+    4. [ ] XR Interaction Manager
+        > TThe correct answer is Complete XR Origin Set Up Variant.
+
+    ## What is the relationship that defines interactions in the *XR Interaction Toolkit*?
+
+    > Re-read the sub-section on Interactors and Interactables.
+
+    1. [ ] Player-Object
+        > The correct answer is Interactor-Interactable.
+    2. [x] Interactor-Interactable
+    3. [ ] Script-Component
+        > The correct answer is Interactor-Interactable.
+    4. [ ] XR-Rig
+        > The correct answer is Interactor-Interactable.
+
+    ## Where in the editor should you go to help debug your project?
+
+    > Re-read the Project Settings section.
+
+    1. [ ] Package Manager >> In Project
+        > The correct answer is Project Settings >> Project Validation.
+    2. [ ] Project Setting >> Use XR Device Simulator in scenes
+        > The correct answer is Project Settings >> Project Validation.
+    3. [ ] Build Settings >> Switch Platform
+        > The correct answer is Project Settings >> Project Validation.
+    4. [x] Project Settings >> Project Validation
+        
