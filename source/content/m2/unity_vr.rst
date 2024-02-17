@@ -203,26 +203,50 @@ Advanced Techniques in VR
 
 VR development has a lot more moving pieces than traditional application development. Having a strong foundation in the Unity basics from the last section is a prerequisite to understanding the more advanced techniques discussed here. If you feel you need more practice in the basics, don't hesitate to return to :ref:`install_to_new` to refresh. There is no shame in extra practice. If you think you have mastered the previous module and are ready to move on, continue reading to delve in to the advanced techniques found in VR development.
 
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+Interactors and Interactables
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+The *XR Interaction Toolkit* uses an interactor-interactable relationship to define interactions in VR. Objects can be designated as either an interactor or an itneractable, and gain access to different actions as a result. There are lots of available interactors and interactables in the package, but for this tutorial you will only be exploring a few. If you want to delve deeper into the other available interactors and interactables, check out the `Unity documentation on the XR Interaction Toolkit <https://docs.unity3d.com/Packages/com.unity.xr.interaction.toolkit@1.0/manual/index.html>`_.
+
 ^^^^^^^^
 XR Rig
 ^^^^^^^^
 
-The XR rig is a prefab object included in the XR Interaction Toolkit. This object allows the user to interact with the virtual environment by providing input in the form of sight, sound, and touch. The XR rig is how the user connects their actions in the headset to the Unity application. As such, it is absolutely necessary for any VR application. The XR rig has two child objects called `Camera Offset` and `Locomotion System` that provide the previously mentioned inputs through their own child objects and their attached scripts. There are a lot of parameters you can change within the XR rig object and its child object, and exploring these can further customize your VR control scheme, but the default parameter settings are completely acceptable for most use cases.
+The XR rig is a prefab object included in the XR Interaction Toolkit. This object allows the user to interact with the virtual environment by providing input in the form of sight, sound, and touch. The XR rig is how the user connects their actions in the headset to the Unity application. As such, it is absolutely necessary for any VR application. The XR rig has two child objects called *Camera Offset* and *Locomotion System* that provide the previously mentioned inputs through their own child objects and their attached scripts. There are a lot of parameters you can change within the XR rig object and its child object, and exploring these can further customize your VR control scheme, but the default parameter settings are completely acceptable for most use cases.
 
-You can access the XR rig individually by searching for `XR Origin (XR Rig)` in the assets folder of the project manager, however, the template project provided by default when using the Unity VR Core project type has an prefab called `Complete XR Origin Set Up Variant` that already has the XR rig as a child object, and has it already set up for use alongside other useful objects you will learn more about in the upcoming subsections. This tutorial will be using this prefab instead, since it facilitates set-up, and provides additional actions for the player. If you wish to set up your own player rig without the extra objects, you can always use the XR rig by itself.
+You can access the XR rig individually by searching for *XR Origin (XR Rig)* in the assets folder of the project manager, however, the template project provided by default when using the Unity VR Core project type has an prefab called *Complete XR Origin Set Up Variant* that already has the XR rig as a child object, and has it already set up for use alongside other useful objects you will learn more about in the upcoming subsections. This tutorial will be using this prefab instead, since it facilitates set-up, and provides additional actions for the player. If you wish to set up your own player rig without the extra objects, you can always use the XR rig by itself.
 
 ^^^^^^^^^^^^^^^^^^^
 XR UI Input Module
 ^^^^^^^^^^^^^^^^^^^
-Included in the afformentioned `Complete XR Origin Set Up Variant` is an empty child object called `EventSystem`. This object has a script attached to it called the `XR UI Input Module`. This script allows the player to use UI elements in virtual reality. The script has multiple parameters set up to control UI actions, connecting each to a preset for that specific action. These actions, like `Point Action` and `Left Click Action` allow you to control what happens when that action occurs. However, the default presets for these actions are intuitive and should remain as-is for most projects. 
+
+Included in the afformentioned *Complete XR Origin Set Up Variant* is an empty child object called *EventSystem*. This object has a script attached to it called the *XR UI Input Module*. This script allows the player to use UI elements in virtual reality. The script has multiple parameters set up to control UI actions, connecting each to a preset for that specific action. These actions, like *Point Action* and *Left Click Action* allow you to control what happens when that action occurs. However, the default presets for these actions are intuitive and should remain as-is for most projects. 
 
 .. note::
-    If you add the `XR UI Input Module` to another object, you will have to manually add these presets for the actions, which can be found by searching `XRI UI` in the project window search bar and dragging each Input Ation Reference that appears to its corresponding parameter in the script component. This can be confusing, so it is highly recommended to just use the `Complete XR Origin Set Up Variant` prefab instead.
+    If you add the *XR UI Input Module* to another object, you will have to manually add these presets for the actions, which can be found by searching *XRI UI* in the project window search bar and dragging each Input Ation Reference that appears to its corresponding parameter in the script component. This can be confusing, so it is highly recommended to just use the *Complete XR Origin Set Up Variant* prefab instead.
+
+^^^^^^^^^^^^^^^^^^^^^^^
+XR Interaction Manager
+^^^^^^^^^^^^^^^^^^^^^^^
+
+Also included in the *Complete XR Origin Set Up Variant* is another empty child object called *XR Interaction Manager*. This object has a script attached to it that shares its name. This script essentially marks the object that it's attached to as an interactor object. In this case, since the *XR Interaction Manager* is a child object of the *Complete XR Origin Set Up Variant*, this property is extended to it. What this does is lets the player perform specified VR interactions like grabbing or climbing on specified interactable objects. If you want another object to be an interactor, you can simply add this script as a component to that object as well. For most basic VR projects, the player character is the only interactor, and every other usuable object is an interactable.
 
 ^^^^^^^^^^^^^^^^^^
-
+Grab Interactions
 ^^^^^^^^^^^^^^^^^^
+Grabbing objects in VR is an important aspect of many applications, so understanding how to implement it is beneficial. This is also where you will learn how to make objects interactables, as mentioned in the previous section. There are a few necessary components to you will need create a robust grab system. The first two components are some that you've seen before, the rigid body component and the collider component. The only difference from the versions of these components you saw in the :ref:`to_physics` section is that these are the 3D versions. They work similarly to the ones you learned about previously, but if want to learn about the minute differences, you can learn more about the 3D-specific versions in the `3D Physics <https://docs.unity3d.com/Manual/PhysicsOverview.html>`_ Unity documentation. 
 
+The next component you'll need is the *XR Grab Interactable* script. This script is included in the XR Interaction Toolkit and is the counterpart to the *XR Interaction Manager* script from above. This script serves as a marker, making the object its attached to an interactable. In doing so, whenever an interactor object performs a grab interaction on the interactable, the interactable will react and link itself to the interactor, as if it were grabbed.
+
+
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+Tracked Device Graphic Raycaster
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+The *Tracked Device Graphic Raycaster* is used to define objects as UI interactables, and works in tandem with the *XR UI Input Module* mentioned earlier. This script lets the object it's attached to be treated as a UI elemenent, meaning that the player can perform actions such as pressing a button on it or moving a slider. Without this script, the player will be unable to interact with the UI elements, so make sure to add it to any elements you want the player to be able to interact with. 
+
+There are a lot of paramters you can change on this script, but the main one you need to worry about is the *Interaction Manager*. If you leave this parameter as empty (the default), Unity will find one for you. When you only have one *XR Interaction Manager*, you can leave this slot open, but if you have more than one, you need to specifically select one of them to prevent a random selection. If you are working from the sample project provided, the *Complete XR Origin Set Up Variant* is the only object with an *XR Interaction Manager* attached to it (via its child) so you can leave this blank.
 
 ---------------
 Section Review
