@@ -213,6 +213,10 @@ The *XR Interaction Toolkit* uses an interactor-interactable relationship to def
 XR Rig
 ^^^^^^^^
 
+.. image:: ../../images/xr_rig.png
+  :width: 300
+  :alt: An Image of the XR Rig GameObject.
+
 The XR rig is a prefab object included in the XR Interaction Toolkit. This object allows the user to interact with the virtual environment by providing input in the form of sight, sound, and touch. The XR rig is how the user connects their actions in the headset to the Unity application. As such, it is absolutely necessary for any VR application. The XR rig has two child objects called *Camera Offset* and *Locomotion System* that provide the previously mentioned inputs through their own child objects and their attached scripts. There are a lot of parameters you can change within the XR rig object and its child object, and exploring these can further customize your VR control scheme, but the default parameter settings are completely acceptable for most use cases.
 
 You can access the XR rig individually by searching for *XR Origin (XR Rig)* in the assets folder of the project manager, however, the template project provided by default when using the Unity VR Core project type has an prefab called *Complete XR Origin Set Up Variant* that already has the XR rig as a child object, and has it already set up for use alongside other useful objects you will learn more about in the upcoming subsections. This tutorial will be using this prefab instead, since it facilitates set-up, and provides additional actions for the player. If you wish to set up your own player rig without the extra objects, you can always use the XR rig by itself.
@@ -220,6 +224,10 @@ You can access the XR rig individually by searching for *XR Origin (XR Rig)* in 
 ^^^^^^^^^^^^^^^^^^^
 XR UI Input Module
 ^^^^^^^^^^^^^^^^^^^
+
+.. image:: ../../images/xr_ui.png
+  :width: 500
+  :alt: An Image of the XR UI Input Module component.
 
 Included in the afformentioned *Complete XR Origin Set Up Variant* is an empty child object called *EventSystem*. This object has a script attached to it called the *XR UI Input Module*. This script allows the player to use UI elements in virtual reality. The script has multiple parameters set up to control UI actions, connecting each to a preset for that specific action. These actions, like *Point Action* and *Left Click Action* allow you to control what happens when that action occurs. However, the default presets for these actions are intuitive and should remain as-is for most projects. 
 
@@ -230,11 +238,29 @@ Included in the afformentioned *Complete XR Origin Set Up Variant* is an empty c
 XR Interaction Manager
 ^^^^^^^^^^^^^^^^^^^^^^^
 
+.. image:: ../../images/interaction_manager.png
+  :width: 800
+  :alt: An Image of the XR Interaction Manager component.
+
 Also included in the *Complete XR Origin Set Up Variant* is another empty child object called *XR Interaction Manager*. This object has a script attached to it that shares its name. This script essentially marks the object that it's attached to as an interactor object. In this case, since the *XR Interaction Manager* is a child object of the *Complete XR Origin Set Up Variant*, this property is extended to it. What this does is lets the player perform specified VR interactions like grabbing or climbing on specified interactable objects. If you want another object to be an interactor, you can simply add this script as a component to that object as well. For most basic VR projects, the player character is the only interactor, and every other usuable object is an interactable.
+
+^^^^^^^^^^^^^^^^^^^^^
+Input Action Manager
+^^^^^^^^^^^^^^^^^^^^^
+
+.. image:: ../../images/input_action_manager.png
+  :width: 600
+  :alt: An Image of the Input Action Manager component.
+
+The last big piece included in the *Complete XR Origin Set Up Variant* is the *Input Action Manager*. Similar to the *XR Interaction Manager*, the script fro the *Input Action Manager* is attached to an empty object of the same name, and because that empty object is a child of the *Complete XR Origin Set Up Variant* the property is extended to it. The purpose of this script component is to control what input actions are enabled and disabled. The script has a list parameter where you can put all the input actions you intened to use, and then to enable or disable them you can use the ``InputActionManager`` class. The *Complete XR Origin Set Up Variant* already has the default actions in there, so you don't need to worry about it, but if you are creating your own input action controller you will have to insert the actions you want into the list.
 
 ^^^^^^^^^^^^^^^^^^
 Grab Interactions
 ^^^^^^^^^^^^^^^^^^
+
+.. image:: ../../images/grab_interactable.png
+  :width: 400
+  :alt: An Image of the XR Grab Interactable component.
 
 Grabbing objects in VR is an important aspect of many applications, so understanding how to implement it is beneficial. This is also where you will learn how to make objects interactables, as mentioned in the previous section. There are a few necessary components to you will need create a robust grab system. The first two components are some that you've seen before, the rigid body component and the collider component. The only difference from the versions of these components you saw in the :ref:`to_physics` section is that these are the 3D versions. They work similarly to the ones you learned about previously, but if want to learn about the minute differences, you can learn more about the 3D-specific versions in the `3D Physics <https://docs.unity3d.com/Manual/PhysicsOverview.html>`_ Unity documentation. 
 
@@ -244,6 +270,10 @@ The next component you'll need is the *XR Grab Interactable* script. This script
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 Tracked Device Graphic Raycaster
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. image:: ../../images/raycaster.png
+  :width: 800
+  :alt: An Image of the Tracked Device Graphic Raycaster component.
 
 The *Tracked Device Graphic Raycaster* is used to define objects as UI interactables, and works in tandem with the *XR UI Input Module* mentioned earlier. This script lets the object it's attached to be treated as a UI elemenent, meaning that the player can perform actions such as pressing a button on it or moving a slider. Without this script, the player will be unable to interact with the UI elements, so make sure to add it to any elements you want the player to be able to interact with. 
 
