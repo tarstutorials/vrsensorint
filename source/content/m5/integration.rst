@@ -1,8 +1,8 @@
 .. _sensors_to_int:
 
-==================
-Integration
-==================
+=====================
+Integration with VR
+=====================
 
 --------------------------------
 Delsys Software Development Kit
