@@ -127,6 +127,12 @@ There are some packages you will need for this project, and since you likely hav
 Project Settings
 ^^^^^^^^^^^^^^^^^^^^^^^^^^
 
+.. image:: https://img.youtube.com/vi/w6atqSE8-kw/maxresdefault.jpg
+    :alt: YouTube Video Explaining VR Project Settings.
+    :target: https://youtu.be/w6atqSE8-kw
+
+**[Click on the above image for our YouTube tutorial on VR Project Settings.]**
+
 If you recall the :ref:`to_mobile_setup` subsection of module one, you will remember the mention of *Project Settings* and *Build Settings*. While the simple mobile application that was made in that module did not require any modification of these settings, that is not the case for this more advanced tutorial. Some of the changes found in this and the following section are necessary for your project to run correctly, so please make sure to do all of them.
 
 
@@ -176,6 +182,12 @@ If you recall the :ref:`to_mobile_setup` subsection of module one, you will reme
 ^^^^^^^^^^^^^^^^^^^^
 Build Settings
 ^^^^^^^^^^^^^^^^^^^^
+
+.. image:: https://img.youtube.com/vi/CIyGtEtkOu4/maxresdefault.jpg
+    :alt: YouTube Video Explaining VR Build Settings.
+    :target: https://youtu.be/CIyGtEtkOu4
+
+**[Click on the above image for our YouTube tutorial on VR Build Settings.]**
 
 At this point in the process, you will have to decide how you want to build your project. VR projects can be built to be run on a standalone headset, or in tandem with a PC. Both build methods have their merits, but the tutorial here will teach you how to develop for a standalone Android device, as this option is more widely accessible. Android does not require a powerful computer, nor does it require a constant connection to the computer to run. If you wish to create a non-standalone application, you will have to adjust your build and project settings according to your desired platform. You can find out more in the Unity documention on `Platform Development <https://docs.unity3d.com/Manual/PlatformSpecific.html>`_.  Otherwise, follow the steps below to set your project up for an Android build:
 
