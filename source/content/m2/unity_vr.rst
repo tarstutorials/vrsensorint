@@ -23,6 +23,12 @@ As stated in the introduction, Unity will be the tool of choice VR Development n
 Creating a VR Project
 ----------------------
 
+.. image:: ../../images/NewVRProject.png
+    :alt: YouTube Video Explaining Creating a New Unity VR Project.
+    :target: https://youtu.be/rIEH4bI-lFE
+
+**[Click on the above image for our YouTube tutorial on Creating a New Unity VR Project.]**
+
 Creating a new Unity project for VR is very similar to the way you created the mobile project in the last section. Do the following to get your VR project created:
 
 .. image:: ../../images/UnityLogin.png
@@ -60,6 +66,12 @@ Unlike the simple mobile game you saw in :ref:`install_to_new`, a VR project wil
 ^^^^^^^^^^^^^^^^^^^^
 Essential Packages
 ^^^^^^^^^^^^^^^^^^^^
+
+.. image:: https://img.youtube.com/vi/P67a67jhWAY/maxresdefault.jpg
+    :alt: YouTube Video Explaining Creating a New Unity VR Project.
+    :target: https://youtu.be/P67a67jhWAY
+
+**[Click on the above image for our YouTube tutorial on Verifying VR Packages.]**
 
 There are some packages you will need for this project, and since you likely haven't used the Unity package manager yet, the following steps will teach you how to verify the packages you need for this project are properly installed, and how to install them if they are not. It will also serve as a template for installing any Unity package from the package manager:
 
