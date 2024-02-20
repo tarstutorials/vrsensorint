@@ -172,7 +172,7 @@ If you recall the :ref:`to_mobile_setup` subsection of module one, you will reme
 
 12. In the settings that appear, select the *Windows, Mac, Linux settings* tab, and check the box labeled *Show All*. Do the same for the *Android settings* tab. This will display any issues found with your project and can help you fix any that occur. This tab is extremely useful for finding bugs in your project, so refer back to it if you ever have errors compiling your project. 
 
-#. Those are all the project settings you need to move froward, but feel free to peruse the menus and see what otehr options there are. Just be careful, because checking certain options could mess with your projects ability to run correctly. The next section will help you set up your projects build settings.
+#. Those are all the project settings you need to move forward, but feel free to peruse the menus and see what other options there are. Just be careful, because checking certain options could mess with your projects ability to run correctly. The next section will help you set up your projects build settings.
 
 
 ^^^^^^^^^^^^^^^^^^^^
@@ -212,7 +212,7 @@ At this point in the process, you will have to decide how you want to build your
 
 8. That is all you have to do to change your build platform. While you changed your build to Android here, the process is the same for switching to any platform; Select your desired platform from the *Platform* list before clicking the *Switch Platform* button. 
 
-When you are ready to actually build your project, return to the build settings window and select the *Build* button. Since your project is for Android, this will produce an APK file that you can then store on your headset and access to run the project. Building the APK can take some time, so it is good practice to perform most basic testing in the Unity editor using the *XR Device Simulator*, building infrequently and only using the actual headset when needed for more complicated testing.
+When you are ready to actually build your project, return to the build settings window and select the *Build* button. Since your project is for Android, this will produce an APK file that you can then store on your headset and access to run the project. Building the APK can take some time, so it is good practice to perform most basic testing in the Unity editor using the *XR Device Simulator*, building infrequently and then using the actual headset only for more complicated testing.
 
 
 --------------------------
@@ -237,7 +237,7 @@ XR Rig
 
 The *XR rig* is a prefab object included in the *XR Interaction Toolkit*. This object allows the user to interact with the virtual environment by providing input in the form of sight, sound, and touch. The *XR rig* is how the user connects their actions in the headset to the Unity application. As such, it is absolutely necessary for any VR application. The *XR rig* has two child objects called *Camera Offset* and *Locomotion System* that provide the previously mentioned inputs through their own child objects and their attached scripts. There are a lot of parameters you can change within the *XR rig* object and its child object, and exploring these can further customize your VR control scheme, but the default parameter settings are completely acceptable for most use cases.
 
-You can access the XR rig individually by searching for *XR Origin (XR Rig)* in the assets folder of the project manager, however, the template project provided by default when using the Unity VR Core project type has an prefab called *Complete XR Origin Set Up Variant* that already has the *XR rig* as a child object, and has it already set up for use alongside other useful objects you will learn more about in the upcoming subsections. This tutorial will be using this prefab instead, since it facilitates set-up, and provides additional actions for the player. If you wish to set up your own player rig without the extra objects, you can always use the *XR rig* by itself.
+You can access the XR rig individually by searching for *XR Origin (XR Rig)* in the assets folder of the project manager, however, the sample project provided by default when using the Unity VR Core template has an prefab called *Complete XR Origin Set Up Variant* that already has the *XR rig* as a child object, and has it already set up for use alongside other useful objects you will learn more about in the upcoming subsections. This tutorial will be using this prefab instead, since it facilitates set-up, and provides additional actions for the player. If you wish to set up your own player rig without the extra objects, you can always use the *XR rig* by itself.
 
 ^^^^^^^^^^^^^^^^^^^
 XR UI Input Module
