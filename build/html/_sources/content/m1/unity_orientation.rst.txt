@@ -10,11 +10,9 @@ The Unity Game Engine is an incredible tool for application and game development
 Creating Your First Project
 ---------------------------
 
-.. image:: https://img.youtube.com/vi/UpcgKQ234s8/maxresdefault.jpg
-    :alt: YouTube Video Explaining Creating a New Unity Project.
-    :target: https://youtu.be/UpcgKQ234s8
+.. youtube:: UpcgKQ234s8
 
-**[Click on the above image for our YouTube tutorial on Creating a New Unity Project.]**
+**[Click on the above video for our YouTube tutorial on Creating a New Unity Project.]**
 
 For our first project, we'll be designing a simple mobile mobile application for Android. Use the following steps to get started:
 
@@ -47,11 +45,9 @@ For our first project, we'll be designing a simple mobile mobile application for
 Understanding the Editor
 --------------------------
 
-.. image:: https://img.youtube.com/vi/xT6z6wliBq0/maxresdefault.jpg
-    :alt: YouTube Video Explaining the editor.
-    :target: https://youtu.be/xT6z6wliBq0
+.. youtube:: xT6z6wliBq0
 
-**[Click on the above image for our YouTube tutorial on Using the Unity Editor.]**
+**[Click on the above video for our YouTube tutorial on Creating a New Unity Project.]**
 
 The Unity Editor can seem overwelming at first, but it can actually be broken down into four simple pieces. The image below visualizes these pieces.
 
@@ -111,11 +107,9 @@ Setting Up For Mobile Development
 
 Setting up for mobile development is mostly done for you when creating a project using the *2D Mobile* template. However, there are two important menus you should know about that may help you with any last minute configurations you want to make. These are the build settings and project settings menus. The build settings menu can be found by clicking the button labeled *File* on the ribbon at the top of the editor. From there, a dropdown menu will appear, where you can select the *Build Settings* option. In the same ribbon, there is a button labeled *Edit*, where a similar dropdown menu contains a button for *Project Settings*. 
 
-.. image:: https://img.youtube.com/vi/UpcgKQ234s8/maxresdefault.jpg
-    :alt: YouTube Video explaining mobile development set-up.
-    :target: https://youtu.be/UpcgKQ234s8
+.. youtube:: UpcgKQ234s8
 
-**[Click on the above image for our YouTube tutorial on Getting Set Up for Mobile Development.]**
+**[Click on the above video for our YouTube tutorial on Creating a New Unity Project.]**
 
 The build settings menu is used for configuring how you want to package the final application. For example, it lets you change what platform you are building for, such as Windows or Android. While you are working on the mobile project, you should keep its build set to Windows. This lets you test the project directly on your computer. However, when you are done developing and want to port it to mobile, you can change the build setting to Android or iOS so it can run on a mobile device. 
 
@@ -131,11 +125,9 @@ Basic Techniques
 Here are some basic techniques for mobile development in Unity. Be sure to mess around with all of these techniques until you feel comfortable with them. The `Unity documentation <https://docs.unity.com/>`_ contains additional in depth information about each, but this tutorial should give you all the fundamentals you need to get started. Additonally, watch the video below to see a mobile project created in Unity. You will see videos for the scripting of the project in the scripting section.
 
 
-.. image:: ../../images/maxresdefault.png
-    :alt: YouTube Video showing off a simple mobile game created using Unity.
-    :target: https://youtu.be/FGuuR0CaXLw
+.. youtube:: FGuuR0CaXLw
 
-**[Click on the above image for our YouTube tutorial on Creating a Simple Mobile Game.]**
+**[Click on the above video for our YouTube tutorial on Creating a New Unity Project.]**
 
 .. _oh_to_oc:
 ^^^^^^^^^^^^^^^^
@@ -150,31 +142,26 @@ C# Scripting
 
 C# is a programming language created by Microsoft that is used in Unity. It is very similar to Java and C++, so if you have any experience with those, you will find it intuitive. Teaching programming is beyond the scope of this tutorial, but there are some aspects specific to Unity scripts you should know about. Scattered throughout this section are videos explaining the scripts for the mobile project mentioned earlier in this tutorial. Watch them for some additional information. The code used will be linked beneath the video, and you are free to use it to develop your own similar project.
 
-.. image:: https://img.youtube.com/vi/sMAZMGS8JF4/maxresdefault.jpg
-    :alt: YouTube Video showing off a the script for the PlayerController in our mobile application.
-    :target: https://youtu.be/sMAZMGS8JF4
+.. youtube:: sMAZMGS8JF4
 
-**[Click on the above image for our YouTube tutorial on the PlayerController Script. See code below.]**
+**[Click on the above video for our YouTube tutorial on Creating a New Unity Project. See code below.]**
 
 .. literalinclude:: ../../scripts/PlayerController.cs
 
 First, Unity scripts are the most unrestricted way of controlling how an object works, but many of the simple actions that can be implemented using scripts can be done via the inspector instead, avoiding the need for any coding knowledge. If you do want to make an object do something and can't seem to find a way to do it with what is provided in the inspector, *then* you should turn to scripting. To attach a script to a ``GameObject`` you can either drag it from the project window into the inspector while the object is selected, or add it using the *Add Component* button. Double clicking on a script in the project window will open it in your chosen script editor (the default is Visual Studio). A prewritten template for a script is provided by Unity. You will notice that there are two prebuilt functions that are empty: ``Start`` and ``Update``. ``Start`` is called once, when the object is first loaded in, and ``Update`` is called once every frame of the game. There are additional functions built into Unity, and every ``GameObject`` can access these by extending the `MonoBehavior Class <https://docs.unity3d.com/ScriptReference/MonoBehaviour.html>`_ which is automatically done for you. 
 
-.. image:: https://img.youtube.com/vi/V8K47wKSYRM/maxresdefault.jpg
-    :alt: YouTube Video showing off a the script for the PlayerController in our mobile application.
-    :target: https://youtu.be/V8K47wKSYRM
 
-**[Click on the above image for our YouTube tutorial on the GameController Script. See code below.]**
+.. youtube:: V8K47wKSYRM
+
+**[Click on the above video for our YouTube tutorial on Creating a New Unity Project. See code below]**
 
 .. literalinclude:: ../../scripts/GameController.cs
 
 If you ever get stuck while programming, don't forget to use the `C# documentation <https://learn.microsoft.com/en-us/dotnet/csharp/>`_. Also, forums such as the `Unity forum <https://forum.unity.com/>`_ and `Stack Overflow <https://stackoverflow.com/>`_ are excellent resources to expand your scripting knowledge. The best way to improve at scripting is to keep practicing. There are no simple words to make you understand it, it is a journey in and of itself. Luckily, for small scale projects you can often avoid it entirely.
 
-.. image:: https://img.youtube.com/vi/bG2EUjmzxOI/maxresdefault.jpg
-    :alt: YouTube Video showing off a the script for the TreasureController in our mobile application.
-    :target: https://youtu.be/bG2EUjmzxOI
+.. youtube:: bG2EUjmzxOI
 
-**[Click on the above image for our YouTube tutorial on the TreasureController Script. See code below.]**
+**[Click on the above video for our YouTube tutorial on Creating a New Unity Project. See code below]**
 
 .. literalinclude:: ../../scripts/TreasureController.cs
 

@@ -6,7 +6,7 @@ Unity VR Development
 Introduction to VR Development
 --------------------------------
 
-Virtual Reality(VR) is a rapidly expanding technology that is becoming increasingly integrated into everyday life. As such, application development for this medium is at an all-time high. Learning how to create applications for VR is important now more than ever, and Unity is the best tool for beginning this journey. Follow this tutorial closely, as the techniques learned here will not only be critical to being successful in future tutorials, but also in building skills for the incoming VR boom.
+Virtual Reality(VR) is a rapidly expanding technology that is becoming increasingly integrated into everyday life. As such, application development for this medium is at an all-time high. Learning how to create applications for VR is important now more than ever, and Unity is the best tool for beginning this journey. Follow this tutorial closely, as the techniques learned here will not only be critical to being successful in future tutorials, but also in building skills for the upcoming VR explosion.
 
 -----------
 Why Unity?
@@ -16,18 +16,17 @@ Why Unity?
   :width: 400
   :alt: An image of the Unity logo.
 
-As stated in the introduction, Unity will be the tool of choice VR Development now and in the near future. Unity is *the* best pick for anyone looking to develop for VR for a multitude of reasons. First, Unity has a large variety of actively updated packages to facilitate building out a VR app, something that other engines lack. Second, Unity has multiple ways to build and test a VR application, by controlling the build platform of the project. Unity VR projects can be built as standalone Android applications, meaning that they do not require a computer to be connected to the headset to run the app. They can also be built for Windows, allowing them to run alongside a computer for easier testing and modification. Lastly, Unity was chosen due to its thriving development community and ease of access, both of which offer newcomers a level of support that you would be unlikely to come across elsewhere. These are the main reasons Unity was chosen, and why most VR developers opt to use Unity as well.
+As stated in the introduction, Unity will be the tool of choice for VR Development now and in the near future. Unity is *the* best pick for anyone looking to develop for VR for a multitude of reasons. First, Unity has a large variety of actively updated packages to facilitate building out a VR app, something that other engines lack. Second, Unity has multiple ways to build and test a VR application by allowing control over the build platform of the project. Unity VR projects can be built as standalone Android applications, meaning that they do not require a computer to be connected to the headset to run the app. Apps can also be built for Windows, allowing them to run alongside a computer for easier testing and modification. Lastly, Unity was chosen due to its thriving development community and ease of access, both of which offer newcomers a level of support that you would be unlikely to come across elsewhere. These are the main reasons Unity was chosen, and also why most VR developers opt to use Unity as well.
 
 .. _to_create_vr:
+
 ----------------------
 Creating a VR Project
 ----------------------
 
-.. image:: ../../images/NewVRProject.png
-    :alt: YouTube Video Explaining Creating a New Unity VR Project.
-    :target: https://youtu.be/rIEH4bI-lFE
+.. youtube:: rIEH4bI-lFE
 
-**[Click on the above image for our YouTube tutorial on Creating a New Unity VR Project.]**
+**[Click on the above video for our YouTube tutorial on Creating a New Unity VR Project.]**
 
 Creating a new Unity project for VR is very similar to the way you created the mobile project in the last section. Do the following to get your VR project created:
 
@@ -67,11 +66,10 @@ Unlike the simple mobile game you saw in :ref:`install_to_new`, a VR project wil
 Essential Packages
 ^^^^^^^^^^^^^^^^^^^^
 
-.. image:: https://img.youtube.com/vi/P67a67jhWAY/maxresdefault.jpg
-    :alt: YouTube Video Explaining Creating a New Unity VR Project.
-    :target: https://youtu.be/P67a67jhWAY
 
-**[Click on the above image for our YouTube tutorial on Verifying VR Packages.]**
+.. youtube:: P67a67jhWAY
+
+**[Click on the above video for our YouTube tutorial on Verifying VR Packages.]**
 
 There are some packages you will need for this project, and since you likely haven't used the Unity package manager yet, the following steps will teach you how to verify the packages you need for this project are properly installed, and how to install them if they are not. It will also serve as a template for installing any Unity package from the package manager:
 
@@ -127,11 +125,9 @@ There are some packages you will need for this project, and since you likely hav
 Project Settings
 ^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-.. image:: https://img.youtube.com/vi/w6atqSE8-kw/maxresdefault.jpg
-    :alt: YouTube Video Explaining VR Project Settings.
-    :target: https://youtu.be/w6atqSE8-kw
+.. youtube:: w6atqSE8-kw
 
-**[Click on the above image for our YouTube tutorial on VR Project Settings.]**
+**[Click on the above video for our YouTube tutorial on VR Project Settings.]**
 
 If you recall the :ref:`to_mobile_setup` subsection of module one, you will remember the mention of *Project Settings* and *Build Settings*. While the simple mobile application that was made in that module did not require any modification of these settings, that is not the case for this more advanced tutorial. Some of the changes found in this and the following section are necessary for your project to run correctly, so please make sure to do all of them.
 
@@ -183,11 +179,9 @@ If you recall the :ref:`to_mobile_setup` subsection of module one, you will reme
 Build Settings
 ^^^^^^^^^^^^^^^^^^^^
 
-.. image:: https://img.youtube.com/vi/CIyGtEtkOu4/maxresdefault.jpg
-    :alt: YouTube Video Explaining VR Build Settings.
-    :target: https://youtu.be/CIyGtEtkOu4
+.. youtube:: CIyGtEtkOu4
 
-**[Click on the above image for our YouTube tutorial on VR Build Settings.]**
+**[Click on the above video for our YouTube tutorial on VR Build Settings.]**
 
 At this point in the process, you will have to decide how you want to build your project. VR projects can be built to be run on a standalone headset, or in tandem with a PC. Both build methods have their merits, but the tutorial here will teach you how to develop for a standalone Android device, as this option is more widely accessible. Android does not require a powerful computer, nor does it require a constant connection to the computer to run. If you wish to create a non-standalone application, you will have to adjust your build and project settings according to your desired platform. You can find out more in the Unity documention on `Platform Development <https://docs.unity3d.com/Manual/PlatformSpecific.html>`_.  Otherwise, follow the steps below to set your project up for an Android build:
 

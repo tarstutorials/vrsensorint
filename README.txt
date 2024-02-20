@@ -34,15 +34,18 @@ pip install git+git://github.com/bonartm/sphinxcontrib-quizdown
 
 Note that you may also have to run "git config --global url.https://github.com/.insteadOf git://github.com/" if the install fails. This is because the install is using the old Github download, and must be configured to use the new one.
 
-4. Run the following command:
+4. Run the following command in the same location to download the youtube embedding extension:
+
+pip install sphinxcontrib-youtube
+
+5. Run the following command:
 
     make html
 
 This will generate the files needed to run the website via HTML. Any time you make changes to the website, you must run this command again to update the files.
 Additionally, you can use the command "make clean" to erase all build files from the build folder.
 
-5. In the build ~/build/ folder, you should now see a folder called "html/". In this folder there should be a file called "index.html". Open this file in Firefox (or any other worse browser) to view the
-webpage.
+6. In the build ~/build/ folder, you should now see a folder called "html/". In this folder there should be a file called "index.html". Open this file in Firefox (or any other worse browser) to view the webpage. Note that when you edit any part of the project, edit the files in the ~/docs folder, because everything in ~/build is built based on that.
 
 That's all! If you have any more questions, send me a Slack DM or email me at matzekec@clarkson.edu
 
