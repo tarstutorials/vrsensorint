@@ -6,7 +6,8 @@ Unity VR Development
 Introduction to VR Development
 --------------------------------
 
-Virtual Reality (VR) is a rapidly expanding technology that is becoming increasingly integrated into everyday life. As such, application development for this medium is at an all-time high. Learning how to create applications for VR is important now more than ever, and Unity is the best tool for beginning this journey. Follow this tutorial closely, as the techniques learned here will not only be critical to being successful in future tutorials, but also in building skills for the upcoming VR explosion.
+Virtual Reality (VR) is a rapidly expanding technology that is becoming increasingly integrated into everyday life. As such, application development for this medium is at an all-time high. Learning how to create applications for VR is more important than ever, and Unity is the best tool for beginning this journey. Follow this tutorial closely, as the techniques learned here will not only be critical to your succsess in future tutorials, 
+but also in building your skills for the upcoming explosion in VR technology.
 
 -----------
 Why Unity?
@@ -16,7 +17,7 @@ Why Unity?
   :width: 400
   :alt: An image of the Unity logo.
 
-As stated in the introduction, Unity will be the tool of choice for VR Development now and in the near future. Unity is *the* best pick for anyone looking to develop for VR for a multitude of reasons. First, Unity has a large variety of actively updated packages to facilitate building out a VR app, something that other engines lack. Second, Unity has multiple ways to build and test a VR application by allowing control over the build platform of the project. Unity VR projects can be built as standalone Android applications, meaning that they do not require a computer to be connected to the headset to run the app. Apps can also be built for Windows, allowing them to run alongside a computer for easier testing and modification. Lastly, Unity was chosen due to its thriving development community and ease of access, both of which offer newcomers a level of support that you would be unlikely to come across elsewhere. These are the main reasons Unity was chosen, and also why most VR developers opt to use Unity as well.
+As stated in the introduction, Unity will be the tool of choice for VR development now and in the near future. Unity is *the* best pick for anyone looking to develop for VR for a multitude of reasons. First, Unity has a large variety of actively updated packages to facilitate building out a VR app, something that other engines lack. Second, Unity has multiple ways to build and test a VR application by allowing control over the build platform of the project. Unity VR projects can be built as standalone Android applications, meaning that they do not require a computer to be connected to the headset to run the app. Apps can also be built for Windows, allowing them to run alongside a computer for easier testing and modification. Lastly, Unity was chosen due to its thriving development community and ease of access, both of which offer newcomers a level of support that you would be unlikely to come across elsewhere. These are the main reasons Unity was chosen, and also why most VR developers opt to use Unity as well.
 
 .. _to_create_vr:
 
@@ -71,7 +72,7 @@ Essential Packages
 
 **[Click on the above video for our YouTube tutorial on Verifying VR Packages.]**
 
-There are some packages you will need for this project, and since you likely haven't used the Unity package manager yet, the following steps will teach you how to verify the packages you need for this project are properly installed, and how to install them if they are not. It will also serve as a template for installing any Unity package from the package manager:
+There are some packages you will need for this project, and since you likely haven't used the Unity package manager yet, the following steps will teach you how to verify that the packages you need for this project are properly installed, and how to install them if they are not. It will also serve as a template for installing any Unity package from the package manager.
 
 1. Launch Unity Hub and login to your Unity account.
 
@@ -101,7 +102,7 @@ There are some packages you will need for this project, and since you likely hav
 
     * XR Legacy Input Helpers
 
-    * XR Plugin Management
+    * XR Plug-in Management
 
     * OpenXR Plugin
 
@@ -112,7 +113,7 @@ There are some packages you will need for this project, and since you likely hav
     
     The only caveat with using the XR toolkit is that you lose access to some headset-specific features. This is an acceptable compromise for this set of tutorials, which aims to teach the basics of Unity VR development for a wide variety of devices. If you instead wish to use headset-specific features in your project, you will have to learn how to use their proprietary packages instead. 
 
-8. If you found that any of the previously listed packages were missing from your project, Click on the "+" button in the top left corner of the package manager. This will present you with options to add a package to your project.
+8. If you found that any of the previously listed packages were missing from your project, click on the "+" button in the top left corner of the package manager. This will present you with options to add a package to your project.
 
 #. Select the *Add package by name...* option. This will prompt you to input the name and version of the package you would like to add. 
 
@@ -146,7 +147,7 @@ If you recall the :ref:`to_mobile_setup` subsection of module one, you will reme
 
 5. In the drop-down menu that appears, select the *Project Settings* option. This will open the settings for your project in a new window. There are a few changes you will need to make to the default settings to allow your development to run smoothly.
 
-6. In the sidebar on the left side of the project settings menu, select the *XR Plugin-Management* option. 
+6. In the sidebar on the left side of the project settings menu, select the *XR Plug-in Management* option. 
 
 .. image:: ../../images/xr_plugin_management.png
   :width: 800
@@ -205,7 +206,7 @@ At this point in the process, you will have to decide how you want to build your
   :width: 800
   :alt: An image of the build settings window with the Android platform selected.
 
-7. In the same window, in the bottom right corner, there will be a button the says *Switch Platform*. Click this button. This will change your platform to Android and cause the editor to rebuild the domain for this new platform. This could take a little bit to do.
+7. In the same window, in the bottom right corner, there will be a button that says *Switch Platform*. Click this button. This will change your platform to Android and cause the editor to rebuild the domain for this new platform. This could take a little bit to do.
 
 .. note::
     If you ever need to change the build platform for your project, it is a good idea to do this when you first create the project or early on in its development. This is because changing platforms can take a very long time for large projects and increases the likelihood of bugs appearing when the domain is rebuilt. If you do have to change your build late into development of your application, be ready to wait a while for the conversion and to sift through small bugs that appear when the platform change occurs.
@@ -237,7 +238,11 @@ User Positioning - XR Rig
 
 The *XR rig* is a prefab object included in the *XR Interaction Toolkit*. This object allows the user to interact with the virtual environment by providing input in the form of sight, sound, and touch. The *XR rig* is how the user connects their actions in the headset to the Unity application. As such, it is absolutely necessary for any VR application. The *XR rig* has two child objects called *Camera Offset* and *Locomotion System* that provide the previously mentioned inputs through their own child objects and their attached scripts. There are a lot of parameters you can change within the *XR rig* object and its child object, and exploring these can further customize your VR control scheme, but the default parameter settings are completely acceptable for most use cases.
 
-You can access the XR rig individually by searching for *XR Origin (XR Rig)* in the assets folder of the project manager, however, the sample project provided by default when using the Unity VR Core template has an prefab called *Complete XR Origin Set Up Variant* that already has the *XR rig* as a child object, and has it already set up for use alongside other useful objects you will learn more about in the upcoming subsections. This tutorial will be using this prefab instead, since it facilitates set-up, and provides additional actions for the player. If you wish to set up your own player rig without the extra objects, you can always use the *XR rig* by itself.
+You can access the XR rig individually by searching for *XR Origin (XR Rig)* in the 
+assets folder of the project manager. However, the default sample project provided by
+Unity VR Core's template has a prefab called *Complete XR Origin Set Up Variant*. This
+already has an XR rig as a child object and is set up for use alongside other objects that 
+you will learn more about in the upcoming subsections. This tutorial will be using this prefab instead, since makes set-up easier and provides additional actions for the player. If you wish to set up your own player rig without the extra objects, you can always use the *XR rig* by itself.
 
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 Input Handling - XR UI Input Module
@@ -247,7 +252,7 @@ Input Handling - XR UI Input Module
   :width: 500
   :alt: An image of the XR UI Input Module component.
 
-Included in the aformentioned *Complete XR Origin Set Up Variant* is an empty child object called *EventSystem*. This object has a script attached to it called the *XR UI Input Module*. This script allows the player to use UI elements in virtual reality. The script has multiple parameters set up to control UI actions, connecting each to a preset for that specific action. These actions, like *Point Action* and *Left Click Action* allow you to control what happens when that action occurs. However, the default presets for these actions are intuitive and should remain as-is for most projects. 
+Included in the aformentioned *Complete XR Origin Set Up Variant* is an empty child object called *EventSystem*. This object has a script attached to it called *XR UI Input Module*. This script allows the player to use UI elements in virtual reality. The script has multiple parameters set up to control UI actions, connecting each to a preset for that specific action. These actions, like *Point Action* and *Left Click Action* allow you to control what happens when that action occurs. However, the default presets for these actions are intuitive and should remain as-is for most projects. 
 
 .. note::
     If you add the *XR UI Input Module* to another object, you will have to manually add these presets for the actions, which can be found by searching *XRI UI* in the project window search bar and dragging each Input Ation Reference that appears to its corresponding parameter in the script component. This can be complicated, so it is highly recommended to just use the *Complete XR Origin Set Up Variant* prefab instead.
@@ -260,7 +265,7 @@ Action Control - XR Interaction Manager
   :width: 800
   :alt: An image of the XR Interaction Manager component.
 
-Also included in the *Complete XR Origin Set Up Variant* is another empty child object called *XR Interaction Manager*. This object has a script attached to it that shares its name. This script essentially marks the object that it's attached to as an interactor object. In this case, since the *XR Interaction Manager* is a child object of the *Complete XR Origin Set Up Variant*, this property is extended to it. What this does is lets the player perform specified VR interactions like grabbing or climbing on specified interactable objects. If you want another object to be an interactor, you can simply add this script as a component to that object as well. For most basic VR projects, the player character is the only interactor, and every other usable object is an interactable.
+Also included in the *Complete XR Origin Set Up Variant* is another empty child object called *XR Interaction Manager*. This object has a script attached to it that shares its name. This script essentially marks the object that it's attached to as an interactor object. In this case, since the *XR Interaction Manager* is a child object of the *Complete XR Origin Set Up Variant*, this property is extended to it. This lets the player perfom specified VR interactions like grabbing or climbing on specified interactable objects. If you want another object to be an interactor, you can simply add this script as a component to that object as well. For most basic VR projects, the player character is the only interactor, and every other usable object is an interactable.
 
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 Action Availability - Input Action Manager
@@ -270,7 +275,7 @@ Action Availability - Input Action Manager
   :width: 600
   :alt: An image of the Input Action Manager component.
 
-The last big piece included in the *Complete XR Origin Set Up Variant* is the *Input Action Manager*. Similar to the *XR Interaction Manager*, the script for the *Input Action Manager* is attached to an empty object of the same name, and because that empty object is a child of the *Complete XR Origin Set Up Variant* the property is extended to it. The purpose of this script component is to control what input actions are enabled and disabled. The script has a list parameter where you can put all the input actions you intened to use. You can use the ``InputActionManager`` class to enable or disable them. The *Complete XR Origin Set Up Variant* already has the default actions in there, so you don't need to worry about it, but if you are creating your own input action controller you will have to insert the actions you want into the list.
+The last big piece included in the *Complete XR Origin Set Up Variant* is the *Input Action Manager*. Similarly to the *XR Interaction Manager*, the script for the *Input Action Manager* is attached to an empty object of the same name, and because that empty object is a child of the *Complete XR Origin Set Up Variant* the property is extended to it. The purpose of this script component is to control what input actions are enabled and disabled. The script has a list parameter where you can put all the input actions you intend to use. You can use the ``InputActionManager`` class to enable or disable them. The *Complete XR Origin Set Up Variant* already has the default actions in there, so you don't need to worry about it, but if you are creating your own input action controller you will have to insert the actions you want into the list.
 
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 Interactable Actions - Grab Interactions
@@ -280,7 +285,7 @@ Interactable Actions - Grab Interactions
   :width: 400
   :alt: An image of the XR Grab Interactable component.
 
-Grabbing objects in VR is an important aspect of many applications, so understanding how to implement it is beneficial. This is also where you will learn how to make objects interactables, as mentioned in the previous section. There are a few necessary components to you will need create a robust grab system. The first two components are some that you've seen before, the rigid body component and the collider component. The only difference from the versions of these components you saw in the :ref:`to_physics` section is that these are these are now in 3D. They work similarly to the ones you learned about previously, but if you want to learn about the syntactical differences, you can learn more about the 3D-specific versions in the `3D Physics <https://docs.unity3d.com/Manual/PhysicsOverview.html>`_ Unity documentation. 
+Grabbing objects in VR is an important aspect of many applications, so understanding how to implement it is beneficial. This is also where you will learn how to make objects interactables, as mentioned in the previous section. There are a few necessary components to you will need to create a robust grab system. The first two components are some that you've seen before, the rigid body component and the collider component. The only difference from the versions of these components you saw in the :ref:`to_physics` section is that these are these are now in 3D. They work similarly to the ones you learned about previously, but if you want to learn about the syntactical differences, you can learn more about the 3D-specific versions in the `3D Physics <https://docs.unity3d.com/Manual/PhysicsOverview.html>`_ Unity documentation. 
 
 The next component you'll need is the *XR Grab Interactable* script. This script is included in the XR Interaction Toolkit and is the counterpart to the *XR Interaction Manager* script from above. This script serves as a marker, making the object its attached to an interactable. In doing so, whenever an interactor object performs a grab interaction on the interactable, the interactable will react and link itself to the interactor, as if it were grabbed.
 
@@ -302,7 +307,7 @@ There are a lot of parameters you can change on this script, but the main one yo
 VR Maze
 -----------
 
-Now that you have learned about the most important techniques used in Unity VR development, you should experiment with developing your own VR application. If you ever find yourself lost in the process, look back to this module to jog your memory. If you want to implement anything that is not discreetly mentioned in this section, feel free to explore the `Unity VR documentation <https://docs.unity3d.com/Manual/VROverview.html>`_ to learn more niche topics. Included in this section is an example project, *VR Maze*. This project is larger in scale than anything you are expected to make at this point in your learning, but can serve as inspiration for your own projects and can show off the posibilities for application development when performed by a seasoned Unity developer. Keep reading to find out more about this project.
+Now that you have learned about the most important techniques used in Unity VR development, you should experiment with developing your own VR application. If you ever find yourself lost in the process, look back to this module to jog your memory. If you want to implement anything that is not explicitly mentioned in this section, feel free to explore the `Unity VR documentation <https://docs.unity3d.com/Manual/VROverview.html>`_ to learn more niche topics. Included in this section is an example project, *VR Maze*. This project is larger in scale than anything you are expected to make at this point in your learning, but can serve as inspiration for your own projects and can show off the posibilities for application development when performed by a seasoned Unity developer. Keep reading to find out more about this project.
 
 The maze project was developed by Robert Licata and Niall Pepper, who have graciously allowed it to be used as an example VR project for this tutorial. The goal of the project was to experiment with procedurally generated mazes and analyze the responses of players to these mazes. The maze project initally began as a 2D Unity project, but was reworked into virtual reality to study the change in participant responses from 2D to VR. The results of the study provide insight into the efficacy of VR as an alternative application platform for cognitive applications.
 
