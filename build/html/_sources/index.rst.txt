@@ -26,3 +26,5 @@ Welcome to VRSensorIntegration
    
    
    content/m6/data_analysis
+   
+   content/m7/workshop
