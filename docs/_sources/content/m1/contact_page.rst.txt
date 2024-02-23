@@ -27,5 +27,8 @@ Tyler Yankee is an undergraduate student at Clarkson University pursuing a dual 
 ------------
 Odin Kohler
 ------------
+Points of Contact:
+
+* Email: odinkohler@gmail.com
 
 Odin Kohler is an undergraduate student at Clarkson University pursuing a degree in Computer Science as well as a minor in Mathematics and Political Science. His research focuses on a wide variety of computer vision topics. His most recent work was on the hand tracking system for a piano playing form trainer, the results of which were published in AIxVR 2024.
