@@ -307,6 +307,10 @@ There are a lot of parameters you can change on this script, but the main one yo
 VR Maze
 -----------
 
+.. youtube:: pinu3Cmc-5M
+
+**[Click on the above video for our YouTube video on the Maze Project.]**
+
 Now that you have learned about the most important techniques used in Unity VR development, you should experiment with developing your own VR application. If you ever find yourself lost in the process, look back to this module to jog your memory. If you want to implement anything that is not explicitly mentioned in this section, feel free to explore the `Unity VR documentation <https://docs.unity3d.com/Manual/VROverview.html>`_ to learn more niche topics. Included in this section is an example project, *VR Maze*. This project is larger in scale than anything you are expected to make at this point in your learning, but can serve as inspiration for your own projects and can show off the posibilities for application development when performed by a seasoned Unity developer. Keep reading to find out more about this project.
 
 The maze project was developed by Robert Licata and Niall Pepper, who have graciously allowed it to be used as an example VR project for this tutorial. The goal of the project was to experiment with procedurally generated mazes and analyze the responses of players to these mazes. The maze project initally began as a 2D Unity project, but was reworked into virtual reality to study the change in participant responses from 2D to VR. The results of the study provide insight into the efficacy of VR as an alternative application platform for cognitive applications.

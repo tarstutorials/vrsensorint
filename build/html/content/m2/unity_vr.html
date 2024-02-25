@@ -83,7 +83,7 @@
 <li class="toctree-l1"><a class="reference internal" href="../m4/data_collection.html">Data Collection with Physiological Sensors</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../m5/integration.html">Integration with VR</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../m6/data_analysis.html">Data Analysis</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../m7/workshop.html">Hands on Workshop</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../m7/workshop.html">Hands-on Workshop</a></li>
 </ul>
 
         </div>
@@ -308,6 +308,9 @@ you will learn more about in the upcoming subsections. This tutorial will be usi
 </section>
 <section id="vr-maze">
 <h2>VR Maze<a class="headerlink" href="#vr-maze" title="Link to this heading"></a></h2>
+<div class="video_wrapper" style="">
+<iframe allowfullscreen="true" src="https://www.youtube.com/embed/pinu3Cmc-5M" style="border: 0; height: 345px; width: 560px">
+</iframe></div><p><strong>[Click on the above video for our YouTube video on the Maze Project.]</strong></p>
 <p>Now that you have learned about the most important techniques used in Unity VR development, you should experiment with developing your own VR application. If you ever find yourself lost in the process, look back to this module to jog your memory. If you want to implement anything that is not explicitly mentioned in this section, feel free to explore the <a class="reference external" href="https://docs.unity3d.com/Manual/VROverview.html">Unity VR documentation</a> to learn more niche topics. Included in this section is an example project, <em>VR Maze</em>. This project is larger in scale than anything you are expected to make at this point in your learning, but can serve as inspiration for your own projects and can show off the posibilities for application development when performed by a seasoned Unity developer. Keep reading to find out more about this project.</p>
 <p>The maze project was developed by Robert Licata and Niall Pepper, who have graciously allowed it to be used as an example VR project for this tutorial. The goal of the project was to experiment with procedurally generated mazes and analyze the responses of players to these mazes. The maze project initally began as a 2D Unity project, but was reworked into virtual reality to study the change in participant responses from 2D to VR. The results of the study provide insight into the efficacy of VR as an alternative application platform for cognitive applications.</p>
 <p>The application itself is unique from any project you have seen previously in this set of tutorials. Most of the game is generated when the user actually begins playing the game, and this is accomplished using Unity prefabs and a complex algorithm to define the maze structure. Currently, the player uses standard VR controls to navigate through the maze, with the goal of reaching checkpoints scattered throughout. Upon reaching all checkpoints, the maze is completed and the users final completion time is presented. Later, you will see an attempt at integrating this maze application with physiological sensors, and an analysis of how the new control scheme — one where the player’s electromyographic signals control their movement — affects their maze completion time. For now, let this maze project spark your creativity for your own VR project, and save worrying about the physiological sensors for future parts of the tutorial.</p>
