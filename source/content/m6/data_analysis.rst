@@ -46,8 +46,6 @@ EMG Analysis
 Raw Data: Load and Plot
 ^^^^^^^^^^^^^^^^^^^^^^^
 
-.. cover both approaches, single and dataset
-
 The first step to the process of analyzing the data we've collected is, of course, loading it into memory. The data is in .csv format, which is a common text-based format for two-dimensional data. Perhaps the simplest way is to use ``numpy.loadtxt`` (documented `here <https://numpy.org/doc/stable/reference/generated/numpy.loadtxt.html>`_).
 
 There are options to access the data with column names, but this becomes slightly inconvenient to work with later when we're passing the data to other library functions. So, especially since the columns of our data are relatively simple to remember, it's better to just load it as a regular ``ndarray`` (NumPy: *n*-dimensional array). We can name the variables better by *slicing*, which is a common way to subset data in NumPy. A ``:`` grabs all rows or columns, a list with ``[]`` is used to grab only certain rows or columns by index, and a range (e.g., ``1:3``) is used to grab rows or columns within a range of indices. We'll separate the data into the time column and the EMG columns. Finally, to check the dimensionality of the raw and sliced data, we can use NumPy's ``shape`` function, which returns the number of elements in each dimension (rows, then columns).
@@ -105,7 +103,7 @@ The ``pyplot.plot`` function is perhaps the most universal: it takes ``x`` and `
 
 If you want to see the plot live, you can use ``plt.show()``. This is the result:
 
-.. TODO insert result here
+.. TODO show viz
 
 Notice that the raw signal looks pretty messy: we can sort of see that where the amplitude goes up is when the greatest muscle exertion happened, but it's vague and subject to a lot of quick changes. Also, the mean isn't necessarily at 0V, but we only really care about the changes from 0, so we'll learn how to remove this offset properly when we filter the signal in the next section. Over the next several sections, we'll learn about different ways of processing the signal so that we can get more meaning out of it, visually and numerically.
 
@@ -132,7 +130,7 @@ Finally, we have one more parameter to pass to the filter: sampling frequency. *
 
    fi.visualize_effect(emg_channels)
 
-.. TODO show visualization
+.. TODO show viz
 
 The last line is a nice function provided by LibEMG: it takes the raw signal and produces a visualization showing the signal pre- and post- filtering in the time and frequency domains. We'll explain what that last part means later, but for now, notice how the mean of the signal is now at 0V like we wanted, and also notice on the right how the range of frequencies is much more evenly distributed. This signal definitely has more desirable qualities than the raw signal from before.
 
@@ -142,7 +140,11 @@ Types of Visualizations
 
 There are some special visualizations commonly used with signal data, and we'll explore a few of them here.
 
-**Autocorrelation** and **cross-correlation** are used to measure the relationships between signals. Specifically, autocorrelation looks at *periodicity*, or repeating behavior, by *correlating* the signal with a lagged version of itself (correlation is a technical term, but again, don't worry too much about the math here). So, lag 1 represents all samples from the signal that are 1 observation ahead of another sample (as determined by the sampling frequency), lag -5 represents all samples 5 that are 5 observations behind another sample. Cross-correlation does the same, but uses two signals instead of the same signal with itself. Higher positive values of correlation indicate high similarity between the signals; higher negative values indicate higher reciprocity (i.e., they are opposite each other), and values closer to zero indicate little relationship at all. For more information about autocorrelaton and cross-correlation with EMG signals, see [#]_.
+.. TODO: explain example(s) of autocorrelation and cross-correlation
+
+**Autocorrelation** and **cross-correlation** are used to measure the relationships between signals. Specifically, autocorrelation looks at *periodicity*, or repeating behavior, by *correlating* the signal with a lagged version of itself (correlation is a technical term, but again, don't worry too much about the math here). So, lag 1 represents all samples from the signal that are 1 observation ahead of another sample (as determined by the sampling frequency), lag -5 represents all samples 5 that are 5 observations behind another sample. Cross-correlation does the same, but uses two signals instead of the same signal with itself. Higher positive values of correlation indicate high similarity between the signals; higher negative values indicate higher reciprocity (i.e., they are opposite each other), and values closer to zero indicate little relationship at all.
+
+For an example of these concepts, suppose we were conducting a study to understand how people lift weights. Subjects wear sEMG sensors on their left and right biceps and complete successive bicep curls. If we wanted to see how regular the person's motion is over time (to see if they fatigue, let's say), we would use the autocorrelation of each arm's signal separately. Meanwhile, if we wanted to compare the functioning of the left and right arms (to see if they are symmetric, let's say), we would use the cross-correlation of the two signals. For more information about autocorrelaton and cross-correlation with EMG signals, see [#]_.
 
 These can be calculated using the ``scipy.correlate`` function, which takes the two signals being correlated and some other optional parameters for the mode and method (we can use the default values for now). For plotting, this is a nice opportunity to learn how to use the nifty ``pyplot.subplots_mosaic`` function. It takes a string parameter for the pattern of grid layout that you'd like, and it's especially useful for irregular patterns. the ``;`` is used for a new row, and different letters each define their own plot, with the number of letters defining the relative spacing. Here, since we have two plots for autocorrelation (left and right), but only one for cross-correlation, a clear way to display this visually is to place the autocorrelation plots next to each other but leave the cross-correlation on its own.
 
@@ -173,9 +175,47 @@ These can be calculated using the ``scipy.correlate`` function, which takes the 
 
    fig2.suptitle("Correlation in Left and Right Bicep EMG Signals")
 
-.. TODO show the viz
+.. TODO show viz and describe
 
-.. TODO next viz: PSD then spectrogram
+Another useful visualization for understanding the dominant frequencies of a signal is the **power spectral density (PSD)**. It shows the *power* (squared magnitude) of the signal as a function of frequency. High peaks represent "strong" frequency components, or frequencies that occur with greater amplitudes, while low peaks represent "weak" frequency components. The code to generate the PSD for our example is below; luckily, Matplotlib has a built-in function to calculate and plot the PSD of a signal, ``pyplot.psd``. We must specify a few parameters: ``Fs`` is the sampling frequency (see the explanation above), ``NFFT`` is the number of data points used in each block for an important mathematical operation called the **Fast Fourier Transform** that is used to generate the PSD, and ``noverlap`` is the number of points of overlap between the segments defined by ``NFFT``. You are encouraged to specify different parameter values, including the defaults, and see how the result changes.
+
+.. code-block:: python
+   :linenos:
+
+   SAMPLE_FREQ = 1259.259
+   WINDOW_SIZE = 50
+   WINDOW_INC = 25
+
+   fig3, ax3 = plt.subplots(2)
+   ax3[0].psd(emg_filt[:,1], Fs=SAMPLE_FREQ, NFFT=WINDOW_SIZE, noverlap=WINDOW_SIZE-WINDOW_INC)
+   ax3[0].set_title("Left")
+   ax3[1].psd(emg_filt[:,0], Fs=SAMPLE_FREQ, NFFT=WINDOW_SIZE, noverlap=WINDOW_SIZE-WINDOW_INC)
+   ax3[1].set_title("Right")
+   fig3.suptitle("PSD of Left and Right Bicep Signals")
+
+.. TODO show viz and describe
+
+Finally, another useful visualization is the **spectrogram**, which represents how the frequency changes over time. It shows the power of each frequency component as a *color map*, with warmer colors mapped to stronger frequencies. In this sense, it creates a three-dimensional plot that allows us to view time, frequency, and power at once! Matplotlib also has a built-in function for this, called ``pyplot.specgram``. Its parameters are the same as the above ``psd``. Since we're showing how the frequency changes over time, we'll also plot the filtered signals above the spectrogram.
+
+.. code-block:: python
+   :linenos:
+
+   SAMPLE_FREQ = 1259.259
+   WINDOW_SIZE = 50
+   WINDOW_INC = 25
+
+   fig4, ax4 = plt.subplots(2,2)
+   ax4[0,0].plot(time, emg_filt[:,1])
+   ax4[0,0].set_title("Left: Raw Signal")
+   ax4[1,0].specgram(emg_filt[:,1], Fs=SAMPLE_FREQ, NFFT=WINDOW_SIZE, noverlap=WINDOW_SIZE-WINDOW_INC)
+   ax4[1,0].set_title("Left: Spectrogram")
+   ax4[0,1].plot(time, emg_filt[:,0])
+   ax4[0,1].set_title("Right: Raw Signal")
+   ax4[1,1].specgram(emg_filt[:,0], Fs=SAMPLE_FREQ, NFFT=WINDOW_SIZE, noverlap=WINDOW_SIZE-WINDOW_INC)
+   ax4[1,1].set_title("Right: Spectrogram")
+   fig4.suptitle("Spectrogram of Left and Right Bicep Signals")
+
+.. TODO show viz and describe
 
 ^^^^^^^^^^^^^^^^^^
 Feature Extraction
