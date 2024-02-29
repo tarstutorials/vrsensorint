@@ -164,6 +164,8 @@ If you ever get stuck while programming, don't forget to use the `C# documentati
 **[Click on the above video for our YouTube tutorial on Creating a New Unity Project. See code below]**
 
 .. literalinclude:: ../../scripts/TreasureController.cs
+     :language: c#
+     :linenos:
 
 ^^^^^^^^^^^^^^^
 Camera System
