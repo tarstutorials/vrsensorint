@@ -263,19 +263,85 @@ LibEMG allows you to compute feature groups or singular features at a time; as a
 Heart Rate Analysis
 -------------------
 
-.. These subsections could change, just putting them in for now.
 
 ^^^^^^^^^^^^^^^^^^^^^^^
-Raw Data: Load and Plot
+Raw Data: Load and Plot 
 ^^^^^^^^^^^^^^^^^^^^^^^
+
+The first step to analyzing the data that we have collected is to load it into memory. The data is contained in a .csv file, which
+can be easily loaded using ``numpy.loadtxt`` (documented `here <https://numpy.org/doc/stable/reference/generated/numpy.loadtxt.html>`_).
+
+There are options to access the data with column names, but this becomes slightly inconvenient to work with later 
+when we're passing the data to other library functions. So, especially since the columns of our data are relatively 
+simple to remember, it's better to just load it as a regular ``ndarray`` (NumPy: *n*-dimensional array). We can name the 
+variables better by *slicing*, which is a common way to subset data in NumPy. A ``:`` grabs all rows or columns, a list 
+with ``[]`` is used to grab only certain rows or columns by index, and a range (e.g., ``1:3``) is used to grab rows or 
+columns within a range of indices. We'll separate the data into the time column and the EMG columns. Finally, to check 
+the dimensionality of the raw and sliced data, we can use NumPy's ``shape`` function, which returns the number of 
+elements in each dimension (rows, then columns).
+
+The code below loads our data collected in :ref:`analysis_to_collect`. 
+
+.. code-block:: python
+	:linenos:
+	
+	import numpy as np 
+
+	CUT_OFF = 1000 #make sure this is divisible by the sample rate 
+
+	ekg_data = np.loadtxt('raw_csv/CHANGE NAME', delimiter=',', dtype=float, max_rows=CUT_OFF)
+.. 
+
+Notice that we have X rows any Y colums. Each row represents the signal values read from the sensor at a 
+particulart time, and the columns represent different trials. Note that since the values are stored sequentially without
+any time information it is IMPORTANT to remeber the sampleing rate which allows the various functions to have a time reference.
+
+We recommend that you do a quick sanity check and graph the data to make sure it loaded correctly 
+
+.. code-block:: python
+	import numpy as np
+	import matplotlib.pyplot as plt
+	
+	trial = 1	
+
+	plt.plot(ekg_data[:,trial])
+	plt.xlabel('Time')
+	plt.ylabel('Value')
+	plt.title('EKG plot')
+	plt.show()
+..
 
 ^^^^^^^^^^^^^
 Preprocessing
 ^^^^^^^^^^^^^
 
+The preprocessing if very easy as the `NeurKit2 <https://neuropsychology.github.io/NeuroKit/index.html>`_ library does near everything for us. 
+All you have to do is call ``nk.ecg_process(ekg_data[:,1], sampling_rate=x)`` and your done. The function returns two elements
+a dataframe with all the raw and cleaned signal and a dictionary containing miscellaneous info such as peak location.
+
 ^^^^^^^^^^^^^^^^^^
-Feature Extraction
+Analyzation 
 ^^^^^^^^^^^^^^^^^^
+
+Analyzing the data is just as easy as the preporcessing. Using just a few lines using `NeurKit2 <https://neuropsychology.github.io/NeuroKit/index.html>`_. The aforementioned dataframe allows you to get; time-domain analysis,
+frequency-domain analysis, or the non-linear domain analysis.
+
+.. code-block:: python
+	import numpy as np
+	import matplotlib.pyplot as plt
+	
+	peaks, info = nk.ecg_peaks(dataframe["ECG_Clean"], sampling_rate=100)
+	
+	hrv_time = nk.hrv_time(peaks, sampling_rate=100, show=True)
+	hrv_time
+
+	hrv_freq = nk.hrv_frequency(peaks, sampling_rate=100, show=True, normalize=True)
+	hrv_freq
+
+	hrv_nonlinear = nk.hrv_nonlinear(peaks, sampling_rate=100, show=True)
+	hrv_nonlinear
+..
+
 
 ------------------------------------
 Overview of Data Analysis Techniques
