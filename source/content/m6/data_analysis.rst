@@ -113,7 +113,7 @@ Filtering the Signal
 
 The first step in any processing of signal data is to apply one or more filters to remove noise from the signal. Without doing this, performance of any machine learning system using the signals will most likely be worse because there are some unwanted artifacts present. Specifically, there are two common sources of noise in a biomedical signal such as EMG: **powerline interference**, caused by unwanted communication between other nearby electronic devices, and **motion**, caused by a small and relatively constant amount of energy being produced by the body at all times.
 
-We won't spend too much time on the math behind how different types of filters work, but know that they essentially use a process called *convolution* to modify the contents of the signal *frequency*. There are four main types of filters, described succinctly by Cheveigné and Nelken (bold inserted for clarity): "The **low-pass filter** attenuates high frequencies, the **high-pass** attenuates low frequencies, the **band-pass** attenuates out-of band frequencies, the **notch** attenuates a narrow band of frequencies" [#]_. To *attenuate* means to reduce the effect of, so these filters are targeting and removing certain frequency ranges; for more details on filtering, refer to their article.
+We won't spend too much time on the math behind how different types of filters work, but know that they essentially use a process called *convolution* to modify the contents of the signal *frequency*. There are four main types of filters, described succinctly by Cheveigné and Nelken (bold inserted for clarity): "The **low-pass filter** attenuates high frequencies, the **high-pass** attenuates low frequencies, the **band-pass** attenuates out-of band frequencies, the **notch** attenuates a narrow band of frequencies." [#]_ To *attenuate* means to reduce the effect of, so these filters are targeting and removing certain frequency ranges; for more details on filtering, refer to their article.
 
 In our case, we'll use LibEMG to filter the EMG signals: the API takes the name, cutoff frequency, and bandwidth of the filter in a dictionary format. You can also just use the default, "common" filters. Don't worry too much about the parameter values for now; cutoff frequencies are recommended by the folks at LibEMG based on the frequencies at which these sources of noise commonly occur, and bandwidths can be modified later to remove frequency more or less harshly.
 
@@ -122,9 +122,11 @@ Finally, we have one more parameter to pass to the filter: sampling frequency. *
 .. code-block:: python
    :linenos:
 
+   from libemg import filtering
+
    SAMPLE_FREQ = 1259.259
 
-   fi = libemg.filtering.Filter(sampling_frequency=SAMPLE_FREQ)
+   fi = filtering.Filter(sampling_frequency=SAMPLE_FREQ)
    fi.install_common_filters() # installs notch at 60 Hz, bandpass from 20-450 Hz
    emg_filt = fi.filter(emg_channels)
 
@@ -144,7 +146,7 @@ There are some special visualizations commonly used with signal data, and we'll 
 
 **Autocorrelation** and **cross-correlation** are used to measure the relationships between signals. Specifically, autocorrelation looks at *periodicity*, or repeating behavior, by *correlating* the signal with a lagged version of itself (correlation is a technical term, but again, don't worry too much about the math here). So, lag 1 represents all samples from the signal that are 1 observation ahead of another sample (as determined by the sampling frequency), lag -5 represents all samples 5 that are 5 observations behind another sample. Cross-correlation does the same, but uses two signals instead of the same signal with itself. Higher positive values of correlation indicate high similarity between the signals; higher negative values indicate higher reciprocity (i.e., they are opposite each other), and values closer to zero indicate little relationship at all.
 
-For an example of these concepts, suppose we were conducting a study to understand how people lift weights. Subjects wear sEMG sensors on their left and right biceps and complete successive bicep curls. If we wanted to see how regular the person's motion is over time (to see if they fatigue, let's say), we would use the autocorrelation of each arm's signal separately. Meanwhile, if we wanted to compare the functioning of the left and right arms (to see if they are symmetric, let's say), we would use the cross-correlation of the two signals. For more information about autocorrelaton and cross-correlation with EMG signals, see [#]_.
+For an example of these concepts, suppose we were conducting a study to understand how people lift weights. Subjects wear sEMG sensors on their left and right biceps and complete successive bicep curls. If we wanted to see how regular the person's motion is over time (to see if they fatigue, let's say), we would use the autocorrelation of each arm's signal separately. Meanwhile, if we wanted to compare the functioning of the left and right arms (to see if they are symmetric, let's say), we would use the cross-correlation of the two signals. For more information about autocorrelaton and cross-correlation with EMG signals, see the referenced article. [#]_
 
 These can be calculated using the ``scipy.correlate`` function, which takes the two signals being correlated and some other optional parameters for the mode and method (we can use the default values for now). For plotting, this is a nice opportunity to learn how to use the nifty ``pyplot.subplots_mosaic`` function. It takes a string parameter for the pattern of grid layout that you'd like, and it's especially useful for irregular patterns. the ``;`` is used for a new row, and different letters each define their own plot, with the number of letters defining the relative spacing. Here, since we have two plots for autocorrelation (left and right), but only one for cross-correlation, a clear way to display this visually is to place the autocorrelation plots next to each other but leave the cross-correlation on its own.
 
@@ -221,6 +223,39 @@ Finally, another useful visualization is the **spectrogram**, which represents h
 Feature Extraction
 ^^^^^^^^^^^^^^^^^^
 
+After using some advanced visualizations to understand patterns in the data, a process called **feature extraction** is used to perform calculations to transform the data into a form more useful for later algorithms. Specifically, the resulting features are often input into machine learning algorithms for tasks such as classification, and the features are used instead of the filtered data because they are more information dense.
+
+There are far too many features used for EMG classification for us to describe them all here. Many of the most popular options are implemented in LibEMG, so refer to their `documentation <https://libemg.github.io/libemg/documentation/features/features.html>`_ for more details. As an example for our data, we'll implement the Hudgin's Time Domain feature set, which is a classic group of features for analyzing how the signal changes over time. [#]_ It contains four features:
+
+* **Mean Absolute Value (MAV)**: The average absolute value of the signal
+* **Zero Crossings (ZC)**: The number of times that the signal crosses zero amplitude
+* **Slope Sign Change (SSC)**: The number of times that the slope of the signal changes from positive to negative, or vice versa
+* **Waveform Length (WL)**: The cumulative length of the signal (higher values indicate greater complexity)
+
+LibEMG allows you to compute feature groups or singular features at a time; as an example of the latter, we'll use **Root Mean Square (RMS)**. RMS is very commonly used to represent levels of physiological activity. Features are computed over *windows* of the data, so we must specify the window size and the increment (how many samples the window is moved by each time). Finally, we'll plot the features after running the extraction.
+
+.. code-block:: python
+   :linenos:
+
+   from libemg import feature_extractor, utils
+
+   WINDOW_SIZE = 50
+   WINDOW_INC = 25
+
+   fe = feature_extractor.FeatureExtractor()
+   windows = utils.get_windows(emg_filt, WINDOW_SIZE, WINDOW_INC)
+   features = fe.extract_feature_group('HTD', windows)
+   features["RMS"] = fe.getRMSfeat(windows)
+   
+   fig5, ax5 = plt.subplots(len(features), 2)
+   for i,key in enumerate(features):
+       ax5[i,0].plot(features[key][:,1])
+       ax5[i,0].set_title("Left: " + key)
+       ax5[i,1].plot(features[key][:,0])
+       ax5[i,1].set_title("Right: " + key)
+   fig5.suptitle("Extracted Features for Left and Right Biceps")
+
+.. TODO show viz and describe
 
 -------------------
 Heart Rate Analysis
@@ -246,22 +281,29 @@ Overview of Data Analysis Techniques
 
 Let's recap what we've learned by analyzing the data from each of these sensors, with a focus on the overarching processes and concepts that we followed. This section will serve as a useful reference for future work.
 
+^^^^^^^^^^^^^^^^
+Time Series Data 
+^^^^^^^^^^^^^^^^
+
+With each of the data types we saw two overarching methods of analysis: one where we looked at how the signal changed over time, and the other where we looked at how the signal was distributed over a range of frequencies. It turns out that these have special names as the two widely accepted ways of analyzing time series data. The former is called **time domain analysis**, and the latter is called **frequency domain analysis**. Methods from both groups are highly valuable, and it's important to incorporate both depending on the context of the problem.
+
 ^^^^^^^^^^^^^^^^^^^^
 Data Science Process
 ^^^^^^^^^^^^^^^^^^^^
 
 Going all the way back to :ref:`analysis_to_collect`, we went through a process that started by asking questions, then collected some data, and went through a variety of steps to analyze that data. This is the core of **data science**, and as you become more experienced, you'll start to notice the pattern in how this process most often proceeds. Let's outline it formally here.
 
-.. TODO: steps from collection through conclusions (exploratory, filtering, extraction, modeling, validation, etc.) 
+1. **Research Question**: First, the research question and hypothesis must be well-defined. What problem are you trying to solve?
+2. **Data Collection**: Data is collected to attempt to address this question. A rigorous process may be needed to ensure that high-quality data is collected in an ethical manner.
+3. **Exploratory Data Analysis**: This is the stage of loading raw data and performing basic operations to verify it. It includes quality checking (addressing low quality or missing data), aggregating, calculating basic summary statistics, and making visualizations.
+4. **Modeling**: This is the core step of this process: developing a model based on the data, using the intuitions from the previous step, to address the research question. For physiological signals, this step may involve **feature extraction** and **classification**. It also involves **validation** of the model's quality and any assumptions that may have been made (methods for this vary).
+5. **Interpretation**: Despite the model being the most technically important step, this step is arguably just as crucial. Not only is it necessary to understand what the results of the model mean, that understanding also needs to be communicated to key shareholders that are most likely not as familiar with the problem and/or the technology.
 
-^^^^^^^^^^^^^^^^^^^^
-Time Series Analysis
-^^^^^^^^^^^^^^^^^^^^
+Below is a great graphic to illustrate a slightly modified version of this lifecycle (image from `this blog <https://www.sudeep.co/data-science/2018/02/09/Understanding-the-Data-Science-Lifecycle.html>`_).
 
-With each of the data types we saw two overarching methods of analysis: one where we looked at how the signal changed over time, and the other where we looked at how the signal was distributed over a range of frequencies. It turns out that these have special names as the two widely accepted ways of analyzing time-series data.
-
-.. TODO: time domain and frequency domain
-
+.. image:: ../../images/data_science_lifecycle.png
+  :width: 800
+  :alt: An illustration of the 7 step data science lifecycle.
 
 --------------
 Section Review
@@ -272,10 +314,12 @@ Section Review
 References
 ----------
 
-.. [#] \E. Eddy, E. Campbell, A. Phinyomark, S. Bateman, and E. Scheme. "LibEMG: An Open Source Library to Facilitate the Exploration of Myoelectric Control." *IEEE Access*, vol. 11, pp. 87380-87397, 2023, doi: 10.1109/ACCESS.2023.3304544
+.. [#] \E. Eddy, E. Campbell, A. Phinyomark, S. Bateman, and E. Scheme. "LibEMG: An Open Source Library to Facilitate the Exploration of Myoelectric Control." *IEEE Access*, vol. 11, pp. 87380-87397, 2023, doi: 10.1109/ACCESS.2023.3304544.
 
-.. [#] \D. Makowski, T. Pham, Z.J. Lau, J.C. Brammer, F. Lespinasse, H. Pham, C. Schölzel, and S.A. Chen. "NeuroKit2: A Python toolbox for neurophysiological signal processing." *Behavior Research Methods*, vol. 53, no. 4, pp. 1689-1696, 2021, doi: 10.3758/s13428-020-01516-y
+.. [#] \D. Makowski, T. Pham, Z.J. Lau, J.C. Brammer, F. Lespinasse, H. Pham, C. Schölzel, and S.A. Chen. "NeuroKit2: A Python toolbox for neurophysiological signal processing." *Behavior Research Methods*, vol. 53, no. 4, pp. 1689-1696, 2021, doi: 10.3758/s13428-020-01516-y.
 
 .. [#] \A. Cheveigné and I. Nelken. "Filters: When, Why, and How (Not) to Use Them." *Neuron*, vol. 102, no. 2, pp. 280-293, 2019, doi: 10.1016/j.neuron.2019.02.039.
 
 .. [#] \E. Nelson-Wong, S. Howarth, D.A. Winter, and J.P. Callaghan. "Application of Autocorrelation and Crosscorrelation Analyses in Human Movement and Rehabilitation Research." *Journal of Orthopaedic & Sports Physical Therapy* vol. 39, no. 4, pp. 287-295, 2009, doi: 10.2519/jospt.2009.2969.
+
+.. [#] \B. Hudgins, P. Parker and R. N. Scott. "A new strategy for multifunction myoelectric control." *IEEE Transactions on Biomedical Engineering*, vol. 40, no. 1, pp. 82-94, 1993, doi: 10.1109/10.204774.
