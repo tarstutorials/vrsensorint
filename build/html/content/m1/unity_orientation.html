@@ -274,35 +274,34 @@
 <div class="video_wrapper" style="">
 <iframe allowfullscreen="true" src="https://www.youtube.com/embed/bG2EUjmzxOI" style="border: 0; height: 345px; width: 560px">
 </iframe></div><p><strong>[Click on the above video for our YouTube tutorial on Creating a New Unity Project. See code below]</strong></p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">using</span> <span class="n">System</span><span class="o">.</span><span class="n">Collections</span><span class="p">;</span>
-<span class="n">using</span> <span class="n">System</span><span class="o">.</span><span class="n">Collections</span><span class="o">.</span><span class="n">Generic</span><span class="p">;</span>
-<span class="n">using</span> <span class="n">UnityEngine</span><span class="p">;</span>
-
-<span class="n">public</span> <span class="k">class</span> <span class="nc">TreasureController</span> <span class="p">:</span> <span class="n">MonoBehaviour</span>
-<span class="p">{</span> 
-    <span class="n">private</span> <span class="nb">float</span> <span class="n">timePassed</span><span class="p">;</span>
-    <span class="o">//</span> <span class="n">Start</span> <span class="ow">is</span> <span class="n">called</span> <span class="n">before</span> <span class="n">the</span> <span class="n">first</span> <span class="n">frame</span> <span class="n">update</span>
-    <span class="n">void</span> <span class="n">Start</span><span class="p">()</span>
-    <span class="p">{</span>
-        <span class="n">timePassed</span> <span class="o">=</span> <span class="mi">0</span><span class="n">f</span><span class="p">;</span>
-    <span class="p">}</span>
-
-    <span class="o">//</span> <span class="n">Update</span> <span class="ow">is</span> <span class="n">called</span> <span class="n">once</span> <span class="n">per</span> <span class="n">frame</span>
-    <span class="n">void</span> <span class="n">Update</span><span class="p">()</span>
-    <span class="p">{</span>
-        <span class="n">timePassed</span> <span class="o">+=</span> <span class="n">Time</span><span class="o">.</span><span class="n">deltaTime</span><span class="p">;</span>
-        <span class="k">if</span> <span class="p">(</span><span class="n">timePassed</span> <span class="o">&gt;</span> <span class="mi">1</span><span class="n">f</span><span class="p">)</span>
-        <span class="p">{</span>
-            <span class="n">transform</span><span class="o">.</span><span class="n">position</span> <span class="o">=</span> <span class="n">new</span> <span class="n">Vector3</span><span class="p">(</span><span class="n">Random</span><span class="o">.</span><span class="n">Range</span><span class="p">(</span><span class="o">-</span><span class="mi">5</span><span class="n">f</span><span class="p">,</span> <span class="mi">5</span><span class="n">f</span><span class="p">),</span> <span class="n">Random</span><span class="o">.</span><span class="n">Range</span><span class="p">(</span><span class="o">-</span><span class="mi">5</span><span class="n">f</span><span class="p">,</span> <span class="mi">5</span><span class="n">f</span><span class="p">),</span> <span class="mf">0.0</span><span class="n">f</span><span class="p">);</span>
-            <span class="n">timePassed</span> <span class="o">=</span> <span class="mi">0</span><span class="n">f</span><span class="p">;</span>
-        <span class="p">}</span>
-    <span class="p">}</span>
-    <span class="n">void</span> <span class="n">OnTriggerExit2D</span><span class="p">(</span><span class="n">Collider2D</span> <span class="n">other</span><span class="p">)</span>
-    <span class="p">{</span>
-        <span class="n">p</span><span class="o">.</span><span class="n">score</span> <span class="o">+=</span> <span class="mi">1</span><span class="p">;</span>
-    <span class="p">}</span>
-<span class="p">}</span>
-
+<div class="highlight-c# notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span><span class="k">using</span><span class="w"> </span><span class="nn">System.Collections</span><span class="p">;</span>
+<span class="linenos"> 2</span><span class="k">using</span><span class="w"> </span><span class="nn">System.Collections.Generic</span><span class="p">;</span>
+<span class="linenos"> 3</span><span class="k">using</span><span class="w"> </span><span class="nn">UnityEngine</span><span class="p">;</span>
+<span class="linenos"> 4</span>
+<span class="linenos"> 5</span><span class="k">public</span><span class="w"> </span><span class="k">class</span><span class="w"> </span><span class="nc">TreasureController</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="n">MonoBehaviour</span>
+<span class="linenos"> 6</span><span class="p">{</span><span class="w"> </span>
+<span class="linenos"> 7</span><span class="w">    </span><span class="k">private</span><span class="w"> </span><span class="kt">float</span><span class="w"> </span><span class="n">timePassed</span><span class="p">;</span>
+<span class="linenos"> 8</span><span class="w">    </span><span class="c1">// Start is called before the first frame update</span>
+<span class="linenos"> 9</span><span class="w">    </span><span class="k">void</span><span class="w"> </span><span class="nf">Start</span><span class="p">()</span>
+<span class="linenos">10</span><span class="w">    </span><span class="p">{</span>
+<span class="linenos">11</span><span class="w">        </span><span class="n">timePassed</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">0f</span><span class="p">;</span>
+<span class="linenos">12</span><span class="w">    </span><span class="p">}</span>
+<span class="linenos">13</span>
+<span class="linenos">14</span><span class="w">    </span><span class="c1">// Update is called once per frame</span>
+<span class="linenos">15</span><span class="w">    </span><span class="k">void</span><span class="w"> </span><span class="nf">Update</span><span class="p">()</span>
+<span class="linenos">16</span><span class="w">    </span><span class="p">{</span>
+<span class="linenos">17</span><span class="w">        </span><span class="n">timePassed</span><span class="w"> </span><span class="o">+=</span><span class="w"> </span><span class="n">Time</span><span class="p">.</span><span class="n">deltaTime</span><span class="p">;</span>
+<span class="linenos">18</span><span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">timePassed</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="m">1f</span><span class="p">)</span>
+<span class="linenos">19</span><span class="w">        </span><span class="p">{</span>
+<span class="linenos">20</span><span class="w">            </span><span class="n">transform</span><span class="p">.</span><span class="n">position</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">Vector3</span><span class="p">(</span><span class="n">Random</span><span class="p">.</span><span class="n">Range</span><span class="p">(</span><span class="o">-</span><span class="m">5f</span><span class="p">,</span><span class="w"> </span><span class="m">5f</span><span class="p">),</span><span class="w"> </span><span class="n">Random</span><span class="p">.</span><span class="n">Range</span><span class="p">(</span><span class="o">-</span><span class="m">5f</span><span class="p">,</span><span class="w"> </span><span class="m">5f</span><span class="p">),</span><span class="w"> </span><span class="m">0.0f</span><span class="p">);</span>
+<span class="linenos">21</span><span class="w">            </span><span class="n">timePassed</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">0f</span><span class="p">;</span>
+<span class="linenos">22</span><span class="w">        </span><span class="p">}</span>
+<span class="linenos">23</span><span class="w">    </span><span class="p">}</span>
+<span class="linenos">24</span><span class="w">    </span><span class="k">void</span><span class="w"> </span><span class="nf">OnTriggerExit2D</span><span class="p">(</span><span class="n">Collider2D</span><span class="w"> </span><span class="n">other</span><span class="p">)</span>
+<span class="linenos">25</span><span class="w">    </span><span class="p">{</span>
+<span class="linenos">26</span><span class="w">        </span><span class="n">p</span><span class="p">.</span><span class="n">score</span><span class="w"> </span><span class="o">+=</span><span class="w"> </span><span class="m">1</span><span class="p">;</span>
+<span class="linenos">27</span><span class="w">    </span><span class="p">}</span>
+<span class="linenos">28</span><span class="p">}</span>
 </pre></div>
 </div>
 </section>

@@ -12,13 +12,13 @@ Introduction to Data Analysis
 
 Being able to collect physiological data and use it in VR is wonderful, but isn't really meaningful for making any observations or conclusions without performing analysis. The last section of this tutorial will focus on basic tools to analyze the data that we've collected from the VR application.
 
-Since we're collecting data from the user as they perform some tasks, with the sensors updating the results periodically, this is an example of **time-series** data. This is a special type of data where the sequence of observations matters, and certain models may reflect the fact that observations closer together in time should be more closely related than those further apart. We'll go through some methods of extracting relevant information, numerically and visually, from the data from each sensor.
+Since we're collecting data from the user as they perform some tasks, with the sensors updating the results periodically, this is an example of **time-series** data. This is a unique type of data where the sequence of observations matters. Additionally, certain models may reflect the fact that observations closer together in time should be more closely related than those further apart. We'll go through some methods of extracting relevant information numerically and visually from the data provided by each sensor.
 
 ^^^^^^^^^^^^^^^^^^^^^^^^^
 Programming Prerequisites
 ^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Throughout this section, we'll be using Python as the tool for the analysis. That doesn't take away from the concepts, as much of this could be implemented in other languages. However, Python is one of the most popular tools as it has a wide variety of open source resources available and a strong community of developers that can provide feedback to each other throughout the process. This tutorial will assume a basic understanding of programming concepts and some Python syntax.
+Throughout this section, we'll be using Python as the tool for the analysis. Python is one of the most popular languages for this, as it has a wide variety of open source resources available and a strong community of developers that can provide feedback to each other throughout the process. However, much of these concepts could be implemented similarly in other languages. This tutorial will assume a basic understanding of programming concepts and some Python syntax.
 
 Python can be easily downloaded for free from their `website <https://www.python.org/downloads/>`_. You'll then need to install the following packages (documentation linked), using ``pip`` (the default installer) or your favorite package manager:
 
@@ -30,13 +30,15 @@ Python can be easily downloaded for free from their `website <https://www.python
    - `LibEMG <https://libemg.github.io/libemg/>`_ [#]_
    - `NeuroKit2 <https://neuropsychology.github.io/NeuroKit/introduction.html>`_ [#]_
 
-(`Pandas <https://pandas.pydata.org/>`_ is another common Python library for data analysis. However, for our purposes, NumPy will be simpler to use, and it's used natively by the other libraries we're using for physiological data.)
+.. note::
+   `Pandas <https://pandas.pydata.org/>`_ is another common Python library for data analysis. However, for our purposes, NumPy will be simpler to use, and it's used natively by the other libraries we're using for physiological data.
 
+The following terminal command will install all of the prevously mentioned packages using the ``pip`` package manager:
 ::
 
     pip install matplotlib numpy scipy libemg neurokit2
 
-With Python ready to go, this is all we need to begin analysis. Let's dive in starting with EMG.
+With Python ready to go, we are ready to begin analysis. Let's dive in starting with EMG.
 
 ------------
 EMG Analysis
@@ -46,9 +48,9 @@ EMG Analysis
 Raw Data: Load and Plot
 ^^^^^^^^^^^^^^^^^^^^^^^
 
-The first step to the process of analyzing the data we've collected is, of course, loading it into memory. The data is in .csv format, which is a common text-based format for two-dimensional data. Perhaps the simplest way is to use ``numpy.loadtxt`` (documented `here <https://numpy.org/doc/stable/reference/generated/numpy.loadtxt.html>`_).
+The first step to the process of analyzing the data we've collected is, of course, loading it into memory. The data is in .csv format, which is a common text-based format for two-dimensional data. One simple way to load this data is to use ``numpy.loadtxt`` (documented `here <https://numpy.org/doc/stable/reference/generated/numpy.loadtxt.html>`_).
 
-There are options to access the data with column names, but this becomes slightly inconvenient to work with later when we're passing the data to other library functions. So, especially since the columns of our data are relatively simple to remember, it's better to just load it as a regular ``ndarray`` (NumPy: *n*-dimensional array). We can name the variables better by *slicing*, which is a common way to subset data in NumPy. A ``:`` grabs all rows or columns, a list with ``[]`` is used to grab only certain rows or columns by index, and a range (e.g., ``1:3``) is used to grab rows or columns within a range of indices. We'll separate the data into the time column and the EMG columns. Finally, to check the dimensionality of the raw and sliced data, we can use NumPy's ``shape`` function, which returns the number of elements in each dimension (rows, then columns).
+There are options to access the data with column names, but this becomes inconvenient to work with later when we're passing the data to other library functions. Since the columns of our data are relatively simple to remember, it's better to just load it as a regular ``ndarray`` (NumPy: *n*-dimensional array). We can format our variable names by *slicing*, which is a common way to subset data in NumPy. A ``:`` grabs all rows or columns. A list with ``[]`` is used to grab only certain rows or columns by index. Lastly, a range (e.g., ``1:3``) is used to grab rows or columns within a range of indices. We'll separate the data into the time column and the EMG columns. Finally, to check the dimensionality of the raw and sliced data, we can use NumPy's ``shape`` function, which returns the number of elements in each dimension (rows, then columns).
 
 The code below loads our data collected in :ref:`analysis_to_collect`. 
 
@@ -66,11 +68,11 @@ The code below loads our data collected in :ref:`analysis_to_collect`.
 
 .. number of rows may change later
 
-Notice that we have 15,000 rows and 3 columns. Each row represents the signal values read from the sensor at a particular time, and the columns are time (seconds), right bicep EMG (volts), and left bicep EMG (volts). Checking the shape is always a good step to ensure there wasn't an error in the data loading process.
+Notice that we have 15,000 rows and 3 columns. Each row represents the signal values read from the sensor at a particular time, and the columns denote time (seconds), right bicep EMG (volts), and left bicep EMG (volts). Checking the shape is always a good step to ensure there wasn't an error in the data loading process.
 
 Another step to check the data quality and give us an idea of what the data looks like is plotting. Let's use NumPy to calculate some basic summary statistics, such as the mean and standard deviation, and plot them on the data using ``matplotlib.pyplot``. Since we're plotting data from multiple EMG channels, it's a good idea to use ``pyplot.subplots``, which puts multiple plots in a grid into the figure. You can specify the grid layout with two parameters (rows and columns), but here we'll only need one since we just want to stack two plots on top of each other.
 
-The ``pyplot.plot`` function is perhaps the most universal: it takes ``x`` and ``y`` to be plotted, as well as some optional visual parameters like ``label``, ``color``, ``linewidth``, and more. We use ``pyplot.axhline`` to plot horizontal lines representing the mean plus and minus two standard deviations. Finally, we can set the subplot titles and axis titles, turn on the legend, and set the overall figure title.
+The ``pyplot.plot`` function is a universal plotting function: it takes ``x`` and ``y`` to be plotted, as well as some optional visual parameters like ``label``, ``color``, ``linewidth``, and more. We use ``pyplot.axhline`` to plot horizontal lines representing the mean plus and minus two standard deviations. Finally, we can set the subplot titles and axis titles, turn on the legend, and set the overall figure title.
 
 .. code-block:: python
    :linenos:
@@ -111,7 +113,7 @@ Notice that the raw signal looks pretty messy: we can sort of see that where the
 Filtering the Signal
 ^^^^^^^^^^^^^^^^^^^^
 
-The first step in any processing of signal data is to apply one or more filters to remove noise from the signal. Without doing this, performance of any machine learning system using the signals will most likely be worse because there are some unwanted artifacts present. Specifically, there are two common sources of noise in a biomedical signal such as EMG: **powerline interference**, caused by unwanted communication between other nearby electronic devices, and **motion**, caused by a small and relatively constant amount of energy being produced by the body at all times.
+The first step in any processing of signal data is to apply one or more filters to remove noise from the signal. Without doing this, the performance of any machine learning system using the signals will worsen due to unwanted artifacting. Specifically, there are two common sources of artifact noise in a biomedical signal such as EMG: **powerline interference**, caused by unwanted communication between other nearby electronic devices, and **motion**, caused by a small and relatively constant amount of energy being produced by the body at all times.
 
 We won't spend too much time on the math behind how different types of filters work, but know that they essentially use a process called *convolution* to modify the contents of the signal *frequency*. There are four main types of filters, described succinctly by Cheveigné and Nelken (bold inserted for clarity): "The **low-pass filter** attenuates high frequencies, the **high-pass** attenuates low frequencies, the **band-pass** attenuates out-of band frequencies, the **notch** attenuates a narrow band of frequencies." [#]_ To *attenuate* means to reduce the effect of, so these filters are targeting and removing certain frequency ranges; for more details on filtering, refer to their article.
 
@@ -134,7 +136,7 @@ Finally, we have one more parameter to pass to the filter: sampling frequency. *
 
 .. TODO show viz
 
-The last line is a nice function provided by LibEMG: it takes the raw signal and produces a visualization showing the signal pre- and post- filtering in the time and frequency domains. We'll explain what that last part means later, but for now, notice how the mean of the signal is now at 0V like we wanted, and also notice on the right how the range of frequencies is much more evenly distributed. This signal definitely has more desirable qualities than the raw signal from before.
+``visualize_effect`` is a useful function provided by LibEMG: it takes the raw signal and produces a visualization showing the signal pre- and post- filtering in the time and frequency domains. We'll explain what that last part means later, but for now, notice how the mean of the signal is now at 0V like we wanted, and  how the range of frequencies seen on the right are much more evenly distributed. This signal definitely has more desirable qualities than the raw signal from before.
 
 ^^^^^^^^^^^^^^^^^^^^^^^
 Types of Visualizations
@@ -148,7 +150,7 @@ There are some special visualizations commonly used with signal data, and we'll 
 
 For an example of these concepts, suppose we were conducting a study to understand how people lift weights. Subjects wear sEMG sensors on their left and right biceps and complete successive bicep curls. If we wanted to see how regular the person's motion is over time (to see if they fatigue, let's say), we would use the autocorrelation of each arm's signal separately. Meanwhile, if we wanted to compare the functioning of the left and right arms (to see if they are symmetric, let's say), we would use the cross-correlation of the two signals. For more information about autocorrelaton and cross-correlation with EMG signals, see the referenced article. [#]_
 
-These can be calculated using the ``scipy.correlate`` function, which takes the two signals being correlated and some other optional parameters for the mode and method (we can use the default values for now). For plotting, this is a nice opportunity to learn how to use the nifty ``pyplot.subplots_mosaic`` function. It takes a string parameter for the pattern of grid layout that you'd like, and it's especially useful for irregular patterns. the ``;`` is used for a new row, and different letters each define their own plot, with the number of letters defining the relative spacing. Here, since we have two plots for autocorrelation (left and right), but only one for cross-correlation, a clear way to display this visually is to place the autocorrelation plots next to each other but leave the cross-correlation on its own.
+These can be calculated using the ``scipy.correlate`` function, which takes the two signals being correlated and some other optional parameters for the mode and method (we can use the default values for now). For plotting, this is a nice opportunity to learn how to use the nifty ``pyplot.subplots_mosaic`` function. It takes a string parameter for the pattern of grid layout that you'd like, and it's especially useful for irregular patterns. The ``;`` is used for a new row, and different letters each define their own plot, with the number of letters defining the relative spacing. Here, we have two plots for autocorrelation (left and right), but only one for cross-correlation. A clear way to display this visually is to place the autocorrelation plots next to each other but leave the cross-correlation on its own.
 
 .. code-block:: python
    :linenos:
@@ -197,7 +199,7 @@ Another useful visualization for understanding the dominant frequencies of a sig
 
 .. TODO show viz and describe
 
-Finally, another useful visualization is the **spectrogram**, which represents how the frequency changes over time. It shows the power of each frequency component as a *color map*, with warmer colors mapped to stronger frequencies. In this sense, it creates a three-dimensional plot that allows us to view time, frequency, and power at once! Matplotlib also has a built-in function for this, called ``pyplot.specgram``. Its parameters are the same as the above ``psd``. Since we're showing how the frequency changes over time, we'll also plot the filtered signals above the spectrogram.
+Finally, another useful visualization is the **spectrogram**, which represents how the frequency changes over time. It shows the power of each frequency component as a *color map*, with warmer colors mapped to stronger frequencies. In this sense, it creates a three-dimensional plot that allows us to view time, frequency, and power all at once! Matplotlib also has a built-in function for this, called ``pyplot.specgram``. Its parameters are the same as the above ``psd``. We're showing how the frequency changes over time, so we'll also plot the filtered signals above the spectrogram.
 
 .. code-block:: python
    :linenos:
@@ -285,7 +287,7 @@ Let's recap what we've learned by analyzing the data from each of these sensors,
 Time Series Data 
 ^^^^^^^^^^^^^^^^
 
-With each of the data types we saw two overarching methods of analysis: one where we looked at how the signal changed over time, and the other where we looked at how the signal was distributed over a range of frequencies. It turns out that these have special names as the two widely accepted ways of analyzing time series data. The former is called **time domain analysis**, and the latter is called **frequency domain analysis**. Methods from both groups are highly valuable, and it's important to incorporate both depending on the context of the problem.
+With each of the data types we saw two overarching methods of analysis: one looking at how the signal changed over time, and the other looking at how the signal was distributed over a range of frequencies. It turns out that these have been given conventional names as the two primary ways of analyzing time series data. The former is called **time domain analysis**, and the latter is called **frequency domain analysis**. Methods from both groups are highly valuable, and it's important to incorporate both depending on the context of the problem.
 
 ^^^^^^^^^^^^^^^^^^^^
 Data Science Process
@@ -296,7 +298,7 @@ Going all the way back to :ref:`analysis_to_collect`, we went through a process 
 1. **Research Question**: First, the research question and hypothesis must be well-defined. What problem are you trying to solve?
 2. **Data Collection**: Data is collected to attempt to address this question. A rigorous process may be needed to ensure that high-quality data is collected in an ethical manner.
 3. **Exploratory Data Analysis**: This is the stage of loading raw data and performing basic operations to verify it. It includes quality checking (addressing low quality or missing data), aggregating, calculating basic summary statistics, and making visualizations.
-4. **Modeling**: This is the core step of this process: developing a model based on the data, using the intuitions from the previous step, to address the research question. For physiological signals, this step may involve **feature extraction** and **classification**. It also involves **validation** of the model's quality and any assumptions that may have been made (methods for this vary).
+4. **Modeling**: This is the core step of this process: developing a model based on the data and intuitions from the previous step to address the research question. For physiological signals, this step may involve **feature extraction** and **classification**. It also involves **validation** of the model's quality and any assumptions that may have been made (methods for this vary).
 5. **Interpretation**: Despite the model being the most technically important step, this step is arguably just as crucial. Not only is it necessary to understand what the results of the model mean, that understanding also needs to be communicated to key shareholders that are most likely not as familiar with the problem and/or the technology.
 
 Below is a great graphic to illustrate a slightly modified version of this lifecycle (image from `this blog <https://www.sudeep.co/data-science/2018/02/09/Understanding-the-Data-Science-Lifecycle.html>`_).
