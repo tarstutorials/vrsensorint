@@ -268,17 +268,7 @@ Heart Rate Analysis
 Raw Data: Load and Plot 
 ^^^^^^^^^^^^^^^^^^^^^^^
 
-The first step to analyzing the data that we have collected is to load it into memory. The data is contained in a .csv file, which
-can be easily loaded using ``numpy.loadtxt`` (documented `here <https://numpy.org/doc/stable/reference/generated/numpy.loadtxt.html>`_).
-
-There are options to access the data with column names, but this becomes slightly inconvenient to work with later 
-when we're passing the data to other library functions. So, especially since the columns of our data are relatively 
-simple to remember, it's better to just load it as a regular ``ndarray`` (NumPy: *n*-dimensional array). We can name the 
-variables better by *slicing*, which is a common way to subset data in NumPy. A ``:`` grabs all rows or columns, a list 
-with ``[]`` is used to grab only certain rows or columns by index, and a range (e.g., ``1:3``) is used to grab rows or 
-columns within a range of indices. We'll separate the data into the time column and the EMG columns. Finally, to check 
-the dimensionality of the raw and sliced data, we can use NumPy's ``shape`` function, which returns the number of 
-elements in each dimension (rows, then columns).
+Please See EMG load and plot for more info on loading. 
 
 The code below loads our data collected in :ref:`analysis_to_collect`. 
 
@@ -293,37 +283,73 @@ The code below loads our data collected in :ref:`analysis_to_collect`.
 .. 
 
 Notice that we have X rows any Y colums. Each row represents the signal values read from the sensor at a 
-particulart time, and the columns represent different trials. Note that since the values are stored sequentially without
-any time information it is IMPORTANT to remeber the sampleing rate which allows the various functions to have a time reference.
+particulart time and the columns represent different channels of the sensor, it possible that there is only one channel. Its important to note that since the values are 
+stored sequentially without any time information it is IMPORTANT to remeber the sampleing rate which allows the various functions to have a time reference.
 
 We recommend that you do a quick sanity check and graph the data to make sure it loaded correctly 
 
 .. code-block:: python
+	"""
+	NOTE TO SELF
+	This plot will not show the PQRST complex as it is too zoomed out
+	once I get data from the EKG I will fix this 
+	"""
 	import numpy as np
 	import matplotlib.pyplot as plt
 	
-	trial = 1	
+	channel = 1	
 
-	plt.plot(ekg_data[:,trial])
+	plt.plot(ekg_data[:,channel])
 	plt.xlabel('Time')
 	plt.ylabel('Value')
 	plt.title('EKG plot')
 	plt.show()
 ..
 
+..NOTE TO SELF:: add image of PQRST complex ::
+
+Your ECG/EKG signal is made up of PQRST complexes each a measure of the electrical activity within the hear that during the course of a single beat, from start to finish. 
+The PQRST signal has three distinct parts the P wave, the QRS complex, and the T wave.
+
+* **The P Wave** represents the depolarization of the atria. This causes the atria to contract pushing blood into the ventricles.
+
+* **The QRS complex** represent the depolarization of the ventricles. This cuases the ventricals to contract pumping blood througout the body.
+
+* **The T wave ** represenst the repolarization of the ventricles. This causes the ventricals to relax allowing them to fill back up with blood. 
+
+
+In order to determine the heart rate and heart rate varation the time from the beat to beat time is needed, the distance between any two consecuticve QRS peaks 
+is the time between those beats. The QRS complexes have this property beacuse the peak indicates the moment that the heart expells the blood. 
+
 ^^^^^^^^^^^^^
 Preprocessing
 ^^^^^^^^^^^^^
 
-The preprocessing if very easy as the `NeurKit2 <https://neuropsychology.github.io/NeuroKit/index.html>`_ library does near everything for us. 
+The preprocessing if very easy as the `NeuroKit2 <https://neuropsychology.github.io/NeuroKit/index.html>`_ library does near everything for us. 
 All you have to do is call ``nk.ecg_process(ekg_data[:,1], sampling_rate=x)`` and your done. The function returns two elements
 a dataframe with all the raw and cleaned signal and a dictionary containing miscellaneous info such as peak location.
+
+Behind the scenes the ``ecg_process`` function does quite abit. It uses six helper functions; ``ecg_clean``, ``ecg_peaks``, ``signal_rate``, 
+``ecg_quality``, ``ecg_delineate``, and ``ecg_phase`` which cleans the signal, does peak dectection, calculates the heart rate, asseses the signal quality, delinates 
+the QRS complex, and calculates the cardiac phase determination respectivly. 
+
+* `ecg_clean <https://neuropsychology.github.io/NeuroKit/functions/ecg.html#ecg-clean>`_ is used to to remove noise from the signal in order to improve peak-detection accuracy.
+
+* `ecg_peaks <https://neuropsychology.github.io/NeuroKit/functions/ecg.html#ecg-peaks>`_ finds the R-peaks in the QRS complex. 
+
+* `signal_rate <https://neuropsychology.github.io/NeuroKit/functions/ecg.html#ecg-rate>`_ finds the signal rate from a series of peaks, does this by using ``60/period``, where period is the time between peaks
+
+* `ecg_quality <https://neuropsychology.github.io/NeuroKit/functions/ecg.html#ecg-rate>`_ asseses the quality.
+
+* `ecg_delineate <https://neuropsychology.github.io/NeuroKit/functions/ecg.html#ecg-delineate>`_delineates the QRS complex from the PQRST wave.
+
+* `ecg_phase <https://neuropsychology.github.io/NeuroKit/functions/ecg.html#ecg-phase>`_ Computes the cardiac phase i.e. the systole(heart empties) and diastole(heart fills)
 
 ^^^^^^^^^^^^^^^^^^
 Analyzation 
 ^^^^^^^^^^^^^^^^^^
 
-Analyzing the data is just as easy as the preporcessing. Using just a few lines using `NeurKit2 <https://neuropsychology.github.io/NeuroKit/index.html>`_. The aforementioned dataframe allows you to get; time-domain analysis,
+Analyzing the data is just as easy as the preporcessing. Using just a few lines using `NeuroKit2 <https://neuropsychology.github.io/NeuroKit/index.html>`_. The aforementioned dataframe allows you to get; time-domain analysis,
 frequency-domain analysis, or the non-linear domain analysis.
 
 .. code-block:: python
