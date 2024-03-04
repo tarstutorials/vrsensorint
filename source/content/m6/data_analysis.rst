@@ -306,16 +306,16 @@ We recommend that you do a quick sanity check and graph the data to make sure it
 	plt.show()
 ..
 
-..NOTE TO SELF:: add image of PQRST complex ::
+NOTE TO SELF add image of PQRST complex
 
 Your ECG/EKG signal is made up of PQRST complexes each a measure of the electrical activity within the hear that during the course of a single beat, from start to finish. 
 The PQRST signal has three distinct parts the P wave, the QRS complex, and the T wave.
 
 * **The P Wave** represents the depolarization of the atria. This causes the atria to contract pushing blood into the ventricles.
 
-* **The QRS complex** represent the depolarization of the ventricles. This cuases the ventricals to contract pumping blood througout the body.
+* **The QRS complex** represents the depolarization of the ventricles. This cuases the ventricals to contract pumping blood througout the body.
 
-* **The T wave ** represenst the repolarization of the ventricles. This causes the ventricals to relax allowing them to fill back up with blood. 
+* **The T wave** represens the repolarization of the ventricles. This causes the ventricals to relax allowing them to fill back up with blood. 
 
 
 In order to determine the heart rate and heart rate varation the time from the beat to beat time is needed, the distance between any two consecuticve QRS peaks 
@@ -341,9 +341,9 @@ the QRS complex, and calculates the cardiac phase determination respectivly.
 
 * `ecg_quality <https://neuropsychology.github.io/NeuroKit/functions/ecg.html#ecg-rate>`_ asseses the quality.
 
-* `ecg_delineate <https://neuropsychology.github.io/NeuroKit/functions/ecg.html#ecg-delineate>`_delineates the QRS complex from the PQRST wave.
+* `ecg_delineate <https://neuropsychology.github.io/NeuroKit/functions/ecg.html#ecg-delineate>`_ delineates the QRS complex from the PQRST wave.
 
-* `ecg_phase <https://neuropsychology.github.io/NeuroKit/functions/ecg.html#ecg-phase>`_ Computes the cardiac phase i.e. the systole(heart empties) and diastole(heart fills)
+* `ecg_phase <https://neuropsychology.github.io/NeuroKit/functions/ecg.html#ecg-phase>`_ computes the cardiac phase i.e. the systole(heart empties) and diastole(heart fills)
 
 ^^^^^^^^^^^^^^^^^^
 Analyzation 
