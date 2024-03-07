@@ -292,7 +292,7 @@ We recommend that you do a quick sanity check and graph the data to make sure it
 	"""
 	NOTE TO SELF
 	This plot will not show the PQRST complex as it is too zoomed out
-	once I get data from the EKG I will fix this 
+	once I get data from the EKG fix this 
 	"""
 	import numpy as np
 	import matplotlib.pyplot as plt
@@ -317,9 +317,8 @@ The PQRST signal has three distinct parts the P wave, the QRS complex, and the T
 
 * **The T wave** represens the repolarization of the ventricles. This causes the ventricals to relax allowing them to fill back up with blood. 
 
-
 In order to determine the heart rate and heart rate varation the time from the beat to beat time is needed, the distance between any two consecuticve QRS peaks 
-is the time between those beats. The QRS complexes have this property beacuse the peak indicates the moment that the heart expells the blood. 
+is the time between those beats. The QRS complexes have this property beacuse the peak indicates the moment that the heart expells the blood contained within its ventricals. 
 
 ^^^^^^^^^^^^^
 Preprocessing
@@ -349,8 +348,29 @@ the QRS complex, and calculates the cardiac phase determination respectivly.
 Analyzation 
 ^^^^^^^^^^^^^^^^^^
 
-Analyzing the data is just as easy as the preporcessing. Using just a few lines using `NeuroKit2 <https://neuropsychology.github.io/NeuroKit/index.html>`_. The aforementioned dataframe allows you to get; time-domain analysis,
-frequency-domain analysis, or the non-linear domain analysis.
+Analyzing the data to get the heart rate variability (HRV) is just as easy as the preporcessing. Using just a few lines using `NeuroKit2 <https://neuropsychology.github.io/NeuroKit/examples/ecg_hrv/ecg_hrv.html>`_. you can use the aformentioned 
+datafrane to calculate the HRV in three ways; time-domain analysis, frequency-domain analysis, or the non-linear domain analysis. Heart rate variability can tell us a number of things; A decrease in HRV during 
+trainig can indicate fatigue, a significant decrease in HRV can indicate overtraining, and you can compare your current HRV to your baseline to determine if you are sufficently recoverd. Generally speaking those 
+with a high baseline HRV have better cardiovascular fitness and with a lower HRV have worse cardiovascular fitness. 
+
+Note: normal to normal is effectivly the same as R peak to R peak and are often used interchangeable. The only difference is normal to normal
+implies that the signal has been cleaned where as R to R could mean the signal is either cleaned or uncleaned.
+
+Neurokit2s' `hrv_time <https://neuropsychology.github.io/NeuroKit/functions/hrv.html#hrv-time>`_. returns a data frame containing 25 peices of data. The ones that are important to us 
+are standard devation of normal to normal(SDNN) and the standard devation of average normal to normal (SDANN). SDNN is used to measure the heart rate varience over long periods of 
+time i.e. 24 hours, it does this by calculating the standard devation of the distance between succsessive R peaks. SDANN is used to measure heart rate varience over shorter periods of time i.e. 
+five minutes, it does this by take ing the standard devation of the avaerage between succsessive R peaks. While your heart rate variability is effected by age, gender, and race generally
+those with a HRV of 50ms or less are considered unhealthy, those with a HRV between 50-100ms have compromised health, and those with 100ms or more are healthy.  
+
+
+Neurokit2s' `hrv_frequency <https://neuropsychology.github.io/NeuroKit/functions/hrv.html#hrv-frequency>`_. computes ten HRV frequency domain metrics. Two important metrics are the high frequency (HF)
+and the low frequency (LF). The HF tells about ones parasympathetic nervous system, which is responsible for your bodies functions during periods of relaxation. The LF tells us about ones
+sympathetic nervous system, which is responsible for speeding up ones heart rate and slowing down your digestion along with other things that occur during a "fight or flight" response. Although
+we will not being using `hrv_frequency` some basic code using it is supplied below
+
+Neurokit2s' `hrv_nonlinear <https://neuropsychology.github.io/NeuroKit/functions/hrv.html#hrv-nonlinear>`_. computes 32 different metrics. Of these 32 metrics the standard devation perpendicular 
+to the line of identity (SD1) is the most applicable to our applicaiton. Very simply it can be used as a short term measure of heart rate varibility, but we will not be using it becuase it is 
+equivelent to the root mean square of succsessive differences that `hrv_time` calculates. Although we will not being using `hrv_nonlinear` some basic code using it is supplied below
 
 .. code-block:: python
 	import numpy as np
@@ -366,6 +386,58 @@ frequency-domain analysis, or the non-linear domain analysis.
 
 	hrv_nonlinear = nk.hrv_nonlinear(peaks, sampling_rate=100, show=True)
 	hrv_nonlinear
+..
+
+You can also use `NeuroKit2 <https://neuropsychology.github.io/NeuroKit/examples/ecg_heartbeats/ecg_heartbeats.html>`_. to extreact and visualize the average of the individual heart beats. This 
+can tell us important information about the user such as the average length of their heart beat and if their is any abnormalities within their beats.
+
+.. code-block:: python
+	import numpy as np
+	import matplotlib.pyplot as plt
+	
+	rpeaks = info["ECG_R_Peaks"]
+	cleaned_ecg = signals["ECG_Clean"]
+	
+	#this plots the entire EKG signal
+	plot = nk.events_plot(rpeaks, cleaned_ecg)
+	
+	#this plots the average of all the heart beats
+	epochs = nk.ecg_segment(cleaned_ecg, rpeaks=None, sampling_rate=250, show=True)
+..
+
+Additionally `NeuroKit2 <https://neuropsychology.github.io/NeuroKit/examples/ecg_delineate/ecg_delineate.html>`_. allows you to locate and visualize the P, Q, S, T waves in the EKG.
+
+.. code-block:: python
+	import neurokit2 as nk
+	import numpy as np
+	import pandas as pd
+
+	_, rpeaks = nk.ecg_peaks(ecg_signal, sampling_rate=1000)
+	
+	#visualize all of the peaks
+	plot = nk.events_plot(rpeaks['ECG_R_Peaks'], ecg_signal)
+	
+	#visualize the first 5 peaks
+	plot = nk.events_plot(rpeaks['ECG_R_Peaks'][:5], ecg_signal[:6000])
+..
+
+As previously mention NeuroKit2 uses `ecg_delineate <https://neuropsychology.github.io/NeuroKit/functions/ecg.html#ecg-delineate>`_. to seperate the P wave, the QRS complex, and the T wave. 
+in order to visualize the the whole PQRST complex we will have to use `ecg_delineate` to identity each component. Seperating and visualize these waves individualy is important to the feild of EKG
+morphology once seperated doctors are able to examine the waves and determine whether or not a patient has any number of heart issues. 
+
+.. code-block:: python
+	import neurokit2 as nk
+	import numpy as np
+	import pandas as pd
+
+	_, waves_peak = nk.ecg_delineate(ecg_signal, rpeaks, sampling_rate=1000, method="peak")
+	
+	# Zooming into the first 3 R-peaks, with focus on T_peaks, P-peaks, Q-peaks and S-peaks
+	plot = nk.events_plot([waves_peak['ECG_T_Peaks'][:3], 
+                       waves_peak['ECG_P_Peaks'][:3],
+                       waves_peak['ECG_Q_Peaks'][:3],
+                       waves_peak['ECG_S_Peaks'][:3]], ecg_signal[:4000])
+	
 ..
 
 
