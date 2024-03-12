@@ -55,10 +55,14 @@
 <li class="toctree-l1"><a class="reference internal" href="../m2/unity_vr.html">Unity VR Development</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../m3/intro_to_sensors.html">Introduction to Physiological Sensors</a></li>
 <li class="toctree-l1 current"><a class="current reference internal" href="#">Data Collection with Physiological Sensors</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="#intro-to-data-collection">Intro to Data Collection</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#ethics-and-constraints">Ethics and Constraints</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#reading-and-understanding-data">Reading and Understanding Data</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#developing-hypotheses">Developing Hypotheses</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#setting-up-the-trigno-link">Setting up the Trigno Link</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#trigno-link-design">Trigno Link Design</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#getting-started-with-the-trigno-link">Getting Started with the Trigno Link</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#verifying-connections">Verifying Connections</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#connecting-to-unity">Connecting to Unity</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#a-simple-unity-application">A Simple Unity Application</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#section-review">Section Review</a></li>
 </ul>
 </li>
@@ -93,17 +97,31 @@
              
   <section id="data-collection-with-physiological-sensors">
 <h1>Data Collection with Physiological Sensors<a class="headerlink" href="#data-collection-with-physiological-sensors" title="Link to this heading"></a></h1>
-<section id="intro-to-data-collection">
-<h2>Intro to Data Collection<a class="headerlink" href="#intro-to-data-collection" title="Link to this heading"></a></h2>
+<p>Now that you have explored both Unity and the various types of physiological sensors, it’s time to begin integrating them together. You will do this using the <strong>Delsys Trigno Link</strong>, a device that allows multiple physiological sensors to be connected to a single computer via bluetooth. THis tutorial will include an in-depth tutorial on how to connect and setup the Trigno Link, and how to collect data from the sensors attached to it. You will start simple, and devlope a simple, command-line based Unity application that prints out the data recieved rom the sensors. The main goal of this module is to ensure that you can effectively use and read from the Trigno Link, and access that data in Unity. Once you have these basics down, the next module wll move on to more complex integration techniques using VR.</p>
+<section id="setting-up-the-trigno-link">
+<h2>Setting up the Trigno Link<a class="headerlink" href="#setting-up-the-trigno-link" title="Link to this heading"></a></h2>
+<p>The Trigno Link is the key to integrating physiological sensors with Unity. It is important to understand how it works and the means to connect it to a computer.</p>
+<section id="trigno-link-design">
+<h3>Trigno Link Design<a class="headerlink" href="#trigno-link-design" title="Link to this heading"></a></h3>
+<p>The first step to effectively using the Trigno Link is knowing how it works. The Trigno Link is a wireless device that connects to a computer via a USB-C dongle. Two to thirty-two sensors can be simultaneously linked to the Trigno Link. Essentially, these sensors concurrently transmit their raw data to the Link, where it keeps their data streams separate and sends them to the computer for use. This data can come from a variety of sensors, including but not limited to any of the sensors mentioned in the previous module. Crucially, this device is not locked to only Delsys products, but supports many third-party options, vastly increasing its versatility.</p>
 </section>
-<section id="ethics-and-constraints">
-<h2>Ethics and Constraints<a class="headerlink" href="#ethics-and-constraints" title="Link to this heading"></a></h2>
+<section id="getting-started-with-the-trigno-link">
+<h3>Getting Started with the Trigno Link<a class="headerlink" href="#getting-started-with-the-trigno-link" title="Link to this heading"></a></h3>
+<p>Upon unboxing your Trigno Link, you’ll be greeted to a compact device, a USB-C dongle, a quickstart guide, and a manual. It is <em>highly</em> recommended to read the quickstart guide and manual in conjunction with the tutorial presented here, as this will give you the most comprehensive understanding possible. Additionally, you can use these resources to troubleshoot any issues you have with the product.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>In order to use the Trigno Link, you must have at least two compatible physiological sensors. The link itself does not generate any data, instead it allows data from <em>other</em> sensors to be read in tandem. All Delsys made sensors are natively supported, alongside a list of third-party sensors that you can find <a class="reference external" href="https://delsys.com/trigno-link/">here</a> in the <em>Applications</em> section.</p>
+</div>
 </section>
-<section id="reading-and-understanding-data">
-<h2>Reading and Understanding Data<a class="headerlink" href="#reading-and-understanding-data" title="Link to this heading"></a></h2>
+<section id="verifying-connections">
+<h3>Verifying Connections<a class="headerlink" href="#verifying-connections" title="Link to this heading"></a></h3>
 </section>
-<section id="developing-hypotheses">
-<h2>Developing Hypotheses<a class="headerlink" href="#developing-hypotheses" title="Link to this heading"></a></h2>
+</section>
+<section id="connecting-to-unity">
+<h2>Connecting to Unity<a class="headerlink" href="#connecting-to-unity" title="Link to this heading"></a></h2>
+</section>
+<section id="a-simple-unity-application">
+<h2>A Simple Unity Application<a class="headerlink" href="#a-simple-unity-application" title="Link to this heading"></a></h2>
 </section>
 <section id="section-review">
 <h2>Section Review<a class="headerlink" href="#section-review" title="Link to this heading"></a></h2>

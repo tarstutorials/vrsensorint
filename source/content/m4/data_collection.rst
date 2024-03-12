@@ -7,9 +7,28 @@ Now that you have explored both Unity and the various types of physiological sen
 Setting up the Trigno Link
 ------------------------------
 
-------------------------------
+The Trigno Link is the key to integrating physiological sensors with Unity. It is important to understand how it works and the means to connect it to a computer.
+
+^^^^^^^^^^^^^^^^^^^^^
+Trigno Link Design
+^^^^^^^^^^^^^^^^^^^^^
+
+The first step to effectively using the Trigno Link is knowing how it works. The Trigno Link is a wireless device that connects to a computer via a USB-C dongle. Two to thirty-two sensors can be simultaneously linked to the Trigno Link. Essentially, these sensors concurrently transmit their raw data to the Link, where it keeps their data streams separate and sends them to the computer for use. This data can come from a variety of sensors, including but not limited to any of the sensors mentioned in the previous module. Crucially, this device is not locked to only Delsys products, but supports many third-party options, vastly increasing its versatility. 
+
+
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+Getting Started with the Trigno Link
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+Upon unboxing your Trigno Link, you'll be greeted to a compact device, a USB-C dongle, a quickstart guide, and a manual. It is *highly* recommended to read the quickstart guide and manual in conjunction with the tutorial presented here, as this will give you the most comprehensive understanding possible. Additionally, you can use these resources to troubleshoot any issues you have with the product. 
+
+.. note::
+    In order to use the Trigno Link, you must have at least two compatible physiological sensors. The link itself does not generate any data, instead it allows data from *other* sensors to be read in tandem. All Delsys made sensors are natively supported, alongside a list of third-party sensors that you can find `here <https://delsys.com/trigno-link/>`_ in the *Applications* section.
+
+To b
+
+^^^^^^^^^^^^^^^^^^^^^
 Verifying Connections
-------------------------------
+^^^^^^^^^^^^^^^^^^^^^
 
 -------------------------------
 Connecting to Unity
