@@ -19,12 +19,12 @@ Surface Electromyography: Delsys Trigno
 Placement & Measurement
 ^^^^^^^^^^^^^^^^^^^^^^^
 
-For the purposes of this tutorial, we'll be using the Delsys sEMG sensors, widely regarded for their clinical-grade quality in research and industrial settings. Specifically, three of their most common products are the Trigno Avanti, Trigno Mini, and Trigno Quattro, as shown below (images from `NASA Spinoff article <https://spinoff.nasa.gov/Electrical-Body-Signals-Help-Researchers-Restore-Movement-and-More>`_).
+For the purposes of this tutorial, we'll be using the Delsys sEMG sensors, widely regarded for their clinical-grade quality in research and industrial settings. Specifically, three of their most common products are the Trigno Avanti, Trigno Mini, and Trigno Quattro, as shown below.
 
-.. image:: ../../images/trigno_avanti.jpg
+.. image:: ../../images/Avanti_Calf.png
     :width: 49 %
     :alt: The Trigno Avanti sensor being worn by a patient in rehabilitation, on their legs.
-.. image:: ../../images/trigno_mini.jpg
+.. image:: ../../images/Quattro_Face.png
     :width: 49 %
     :alt: The Trigno Mini sensor being worn by a professional pianist, on their arms and hands.
 
