@@ -58,13 +58,10 @@
 <li class="toctree-l2"><a class="reference internal" href="#setting-up-the-trigno-link">Setting up the Trigno Link</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#trigno-link-design">Trigno Link Design</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#getting-started">Getting Started</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#connecting-sensors">Connecting Sensors</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="#id3">#.</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#connecting-to-unity">Connecting to Unity</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#connecting-sensors">Connecting Sensors</a></li>
 </ul>
 </li>
-</ul>
-</li>
+<li class="toctree-l2"><a class="reference internal" href="#connecting-to-unity">Connecting to Unity</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#a-simple-unity-application">A Simple Unity Application</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#section-review">Section Review</a></li>
 </ul>
@@ -125,15 +122,19 @@
 <ol class="arabic simple">
 <li><p>Connect the Trigno Link to your computer. First, plug the USB-A side of the included cable into the computer, then plug the USB-C side of the cable into the link itself. If done correctly, the LED indicator should glow amber on the Link. You are ready to move on to the next step.</p></li>
 <li><p>Connect your Trigno Wireless BioFeedback System to your computer via USB. This is necessary to use the Trigno sensors and any other third-party sensors with the Link. You can find a manual to assist you in connecting this device and its sensors <a class="reference external" href="https://www.delsys.com/downloads/USERSGUIDE/trigno/wireless-biofeedback-system.pdf">here</a>. Note that it is your responsibility to understand how to connect and use the various sensors you intend to employ. Usually, you can find detailed guides on the manufacturer’s website.</p></li>
-<li><p>Launch the Trigno Discover application on your computer. Log in to your account and verify that the Trigno Link and Trigno Wireless BioFeedback System are recognized by the software. Should you need additional assistance in using Trigno Discover, the <cite>User Guide &lt;&gt;</cite> can help you.</p></li>
+<li><p>Launch the Trigno Discover application on your computer. Log in to your account and verify that the Trigno Link and Trigno Wireless BioFeedback System are recognized by the software. Should you need additional assistance in using Trigno Discover, the <a class="reference external" href="https://delsys.com/downloads/USERSGUIDE/trigno/discover.pdf">User Guide</a> can help you.</p></li>
+<li><p>Add the sensors you wish to use to the Sensor Configuration Panel on the home screen. You can do this manually using the <em>Add New Sensor</em> option. Once a scanner has been paired by the system, you can use the <em>Scan for Sensors</em> option to attempt to connect all previously connected sensors, making the manual pairing unnecessary for subsequent usage.</p></li>
+<li><p>Depending on the sensors you are using, you may have some additional options to pick between in the sensor’s configuration mode selection. For example, Trigno Avanti sensors can switch between EMG, Accelerator, Gyroscope, Orientation, and IMU sensing. Refer to the manufacturers guide for your specific sensor to see what options are available.</p></li>
+<li><p>Once your sensors have all been connected and are visible on the Sensor Configuration Panel, it is good practice to run a test trial to make sure the data is being properly collected from all sensors. You can use the Trial Information Tab to control your data collection.</p></li>
 </ol>
-<section id="id3">
-<h4>#.<a class="headerlink" href="#id3" title="Link to this heading"></a></h4>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>While the Trigno Discover application can be used by itself to collect sensors from data and store it as csv data, the data collection used in this tutorial will be done using a Unity integration instead, using the data in real time to influence the Unity application. Despite this, Trigno Discover is an excellent tool for general data collection, and it is good have proficiency in it.</p>
+</div>
+</section>
 </section>
 <section id="connecting-to-unity">
-<h4>Connecting to Unity<a class="headerlink" href="#connecting-to-unity" title="Link to this heading"></a></h4>
-</section>
-</section>
+<h2>Connecting to Unity<a class="headerlink" href="#connecting-to-unity" title="Link to this heading"></a></h2>
 </section>
 <section id="a-simple-unity-application">
 <h2>A Simple Unity Application<a class="headerlink" href="#a-simple-unity-application" title="Link to this heading"></a></h2>
