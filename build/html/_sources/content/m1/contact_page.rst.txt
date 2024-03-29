@@ -41,3 +41,12 @@ Points of Contact:
 * Email: niallpepper@gmail.com
 
 Niall Pepper is an undergraduate student pursuing a Bachelors of Science in Computer Science at Clarkson University. His research mainly focuses on studying user behavior in virtual environments across different control systems. Some of his hobbies include photography, listening to music, and weightlifting.
+
+------------
+Matt Duver
+------------
+Points of Contact:
+
+* Email: mtduver@gmail.com
+
+Matt Duver is an undergraduate at Clarkson University, finishing his Computer Science degree and Digital Arts minor in May of 2024. His research focuses primarily on creating virtual reality software for real world applications, utilizing his love for 3D modeling and art. Matt’s latest project, *Hand-in-Hand*, a VR application for annotating point cloud handover data, won best demo at AIxVR 2024 in Los Angeles.
