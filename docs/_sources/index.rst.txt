@@ -7,24 +7,27 @@ Welcome to VRSensorIntegration
 ==============================
 
 .. toctree::
-   :maxdepth: 3
+   :maxdepth: 1
+   :caption: Introduction
+   :titlesonly:
 
    content/m1/introduction
    content/m1/contact_page
    content/m1/install_unity
+
+.. toctree::
+   :maxdepth: 3
+   :caption: Tutorial Modules
+
    content/m1/unity_orientation
-   
-
    content/m2/unity_vr
-   
    content/m3/intro_to_sensors
-   
-
    content/m4/data_collection
-
-   content/m5/integration
-   
-   
+   content/m5/integration   
    content/m6/data_analysis
+
+.. toctree::
+   :maxdepth: 1
+   :caption: Events
    
    content/m7/workshop
