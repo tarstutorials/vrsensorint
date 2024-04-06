@@ -28,6 +28,7 @@ Welcome to VRSensorIntegration
 
 .. toctree::
    :maxdepth: 1
-   :caption: Events
+   :caption: Events and Additional Resources
    
    content/m7/workshop
+   content/m7/error_handling

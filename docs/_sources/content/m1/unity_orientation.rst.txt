@@ -47,7 +47,7 @@ Understanding the Editor
 
 .. youtube:: xT6z6wliBq0
 
-**[Click on the above video for our YouTube tutorial on Creating a New Unity Project.]**
+**[Click on the above video for our YouTube tutorial on the main aspects of the Unity Editor.]**
 
 The Unity Editor can seem overwelming at first, but it can actually be broken down into four simple pieces. The image below visualizes these pieces.
 
@@ -107,11 +107,15 @@ Setting Up For Mobile Development
 
 Setting up for mobile development is mostly done for you when creating a project using the *2D Mobile* template. However, there are two important menus you should know about that may help you with any last minute configurations you want to make. These are the build settings and project settings menus. The build settings menu can be found by clicking the button labeled *File* on the ribbon at the top of the editor. From there, a dropdown menu will appear, where you can select the *Build Settings* option. In the same ribbon, there is a button labeled *Edit*, where a similar dropdown menu contains a button for *Project Settings*. 
 
-.. youtube:: UpcgKQ234s8
-
-**[Click on the above video for our YouTube tutorial on Creating a New Unity Project.]**
+.. image:: ../../images/build_settings.png
+  :width: 800
+  :alt: An Image of the Build Settings menu in the Unity Editor.
 
 The build settings menu is used for configuring how you want to package the final application. For example, it lets you change what platform you are building for, such as Windows or Android. While you are working on the mobile project, you should keep its build set to Windows. This lets you test the project directly on your computer. However, when you are done developing and want to port it to mobile, you can change the build setting to Android or iOS so it can run on a mobile device. 
+
+.. image:: ../../images/project_settings.png
+  :width: 400
+  :alt: An Image of the Build Settings menu in the Unity Editor.
 
 The project settings menu allows you to change a multitude of settings for your project, and additionally provides access to settings for any packages you have added to the project. The template has done a good job of setting up the project settings for you, so you don't need to worry about it for this simple tutorial. However, in more advanced tutorials which we will get to later, project settings can be important for optimizing the application.
 
@@ -127,7 +131,7 @@ Here are some basic techniques for mobile development in Unity. Be sure to mess 
 
 .. youtube:: FGuuR0CaXLw
 
-**[Click on the above video for our YouTube tutorial on Creating a New Unity Project.]**
+**[Click on the above video for an overview of our mobile app.]**
 
 .. _oh_to_oc:
 ^^^^^^^^^^^^^^^^
@@ -144,7 +148,7 @@ C# is a programming language created by Microsoft that is used in Unity. It is v
 
 .. youtube:: sMAZMGS8JF4
 
-**[Click on the above video for our YouTube tutorial on Creating a New Unity Project. See code below.]**
+**[Click on the above video for our YouTube tutorial going through the Player Controller Script in our mobile app.]**
 
 .. literalinclude:: ../../scripts/PlayerController.cs
 
@@ -153,7 +157,7 @@ First, Unity scripts are the most unrestricted way of controlling how an object 
 
 .. youtube:: V8K47wKSYRM
 
-**[Click on the above video for our YouTube tutorial on Creating a New Unity Project. See code below]**
+**[Click on the above video for our YouTube tutorial going through the Game Controller Script in our mobile app.]**
 
 .. literalinclude:: ../../scripts/GameController.cs
 
@@ -161,7 +165,7 @@ If you ever get stuck while programming, don't forget to use the `C# documentati
 
 .. youtube:: bG2EUjmzxOI
 
-**[Click on the above video for our YouTube tutorial on Creating a New Unity Project. See code below]**
+**[Click on the above video for our YouTube tutorial going through the Treasure Controller Script in our mobile app.]**
 
 .. literalinclude:: ../../scripts/TreasureController.cs
 
@@ -171,7 +175,7 @@ Camera System
 
 The camera system in Unity is very dependent on the application you desire to create. For instance, one project may involve having a player character serve as the main camera, while another may simply have a stationary overhead camera. Regardless of how you want to set up your camera system, Unity has the tools to help you do it. You can add a camera object by creating an empty object and attaching the "Camera" component to it. You can move this camera around in the scene to position it how you'd like, and can even see a pop-up when the camera is selected that shows its perspective. By default, Unity has a camera set up for you when you create a scene. In simple projects, the default camera is usually enough, but you may have to move it around to get it to your liking.
 
-Practice moving the camera around, and pressing the play button to see how changing the camera position affects the visuals of the game.
+Practice moving the camera around, and pressing the play button to see how changing the camera position affects the visuals of the game. A an in-depth description of the camera component can be found `here <https://docs.unity3d.com/Manual/class-Camera.html>`_.
 
 .. _to_physics:
 ^^^^^^^^^^^^^^^
@@ -180,6 +184,8 @@ Physics System
 
 The physics system in Unity is how ``GameObject`` s interact with one another and with the player. There are different physics systems for 2D and 3D games. In this introduction, we'll be refering to the physics used in a 2D game. By default, the physics system is ignored for most objects but this can be changed by adding specific physics-based components to the object. The main two physics-based components are colliders and rigid bodies. Colliders are invisible, and allow objects to collide with other objects. You can use scripting to make events happen when colliders are triggered, making them very useful for interaction. Rigid bodies are what allow physics-based events to occur with the object. You need a rigid body on an object if you want any physics to occur with it **including** collisions. Rigid bodies also allow an object to have mass and react to gravity. These two components are all you need to get started with Unity's physics system, but there is much more to explore in the 2D physics system that you can explore in the `documentation <https://docs.unity3d.com/Manual/Physics2DReference.html>`_.
 
+You can add either component to a ``GameObject`` in the Inspector Window while that object is selected by using the *Add Component* button. There are many parameters associated with both components that can be changed here as well, and you can find out more about each in the documentation linked in the previous paragraph.  
+
 You are encouraged to try adding colliders and rigid bodies to objects, and seeing how they respond when the game is played. 
 
 ^^^^^^^
@@ -187,6 +193,8 @@ Scenes
 ^^^^^^^
 
 Throughout your Unity practice, the canvas that you have been working on is called the scene. By default, Unity projects begin with a single scene, called *Main Scene*. More complex Unity applications can have multiple scenes, and each has its own set of ``GameObject`` s. While there are ways to have interactions persist between scenes, for the most part scenes remain seperate from one another. Think of scenes like the levels of a game, for example, you could have a different scene for the main menu, level 1, level 2, and so on. For simple applications, most work can be done in a single scene. You can access scenes from the ``~/Assets/Scenes`` in the project window. You will see more about multi-scene applications in a later part of this tutorial.
+
+Moving around the scene to place ``GameObject`` s and build your aplication is necessary to get the most out of the scene view. Some important hotkeys for this movement are the w, a, s, and d keys which allow you to move around the scene, and the shift key to inrease or decrease your movement speed. You can find out more about these controls `here <https://docs.unity3d.com/2019.1/Documentation/Manual/SceneViewNavigation.html>`_. Additional useful shortcuts for the Unity Editor as a whole are also useful to learn, and the `Hotkey Documentation <https://docs.unity3d.com/2018.1/Documentation/Manual/UnityHotkeys.html>`_ can help you learn the ones that work on your operating system.
 
 ------------------
 Section Review
