@@ -44,6 +44,8 @@ With Python ready to go, we are ready to begin analysis. Let's dive in starting 
 EMG Analysis
 ------------
 
+To work through this part of the tutorial, we'll use a sample file where a person lifted a 15 pound box from the ground and then set it back down. Their left and right biceps were measured using sEMG sensors. The data can be downloaded :download:`here <sample_semg.csv>` if you'd like to follow along!
+
 ^^^^^^^^^^^^^^^^^^^^^^^
 Raw Data: Load and Plot
 ^^^^^^^^^^^^^^^^^^^^^^^
@@ -52,8 +54,6 @@ The first step to the process of analyzing the data we've collected is, of cours
 
 There are options to access the data with column names, but this becomes inconvenient to work with later when we're passing the data to other library functions. Since the columns of our data are relatively simple to remember, it's better to just load it as a regular ``ndarray`` (NumPy: *n*-dimensional array). We can format our variable names by *slicing*, which is a common way to subset data in NumPy. A ``:`` grabs all rows or columns. A list with ``[]`` is used to grab only certain rows or columns by index. Lastly, a range (e.g., ``1:3``) is used to grab rows or columns within a range of indices. We'll separate the data into the time column and the EMG columns. Finally, to check the dimensionality of the raw and sliced data, we can use NumPy's ``shape`` function, which returns the number of elements in each dimension (rows, then columns).
 
-The code below loads our data collected in :ref:`analysis_to_collect`. 
-
 .. code-block:: python
    :linenos:
 
@@ -61,12 +61,10 @@ The code below loads our data collected in :ref:`analysis_to_collect`.
 
    TIME_CUTOFF = 15000
 
-   df = np.loadtxt('raw_csv/CHANGE NAME', delimiter=',', dtype=float, skiprows=103 MAY NOT NEED, max_rows=TIME_CUTOFF MAY NOT NEED)
+   df = np.loadtxt('sample_semg.csv', delimiter=',', dtype=float, max_rows=TIME_CUTOFF)
    emg_channels = b30_df[:,[1,2]]
    time = b30_df[:,0]
    print(df.shape, emg_channels.shape, time.shape)
-
-.. number of rows may change later
 
 Notice that we have 15,000 rows and 3 columns. Each row represents the signal values read from the sensor at a particular time, and the columns denote time (seconds), right bicep EMG (volts), and left bicep EMG (volts). Checking the shape is always a good step to ensure there wasn't an error in the data loading process.
 
@@ -101,11 +99,13 @@ The ``pyplot.plot`` function is a universal plotting function: it takes ``x`` an
    ax1[1].set_xlabel("Time (s)")
    ax1[1].set_ylabel("EMG (V)")
 
-   fig1.suptitle("Raw Bicep EMG Signals")
+   fig1.suptitle("Raw EMG Signals")
 
 If you want to see the plot live, you can use ``plt.show()``. This is the result:
 
-.. TODO show viz
+.. image:: ../../images/filt_leftright.png
+  :width: 800
+  :alt: The filtered EMG signals for left and right biceps, with the mean in red and plus/minus one standard deviation in green.
 
 Notice that the raw signal looks pretty messy: we can sort of see that where the amplitude goes up is when the greatest muscle exertion happened, but it's vague and subject to a lot of quick changes. Also, the mean isn't necessarily at 0V, but we only really care about the changes from 0, so we'll learn how to remove this offset properly when we filter the signal in the next section. Over the next several sections, we'll learn about different ways of processing the signal so that we can get more meaning out of it, visually and numerically.
 
@@ -134,7 +134,9 @@ Finally, we have one more parameter to pass to the filter: sampling frequency. *
 
    fi.visualize_effect(emg_channels)
 
-.. TODO show viz
+.. image:: ../../images/prepost_filter.png
+  :width: 800
+  :alt: LibEMG visualization to show the effect of filtering the left and right bicep EMG signals, in both time and frequency domains.
 
 ``visualize_effect`` is a useful function provided by LibEMG: it takes the raw signal and produces a visualization showing the signal pre- and post- filtering in the time and frequency domains. We'll explain what that last part means later, but for now, notice how the mean of the signal is now at 0V like we wanted, and  how the range of frequencies seen on the right are much more evenly distributed. This signal definitely has more desirable qualities than the raw signal from before.
 
@@ -143,8 +145,6 @@ Types of Visualizations
 ^^^^^^^^^^^^^^^^^^^^^^^
 
 There are some special visualizations commonly used with signal data, and we'll explore a few of them here.
-
-.. TODO: explain example(s) of autocorrelation and cross-correlation
 
 **Autocorrelation** and **cross-correlation** are used to measure the relationships between signals. Specifically, autocorrelation looks at *periodicity*, or repeating behavior, by *correlating* the signal with a lagged version of itself (correlation is a technical term, but again, don't worry too much about the math here). So, lag 1 represents all samples from the signal that are 1 observation ahead of another sample (as determined by the sampling frequency), lag -5 represents all samples 5 that are 5 observations behind another sample. Cross-correlation does the same, but uses two signals instead of the same signal with itself. Higher positive values of correlation indicate high similarity between the signals; higher negative values indicate higher reciprocity (i.e., they are opposite each other), and values closer to zero indicate little relationship at all.
 
@@ -179,7 +179,9 @@ These can be calculated using the ``scipy.correlate`` function, which takes the 
 
    fig2.suptitle("Correlation in Left and Right Bicep EMG Signals")
 
-.. TODO show viz and describe
+.. image:: ../../images/autocrosscorr.png
+  :width: 800
+  :alt: Plot of autocorrelation in left and right bicep EMG signals, and cross-correlation between the two of them.
 
 Another useful visualization for understanding the dominant frequencies of a signal is the **power spectral density (PSD)**. It shows the *power* (squared magnitude) of the signal as a function of frequency. High peaks represent "strong" frequency components, or frequencies that occur with greater amplitudes, while low peaks represent "weak" frequency components. The code to generate the PSD for our example is below; luckily, Matplotlib has a built-in function to calculate and plot the PSD of a signal, ``pyplot.psd``. We must specify a few parameters: ``Fs`` is the sampling frequency (see the explanation above), ``NFFT`` is the number of data points used in each block for an important mathematical operation called the **Fast Fourier Transform** that is used to generate the PSD, and ``noverlap`` is the number of points of overlap between the segments defined by ``NFFT``. You are encouraged to specify different parameter values, including the defaults, and see how the result changes.
 
@@ -197,7 +199,9 @@ Another useful visualization for understanding the dominant frequencies of a sig
    ax3[1].set_title("Right")
    fig3.suptitle("PSD of Left and Right Bicep Signals")
 
-.. TODO show viz and describe
+.. image:: ../../images/psd.png
+  :width: 800
+  :alt: Plot of Power Spectral Density (PSD) of left and right bicep EMG signals.
 
 Finally, another useful visualization is the **spectrogram**, which represents how the frequency changes over time. It shows the power of each frequency component as a *color map*, with warmer colors mapped to stronger frequencies. In this sense, it creates a three-dimensional plot that allows us to view time, frequency, and power all at once! Matplotlib also has a built-in function for this, called ``pyplot.specgram``. Its parameters are the same as the above ``psd``. We're showing how the frequency changes over time, so we'll also plot the filtered signals above the spectrogram.
 
@@ -219,7 +223,9 @@ Finally, another useful visualization is the **spectrogram**, which represents h
    ax4[1,1].set_title("Right: Spectrogram")
    fig4.suptitle("Spectrogram of Left and Right Bicep Signals")
 
-.. TODO show viz and describe
+.. image:: ../../images/spectro.png
+  :width: 800
+  :alt: Plot of Spectrogram of left and right bicep EMG signals.
 
 ^^^^^^^^^^^^^^^^^^
 Feature Extraction
@@ -257,7 +263,9 @@ LibEMG allows you to compute feature groups or singular features at a time; as a
        ax5[i,1].set_title("Right: " + key)
    fig5.suptitle("Extracted Features for Left and Right Biceps")
 
-.. TODO show viz and describe
+.. image:: ../../images/feat_extract.png
+  :width: 800
+  :alt: Plot of extracted features on left and right bicep EMG signals. Hudgin's Time Domain: mean absolute value (MAV), zero crossings (ZC), slope sign change (SSC), waveform length (WL). Additionally, root mean square (RMS).
 
 -------------------
 Heart Rate Analysis
