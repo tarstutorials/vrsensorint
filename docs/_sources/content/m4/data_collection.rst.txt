@@ -1,3 +1,6 @@
+.. _analysis_to_collect:
+
+
 ============================================
 Data Collection with Physiological Sensors
 ============================================
