@@ -168,6 +168,8 @@ If you ever get stuck while programming, don't forget to use the `C# documentati
 **[Click on the above video for our YouTube tutorial going through the Treasure Controller Script in our mobile app.]**
 
 .. literalinclude:: ../../scripts/TreasureController.cs
+     :language: c#
+     :linenos:
 
 ^^^^^^^^^^^^^^^
 Camera System
