@@ -238,6 +238,10 @@ User Positioning - XR Rig
 
 The *XR rig* is a prefab object included in the *XR Interaction Toolkit*. This object allows the user to interact with the virtual environment by providing input in the form of sight, sound, and touch. The *XR rig* is how the user connects their actions in the headset to the Unity application. As such, it is absolutely necessary for any VR application. The *XR rig* has two child objects called *Camera Offset* and *Locomotion System* that provide the previously mentioned inputs through their own child objects and their attached scripts. There are a lot of parameters you can change within the *XR rig* object and its child object, and exploring these can further customize your VR control scheme, but the default parameter settings are completely acceptable for most use cases.
 
+.. image:: ../../images/complete_xr_origin.png
+  :width: 800
+  :alt: An image of the Complete XR Origin Set Up Variant prefab.
+
 You can access the XR rig individually by searching for *XR Origin (XR Rig)* in the 
 assets folder of the project manager. However, the default sample project provided by
 Unity VR Core's template has a prefab called *Complete XR Origin Set Up Variant*. This
@@ -322,7 +326,7 @@ The application itself is unique from any project you have seen previously in th
 Section Review
 ---------------
 
-In this module, you learned how to develop Unity applications for a virtual reality device. You practiced building a Unity VR project for Android, installing packages from the package manager, and properly setting up your build and project settings. You identified the key techniques used with the *XR Interaction Toolkit* and how the interactor-interactable relationship defines VR iteractions. You recoognized useful objects for VR development such as the *XR Rig* and the *Complete XR Origin Set Up Variant* that came with the sample. Lastly, you were introduced to the *VR Maze* project, and experimented with creating your own virtual reality project in Unity. You are now ready to move on to  the next section and learn about physiological sensors. You will be combining your knowledge of Unity and these sensors later in the course, so look forward to that. Thank you for your hard work, you are doing great!
+In this module, you learned how to develop Unity applications for a virtual reality device. You practiced building a Unity VR project for Android, installing packages from the package manager, and properly setting up your build and project settings. You identified the key techniques used with the *XR Interaction Toolkit* and how the interactor-interactable relationship defines VR iteractions. You recognized useful objects for VR development such as the *XR Rig* and the *Complete XR Origin Set Up Variant* that came with the sample. Lastly, you were introduced to the *VR Maze* project, and experimented with creating your own virtual reality project in Unity. You are now ready to move on to  the next section and learn about physiological sensors. You will be combining your knowledge of Unity and these sensors later in the course, so look forward to that. Thank you for your hard work, you are doing great!
 
 ^^^^^^^^^^^^^^^^^^^^^^^
 Module Self-Assessment

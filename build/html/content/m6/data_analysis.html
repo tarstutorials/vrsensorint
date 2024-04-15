@@ -47,10 +47,14 @@
   </form>
 </div>
         </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
-              <ul class="current">
+              <p class="caption" role="heading"><span class="caption-text">Introduction</span></p>
+<ul>
 <li class="toctree-l1"><a class="reference internal" href="../m1/introduction.html">Introduction to the Course</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../m1/contact_page.html">Contact the Authors</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../m1/install_unity.html">Installing Unity</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Tutorial Modules</span></p>
+<ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="../m1/unity_orientation.html">Getting Started With Unity</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../m2/unity_vr.html">Unity VR Development</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../m3/intro_to_sensors.html">Introduction to Physiological Sensors</a></li>
@@ -69,9 +73,9 @@
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="#heart-rate-analysis">Heart Rate Analysis</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#id6">Raw Data: Load and Plot</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#load-raw-data">Load Raw Data</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#preprocessing">Preprocessing</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#id7">Feature Extraction</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#analysis">Analysis</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="#overview-of-data-analysis-techniques">Overview of Data Analysis Techniques</a><ul>
@@ -83,7 +87,11 @@
 <li class="toctree-l2"><a class="reference internal" href="#references">References</a></li>
 </ul>
 </li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Events and Additional Resources</span></p>
+<ul>
 <li class="toctree-l1"><a class="reference internal" href="../m7/workshop.html">Hands-on Workshop</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../m7/error_handling.html">Troubleshooting Resources</a></li>
 </ul>
 
         </div>
@@ -132,8 +140,8 @@
 </li>
 <li><dl class="simple">
 <dt>Working with Physiological Data</dt><dd><ul>
-<li><p><a class="reference external" href="https://libemg.github.io/libemg/">LibEMG</a> <a class="footnote-reference brackets" href="#id8" id="id1" role="doc-noteref"><span class="fn-bracket">[</span>1<span class="fn-bracket">]</span></a></p></li>
-<li><p><a class="reference external" href="https://neuropsychology.github.io/NeuroKit/introduction.html">NeuroKit2</a> <a class="footnote-reference brackets" href="#id9" id="id2" role="doc-noteref"><span class="fn-bracket">[</span>2<span class="fn-bracket">]</span></a></p></li>
+<li><p><a class="reference external" href="https://libemg.github.io/libemg/">LibEMG</a> <a class="footnote-reference brackets" href="#id6" id="id1" role="doc-noteref"><span class="fn-bracket">[</span>1<span class="fn-bracket">]</span></a></p></li>
+<li><p><a class="reference external" href="https://neuropsychology.github.io/NeuroKit/introduction.html">NeuroKit2</a> <a class="footnote-reference brackets" href="#id7" id="id2" role="doc-noteref"><span class="fn-bracket">[</span>2<span class="fn-bracket">]</span></a></p></li>
 </ul>
 </dd>
 </dl>
@@ -152,18 +160,18 @@
 </section>
 <section id="emg-analysis">
 <h2>EMG Analysis<a class="headerlink" href="#emg-analysis" title="Link to this heading"></a></h2>
+<p>To work through this part of the tutorial, we’ll use a sample file where a person lifted a 15 pound box from the ground and then set it back down. Their left and right biceps were measured using sEMG sensors. The data can be downloaded <a class="reference download internal" download="" href="../../_downloads/462e392a332a945a732fca8e1f5f6612/sample_semg.csv"><code class="xref download docutils literal notranslate"><span class="pre">here</span></code></a> if you’d like to follow along!</p>
 <section id="raw-data-load-and-plot">
 <h3>Raw Data: Load and Plot<a class="headerlink" href="#raw-data-load-and-plot" title="Link to this heading"></a></h3>
 <p>The first step to the process of analyzing the data we’ve collected is, of course, loading it into memory. The data is in .csv format, which is a common text-based format for two-dimensional data. One simple way to load this data is to use <code class="docutils literal notranslate"><span class="pre">numpy.loadtxt</span></code> (documented <a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.loadtxt.html">here</a>).</p>
 <p>There are options to access the data with column names, but this becomes inconvenient to work with later when we’re passing the data to other library functions. Since the columns of our data are relatively simple to remember, it’s better to just load it as a regular <code class="docutils literal notranslate"><span class="pre">ndarray</span></code> (NumPy: <em>n</em>-dimensional array). We can format our variable names by <em>slicing</em>, which is a common way to subset data in NumPy. A <code class="docutils literal notranslate"><span class="pre">:</span></code> grabs all rows or columns. A list with <code class="docutils literal notranslate"><span class="pre">[]</span></code> is used to grab only certain rows or columns by index. Lastly, a range (e.g., <code class="docutils literal notranslate"><span class="pre">1:3</span></code>) is used to grab rows or columns within a range of indices. We’ll separate the data into the time column and the EMG columns. Finally, to check the dimensionality of the raw and sliced data, we can use NumPy’s <code class="docutils literal notranslate"><span class="pre">shape</span></code> function, which returns the number of elements in each dimension (rows, then columns).</p>
-<p>The code below loads our data collected in <a class="reference internal" href="../m4/data_collection.html#analysis-to-collect"><span class="std std-ref">Data Collection with Physiological Sensors</span></a>.</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="linenos">1</span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 <span class="linenos">2</span>
 <span class="linenos">3</span><span class="n">TIME_CUTOFF</span> <span class="o">=</span> <span class="mi">15000</span>
 <span class="linenos">4</span>
-<span class="linenos">5</span><span class="n">df</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">loadtxt</span><span class="p">(</span><span class="s1">&#39;raw_csv/CHANGE NAME&#39;</span><span class="p">,</span> <span class="n">delimiter</span><span class="o">=</span><span class="s1">&#39;,&#39;</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">float</span><span class="p">,</span> <span class="n">skiprows</span><span class="o">=</span><span class="mi">103</span> <span class="n">MAY</span> <span class="n">NOT</span> <span class="n">NEED</span><span class="p">,</span> <span class="n">max_rows</span><span class="o">=</span><span class="n">TIME_CUTOFF</span> <span class="n">MAY</span> <span class="n">NOT</span> <span class="n">NEED</span><span class="p">)</span>
-<span class="linenos">6</span><span class="n">emg_channels</span> <span class="o">=</span> <span class="n">b30_df</span><span class="p">[:,[</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">]]</span>
-<span class="linenos">7</span><span class="n">time</span> <span class="o">=</span> <span class="n">b30_df</span><span class="p">[:,</span><span class="mi">0</span><span class="p">]</span>
+<span class="linenos">5</span><span class="n">df</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">loadtxt</span><span class="p">(</span><span class="s1">&#39;sample_semg.csv&#39;</span><span class="p">,</span> <span class="n">delimiter</span><span class="o">=</span><span class="s1">&#39;,&#39;</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">float</span><span class="p">,</span> <span class="n">max_rows</span><span class="o">=</span><span class="n">TIME_CUTOFF</span><span class="p">)</span>
+<span class="linenos">6</span><span class="n">emg_channels</span> <span class="o">=</span> <span class="n">df</span><span class="p">[:,[</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">]]</span>
+<span class="linenos">7</span><span class="n">time</span> <span class="o">=</span> <span class="n">df</span><span class="p">[:,</span><span class="mi">0</span><span class="p">]</span>
 <span class="linenos">8</span><span class="nb">print</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">shape</span><span class="p">,</span> <span class="n">emg_channels</span><span class="o">.</span><span class="n">shape</span><span class="p">,</span> <span class="n">time</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
 </pre></div>
 </div>
@@ -194,16 +202,17 @@
 <span class="linenos">22</span><span class="n">ax1</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s2">&quot;Time (s)&quot;</span><span class="p">)</span>
 <span class="linenos">23</span><span class="n">ax1</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s2">&quot;EMG (V)&quot;</span><span class="p">)</span>
 <span class="linenos">24</span>
-<span class="linenos">25</span><span class="n">fig1</span><span class="o">.</span><span class="n">suptitle</span><span class="p">(</span><span class="s2">&quot;Raw Bicep EMG Signals&quot;</span><span class="p">)</span>
+<span class="linenos">25</span><span class="n">fig1</span><span class="o">.</span><span class="n">suptitle</span><span class="p">(</span><span class="s2">&quot;Raw EMG Signals&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
 <p>If you want to see the plot live, you can use <code class="docutils literal notranslate"><span class="pre">plt.show()</span></code>. This is the result:</p>
+<a class="reference internal image-reference" href="../../_images/filt_leftright.png"><img alt="The filtered EMG signals for left and right biceps, with the mean in red and plus/minus one standard deviation in green." src="../../_images/filt_leftright.png" style="width: 800px;" /></a>
 <p>Notice that the raw signal looks pretty messy: we can sort of see that where the amplitude goes up is when the greatest muscle exertion happened, but it’s vague and subject to a lot of quick changes. Also, the mean isn’t necessarily at 0V, but we only really care about the changes from 0, so we’ll learn how to remove this offset properly when we filter the signal in the next section. Over the next several sections, we’ll learn about different ways of processing the signal so that we can get more meaning out of it, visually and numerically.</p>
 </section>
 <section id="filtering-the-signal">
 <h3>Filtering the Signal<a class="headerlink" href="#filtering-the-signal" title="Link to this heading"></a></h3>
 <p>The first step in any processing of signal data is to apply one or more filters to remove noise from the signal. Without doing this, the performance of any machine learning system using the signals will worsen due to unwanted artifacting. Specifically, there are two common sources of artifact noise in a biomedical signal such as EMG: <strong>powerline interference</strong>, caused by unwanted communication between other nearby electronic devices, and <strong>motion</strong>, caused by a small and relatively constant amount of energy being produced by the body at all times.</p>
-<p>We won’t spend too much time on the math behind how different types of filters work, but know that they essentially use a process called <em>convolution</em> to modify the contents of the signal <em>frequency</em>. There are four main types of filters, described succinctly by Cheveigné and Nelken (bold inserted for clarity): “The <strong>low-pass filter</strong> attenuates high frequencies, the <strong>high-pass</strong> attenuates low frequencies, the <strong>band-pass</strong> attenuates out-of band frequencies, the <strong>notch</strong> attenuates a narrow band of frequencies.” <a class="footnote-reference brackets" href="#id10" id="id3" role="doc-noteref"><span class="fn-bracket">[</span>3<span class="fn-bracket">]</span></a> To <em>attenuate</em> means to reduce the effect of, so these filters are targeting and removing certain frequency ranges; for more details on filtering, refer to their article.</p>
+<p>We won’t spend too much time on the math behind how different types of filters work, but know that they essentially use a process called <em>convolution</em> to modify the contents of the signal <em>frequency</em>. There are four main types of filters, described succinctly by Cheveigné and Nelken (bold inserted for clarity): “The <strong>low-pass filter</strong> attenuates high frequencies, the <strong>high-pass</strong> attenuates low frequencies, the <strong>band-pass</strong> attenuates out-of band frequencies, the <strong>notch</strong> attenuates a narrow band of frequencies.” <a class="footnote-reference brackets" href="#id8" id="id3" role="doc-noteref"><span class="fn-bracket">[</span>3<span class="fn-bracket">]</span></a> To <em>attenuate</em> means to reduce the effect of, so these filters are targeting and removing certain frequency ranges; for more details on filtering, refer to their article.</p>
 <p>In our case, we’ll use LibEMG to filter the EMG signals: the API takes the name, cutoff frequency, and bandwidth of the filter in a dictionary format. You can also just use the default, “common” filters. Don’t worry too much about the parameter values for now; cutoff frequencies are recommended by the folks at LibEMG based on the frequencies at which these sources of noise commonly occur, and bandwidths can be modified later to remove frequency more or less harshly.</p>
 <p>Finally, we have one more parameter to pass to the filter: sampling frequency. <strong>Sampling frequency</strong> is the rate at which samples are received from the sensor, in Hz. The Delsys Trigno sensors have several different options for this which can be configured during data collection; for this capture, our sampling frequency was 1259.259 Hz.</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="linenos">1</span><span class="kn">from</span> <span class="nn">libemg</span> <span class="kn">import</span> <span class="n">filtering</span>
@@ -217,13 +226,14 @@
 <span class="linenos">9</span><span class="n">fi</span><span class="o">.</span><span class="n">visualize_effect</span><span class="p">(</span><span class="n">emg_channels</span><span class="p">)</span>
 </pre></div>
 </div>
+<a class="reference internal image-reference" href="../../_images/prepost_filter.png"><img alt="LibEMG visualization to show the effect of filtering the left and right bicep EMG signals, in both time and frequency domains." src="../../_images/prepost_filter.png" style="width: 800px;" /></a>
 <p><code class="docutils literal notranslate"><span class="pre">visualize_effect</span></code> is a useful function provided by LibEMG: it takes the raw signal and produces a visualization showing the signal pre- and post- filtering in the time and frequency domains. We’ll explain what that last part means later, but for now, notice how the mean of the signal is now at 0V like we wanted, and  how the range of frequencies seen on the right are much more evenly distributed. This signal definitely has more desirable qualities than the raw signal from before.</p>
 </section>
 <section id="types-of-visualizations">
 <h3>Types of Visualizations<a class="headerlink" href="#types-of-visualizations" title="Link to this heading"></a></h3>
 <p>There are some special visualizations commonly used with signal data, and we’ll explore a few of them here.</p>
 <p><strong>Autocorrelation</strong> and <strong>cross-correlation</strong> are used to measure the relationships between signals. Specifically, autocorrelation looks at <em>periodicity</em>, or repeating behavior, by <em>correlating</em> the signal with a lagged version of itself (correlation is a technical term, but again, don’t worry too much about the math here). So, lag 1 represents all samples from the signal that are 1 observation ahead of another sample (as determined by the sampling frequency), lag -5 represents all samples 5 that are 5 observations behind another sample. Cross-correlation does the same, but uses two signals instead of the same signal with itself. Higher positive values of correlation indicate high similarity between the signals; higher negative values indicate higher reciprocity (i.e., they are opposite each other), and values closer to zero indicate little relationship at all.</p>
-<p>For an example of these concepts, suppose we were conducting a study to understand how people lift weights. Subjects wear sEMG sensors on their left and right biceps and complete successive bicep curls. If we wanted to see how regular the person’s motion is over time (to see if they fatigue, let’s say), we would use the autocorrelation of each arm’s signal separately. Meanwhile, if we wanted to compare the functioning of the left and right arms (to see if they are symmetric, let’s say), we would use the cross-correlation of the two signals. For more information about autocorrelaton and cross-correlation with EMG signals, see the referenced article. <a class="footnote-reference brackets" href="#id11" id="id4" role="doc-noteref"><span class="fn-bracket">[</span>4<span class="fn-bracket">]</span></a></p>
+<p>For an example of these concepts, suppose we were conducting a study to understand how people lift weights. Subjects wear sEMG sensors on their left and right biceps and complete successive bicep curls. If we wanted to see how regular the person’s motion is over time (to see if they fatigue, let’s say), we would use the autocorrelation of each arm’s signal separately. Meanwhile, if we wanted to compare the functioning of the left and right arms (to see if they are symmetric, let’s say), we would use the cross-correlation of the two signals. For more information about autocorrelaton and cross-correlation with EMG signals, see the referenced article. <a class="footnote-reference brackets" href="#id9" id="id4" role="doc-noteref"><span class="fn-bracket">[</span>4<span class="fn-bracket">]</span></a></p>
 <p>These can be calculated using the <code class="docutils literal notranslate"><span class="pre">scipy.correlate</span></code> function, which takes the two signals being correlated and some other optional parameters for the mode and method (we can use the default values for now). For plotting, this is a nice opportunity to learn how to use the nifty <code class="docutils literal notranslate"><span class="pre">pyplot.subplots_mosaic</span></code> function. It takes a string parameter for the pattern of grid layout that you’d like, and it’s especially useful for irregular patterns. The <code class="docutils literal notranslate"><span class="pre">;</span></code> is used for a new row, and different letters each define their own plot, with the number of letters defining the relative spacing. Here, we have two plots for autocorrelation (left and right), but only one for cross-correlation. A clear way to display this visually is to place the autocorrelation plots next to each other but leave the cross-correlation on its own.</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span><span class="kn">from</span> <span class="nn">scipy</span> <span class="kn">import</span> <span class="n">signal</span>
 <span class="linenos"> 2</span>
@@ -250,6 +260,7 @@
 <span class="linenos">23</span><span class="n">fig2</span><span class="o">.</span><span class="n">suptitle</span><span class="p">(</span><span class="s2">&quot;Correlation in Left and Right Bicep EMG Signals&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
+<a class="reference internal image-reference" href="../../_images/autocrosscorr.png"><img alt="Plot of autocorrelation in left and right bicep EMG signals, and cross-correlation between the two of them." src="../../_images/autocrosscorr.png" style="width: 800px;" /></a>
 <p>Another useful visualization for understanding the dominant frequencies of a signal is the <strong>power spectral density (PSD)</strong>. It shows the <em>power</em> (squared magnitude) of the signal as a function of frequency. High peaks represent “strong” frequency components, or frequencies that occur with greater amplitudes, while low peaks represent “weak” frequency components. The code to generate the PSD for our example is below; luckily, Matplotlib has a built-in function to calculate and plot the PSD of a signal, <code class="docutils literal notranslate"><span class="pre">pyplot.psd</span></code>. We must specify a few parameters: <code class="docutils literal notranslate"><span class="pre">Fs</span></code> is the sampling frequency (see the explanation above), <code class="docutils literal notranslate"><span class="pre">NFFT</span></code> is the number of data points used in each block for an important mathematical operation called the <strong>Fast Fourier Transform</strong> that is used to generate the PSD, and <code class="docutils literal notranslate"><span class="pre">noverlap</span></code> is the number of points of overlap between the segments defined by <code class="docutils literal notranslate"><span class="pre">NFFT</span></code>. You are encouraged to specify different parameter values, including the defaults, and see how the result changes.</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span><span class="n">SAMPLE_FREQ</span> <span class="o">=</span> <span class="mf">1259.259</span>
 <span class="linenos"> 2</span><span class="n">WINDOW_SIZE</span> <span class="o">=</span> <span class="mi">50</span>
@@ -263,6 +274,7 @@
 <span class="linenos">10</span><span class="n">fig3</span><span class="o">.</span><span class="n">suptitle</span><span class="p">(</span><span class="s2">&quot;PSD of Left and Right Bicep Signals&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
+<a class="reference internal image-reference" href="../../_images/psd.png"><img alt="Plot of Power Spectral Density (PSD) of left and right bicep EMG signals." src="../../_images/psd.png" style="width: 800px;" /></a>
 <p>Finally, another useful visualization is the <strong>spectrogram</strong>, which represents how the frequency changes over time. It shows the power of each frequency component as a <em>color map</em>, with warmer colors mapped to stronger frequencies. In this sense, it creates a three-dimensional plot that allows us to view time, frequency, and power all at once! Matplotlib also has a built-in function for this, called <code class="docutils literal notranslate"><span class="pre">pyplot.specgram</span></code>. Its parameters are the same as the above <code class="docutils literal notranslate"><span class="pre">psd</span></code>. We’re showing how the frequency changes over time, so we’ll also plot the filtered signals above the spectrogram.</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span><span class="n">SAMPLE_FREQ</span> <span class="o">=</span> <span class="mf">1259.259</span>
 <span class="linenos"> 2</span><span class="n">WINDOW_SIZE</span> <span class="o">=</span> <span class="mi">50</span>
@@ -280,11 +292,12 @@
 <span class="linenos">14</span><span class="n">fig4</span><span class="o">.</span><span class="n">suptitle</span><span class="p">(</span><span class="s2">&quot;Spectrogram of Left and Right Bicep Signals&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
+<a class="reference internal image-reference" href="../../_images/spectro.png"><img alt="Plot of Spectrogram of left and right bicep EMG signals." src="../../_images/spectro.png" style="width: 800px;" /></a>
 </section>
 <section id="feature-extraction">
 <h3>Feature Extraction<a class="headerlink" href="#feature-extraction" title="Link to this heading"></a></h3>
 <p>After using some advanced visualizations to understand patterns in the data, a process called <strong>feature extraction</strong> is used to perform calculations to transform the data into a form more useful for later algorithms. Specifically, the resulting features are often input into machine learning algorithms for tasks such as classification, and the features are used instead of the filtered data because they are more information dense.</p>
-<p>There are far too many features used for EMG classification for us to describe them all here. Many of the most popular options are implemented in LibEMG, so refer to their <a class="reference external" href="https://libemg.github.io/libemg/documentation/features/features.html">documentation</a> for more details. As an example for our data, we’ll implement the Hudgin’s Time Domain feature set, which is a classic group of features for analyzing how the signal changes over time. <a class="footnote-reference brackets" href="#id12" id="id5" role="doc-noteref"><span class="fn-bracket">[</span>5<span class="fn-bracket">]</span></a> It contains four features:</p>
+<p>There are far too many features used for EMG classification for us to describe them all here. Many of the most popular options are implemented in LibEMG, so refer to their <a class="reference external" href="https://libemg.github.io/libemg/documentation/features/features.html">documentation</a> for more details. As an example for our data, we’ll implement the Hudgin’s Time Domain feature set, which is a classic group of features for analyzing how the signal changes over time. <a class="footnote-reference brackets" href="#id10" id="id5" role="doc-noteref"><span class="fn-bracket">[</span>5<span class="fn-bracket">]</span></a> It contains four features:</p>
 <ul class="simple">
 <li><p><strong>Mean Absolute Value (MAV)</strong>: The average absolute value of the signal</p></li>
 <li><p><strong>Zero Crossings (ZC)</strong>: The number of times that the signal crosses zero amplitude</p></li>
@@ -311,18 +324,91 @@
 <span class="linenos">17</span><span class="n">fig5</span><span class="o">.</span><span class="n">suptitle</span><span class="p">(</span><span class="s2">&quot;Extracted Features for Left and Right Biceps&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
+<a class="reference internal image-reference" href="../../_images/feat_extract.png"><img alt="Plot of extracted features on left and right bicep EMG signals. Hudgin's Time Domain: mean absolute value (MAV), zero crossings (ZC), slope sign change (SSC), waveform length (WL). Additionally, root mean square (RMS)." src="../../_images/feat_extract.png" style="width: 800px;" /></a>
 </section>
 </section>
 <section id="heart-rate-analysis">
 <h2>Heart Rate Analysis<a class="headerlink" href="#heart-rate-analysis" title="Link to this heading"></a></h2>
-<section id="id6">
-<h3>Raw Data: Load and Plot<a class="headerlink" href="#id6" title="Link to this heading"></a></h3>
+<p>To work through this part of the tutorial, we’ll use a sample file where a person repeatedly lifted 8 pound freeweights with both arms (at the same time). Their heart rate was measured using a Polar H10 sensor. The data can be downloaded <a class="reference download internal" download="" href="../../_downloads/b43f6e604bcf7398ad75c24f48347dc2/sample_ecg.csv"><code class="xref download docutils literal notranslate"><span class="pre">here</span></code></a> if you’d like to follow along!</p>
+<section id="load-raw-data">
+<h3>Load Raw Data<a class="headerlink" href="#load-raw-data" title="Link to this heading"></a></h3>
+<p>Similar to the EMG section above, we’ll start by loading the raw data.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="linenos">1</span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="linenos">2</span>
+<span class="linenos">3</span><span class="n">TIME_CUTOFF</span> <span class="o">=</span> <span class="mi">1000</span>
+<span class="linenos">4</span>
+<span class="linenos">5</span><span class="n">ecg_data</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">loadtxt</span><span class="p">(</span><span class="s1">&#39;sample_ecg_data.csv&#39;</span><span class="p">,</span> <span class="n">delimiter</span><span class="o">=</span><span class="s1">&#39;,&#39;</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">float</span><span class="p">)</span>
+<span class="linenos">6</span><span class="nb">print</span><span class="p">(</span><span class="n">ecg_data</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Notice that we have 1,241 rows (and only 1 column, which is implied). Each row represents the signal values read from the sensor at a particular time. Since we don’t have any timestamp information in this case, it’s important to remember the sampling rate of the sensor (in our case, 130 Hz).</p>
 </section>
 <section id="preprocessing">
 <h3>Preprocessing<a class="headerlink" href="#preprocessing" title="Link to this heading"></a></h3>
+<p>To plot the data, we’ll pass it through the processing pipeline first. We can do this using the <code class="docutils literal notranslate"><span class="pre">ecg_process</span></code> function from NeuroKit2, and then plot with the <code class="docutils literal notranslate"><span class="pre">events_plot</span></code> function.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="linenos">1</span><span class="kn">import</span> <span class="nn">neurokit2</span> <span class="k">as</span> <span class="nn">nk</span>
+<span class="linenos">2</span>
+<span class="linenos">3</span><span class="n">SAMPLE_FREQ</span> <span class="o">=</span> <span class="mi">130</span>
+<span class="linenos">4</span>
+<span class="linenos">5</span><span class="n">signals</span><span class="p">,</span> <span class="n">info</span> <span class="o">=</span> <span class="n">nk</span><span class="o">.</span><span class="n">ecg_process</span><span class="p">(</span><span class="n">ecg_data</span><span class="p">,</span> <span class="n">sampling_rate</span><span class="o">=</span><span class="n">SAMPLE_FREQ</span><span class="p">)</span>
+<span class="linenos">6</span><span class="n">nk</span><span class="o">.</span><span class="n">events_plot</span><span class="p">(</span><span class="n">signals</span><span class="p">,</span> <span class="n">info</span><span class="p">)</span>
+</pre></div>
+</div>
+<a class="reference internal image-reference" href="../../_images/signal_peaks.png"><img alt="Plot of the ECG signal with the R-peaks detected shown as red dotted lines." src="../../_images/signal_peaks.png" style="width: 800px;" /></a>
+<p>Let’s take a step back to understand what’s going on in the ECG signal, and then we’ll return to tackle the code. In general, an ECG signal can be divided into different sections based on what is happening physiologically as the heart beats. One cycle is referred to from start to finish as a PQRST complex, which has three distinct parts:</p>
+<ul class="simple">
+<li><p><strong>The P Wave</strong> represents the depolarization of the atria. This causes the atria to contract, pushing blood into the ventricles.</p></li>
+<li><p><strong>The QRS complex</strong> represents the depolarization of the ventricles. This causes the ventricles to contract, pumping blood throughout the body.</p></li>
+<li><p><strong>The T wave</strong> represents the repolarization of the ventricles. This causes the ventricles to relax, allowing them to fill back up with blood.</p></li>
+</ul>
+<p>In order to determine the heart rate and heart rate variability, we must determine the time from beat to beat, or the time between two consecutive QRS peaks. So, the red dotted lines on the plot above represent the peaks detected using a very famous algorithm TODO cite.</p>
+<p>As for the code from NeuroKit2, the <code class="docutils literal notranslate"><span class="pre">ecg_process</span></code> function returns two dataframes: one containing the raw and cleaned signal, and one containing peak locations and some other information. Behind the scenes, this function is actually doing quite a bit! It uses six helper functions:</p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://neuropsychology.github.io/NeuroKit/functions/ecg.html#ecg-clean">ecg_clean</a> is used to to remove noise from the signal in order to improve peak detection accuracy.</p></li>
+<li><p><a class="reference external" href="https://neuropsychology.github.io/NeuroKit/functions/ecg.html#ecg-peaks">ecg_peaks</a> finds the R-peaks in the QRS complex.</p></li>
+<li><p><a class="reference external" href="https://neuropsychology.github.io/NeuroKit/functions/ecg.html#ecg-rate">signal_rate</a> finds the signal rate from a series of peaks by using <code class="docutils literal notranslate"><span class="pre">60/period</span></code>, where period is the time between peaks.</p></li>
+<li><p><a class="reference external" href="https://neuropsychology.github.io/NeuroKit/functions/ecg.html#ecg-quality">ecg_quality</a> assesses the quality by extracting a variety of features.</p></li>
+<li><p><a class="reference external" href="https://neuropsychology.github.io/NeuroKit/functions/ecg.html#ecg-delineate">ecg_delineate</a> delineates the QRS complex from the PQRST wave.</p></li>
+<li><p><a class="reference external" href="https://neuropsychology.github.io/NeuroKit/functions/ecg.html#ecg-phase">ecg_phase</a> computes the cardiac phase, i.e., the systole (heart empties) and diastole (heart fills).</p></li>
+</ul>
 </section>
-<section id="id7">
-<h3>Feature Extraction<a class="headerlink" href="#id7" title="Link to this heading"></a></h3>
+<section id="analysis">
+<h3>Analysis<a class="headerlink" href="#analysis" title="Link to this heading"></a></h3>
+<p>We can do more with NeuroKit2 to look at heart rate and heart rate variability from the ECG signal. First, let’s use the <code class="docutils literal notranslate"><span class="pre">ecg_plot</span></code> function to get some more information on the processed signal from above.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="linenos">1</span><span class="kn">import</span> <span class="nn">neurokit2</span> <span class="k">as</span> <span class="nn">nk</span>
+<span class="linenos">2</span>
+<span class="linenos">3</span><span class="n">nk</span><span class="o">.</span><span class="n">ecg_plot</span><span class="p">(</span><span class="n">signals</span><span class="p">,</span> <span class="n">info</span><span class="p">)</span>
+<span class="linenos">4</span>
+<span class="linenos">5</span><span class="c1"># to extract the data shown in the plot</span>
+<span class="linenos">6</span><span class="n">rpeaks</span> <span class="o">=</span> <span class="n">info</span><span class="p">[</span><span class="s2">&quot;ECG_R_Peaks&quot;</span><span class="p">]</span>
+<span class="linenos">7</span><span class="n">cleaned_ecg</span> <span class="o">=</span> <span class="n">signals</span><span class="p">[</span><span class="s2">&quot;ECG_Clean&quot;</span><span class="p">]</span>
+<span class="linenos">8</span><span class="n">hr</span> <span class="o">=</span> <span class="n">signals</span><span class="p">[</span><span class="s2">&quot;ECG_Rate&quot;</span><span class="p">]</span>
+</pre></div>
+</div>
+<a class="reference internal image-reference" href="../../_images/ecg_summary.png"><img alt="Plots of the ECG signal showing signal quality and raw and cleaned signal (top left), heart rate (bottom left), and individual heart beats (right)." src="../../_images/ecg_summary.png" style="width: 800px;" /></a>
+<p>This combined plot shows several pieces of information:</p>
+<ul class="simple">
+<li><p>It computes the heart rate over time from the ECG signal.</p></li>
+<li><p>It plots individual heart beats — i.e., PQRST complexes — over each other and shows the average wave shape. Looking at individual heart beats is valuable to see any abnormalities within beats.</p></li>
+</ul>
+<p>We can also look at heart rate variability (HRV), which is explained in more detail in <a class="reference internal" href="../m3/intro_to_sensors.html#analysis-to-sensors"><span class="std std-ref">Introduction to Physiological Sensors</span></a>. We can look for a few different things with HRV: a decrease in HRV during training can indicate fatigue, and a significant decrease can even indicate over-training. Generally, a higher baseline HRV indicates a higher level of cardiovascular fitness.</p>
+<p>HRV can be analyzed in three different domains: with respect to time, frequency, or non-linear analysis.</p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://neuropsychology.github.io/NeuroKit/functions/hrv.html#hrv-time">hrv_time</a> returns a data frame containing 25 pieces of data. The ones that are important to us are standard deviation of normal to normal (SDNN) and the standard deviation of average normal to normal (SDANN). SDNN is used to measure the heart rate variance over long periods of time, while SDANN is used over shorter periods (e.g., 24 hours versus five minutes). While HRV is effected by demographic factors such as age, gender, and race, generally those with a HRV of 50ms or less are considered unhealthy, those with a HRV between 50-100ms have compromised health, and those with 100ms or more are healthy.</p></li>
+<li><p><a class="reference external" href="https://neuropsychology.github.io/NeuroKit/functions/hrv.html#hrv-frequency">hrv_frequency</a> computes ten HRV frequency domain metrics. Two important metrics are the high frequency (HF) and the low frequency (LF). HF is an indicator for the parasympathetic nervous system, which is responsible for the body’s functions during periods of relaxation, while LF is an indicator for the sympathetic nervous system, which is responsible for speeding up heart rate and slowing down digestion.</p></li>
+<li><p><a class="reference external" href="https://neuropsychology.github.io/NeuroKit/functions/hrv.html#hrv-nonlinear">hrv_nonlinear</a> computes 32 different metrics. Of these, the standard deviation perpendicular to the line of identity (SD1) is the most applicable to our application. Very simply, it can be used as a short term measure of HRV. It is actually equivalent to the root mean square of successive differences calculated by <code class="docutils literal notranslate"><span class="pre">hrv_time</span></code>.</p></li>
+</ul>
+<p>The code to compute these metrics is shown below.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="linenos">1</span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="linenos">2</span><span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="linenos">3</span>
+<span class="linenos">4</span><span class="n">SAMPLE_FREQ</span> <span class="o">=</span> <span class="mi">130</span>
+<span class="linenos">5</span>
+<span class="linenos">6</span><span class="n">hrv_time</span> <span class="o">=</span> <span class="n">nk</span><span class="o">.</span><span class="n">hrv_time</span><span class="p">(</span><span class="n">peaks</span><span class="p">,</span> <span class="n">sampling_rate</span><span class="o">=</span><span class="n">SAMPLE_FREQ</span><span class="p">,</span> <span class="n">show</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="linenos">7</span><span class="n">hrv_freq</span> <span class="o">=</span> <span class="n">nk</span><span class="o">.</span><span class="n">hrv_frequency</span><span class="p">(</span><span class="n">peaks</span><span class="p">,</span> <span class="n">sampling_rate</span><span class="o">=</span><span class="n">SAMPLE_FREQ</span><span class="p">,</span> <span class="n">show</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">normalize</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="linenos">8</span><span class="n">hrv_nonlinear</span> <span class="o">=</span> <span class="n">nk</span><span class="o">.</span><span class="n">hrv_nonlinear</span><span class="p">(</span><span class="n">peaks</span><span class="p">,</span> <span class="n">sampling_rate</span><span class="o">=</span><span class="n">SAMPLE_FREQ</span><span class="p">,</span> <span class="n">show</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</pre></div>
+</div>
 </section>
 </section>
 <section id="overview-of-data-analysis-techniques">
@@ -352,23 +438,23 @@
 <section id="references">
 <h2>References<a class="headerlink" href="#references" title="Link to this heading"></a></h2>
 <aside class="footnote-list brackets">
-<aside class="footnote brackets" id="id8" role="doc-footnote">
+<aside class="footnote brackets" id="id6" role="doc-footnote">
 <span class="label"><span class="fn-bracket">[</span><a role="doc-backlink" href="#id1">1</a><span class="fn-bracket">]</span></span>
 <p>E. Eddy, E. Campbell, A. Phinyomark, S. Bateman, and E. Scheme. “LibEMG: An Open Source Library to Facilitate the Exploration of Myoelectric Control.” <em>IEEE Access</em>, vol. 11, pp. 87380-87397, 2023, doi: 10.1109/ACCESS.2023.3304544.</p>
 </aside>
-<aside class="footnote brackets" id="id9" role="doc-footnote">
+<aside class="footnote brackets" id="id7" role="doc-footnote">
 <span class="label"><span class="fn-bracket">[</span><a role="doc-backlink" href="#id2">2</a><span class="fn-bracket">]</span></span>
 <p>D. Makowski, T. Pham, Z.J. Lau, J.C. Brammer, F. Lespinasse, H. Pham, C. Schölzel, and S.A. Chen. “NeuroKit2: A Python toolbox for neurophysiological signal processing.” <em>Behavior Research Methods</em>, vol. 53, no. 4, pp. 1689-1696, 2021, doi: 10.3758/s13428-020-01516-y.</p>
 </aside>
-<aside class="footnote brackets" id="id10" role="doc-footnote">
+<aside class="footnote brackets" id="id8" role="doc-footnote">
 <span class="label"><span class="fn-bracket">[</span><a role="doc-backlink" href="#id3">3</a><span class="fn-bracket">]</span></span>
 <p>A. Cheveigné and I. Nelken. “Filters: When, Why, and How (Not) to Use Them.” <em>Neuron</em>, vol. 102, no. 2, pp. 280-293, 2019, doi: 10.1016/j.neuron.2019.02.039.</p>
 </aside>
-<aside class="footnote brackets" id="id11" role="doc-footnote">
+<aside class="footnote brackets" id="id9" role="doc-footnote">
 <span class="label"><span class="fn-bracket">[</span><a role="doc-backlink" href="#id4">4</a><span class="fn-bracket">]</span></span>
 <p>E. Nelson-Wong, S. Howarth, D.A. Winter, and J.P. Callaghan. “Application of Autocorrelation and Crosscorrelation Analyses in Human Movement and Rehabilitation Research.” <em>Journal of Orthopaedic &amp; Sports Physical Therapy</em> vol. 39, no. 4, pp. 287-295, 2009, doi: 10.2519/jospt.2009.2969.</p>
 </aside>
-<aside class="footnote brackets" id="id12" role="doc-footnote">
+<aside class="footnote brackets" id="id10" role="doc-footnote">
 <span class="label"><span class="fn-bracket">[</span><a role="doc-backlink" href="#id5">5</a><span class="fn-bracket">]</span></span>
 <p>B. Hudgins, P. Parker and R. N. Scott. “A new strategy for multifunction myoelectric control.” <em>IEEE Transactions on Biomedical Engineering</em>, vol. 40, no. 1, pp. 82-94, 1993, doi: 10.1109/10.204774.</p>
 </aside>
@@ -387,7 +473,7 @@
   <hr/>
 
   <div role="contentinfo">
-    <p>&#169; Copyright 2024, Ethan Matzek, Tyler Yankee, Odin Kohler, Maryangela White, Matt Duver, Robert Licata, Niall Pepper, Sean Banerjee, Natasha Kholgade Banerjee.</p>
+    <p>&#169; Copyright 2024, E. Matzek, T. Yankee, O. Kohler, M. White, M. Duver, R. Licata, N. Pepper, R. Almutairi, N.K. Banerjee, and S. Banerjee.</p>
   </div>
 
   Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a

@@ -47,10 +47,14 @@
   </form>
 </div>
         </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
-              <ul class="current">
+              <p class="caption" role="heading"><span class="caption-text">Introduction</span></p>
+<ul>
 <li class="toctree-l1"><a class="reference internal" href="../m1/introduction.html">Introduction to the Course</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../m1/contact_page.html">Contact the Authors</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../m1/install_unity.html">Installing Unity</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Tutorial Modules</span></p>
+<ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="../m1/unity_orientation.html">Getting Started With Unity</a></li>
 <li class="toctree-l1 current"><a class="current reference internal" href="#">Unity VR Development</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="#introduction-to-vr-development">Introduction to VR Development</a></li>
@@ -83,7 +87,11 @@
 <li class="toctree-l1"><a class="reference internal" href="../m4/data_collection.html">Data Collection with Physiological Sensors</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../m5/integration.html">Integration with VR</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../m6/data_analysis.html">Data Analysis</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Events and Additional Resources</span></p>
+<ul>
 <li class="toctree-l1"><a class="reference internal" href="../m7/workshop.html">Hands-on Workshop</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../m7/error_handling.html">Troubleshooting Resources</a></li>
 </ul>
 
         </div>
@@ -268,6 +276,7 @@ but also in building your skills for the upcoming explosion in VR technology.</p
 <h3>User Positioning - XR Rig<a class="headerlink" href="#user-positioning-xr-rig" title="Link to this heading"></a></h3>
 <a class="reference internal image-reference" href="../../_images/xr_rig.png"><img alt="An image of the XR Rig GameObject." src="../../_images/xr_rig.png" style="width: 300px;" /></a>
 <p>The <em>XR rig</em> is a prefab object included in the <em>XR Interaction Toolkit</em>. This object allows the user to interact with the virtual environment by providing input in the form of sight, sound, and touch. The <em>XR rig</em> is how the user connects their actions in the headset to the Unity application. As such, it is absolutely necessary for any VR application. The <em>XR rig</em> has two child objects called <em>Camera Offset</em> and <em>Locomotion System</em> that provide the previously mentioned inputs through their own child objects and their attached scripts. There are a lot of parameters you can change within the <em>XR rig</em> object and its child object, and exploring these can further customize your VR control scheme, but the default parameter settings are completely acceptable for most use cases.</p>
+<a class="reference internal image-reference" href="../../_images/complete_xr_origin.png"><img alt="An image of the Complete XR Origin Set Up Variant prefab." src="../../_images/complete_xr_origin.png" style="width: 800px;" /></a>
 <p>You can access the XR rig individually by searching for <em>XR Origin (XR Rig)</em> in the
 assets folder of the project manager. However, the default sample project provided by
 Unity VR Core’s template has a prefab called <em>Complete XR Origin Set Up Variant</em>. This
@@ -317,7 +326,7 @@ you will learn more about in the upcoming subsections. This tutorial will be usi
 </section>
 <section id="section-review">
 <h2>Section Review<a class="headerlink" href="#section-review" title="Link to this heading"></a></h2>
-<p>In this module, you learned how to develop Unity applications for a virtual reality device. You practiced building a Unity VR project for Android, installing packages from the package manager, and properly setting up your build and project settings. You identified the key techniques used with the <em>XR Interaction Toolkit</em> and how the interactor-interactable relationship defines VR iteractions. You recoognized useful objects for VR development such as the <em>XR Rig</em> and the <em>Complete XR Origin Set Up Variant</em> that came with the sample. Lastly, you were introduced to the <em>VR Maze</em> project, and experimented with creating your own virtual reality project in Unity. You are now ready to move on to  the next section and learn about physiological sensors. You will be combining your knowledge of Unity and these sensors later in the course, so look forward to that. Thank you for your hard work, you are doing great!</p>
+<p>In this module, you learned how to develop Unity applications for a virtual reality device. You practiced building a Unity VR project for Android, installing packages from the package manager, and properly setting up your build and project settings. You identified the key techniques used with the <em>XR Interaction Toolkit</em> and how the interactor-interactable relationship defines VR iteractions. You recognized useful objects for VR development such as the <em>XR Rig</em> and the <em>Complete XR Origin Set Up Variant</em> that came with the sample. Lastly, you were introduced to the <em>VR Maze</em> project, and experimented with creating your own virtual reality project in Unity. You are now ready to move on to  the next section and learn about physiological sensors. You will be combining your knowledge of Unity and these sensors later in the course, so look forward to that. Thank you for your hard work, you are doing great!</p>
 <section id="module-self-assessment">
 <h3>Module Self-Assessment<a class="headerlink" href="#module-self-assessment" title="Link to this heading"></a></h3>
 <div class="quizdown">---
@@ -393,7 +402,7 @@ shuffle_answers: false
   <hr/>
 
   <div role="contentinfo">
-    <p>&#169; Copyright 2024, Ethan Matzek, Tyler Yankee, Odin Kohler, Maryangela White, Matt Duver, Robert Licata, Niall Pepper, Sean Banerjee, Natasha Kholgade Banerjee.</p>
+    <p>&#169; Copyright 2024, E. Matzek, T. Yankee, O. Kohler, M. White, M. Duver, R. Licata, N. Pepper, R. Almutairi, N.K. Banerjee, and S. Banerjee.</p>
   </div>
 
   Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a

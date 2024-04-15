@@ -47,24 +47,36 @@
   </form>
 </div>
         </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
-              <ul class="current">
+              <p class="caption" role="heading"><span class="caption-text">Introduction</span></p>
+<ul>
 <li class="toctree-l1"><a class="reference internal" href="../m1/introduction.html">Introduction to the Course</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../m1/contact_page.html">Contact the Authors</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../m1/install_unity.html">Installing Unity</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Tutorial Modules</span></p>
+<ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="../m1/unity_orientation.html">Getting Started With Unity</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../m2/unity_vr.html">Unity VR Development</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../m3/intro_to_sensors.html">Introduction to Physiological Sensors</a></li>
 <li class="toctree-l1 current"><a class="current reference internal" href="#">Data Collection with Physiological Sensors</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="#intro-to-data-collection">Intro to Data Collection</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#ethics-and-constraints">Ethics and Constraints</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#reading-and-understanding-data">Reading and Understanding Data</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#developing-hypotheses">Developing Hypotheses</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#setting-up-the-trigno-link">Setting up the Trigno Link</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#trigno-link-design">Trigno Link Design</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#getting-started">Getting Started</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#connecting-sensors">Connecting Sensors</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#connecting-to-unity">Connecting to Unity</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#a-simple-unity-application">A Simple Unity Application</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#section-review">Section Review</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../m5/integration.html">Integration with VR</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../m6/data_analysis.html">Data Analysis</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Events and Additional Resources</span></p>
+<ul>
 <li class="toctree-l1"><a class="reference internal" href="../m7/workshop.html">Hands-on Workshop</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../m7/error_handling.html">Troubleshooting Resources</a></li>
 </ul>
 
         </div>
@@ -93,17 +105,82 @@
              
   <section id="data-collection-with-physiological-sensors">
 <span id="analysis-to-collect"></span><h1>Data Collection with Physiological Sensors<a class="headerlink" href="#data-collection-with-physiological-sensors" title="Link to this heading"></a></h1>
-<section id="intro-to-data-collection">
-<h2>Intro to Data Collection<a class="headerlink" href="#intro-to-data-collection" title="Link to this heading"></a></h2>
+<p>Now that you have explored both Unity and the various types of physiological sensors, it’s time to begin integrating them together. You will do this using the <strong>Delsys Trigno Link</strong>, a device that allows multiple physiological sensors to be connected to a single computer via bluetooth. This tutorial will include an in-depth tutorial on how to connect and setup the Trigno Link, and how to collect data from the sensors attached to it. You will start simple, and develop a simple, console-based based Unity application that prints out the data recieved rom the sensors. The main goal of this module is to ensure that you can effectively use and read from the Trigno Link, and access that data in Unity. Once you have these basics down, the next module wll move on to more complex integration techniques using VR.</p>
+<section id="setting-up-the-trigno-link">
+<h2>Setting up the Trigno Link<a class="headerlink" href="#setting-up-the-trigno-link" title="Link to this heading"></a></h2>
+<a class="reference internal image-reference" href="../../_images/TrignoLinkPromo.png"><img alt="An Image of the Trigno Link." src="../../_images/TrignoLinkPromo.png" style="width: 800px;" /></a>
+<p>The Trigno Link is the key to integrating physiological sensors with Unity. While the Trigno Link is not required to receive data from only Trigno sensors, it is necessary to use <em>both</em> Trigno and third-party sensors congruently. As such, it is important to understand how the Link works in order to seamlessly integrate both Delsys and third-party sensors simultaneously.</p>
+<section id="trigno-link-design">
+<h3>Trigno Link Design<a class="headerlink" href="#trigno-link-design" title="Link to this heading"></a></h3>
+<p>The first step to effectively using the Trigno Link is knowing how it works. The Trigno Link is a wireless device that connects to a computer via a USB-C dongle. Two to thirty-two sensors can be simultaneously linked to the Trigno Link. Essentially, these sensors concurrently transmit their raw data to the Link, where it keeps their data streams separate and sends them to the computer for use. This data can come from a variety of sensors, including but not limited to any of the sensors mentioned in the previous module. Crucially, this device is not locked to only Delsys products, but supports many third-party options, vastly increasing its versatility. You will need the <strong>Trigno Wireless BioFeedback System</strong> in order for the Link to provide the synchronized data. You will connect the device to a computer using the USB-A side of the included cable, and attach the USB-C side to the female plug on the Link. An LED light will glow on the top of the Link once it has been connected. The color of this light can help determine the current feedback state of the Link. You can find a list of the different feedback states and their corresponding light colors in the <a class="reference external" href="https://delsys.com/downloads/USERSGUIDE/trigno/link-communication-module.pdf">Trigno Link User Guide</a>.</p>
 </section>
-<section id="ethics-and-constraints">
-<h2>Ethics and Constraints<a class="headerlink" href="#ethics-and-constraints" title="Link to this heading"></a></h2>
+<section id="getting-started">
+<h3>Getting Started<a class="headerlink" href="#getting-started" title="Link to this heading"></a></h3>
+<p>Upon unboxing your Trigno Link, you’ll be greeted to the compact device, a USB-C dongle, a quickstart guide, and a user guide. It is <em>highly</em> recommended to read the quickstart guide and user guide in conjunction with the tutorial presented here, as this will give you the most comprehensive understanding possible. Additionally, you can use these resources to troubleshoot any issues you have with the product.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>In order to use the Trigno Link, you must have at least two compatible physiological sensors, with at least one being a Trigno Sensor (Which you will already be using due to the requirement of the Trigno Wireless BioFeedback System’s usage). The link itself does not generate any data, instead it allows data from <em>other</em> sensors to be read in tandem. All Delsys made sensors are natively supported, alongside a list of third-party sensors that you can find <a class="reference external" href="https://delsys.com/trigno-link/">here</a> in the <em>Applications</em> section.</p>
+</div>
+<p>To begin using the Link, you will need the <em>Trigno</em> Discover application, a piece of Delsys software used to monitor and receive data from the sensors on a computer. This software can be found <a class="reference external" href="https://delsys.com/activation/">here</a>. As of writing this tutorial, the current version of this software is 1.6.5.. You will have to either log-in or sign up in order to use the application, and you have the option of working offline as well. Once you have the software installed and have created an account, you are ready to begin connecting sensors.</p>
 </section>
-<section id="reading-and-understanding-data">
-<h2>Reading and Understanding Data<a class="headerlink" href="#reading-and-understanding-data" title="Link to this heading"></a></h2>
+<section id="connecting-sensors">
+<h3>Connecting Sensors<a class="headerlink" href="#connecting-sensors" title="Link to this heading"></a></h3>
+<p>Using the Trigno Link, Trigno Wireless BioFeedback System, and Trigno Discover, you can now connect sensors. To do this, follow the steps below:</p>
+<a class="reference internal image-reference" href="../../_images/trignoLink.jpg"><img alt="An Image of the Trigno Link connected to a laptop. The light on the Link is glowing amber." src="../../_images/trignoLink.jpg" style="width: 200px;" /></a>
+<ol class="arabic simple">
+<li><p>Connect the Trigno Link to your computer. First, plug the USB-A side of the included cable into the computer, then plug the USB-C side of the cable into the link itself. If done correctly, the LED indicator should glow amber on the Link. You are ready to move on to the next step.</p></li>
+<li><p>Connect your Trigno Wireless BioFeedback System to your computer via USB. This is necessary to use the Trigno sensors and any other third-party sensors with the Link. You can find a manual to assist you in connecting this device and its sensors <a class="reference external" href="https://www.delsys.com/downloads/USERSGUIDE/trigno/wireless-biofeedback-system.pdf">here</a>. Note that it is your responsibility to understand how to connect and use the various sensors you intend to employ. Usually, you can find detailed guides on the manufacturer’s website.</p></li>
+</ol>
+<a class="reference internal image-reference" href="../../_images/DiscoverHome.png"><img alt="An Image of the homepage for Trigno Discover." src="../../_images/DiscoverHome.png" style="width: 800px;" /></a>
+<ol class="arabic simple" start="3">
+<li><p>Launch the Trigno Discover application on your computer. Log in to your account and verify that the Trigno Link and Trigno Wireless BioFeedback System are recognized by the software (You shouldn’t even be able to access the application if the Wireless Feedback System isn’t connected). You should see a tab for the Trigno Base and for the Trigno Link in the app. Should you need additional assistance in using Trigno Discover, the <a class="reference external" href="https://delsys.com/downloads/USERSGUIDE/trigno/discover.pdf">User Guide</a> can help you.</p></li>
+</ol>
+<a class="reference internal image-reference" href="../../_images/DiscoverHomeConnected.png"><img alt="An Image of the homepage for Trigno Discover with one Avanti sensor added." src="../../_images/DiscoverHomeConnected.png" style="width: 800px;" /></a>
+<ol class="arabic simple">
+<li><p>Add the sensors you wish to use to the Sensor Configuration Panel on the home screen. You can do this manually using the <em>Add New Sensor</em> option. Once a scanner has been paired by the system, you can use the <em>Scan for Sensors</em> option to attempt to connect all previously connected sensors, making the manual pairing unnecessary for subsequent usage. Scanning for sensors can even find find some sensors without having added them before.Generally, the bast practice is to <em>Scan for Sensors</em> first and then use <em>Add New Sensor</em> to add any that weren’t caught by the scan. For sensors connected via the Trigno Link, use the <em>Scan for Sensors</em> option in the Trigno Link tab while pairing on the sensor.</p></li>
+</ol>
+<a class="reference internal image-reference" href="../../_images/DiscoverHR.png"><img alt="An Image of the Trigno Link page for Trigno Discover with one HR sensor added." src="../../_images/DiscoverHR.png" style="width: 800px;" /></a>
+<ol class="arabic simple">
+<li><p>Depending on the sensors you are using, you may have some additional options to pick between in the sensor’s configuration mode selection. For example, Trigno Avanti sensors can switch between EMG, Accelerator, Gyroscope, Orientation, and IMU sensing. Refer to the manufacturers guide for your specific sensor to see what options are available.</p></li>
+<li><p>Once your sensors have all been connected and are visible on the <em>Sensor Configuration Panel</em>, it is good practice to run a test trial to make sure the data is being properly collected from all sensors. You can use the Trial Information Tab to control your data collection.</p></li>
+</ol>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>While the Trigno Discover application can be used by itself to collect sensors from data and store it as csv data, the data collection used in this tutorial will be done using a Unity integration instead, using the data in real time to influence the Unity application. Despite this, Trigno Discover is an excellent tool for general data collection, and it is good have proficiency in it.</p>
+</div>
 </section>
-<section id="developing-hypotheses">
-<h2>Developing Hypotheses<a class="headerlink" href="#developing-hypotheses" title="Link to this heading"></a></h2>
+</section>
+<section id="connecting-to-unity">
+<h2>Connecting to Unity<a class="headerlink" href="#connecting-to-unity" title="Link to this heading"></a></h2>
+<p>Now that you have your sensors connected and are ready to begin using them, it’s time to create a Unity application. Follow the steps below to get set up for Unity development with the Delsys API.</p>
+<a class="reference internal image-reference" href="../../_images/UnityLogin.png"><img alt="An Image of the Unity login screen." src="../../_images/UnityLogin.png" style="width: 800px;" /></a>
+<ol class="arabic simple">
+<li><p>Launch Unity Hub and login to your Unity account. If you do not have either of these completed, see <a class="reference internal" href="../m1/install_unity.html#new-to-install"><span class="std std-ref">Installing Unity</span></a>.</p></li>
+</ol>
+<a class="reference internal image-reference" href="../../_images/EmptyProjects.png"><img alt="An Image of the projects tab in Unity Hub." src="../../_images/EmptyProjects.png" style="width: 800px;" /></a>
+<ol class="arabic simple" start="2">
+<li><p>On the sidebar on the left side of the application, select the <em>Projects</em> tab.</p></li>
+<li><p>On the top right of the application, press the button titled <em>New project</em>.</p></li>
+</ol>
+<a class="reference internal image-reference" href="../../_images/NewProject3D.png"><img alt="An Image of the 3D project template in Unity Hub." src="../../_images/NewProject3D.png" style="width: 800px;" /></a>
+<ol class="arabic simple" start="4">
+<li><p>From here you can select any template project type you would like, depedning on the context of the application you are creating. For this basic introduction to the integration, we will use the <em>3D Core</em> template.</p></li>
+<li><p>Likewise to the projects you created previously in this set of tutorials, you can name the project whatever you like and choose where it is saved.</p></li>
+<li><p>Click the <em>Create project</em> button in the bottom right corner of the application to create the project and launch the Unity editor.</p></li>
+</ol>
+<a class="reference internal image-reference" href="../../_images/PackageManager3D.png"><img alt="An Image of navigating to the package manager in the new 3D project." src="../../_images/PackageManager3D.png" style="width: 800px;" /></a>
+<ol class="arabic simple" start="7">
+<li><p>In the editor, navigate to the <em>Window</em> option in the top ribbon, and select <em>Package Manager</em> from the dropdown menu.</p></li>
+</ol>
+<a class="reference internal image-reference" href="../../_images/Nuget.png"><img alt="An Image of adding the NuGet package to Unity." src="../../_images/Nuget.png" style="width: 800px;" /></a>
+<ol class="arabic simple" start="8">
+<li><p>In the package manager, click the “+” icon in the top left, and select the <em>Add package from git URL</em> option. Then, enter the following Github link and press <em>Add</em> to install NuGetForUnity: <code class="docutils literal notranslate"><span class="pre">https://github.com/GlitchEnzo/NuGetForUnity.git?path=/src/NuGetForUnity</span></code>. This is a package manager built to run inside Unity that will allow you to install the Delsys packages.</p></li>
+<li><p>Download the <strong>Delsys API</strong>. You will need this to collect data from your sensors and send that data to Unity. You can find the API <a class="reference external" href="http://data.delsys.com/DelsysServicePortal/api/index.html">here</a>, along with some tutorials, examples, and useful documentation to help you get acquainted to using it.</p></li>
+<li><p>Extract the downloaded zipped folder. You can do this by right clicking on it in the file explorer and selecting the <em>Extract All…</em> option from the dropdown.</p></li>
+</ol>
+</section>
+<section id="a-simple-unity-application">
+<h2>A Simple Unity Application<a class="headerlink" href="#a-simple-unity-application" title="Link to this heading"></a></h2>
 </section>
 <section id="section-review">
 <h2>Section Review<a class="headerlink" href="#section-review" title="Link to this heading"></a></h2>
@@ -121,7 +198,7 @@
   <hr/>
 
   <div role="contentinfo">
-    <p>&#169; Copyright 2024, Ethan Matzek, Tyler Yankee, Odin Kohler, Maryangela White, Matt Duver, Robert Licata, Niall Pepper, Sean Banerjee, Natasha Kholgade Banerjee.</p>
+    <p>&#169; Copyright 2024, E. Matzek, T. Yankee, O. Kohler, M. White, M. Duver, R. Licata, N. Pepper, R. Almutairi, N.K. Banerjee, and S. Banerjee.</p>
   </div>
 
   Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a

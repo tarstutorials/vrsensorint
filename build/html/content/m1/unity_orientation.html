@@ -47,10 +47,14 @@
   </form>
 </div>
         </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
-              <ul class="current">
+              <p class="caption" role="heading"><span class="caption-text">Introduction</span></p>
+<ul>
 <li class="toctree-l1"><a class="reference internal" href="introduction.html">Introduction to the Course</a></li>
 <li class="toctree-l1"><a class="reference internal" href="contact_page.html">Contact the Authors</a></li>
 <li class="toctree-l1"><a class="reference internal" href="install_unity.html">Installing Unity</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Tutorial Modules</span></p>
+<ul class="current">
 <li class="toctree-l1 current"><a class="current reference internal" href="#">Getting Started With Unity</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="#creating-your-first-project">Creating Your First Project</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#understanding-the-editor">Understanding the Editor</a><ul>
@@ -80,7 +84,11 @@
 <li class="toctree-l1"><a class="reference internal" href="../m4/data_collection.html">Data Collection with Physiological Sensors</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../m5/integration.html">Integration with VR</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../m6/data_analysis.html">Data Analysis</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Events and Additional Resources</span></p>
+<ul>
 <li class="toctree-l1"><a class="reference internal" href="../m7/workshop.html">Hands-on Workshop</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../m7/error_handling.html">Troubleshooting Resources</a></li>
 </ul>
 
         </div>
@@ -137,7 +145,7 @@
 <h2>Understanding the Editor<a class="headerlink" href="#understanding-the-editor" title="Link to this heading"></a></h2>
 <div class="video_wrapper" style="">
 <iframe allowfullscreen="true" src="https://www.youtube.com/embed/xT6z6wliBq0" style="border: 0; height: 345px; width: 560px">
-</iframe></div><p><strong>[Click on the above video for our YouTube tutorial on Creating a New Unity Project.]</strong></p>
+</iframe></div><p><strong>[Click on the above video for our YouTube tutorial on the main aspects of the Unity Editor.]</strong></p>
 <p>The Unity Editor can seem overwelming at first, but it can actually be broken down into four simple pieces. The image below visualizes these pieces.</p>
 <a class="reference internal image-reference" href="../../_images/Unity2DEditorFilled.png"><img alt="An Image of the Unity Editor: Highlighted are: Project Window, Inspector Window, Scene View, and Object Hierarchy." src="../../_images/Unity2DEditorFilled.png" style="width: 800px;" /></a>
 <section id="project-window">
@@ -175,10 +183,9 @@
 <section id="setting-up-for-mobile-development">
 <span id="to-mobile-setup"></span><h2>Setting Up For Mobile Development<a class="headerlink" href="#setting-up-for-mobile-development" title="Link to this heading"></a></h2>
 <p>Setting up for mobile development is mostly done for you when creating a project using the <em>2D Mobile</em> template. However, there are two important menus you should know about that may help you with any last minute configurations you want to make. These are the build settings and project settings menus. The build settings menu can be found by clicking the button labeled <em>File</em> on the ribbon at the top of the editor. From there, a dropdown menu will appear, where you can select the <em>Build Settings</em> option. In the same ribbon, there is a button labeled <em>Edit</em>, where a similar dropdown menu contains a button for <em>Project Settings</em>.</p>
-<div class="video_wrapper" style="">
-<iframe allowfullscreen="true" src="https://www.youtube.com/embed/UpcgKQ234s8" style="border: 0; height: 345px; width: 560px">
-</iframe></div><p><strong>[Click on the above video for our YouTube tutorial on Creating a New Unity Project.]</strong></p>
+<a class="reference internal image-reference" href="../../_images/build_settings.png"><img alt="An Image of the Build Settings menu in the Unity Editor." src="../../_images/build_settings.png" style="width: 800px;" /></a>
 <p>The build settings menu is used for configuring how you want to package the final application. For example, it lets you change what platform you are building for, such as Windows or Android. While you are working on the mobile project, you should keep its build set to Windows. This lets you test the project directly on your computer. However, when you are done developing and want to port it to mobile, you can change the build setting to Android or iOS so it can run on a mobile device.</p>
+<a class="reference internal image-reference" href="../../_images/project_settings.png"><img alt="An Image of the Build Settings menu in the Unity Editor." src="../../_images/project_settings.png" style="width: 400px;" /></a>
 <p>The project settings menu allows you to change a multitude of settings for your project, and additionally provides access to settings for any packages you have added to the project. The template has done a good job of setting up the project settings for you, so you don’t need to worry about it for this simple tutorial. However, in more advanced tutorials which we will get to later, project settings can be important for optimizing the application.</p>
 <p>For now, you can look around at both menus to see what kind of settings exist, but do not change any without knowing what they do, as this could negatively affect your project. If you want to learn more about a specific build or project setting, please check the Unity documentation  for the <a class="reference external" href="https://docs.unity3d.com/Manual/comp-ManagerGroup.html">project settings</a> and <a class="reference external" href="https://docs.unity3d.com/Manual/BuildSettings.html">build settings</a>.</p>
 </section>
@@ -187,7 +194,7 @@
 <p>Here are some basic techniques for mobile development in Unity. Be sure to mess around with all of these techniques until you feel comfortable with them. The <a class="reference external" href="https://docs.unity.com/">Unity documentation</a> contains additional in depth information about each, but this tutorial should give you all the fundamentals you need to get started. Additonally, watch the video below to see a mobile project created in Unity. You will see videos for the scripting of the project in the scripting section.</p>
 <div class="video_wrapper" style="">
 <iframe allowfullscreen="true" src="https://www.youtube.com/embed/FGuuR0CaXLw" style="border: 0; height: 345px; width: 560px">
-</iframe></div><p><strong>[Click on the above video for our YouTube tutorial on Creating a New Unity Project.]</strong></p>
+</iframe></div><p><strong>[Click on the above video for an overview of our mobile app.]</strong></p>
 <section id="object-creation">
 <span id="oh-to-oc"></span><h3>Object Creation<a class="headerlink" href="#object-creation" title="Link to this heading"></a></h3>
 <p><code class="docutils literal notranslate"><span class="pre">GameObject</span></code> s are the building blocks of Unity, and can be created using the “+” button in the top left of the window. Additionally, you can right click anywhere in the window to open the <code class="docutils literal notranslate"><span class="pre">GameObject</span></code> creation menu. There are many built in <code class="docutils literal notranslate"><span class="pre">GameObject</span></code> types, but savvy users can create their own type of object if it is not available. An object can be a “parent” or “child” of another object, and each object can have many levels of parents and children, creating “grandparents” and “grandchildren”, so to speak. The purpose of these relationships are that some actions, such as transforming an object, will apply to the children of the object as well. For example, if you had a snowman object, but wanted to add a hat on the snowman, making the hat a child of the snowman would move the hat along with it. <code class="docutils literal notranslate"><span class="pre">GameObject</span></code> s can have components added to them, such as scripts or colliders, that control how they interact with the scene. Lastly, Unity uses two different coordinate systems: world coordinates and local coordinates. By default, an objects coordinate values are in world coordinates, which are the general coordinates for the scene. However, if the object is a child of another object, it will use a coordinate system relative to that object called local coordinates.</p>
@@ -197,7 +204,7 @@
 <p>C# is a programming language created by Microsoft that is used in Unity. It is very similar to Java and C++, so if you have any experience with those, you will find it intuitive. Teaching programming is beyond the scope of this tutorial, but there are some aspects specific to Unity scripts you should know about. Scattered throughout this section are videos explaining the scripts for the mobile project mentioned earlier in this tutorial. Watch them for some additional information. The code used will be linked beneath the video, and you are free to use it to develop your own similar project.</p>
 <div class="video_wrapper" style="">
 <iframe allowfullscreen="true" src="https://www.youtube.com/embed/sMAZMGS8JF4" style="border: 0; height: 345px; width: 560px">
-</iframe></div><p><strong>[Click on the above video for our YouTube tutorial on Creating a New Unity Project. See code below.]</strong></p>
+</iframe></div><p><strong>[Click on the above video for our YouTube tutorial going through the Player Controller Script in our mobile app.]</strong></p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">using</span> <span class="n">System</span><span class="o">.</span><span class="n">Collections</span><span class="p">;</span>
 <span class="n">using</span> <span class="n">System</span><span class="o">.</span><span class="n">Collections</span><span class="o">.</span><span class="n">Generic</span><span class="p">;</span>
 <span class="n">using</span> <span class="n">UnityEngine</span><span class="p">;</span>
@@ -232,7 +239,7 @@
 <p>First, Unity scripts are the most unrestricted way of controlling how an object works, but many of the simple actions that can be implemented using scripts can be done via the inspector instead, avoiding the need for any coding knowledge. If you do want to make an object do something and can’t seem to find a way to do it with what is provided in the inspector, <em>then</em> you should turn to scripting. To attach a script to a <code class="docutils literal notranslate"><span class="pre">GameObject</span></code> you can either drag it from the project window into the inspector while the object is selected, or add it using the <em>Add Component</em> button. Double clicking on a script in the project window will open it in your chosen script editor (the default is Visual Studio). A prewritten template for a script is provided by Unity. You will notice that there are two prebuilt functions that are empty: <code class="docutils literal notranslate"><span class="pre">Start</span></code> and <code class="docutils literal notranslate"><span class="pre">Update</span></code>. <code class="docutils literal notranslate"><span class="pre">Start</span></code> is called once, when the object is first loaded in, and <code class="docutils literal notranslate"><span class="pre">Update</span></code> is called once every frame of the game. There are additional functions built into Unity, and every <code class="docutils literal notranslate"><span class="pre">GameObject</span></code> can access these by extending the <a class="reference external" href="https://docs.unity3d.com/ScriptReference/MonoBehaviour.html">MonoBehavior Class</a> which is automatically done for you.</p>
 <div class="video_wrapper" style="">
 <iframe allowfullscreen="true" src="https://www.youtube.com/embed/V8K47wKSYRM" style="border: 0; height: 345px; width: 560px">
-</iframe></div><p><strong>[Click on the above video for our YouTube tutorial on Creating a New Unity Project. See code below]</strong></p>
+</iframe></div><p><strong>[Click on the above video for our YouTube tutorial going through the Game Controller Script in our mobile app.]</strong></p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">using</span> <span class="n">System</span><span class="o">.</span><span class="n">Collections</span><span class="p">;</span>
 <span class="n">using</span> <span class="n">System</span><span class="o">.</span><span class="n">Collections</span><span class="o">.</span><span class="n">Generic</span><span class="p">;</span>
 <span class="n">using</span> <span class="n">UnityEngine</span><span class="p">;</span>
@@ -273,7 +280,7 @@
 <p>If you ever get stuck while programming, don’t forget to use the <a class="reference external" href="https://learn.microsoft.com/en-us/dotnet/csharp/">C# documentation</a>. Also, forums such as the <a class="reference external" href="https://forum.unity.com/">Unity forum</a> and <a class="reference external" href="https://stackoverflow.com/">Stack Overflow</a> are excellent resources to expand your scripting knowledge. The best way to improve at scripting is to keep practicing. There are no simple words to make you understand it, it is a journey in and of itself. Luckily, for small scale projects you can often avoid it entirely.</p>
 <div class="video_wrapper" style="">
 <iframe allowfullscreen="true" src="https://www.youtube.com/embed/bG2EUjmzxOI" style="border: 0; height: 345px; width: 560px">
-</iframe></div><p><strong>[Click on the above video for our YouTube tutorial on Creating a New Unity Project. See code below]</strong></p>
+</iframe></div><p><strong>[Click on the above video for our YouTube tutorial going through the Treasure Controller Script in our mobile app.]</strong></p>
 <div class="highlight-c# notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span><span class="k">using</span><span class="w"> </span><span class="nn">System.Collections</span><span class="p">;</span>
 <span class="linenos"> 2</span><span class="k">using</span><span class="w"> </span><span class="nn">System.Collections.Generic</span><span class="p">;</span>
 <span class="linenos"> 3</span><span class="k">using</span><span class="w"> </span><span class="nn">UnityEngine</span><span class="p">;</span>
@@ -308,16 +315,18 @@
 <section id="camera-system">
 <h3>Camera System<a class="headerlink" href="#camera-system" title="Link to this heading"></a></h3>
 <p>The camera system in Unity is very dependent on the application you desire to create. For instance, one project may involve having a player character serve as the main camera, while another may simply have a stationary overhead camera. Regardless of how you want to set up your camera system, Unity has the tools to help you do it. You can add a camera object by creating an empty object and attaching the “Camera” component to it. You can move this camera around in the scene to position it how you’d like, and can even see a pop-up when the camera is selected that shows its perspective. By default, Unity has a camera set up for you when you create a scene. In simple projects, the default camera is usually enough, but you may have to move it around to get it to your liking.</p>
-<p>Practice moving the camera around, and pressing the play button to see how changing the camera position affects the visuals of the game.</p>
+<p>Practice moving the camera around, and pressing the play button to see how changing the camera position affects the visuals of the game. A an in-depth description of the camera component can be found <a class="reference external" href="https://docs.unity3d.com/Manual/class-Camera.html">here</a>.</p>
 </section>
 <section id="physics-system">
 <span id="to-physics"></span><h3>Physics System<a class="headerlink" href="#physics-system" title="Link to this heading"></a></h3>
 <p>The physics system in Unity is how <code class="docutils literal notranslate"><span class="pre">GameObject</span></code> s interact with one another and with the player. There are different physics systems for 2D and 3D games. In this introduction, we’ll be refering to the physics used in a 2D game. By default, the physics system is ignored for most objects but this can be changed by adding specific physics-based components to the object. The main two physics-based components are colliders and rigid bodies. Colliders are invisible, and allow objects to collide with other objects. You can use scripting to make events happen when colliders are triggered, making them very useful for interaction. Rigid bodies are what allow physics-based events to occur with the object. You need a rigid body on an object if you want any physics to occur with it <strong>including</strong> collisions. Rigid bodies also allow an object to have mass and react to gravity. These two components are all you need to get started with Unity’s physics system, but there is much more to explore in the 2D physics system that you can explore in the <a class="reference external" href="https://docs.unity3d.com/Manual/Physics2DReference.html">documentation</a>.</p>
+<p>You can add either component to a <code class="docutils literal notranslate"><span class="pre">GameObject</span></code> in the Inspector Window while that object is selected by using the <em>Add Component</em> button. There are many parameters associated with both components that can be changed here as well, and you can find out more about each in the documentation linked in the previous paragraph.</p>
 <p>You are encouraged to try adding colliders and rigid bodies to objects, and seeing how they respond when the game is played.</p>
 </section>
 <section id="scenes">
 <h3>Scenes<a class="headerlink" href="#scenes" title="Link to this heading"></a></h3>
 <p>Throughout your Unity practice, the canvas that you have been working on is called the scene. By default, Unity projects begin with a single scene, called <em>Main Scene</em>. More complex Unity applications can have multiple scenes, and each has its own set of <code class="docutils literal notranslate"><span class="pre">GameObject</span></code> s. While there are ways to have interactions persist between scenes, for the most part scenes remain seperate from one another. Think of scenes like the levels of a game, for example, you could have a different scene for the main menu, level 1, level 2, and so on. For simple applications, most work can be done in a single scene. You can access scenes from the <code class="docutils literal notranslate"><span class="pre">~/Assets/Scenes</span></code> in the project window. You will see more about multi-scene applications in a later part of this tutorial.</p>
+<p>Moving around the scene to place <code class="docutils literal notranslate"><span class="pre">GameObject</span></code> s and build your aplication is necessary to get the most out of the scene view. Some important hotkeys for this movement are the w, a, s, and d keys which allow you to move around the scene, and the shift key to inrease or decrease your movement speed. You can find out more about these controls <a class="reference external" href="https://docs.unity3d.com/2019.1/Documentation/Manual/SceneViewNavigation.html">here</a>. Additional useful shortcuts for the Unity Editor as a whole are also useful to learn, and the <a class="reference external" href="https://docs.unity3d.com/2018.1/Documentation/Manual/UnityHotkeys.html">Hotkey Documentation</a> can help you learn the ones that work on your operating system.</p>
 </section>
 </section>
 <section id="section-review">
@@ -380,7 +389,7 @@ shuffle_answers: false
   <hr/>
 
   <div role="contentinfo">
-    <p>&#169; Copyright 2024, Ethan Matzek, Tyler Yankee, Odin Kohler, Maryangela White, Matt Duver, Robert Licata, Niall Pepper, Sean Banerjee, Natasha Kholgade Banerjee.</p>
+    <p>&#169; Copyright 2024, E. Matzek, T. Yankee, O. Kohler, M. White, M. Duver, R. Licata, N. Pepper, R. Almutairi, N.K. Banerjee, and S. Banerjee.</p>
   </div>
 
   Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
