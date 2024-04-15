@@ -62,8 +62,8 @@ There are options to access the data with column names, but this becomes inconve
    TIME_CUTOFF = 15000
 
    df = np.loadtxt('sample_semg.csv', delimiter=',', dtype=float, max_rows=TIME_CUTOFF)
-   emg_channels = b30_df[:,[1,2]]
-   time = b30_df[:,0]
+   emg_channels = df[:,[1,2]]
+   time = df[:,0]
    print(df.shape, emg_channels.shape, time.shape)
 
 Notice that we have 15,000 rows and 3 columns. Each row represents the signal values read from the sensor at a particular time, and the columns denote time (seconds), right bicep EMG (volts), and left bicep EMG (volts). Checking the shape is always a good step to ensure there wasn't an error in the data loading process.
@@ -271,182 +271,109 @@ LibEMG allows you to compute feature groups or singular features at a time; as a
 Heart Rate Analysis
 -------------------
 
+To work through this part of the tutorial, we'll use a sample file where a person repeatedly lifted 8 pound freeweights with both arms (at the same time). Their heart rate was measured using a Polar H10 sensor. The data can be downloaded :download:`here <sample_ecg.csv>` if you'd like to follow along!
 
-^^^^^^^^^^^^^^^^^^^^^^^
-Raw Data: Load and Plot 
-^^^^^^^^^^^^^^^^^^^^^^^
-afaw
-Please See EMG load and plot for more info on loading. 
+^^^^^^^^^^^^^
+Load Raw Data
+^^^^^^^^^^^^^
 
-The code below loads our data collected in :ref:`analysis_to_collect`. 
-
-.. code-block:: python
-	:linenos:
-	
-	import numpy as np 
-
-	CUT_OFF = 1000 #make sure this is divisible by the sample rate 
-
-	ekg_data = np.loadtxt('raw_csv/CHANGE NAME', delimiter=',', dtype=float, max_rows=CUT_OFF)
-.. 
-
-Notice that we have X rows any Y columns. Each row represents the signal values read from the sensor at a 
-particular time and the columns represent different channels of the sensor, it is possible that there is only one channel. Its important to note that since the values are 
-stored sequentially without any time information it is IMPORTANT to remember the sampling rate which allows the various functions to have a time reference.
-
-We recommend that you do a quick sanity check and graph the data to make sure it loaded correctly 
+Similar to the EMG section above, we'll start by loading the raw data.
 
 .. code-block:: python
-	"""
-	NOTE TO SELF
-	This plot will not show the PQRST complex as it is too zoomed out
-	once I get data from the EKG fix this 
-	"""
-	import numpy as np
-	import matplotlib.pyplot as plt
-	
-	channel = 1	
+   :linenos:
 
-	plt.plot(ekg_data[:,channel])
-	plt.xlabel('Time')
-	plt.ylabel('Value')
-	plt.title('EKG plot')
-	plt.show()
-..
+   import numpy as np 
+   
+   TIME_CUTOFF = 1000
+   
+   ecg_data = np.loadtxt('sample_ecg_data.csv', delimiter=',', dtype=float)
+   print(ecg_data.shape)
 
-NOTE TO SELF add image of PQRST complex
-
-Your ECG/EKG signal is made up of PQRST complexes each a measure of the electrical activity within the heart that during the course of a single beat, from start to finish. 
-The PQRST signal has three distinct parts the P wave, the QRS complex, and the T wave.
-
-* **The P Wave** represents the depolarization of the atria. This causes the atria to contract pushing blood into the ventricles.
-
-* **The QRS complex** represents the depolarization of the ventricles. This causes the ventricles to contract pumping blood throughout the body.
-
-* **The T wave** represents the re polarization of the ventricles. This causes the ventricles to relax allowing them to fill back up with blood. 
-
-In order to determine the heart rate and heart rate variation the time from the beat to beat time is needed, the distance between any two consecutive QRS peaks 
-is the time between those beats. The QRS complexes have this property because the peak indicates the moment that the heart expels the blood contained within its ventricles. 
+Notice that we have 1,241 rows (and only 1 column, which is implied). Each row represents the signal values read from the sensor at a particular time. Since we don't have any timestamp information in this case, it's important to remember the sampling rate of the sensor (in our case, 130 Hz).
 
 ^^^^^^^^^^^^^
 Preprocessing
 ^^^^^^^^^^^^^
 
-The preprocessing if very easy as the `NeuroKit2 <https://neuropsychology.github.io/NeuroKit/index.html>`_ library does near everything for us. 
-All you have to do is call ``nk.ecg_process(ekg_data[:,1], sampling_rate=x)`` and your done. The function returns two elements
-a dataframe with all the raw and cleaned signal and a dictionary containing miscellaneous info such as peak location.
+To plot the data, we'll pass it through the processing pipeline first. We can do this using the ``ecg_process`` function from NeuroKit2, and then plot with the ``events_plot`` function.
 
-Behind the scenes the ``ecg_process`` function does quite a bit. It uses six helper functions; ``ecg_clean``, ``ecg_peaks``, ``signal_rate``, 
-``ecg_quality``, ``ecg_delineate``, and ``ecg_phase`` which cleans the signal, does peak detection, calculates the heart rate, assesses the signal quality, delineates 
-the QRS complex, and calculates the cardiac phase determination respectively. 
+.. code-block:: python
+   :linenos:
+   
+   import neurokit2 as nk
+   
+   SAMPLE_FREQ = 130
+   
+   signals, info = nk.ecg_process(ecg_data, sampling_rate=SAMPLE_FREQ)
+   rpeaks = info["ECG_R_Peaks"]
+   cleaned_ecg = signals["ECG_Clean"]
+   
+   nk.events_plot(signals, info)
 
-* `ecg_clean <https://neuropsychology.github.io/NeuroKit/functions/ecg.html#ecg-clean>`_ is used to to remove noise from the signal in order to improve peak-detection accuracy.
+.. image:: ../../images/signal_peaks.png
+  :width: 800
+  :alt: Plot of the ECG signal with the R-peaks detected shown as red dotted lines.
 
+Let's take a step back to understand what's going on in the ECG signal, and then we'll return to tackle the code. In general, an ECG signal can be divided into different sections based on what is happening physiologically as the heart beats. One cycle is referred to from start to finish as a PQRST complex, which has three distinct parts:
+
+* **The P Wave** represents the depolarization of the atria. This causes the atria to contract, pushing blood into the ventricles.
+* **The QRS complex** represents the depolarization of the ventricles. This causes the ventricles to contract, pumping blood throughout the body.
+* **The T wave** represents the repolarization of the ventricles. This causes the ventricles to relax, allowing them to fill back up with blood. 
+
+In order to determine the heart rate and heart rate variability, we must determine the time from beat to beat, or the time between two consecutive QRS peaks. So, the red dotted lines on the plot above represent the peaks detected using a very famous algorithm TODO cite.
+
+As for the code from NeuroKit2, the ``ecg_process`` function returns two dataframes: one containing the raw and cleaned signal, and one containing peak locations and some other information. Behind the scenes, this function is actually doing quite a bit! It uses six helper functions:
+
+* `ecg_clean <https://neuropsychology.github.io/NeuroKit/functions/ecg.html#ecg-clean>`_ is used to to remove noise from the signal in order to improve peak detection accuracy.
 * `ecg_peaks <https://neuropsychology.github.io/NeuroKit/functions/ecg.html#ecg-peaks>`_ finds the R-peaks in the QRS complex. 
-
-* `signal_rate <https://neuropsychology.github.io/NeuroKit/functions/ecg.html#ecg-rate>`_ finds the signal rate from a series of peaks, does this by using ``60/period``, where period is the time between peaks.
-
-* `ecg_quality <https://neuropsychology.github.io/NeuroKit/functions/ecg.html#ecg-rate>`_ assesses the quality.
-
+* `signal_rate <https://neuropsychology.github.io/NeuroKit/functions/ecg.html#ecg-rate>`_ finds the signal rate from a series of peaks by using ``60/period``, where period is the time between peaks.
+* `ecg_quality <https://neuropsychology.github.io/NeuroKit/functions/ecg.html#ecg-quality>`_ assesses the quality by extracting a variety of features.
 * `ecg_delineate <https://neuropsychology.github.io/NeuroKit/functions/ecg.html#ecg-delineate>`_ delineates the QRS complex from the PQRST wave.
+* `ecg_phase <https://neuropsychology.github.io/NeuroKit/functions/ecg.html#ecg-phase>`_ computes the cardiac phase, i.e., the systole (heart empties) and diastole (heart fills).
 
-* `ecg_phase <https://neuropsychology.github.io/NeuroKit/functions/ecg.html#ecg-phase>`_ computes the cardiac phase i.e. the systole (heart empties) and diastole (heart fills).
+^^^^^^^^
+Analysis
+^^^^^^^^
 
-^^^^^^^^^^^^^^^^^^
-Analyzation 
-^^^^^^^^^^^^^^^^^^
-
-Analyzing the data to get the heart rate variability (HRV) is just as easy as the preprocessing Using just a few lines using `NeuroKit2 <https://neuropsychology.github.io/NeuroKit/examples/ecg_hrv/ecg_hrv.html>`_. you can use the aformentioned 
-datafrane to calculate the HRV in three ways; time-domain analysis, frequency-domain analysis, or the non-linear domain analysis. Heart rate variability can tell us a number of things; A decrease in HRV during 
-training can indicate fatigue, a significant decrease in HRV can indicate over training, and you can compare your current HRV to your baseline to determine if you are sufficiently recovered. Generally speaking those 
-with a high baseline HRV have better cardiovascular fitness and with a lower HRV have worse cardiovascular fitness. 
-
-Note: normal to normal is effectively the same as R peak to R peak and are often used interchangeable. The only difference is normal to normal
-implies that the signal has been cleaned where as R to R could mean the signal is either cleaned or uncleaned.
-
-Neurokit2`s `hrv_time <https://neuropsychology.github.io/NeuroKit/functions/hrv.html#hrv-time>`_ returns a data frame containing 25 pieces of data. The ones that are important to us 
-are standard deviation of normal to normal(SDNN) and the standard deviation of average normal to normal (SDANN). SDNN is used to measure the heart rate variance over long periods of 
-time i.e. 24 hours, it does this by calculating the standard deviation of the distance between successive R peaks. SDANN is used to measure heart rate variance over shorter periods of time i.e. 
-five minutes, it does this by take ing the standard deviation of the average between successive R peaks. While your heart rate variability is effected by age, gender, and race generally
-those with a HRV of 50ms or less are considered unhealthy, those with a HRV between 50-100ms have compromised health, and those with 100ms or more are healthy.  
-
-
-Neurokit2`s `hrv_frequency <https://neuropsychology.github.io/NeuroKit/functions/hrv.html#hrv-frequency>`_ computes ten HRV frequency domain metrics. Two important metrics are the high frequency (HF)
-and the low frequency (LF). The HF tells about one`s parasympathetic nervous system, which is responsible for your bodies functions during periods of relaxation. The LF tells us about one`s
-sympathetic nervous system, which is responsible for speeding up one`s heart rate and slowing down your digestion along with other things that occur during a "fight or flight" response. Although
-we will not being using `hrv_frequency` some basic code using it is supplied below.
-
-Neurokit2`s `hrv_nonlinear <https://neuropsychology.github.io/NeuroKit/functions/hrv.html#hrv-nonlinear>`_ computes 32 different metrics. Of these 32 metrics the standard deviation perpendicular 
-to the line of identity (SD1) is the most applicable to our application. Very simply it can be used as a short term measure of heart rate variability, but we will not be using it because it is 
-equivalent to the root mean square of successive differences that `hrv_time` calculates. Although we will not being using `hrv_nonlinear` some basic code using it is supplied below.
+We can do more with NeuroKit2 to look at heart rate and heart rate variability from the ECG signal. First, let's use the ``ecg_plot`` function to get some more information on the processed signal from above.
 
 .. code-block:: python
-	import numpy as np
-	import matplotlib.pyplot as plt
-	
-	peaks, info = nk.ecg_peaks(dataframe["ECG_Clean"], sampling_rate=100)
-	
-	hrv_time = nk.hrv_time(peaks, sampling_rate=100, show=True)
-	hrv_time
+   :linenos:
 
-	hrv_freq = nk.hrv_frequency(peaks, sampling_rate=100, show=True, normalize=True)
-	hrv_freq
+   import neurokit2 as nk
 
-	hrv_nonlinear = nk.hrv_nonlinear(peaks, sampling_rate=100, show=True)
-	hrv_nonlinear
-..
+   nk.ecg_plot(signals, info)
 
-You can also use `NeuroKit2 <https://neuropsychology.github.io/NeuroKit/examples/ecg_heartbeats/ecg_heartbeats.html>`_ to extract and visualize the average of the individual heart beats. This 
-can tell us important information about the user such as the average length of their heart beat and if their is any abnormalities within their beats.
+.. image:: ../../images/ecg_summary.png
+  :width: 800
+  :alt: Plots of the ECG signal showing signal quality and raw and cleaned signal (top left), heart rate (bottom left), and individual heart beats (right).
 
-.. code-block:: python
-	import numpy as np
-	import matplotlib.pyplot as plt
-	
-	rpeaks = info["ECG_R_Peaks"]
-	cleaned_ecg = signals["ECG_Clean"]
-	
-	#this plots the entire EKG signal
-	plot = nk.events_plot(rpeaks, cleaned_ecg)
-	
-	#this plots the average of all the heart beats
-	epochs = nk.ecg_segment(cleaned_ecg, rpeaks=None, sampling_rate=250, show=True)
-..
+This combined plot shows several pieces of information:
 
-Additionally `NeuroKit2 <https://neuropsychology.github.io/NeuroKit/examples/ecg_delineate/ecg_delineate.html>`_ allows you to locate and visualize the P, Q, S, T waves in the EKG.
+* It computes the heart rate over time from the ECG signal.
+* It plots individual heart beats --- i.e., PQRST complexes --- over each other and shows the average wave shape. Looking at individual heart beats is valuable to see any abnormalities within beats.
+
+We can also look at heart rate variability (HRV), which is explained in more detail in :ref:`analysis_to_sensors`. We can look for a few different things with HRV: a decrease in HRV during training can indicate fatigue, and a significant decrease can even indicate over-training. Generally, a higher baseline HRV indicates a higher level of cardiovascular fitness.
+
+We can analyze HRV in three different domains: with respect to time, frequency, or non-linear analysis.
+
+* `hrv_time <https://neuropsychology.github.io/NeuroKit/functions/hrv.html#hrv-time>`_ returns a data frame containing 25 pieces of data. The ones that are important to us are standard deviation of normal to normal (SDNN) and the standard deviation of average normal to normal (SDANN). SDNN is used to measure the heart rate variance over long periods of time, while SDANN is used over shorter periods (e.g., 24 hours versus five minutes). While HRV is effected by demographic factors such as age, gender, and race, generally those with a HRV of 50ms or less are considered unhealthy, those with a HRV between 50-100ms have compromised health, and those with 100ms or more are healthy. 
+* `hrv_frequency <https://neuropsychology.github.io/NeuroKit/functions/hrv.html#hrv-frequency>`_ computes ten HRV frequency domain metrics. Two important metrics are the high frequency (HF) and the low frequency (LF). HF is an indicator for the parasympathetic nervous system, which is responsible for the body's functions during periods of relaxation, while LF is an indicator for the sympathetic nervous system, which is responsible for speeding up heart rate and slowing down digestion.
+* `hrv_nonlinear <https://neuropsychology.github.io/NeuroKit/functions/hrv.html#hrv-nonlinear>`_ computes 32 different metrics. Of these, the standard deviation perpendicular to the line of identity (SD1) is the most applicable to our application. Very simply, it can be used as a short term measure of HRV. It is actually equivalent to the root mean square of successive differences calculated by ``hrv_time``.
+
+The code to compute these metrics is shown below.
 
 .. code-block:: python
-	import neurokit2 as nk
-	import numpy as np
-	import pandas as pd
+   :linenos:
 
-	_, rpeaks = nk.ecg_peaks(ecg_signal, sampling_rate=1000)
-	
-	#visualize all of the peaks
-	plot = nk.events_plot(rpeaks['ECG_R_Peaks'], ecg_signal)
-	
-	#visualize the first 5 peaks
-	plot = nk.events_plot(rpeaks['ECG_R_Peaks'][:5], ecg_signal[:6000])
-..
+   import numpy as np
+   import matplotlib.pyplot as plt
 
-As previously mention NeuroKit2 uses `ecg_delineate <https://neuropsychology.github.io/NeuroKit/functions/ecg.html#ecg-delineate>`_ to separate the P wave, the QRS complex, and the T wave. 
-in order to visualize the the whole PQRST complex we will have to use `ecg_delineate` to identity each component. Separating and visualize these waves individually is important to the feild of EKG
-morphology once seperated doctors are able to examine the waves and determine whether or not a patient has any number of heart issues. 
-
-.. code-block:: python
-	import neurokit2 as nk
-	import numpy as np
-	import pandas as pd
-
-	_, waves_peak = nk.ecg_delineate(ecg_signal, rpeaks, sampling_rate=1000, method="peak")
-	
-	# Zooming into the first 3 R-peaks, with focus on T_peaks, P-peaks, Q-peaks and S-peaks
-	plot = nk.events_plot([waves_peak['ECG_T_Peaks'][:3], 
-                       waves_peak['ECG_P_Peaks'][:3],
-                       waves_peak['ECG_Q_Peaks'][:3],
-                       waves_peak['ECG_S_Peaks'][:3]], ecg_signal[:4000])
-	
-..
+   SAMPLE_FREQ = 130
+   
+   hrv_time = nk.hrv_time(peaks, sampling_rate=SAMPLE_FREQ, show=True)
+   hrv_freq = nk.hrv_frequency(peaks, sampling_rate=SAMPLE_FREQ, show=True, normalize=True)
+   hrv_nonlinear = nk.hrv_nonlinear(peaks, sampling_rate=SAMPLE_FREQ, show=True)
 
 ------------------------------------
 Overview of Data Analysis Techniques
