@@ -305,9 +305,6 @@ To plot the data, we'll pass it through the processing pipeline first. We can do
    SAMPLE_FREQ = 130
    
    signals, info = nk.ecg_process(ecg_data, sampling_rate=SAMPLE_FREQ)
-   rpeaks = info["ECG_R_Peaks"]
-   cleaned_ecg = signals["ECG_Clean"]
-   
    nk.events_plot(signals, info)
 
 .. image:: ../../images/signal_peaks.png
@@ -344,6 +341,12 @@ We can do more with NeuroKit2 to look at heart rate and heart rate variability f
 
    nk.ecg_plot(signals, info)
 
+   # to extract the data shown in the plot
+   rpeaks = info["ECG_R_Peaks"]
+   cleaned_ecg = signals["ECG_Clean"]
+   hr = signals["ECG_Rate"]
+
+
 .. image:: ../../images/ecg_summary.png
   :width: 800
   :alt: Plots of the ECG signal showing signal quality and raw and cleaned signal (top left), heart rate (bottom left), and individual heart beats (right).
@@ -355,7 +358,7 @@ This combined plot shows several pieces of information:
 
 We can also look at heart rate variability (HRV), which is explained in more detail in :ref:`analysis_to_sensors`. We can look for a few different things with HRV: a decrease in HRV during training can indicate fatigue, and a significant decrease can even indicate over-training. Generally, a higher baseline HRV indicates a higher level of cardiovascular fitness.
 
-We can analyze HRV in three different domains: with respect to time, frequency, or non-linear analysis.
+HRV can be analyzed in three different domains: with respect to time, frequency, or non-linear analysis.
 
 * `hrv_time <https://neuropsychology.github.io/NeuroKit/functions/hrv.html#hrv-time>`_ returns a data frame containing 25 pieces of data. The ones that are important to us are standard deviation of normal to normal (SDNN) and the standard deviation of average normal to normal (SDANN). SDNN is used to measure the heart rate variance over long periods of time, while SDANN is used over shorter periods (e.g., 24 hours versus five minutes). While HRV is effected by demographic factors such as age, gender, and race, generally those with a HRV of 50ms or less are considered unhealthy, those with a HRV between 50-100ms have compromised health, and those with 100ms or more are healthy. 
 * `hrv_frequency <https://neuropsychology.github.io/NeuroKit/functions/hrv.html#hrv-frequency>`_ computes ten HRV frequency domain metrics. Two important metrics are the high frequency (HF) and the low frequency (LF). HF is an indicator for the parasympathetic nervous system, which is responsible for the body's functions during periods of relaxation, while LF is an indicator for the sympathetic nervous system, which is responsible for speeding up heart rate and slowing down digestion.
