@@ -317,7 +317,7 @@ Let's take a step back to understand what's going on in the ECG signal, and then
 * **The QRS complex** represents the depolarization of the ventricles. This causes the ventricles to contract, pumping blood throughout the body.
 * **The T wave** represents the repolarization of the ventricles. This causes the ventricles to relax, allowing them to fill back up with blood. 
 
-In order to determine the heart rate and heart rate variability, we must determine the time from beat to beat, or the time between two consecutive QRS peaks. So, the red dotted lines on the plot above represent the peaks detected using a very famous algorithm TODO cite.
+In order to determine the heart rate and heart rate variability, we must determine the time from beat to beat, or the time between two consecutive QRS peaks. So, the red dotted lines on the plot above represent the peaks detected using one of the wide variety of algorithms that exist for this purpose.
 
 As for the code from NeuroKit2, the ``ecg_process`` function returns two dataframes: one containing the raw and cleaned signal, and one containing peak locations and some other information. Behind the scenes, this function is actually doing quite a bit! It uses six helper functions:
 
