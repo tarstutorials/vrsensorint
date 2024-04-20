@@ -7,6 +7,7 @@
   <title>Unity VR Development &mdash; VRSensorIntegration 0.1 documentation</title>
       <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=80d5e7a1" />
       <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css?v=19f00094" />
+      <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css?v=76b2166b" />
 
   
   <!--[if lt IE 9]>
@@ -18,6 +19,8 @@
         <script src="../../_static/documentation_options.js?v=2709fde1"></script>
         <script src="../../_static/doctools.js?v=888ff710"></script>
         <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+        <script src="../../_static/clipboard.min.js?v=a7894cd8"></script>
+        <script src="../../_static/copybutton.js?v=f281be69"></script>
         <script src="https://cdn.jsdelivr.net/gh/bonartm/quizdown-js@latest/public/build/quizdown.js"></script>
         <script>quizdown.init({"quizdown_js": "https://cdn.jsdelivr.net/gh/bonartm/quizdown-js@latest/public/build/quizdown.js"});</script>
     <script src="../../_static/js/theme.js"></script>
@@ -60,7 +63,7 @@
 <li class="toctree-l2"><a class="reference internal" href="#introduction-to-vr-development">Introduction to VR Development</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#why-unity">Why Unity?</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#creating-a-vr-project">Creating a VR Project</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#pre-project-setup">Pre-Project Setup</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#project-setup">Project Setup</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#essential-packages">Essential Packages</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#project-settings">Project Settings</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#build-settings">Build Settings</a></li>
@@ -153,9 +156,9 @@ but also in building your skills for the upcoming explosion in VR technology.</p
 <li><p>Click the <em>Create project</em> button in the bottom right corner of the application. This will create the project and launch the editor, which will contain a pre-made sample scene for you to start with.</p></li>
 </ol>
 </section>
-<section id="pre-project-setup">
-<h2>Pre-Project Setup<a class="headerlink" href="#pre-project-setup" title="Link to this heading"></a></h2>
-<p>Unlike the simple mobile game you saw in <a class="reference internal" href="../m1/unity_orientation.html#install-to-new"><span class="std std-ref">Getting Started With Unity</span></a>, a VR project will require a larger setup process before you begin work. These steps are not optional, and should be followed closely.</p>
+<section id="project-setup">
+<h2>Project Setup<a class="headerlink" href="#project-setup" title="Link to this heading"></a></h2>
+<p>Unlike the simple mobile game you saw in <a class="reference internal" href="../m1/unity_orientation.html#install-to-new"><span class="std std-ref">Getting Started With Unity</span></a>, a VR project will require a larger setup process before you begin work, involving downloading essential packages, setting the proper project settings, and establishing the correct build settings. These steps are not optional, and should be followed closely.</p>
 <section id="essential-packages">
 <h3>Essential Packages<a class="headerlink" href="#essential-packages" title="Link to this heading"></a></h3>
 <div class="video_wrapper" style="">
@@ -178,12 +181,12 @@ but also in building your skills for the upcoming explosion in VR technology.</p
 <li><p>Verify that the following packages are installed in your project. If all of them are installed, you can skip the rest of these steps - however, the steps below will teach you how to install a package, so if you plan on using additional packages for your project, it is useful information.</p>
 <blockquote>
 <div><ul class="simple">
-<li><p>XR Interaction Toolkit</p></li>
-<li><p>XR Core Utility</p></li>
-<li><p>XR Legacy Input Helpers</p></li>
-<li><p>XR Plug-in Management</p></li>
-<li><p>OpenXR Plugin</p></li>
-<li><p>Oculus XR Plugin</p></li>
+<li><p>XR Interaction Toolkit - A Unity package used to facilitate interactions in VR across multiple headset types.</p></li>
+<li><p>XR Core Utility - A Unity package that offers a variety of classes and methods that are used by many other XR packages.</p></li>
+<li><p>XR Legacy Input Helpers - A Unity package that provides backwards compatability with older headsets and allows the use of older methods of input control.</p></li>
+<li><p>XR Plug-in Management - A Unity package designed to manage the usage of the other XR packages together.</p></li>
+<li><p>OpenXR Plugin - A foundational Unity package that includes the barebones essentials for creating an XR project, such as input handling, headset tracking, and device management. This package is the key to creating any VR application and is what allows Unity to work with VR in general. It is also an open package, meaning that it is generalized to work on many headset types.</p></li>
+<li><p>Oculus XR Plugin - A specialized Unity package that serves an alternative to the OpenXR packages. It offers Meta Quest specific features to be used with the various XR plugins.</p></li>
 </ul>
 </div></blockquote>
 </li>
@@ -267,7 +270,7 @@ but also in building your skills for the upcoming explosion in VR technology.</p
 </section>
 <section id="advanced-techniques-in-vr">
 <h2>Advanced Techniques in VR<a class="headerlink" href="#advanced-techniques-in-vr" title="Link to this heading"></a></h2>
-<p>VR development has a lot more moving pieces than traditional application development. Having a strong foundation in the Unity basics you learned about in the last section is a prerequisite to understanding the more advanced techniques discussed here. If you feel you need more practice in the basics, don’t hesitate to return to <a class="reference internal" href="../m1/unity_orientation.html#install-to-new"><span class="std std-ref">Getting Started With Unity</span></a> to refresh. There is no shame in extra practice. If you think you have mastered the previous module and are ready to move on, continue reading to delve in to the advanced techniques found in VR development.</p>
+<p>VR development has a lot more moving pieces than traditional application development. Having a strong foundation in the Unity basics you learned about in the last section is a prerequisite to understanding the more advanced techniques discussed here. If you feel you need more practice in the basics, don’t hesitate to return to <a class="reference internal" href="../m1/unity_orientation.html#install-to-new"><span class="std std-ref">Getting Started With Unity</span></a> to refresh. There is no shame in extra practice. If you think you have mastered the previous module and are ready to move on, continue reading to dive into the advanced techniques found in VR development.</p>
 <section id="interactors-and-interactables">
 <h3>Interactors and Interactables<a class="headerlink" href="#interactors-and-interactables" title="Link to this heading"></a></h3>
 <p>The <em>XR Interaction Toolkit</em> uses an interactor-interactable relationship to define interactions in VR. Objects can be designated as either an interactor or an interactable, and gain access to different attributes as a result. There are lots of available interactors and interactables in the package, but for this tutorial you will only be exploring a few. If you want to delve deeper into the other available interactors and interactables, check out the <a class="reference external" href="https://docs.unity3d.com/Packages/com.unity.xr.interaction.toolkit&#64;1.0/manual/index.html">Unity documentation on the XR Interaction Toolkit</a>.</p>
@@ -275,7 +278,7 @@ but also in building your skills for the upcoming explosion in VR technology.</p
 <section id="user-positioning-xr-rig">
 <h3>User Positioning - XR Rig<a class="headerlink" href="#user-positioning-xr-rig" title="Link to this heading"></a></h3>
 <a class="reference internal image-reference" href="../../_images/xr_rig.png"><img alt="An image of the XR Rig GameObject." src="../../_images/xr_rig.png" style="width: 300px;" /></a>
-<p>The <em>XR rig</em> is a prefab object included in the <em>XR Interaction Toolkit</em>. This object allows the user to interact with the virtual environment by providing input in the form of sight, sound, and touch. The <em>XR rig</em> is how the user connects their actions in the headset to the Unity application. As such, it is absolutely necessary for any VR application. The <em>XR rig</em> has two child objects called <em>Camera Offset</em> and <em>Locomotion System</em> that provide the previously mentioned inputs through their own child objects and their attached scripts. There are a lot of parameters you can change within the <em>XR rig</em> object and its child object, and exploring these can further customize your VR control scheme, but the default parameter settings are completely acceptable for most use cases.</p>
+<p>The <em>XR rig</em> is a prefab object included in the <em>XR Interaction Toolkit</em>. This object allows the user to interact with the virtual environment by providing input in the form of sight, sound, and touch. The <em>XR rig</em> is also a prefab object included in this package, and is serves as the viewpoint fro the player. The <em>XR Rig</em> is how the user connects their actions in the headset to the Unity application. As such, it is absolutely necessary for any VR application. The <em>XR rig</em> has two child objects called <em>Camera Offset</em> and <em>Locomotion System</em> that provide the previously mentioned inputs through their own child objects and their attached scripts. There are a lot of parameters you can change within the <em>XR rig</em> object and its child object, and exploring these can further customize your VR control scheme, but the default parameter settings are completely acceptable for most use cases.</p>
 <a class="reference internal image-reference" href="../../_images/complete_xr_origin.png"><img alt="An image of the Complete XR Origin Set Up Variant prefab." src="../../_images/complete_xr_origin.png" style="width: 800px;" /></a>
 <p>You can access the XR rig individually by searching for <em>XR Origin (XR Rig)</em> in the
 assets folder of the project manager. However, the default sample project provided by

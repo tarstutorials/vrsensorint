@@ -58,10 +58,10 @@ Creating a new Unity project for VR is very similar to the way you created the m
 7. Click the *Create project* button in the bottom right corner of the application. This will create the project and launch the editor, which will contain a pre-made sample scene for you to start with.
 
 -------------------
-Pre-Project Setup
+Project Setup
 -------------------
 
-Unlike the simple mobile game you saw in :ref:`install_to_new`, a VR project will require a larger setup process before you begin work. These steps are not optional, and should be followed closely.
+Unlike the simple mobile game you saw in :ref:`install_to_new`, a VR project will require a larger setup process before you begin work, involving downloading essential packages, setting the proper project settings, and establishing the correct build settings. These steps are not optional, and should be followed closely.
 
 ^^^^^^^^^^^^^^^^^^^^
 Essential Packages
@@ -96,17 +96,17 @@ There are some packages you will need for this project, and since you likely hav
 
 7. Verify that the following packages are installed in your project. If all of them are installed, you can skip the rest of these steps - however, the steps below will teach you how to install a package, so if you plan on using additional packages for your project, it is useful information. 
 
-    * XR Interaction Toolkit
+    * XR Interaction Toolkit - A Unity package used to facilitate interactions in VR across multiple headset types.
 
-    * XR Core Utility
+    * XR Core Utility - A Unity package that offers a variety of classes and methods that are used by many other XR packages.
 
-    * XR Legacy Input Helpers
+    * XR Legacy Input Helpers - A Unity package that provides backwards compatability with older headsets and allows the use of older methods of input control.
 
-    * XR Plug-in Management
+    * XR Plug-in Management - A Unity package designed to manage the usage of the other XR packages together.
 
-    * OpenXR Plugin
+    * OpenXR Plugin - A foundational Unity package that includes the barebones essentials for creating an XR project, such as input handling, headset tracking, and device management. This package is the key to creating any VR application and is what allows Unity to work with VR in general. It is also an open package, meaning that it is generalized to work on many headset types. 
 
-    * Oculus XR Plugin
+    * Oculus XR Plugin - A specialized Unity package that serves an alternative to the OpenXR packages. It offers Meta Quest specific features to be used with the various XR plugins.
 
 .. note::
     Many other VR integration packages exist in Unity, such as the Oculus integration package. However, these packages are mostly limited to the specific brand headset that the package is for. The Oculus integration package only works on Meta Quest devices, for example. The benefit of using the XR toolkit instead is that it allows the application to be run on almost any VR capable device. 
@@ -220,7 +220,7 @@ When you are ready to actually build your project, return to the build settings 
 Advanced Techniques in VR
 --------------------------
 
-VR development has a lot more moving pieces than traditional application development. Having a strong foundation in the Unity basics you learned about in the last section is a prerequisite to understanding the more advanced techniques discussed here. If you feel you need more practice in the basics, don't hesitate to return to :ref:`install_to_new` to refresh. There is no shame in extra practice. If you think you have mastered the previous module and are ready to move on, continue reading to delve in to the advanced techniques found in VR development.
+VR development has a lot more moving pieces than traditional application development. Having a strong foundation in the Unity basics you learned about in the last section is a prerequisite to understanding the more advanced techniques discussed here. If you feel you need more practice in the basics, don't hesitate to return to :ref:`install_to_new` to refresh. There is no shame in extra practice. If you think you have mastered the previous module and are ready to move on, continue reading to dive into the advanced techniques found in VR development.
 
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 Interactors and Interactables
@@ -236,7 +236,7 @@ User Positioning - XR Rig
   :width: 300
   :alt: An image of the XR Rig GameObject.
 
-The *XR rig* is a prefab object included in the *XR Interaction Toolkit*. This object allows the user to interact with the virtual environment by providing input in the form of sight, sound, and touch. The *XR rig* is how the user connects their actions in the headset to the Unity application. As such, it is absolutely necessary for any VR application. The *XR rig* has two child objects called *Camera Offset* and *Locomotion System* that provide the previously mentioned inputs through their own child objects and their attached scripts. There are a lot of parameters you can change within the *XR rig* object and its child object, and exploring these can further customize your VR control scheme, but the default parameter settings are completely acceptable for most use cases.
+The *XR rig* is a prefab object included in the *XR Interaction Toolkit*. This object allows the user to interact with the virtual environment by providing input in the form of sight, sound, and touch. The *XR rig* is also a prefab object included in this package, and is serves as the viewpoint fro the player. The *XR Rig* is how the user connects their actions in the headset to the Unity application. As such, it is absolutely necessary for any VR application. The *XR rig* has two child objects called *Camera Offset* and *Locomotion System* that provide the previously mentioned inputs through their own child objects and their attached scripts. There are a lot of parameters you can change within the *XR rig* object and its child object, and exploring these can further customize your VR control scheme, but the default parameter settings are completely acceptable for most use cases.
 
 .. image:: ../../images/complete_xr_origin.png
   :width: 800
