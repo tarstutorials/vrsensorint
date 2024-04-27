@@ -13,13 +13,13 @@ The information on each sensor will be organized as follows: first, we'll give a
 Surface Electromyography: Delsys Trigno
 ---------------------------------------
 
-**Surface electromyography (sEMG)** is a technique used to measure electromyographic signals that correspond to muscle activity. Muscles throughout the human body are activated in response to neural stimulation from the brain, and as they contract, they release an electrical impulse that circulates throughout bones and tissue. These impulses are captured by the sEMG sensor, and after applying some signal processing techniques that we'll see later in the :ref:`sensors_to_analysis` section, they can be incredibly useful in studying the patterns of our muscles.
+**Surface electromyography (sEMG)** is a technique used to measure the electrical activity produced by the muscles. Muscles throughout the human body are activated in response to neural stimulation from the brain, and as they contract, they release an electrical impulse that circulates throughout bones and tissue. These impulses are captured by the sEMG sensor, and after applying some signal processing techniques that we'll see later in the :ref:`sensors_to_analysis` section, they can be incredibly useful in studying patterns in muscle activity.
 
 ^^^^^^^^^^^^^^^^^^^^^^^
 Placement & Measurement
 ^^^^^^^^^^^^^^^^^^^^^^^
 
-For the purposes of this tutorial, we'll be using the Delsys sEMG sensors, widely regarded for their clinical-grade quality in research and industrial settings. Specifically, three of their most common products are the Trigno Avanti, Trigno Mini, and Trigno Quattro, as shown below.
+For the purposes of this tutorial, we'll be using the Delsys sEMG sensors, widely regarded for clinical-grade quality in research settings. Specifically, three of the most common products are the Trigno Avanti, Trigno Mini, and Trigno Quattro, as shown below.
 
 .. image:: ../../images/Avanti_Calf.png
     :width: 49 %
@@ -28,19 +28,22 @@ For the purposes of this tutorial, we'll be using the Delsys sEMG sensors, widel
     :width: 49 %
     :alt: The Trigno Mini sensor being worn by a professional pianist, on their arms and hands.
 
-* The `Trigno Avanti <https://delsys.com/trigno-avanti/>`_ is their "standard" sEMG sensor.
+* The `Trigno Avanti <https://delsys.com/trigno-avanti/>`_ is the "standard" sEMG sensor.
 * The `Trigno Mini <https://delsys.com/trigno-mini/>`_ is a smaller form factor sensor, allowing you to get data from muscles that may be harder to reach with the Avanti.
 * The `Trigno Quattro <https://delsys.com/trigno-quattro/>`_ is similar to the Trigno Mini, but there are four sensing heads, allowing you to get precise data from multiple locations.
 
-Each of these devices also contains an **IMU (inertial measurement unit)** sensor, which reports data on acceleration and orientation. This can be used in conjunction with the sEMG signal to understand the motion of the muscle. Finally, the devices also have LED lights on the top to indicate the status of the sensor.
+Each of these devices also contains an **IMU (inertial measurement unit)** sensor, which consists of an **accelerometer** to measure acceleration and a **gyroscope** to measure orientation. This can be used in conjunction with the sEMG signal to understand the motion of the muscle. Finally, the devices also have LED lights on the top to indicate the status of the sensor.
 
-The sensors are placed on the surface of the skin and stick via a simple adhesive. Be careful as to where you place them, since they should be placed as close to the muscle as possible to achieve high-quality results. The surface of the skin should be cleaned with an alcohol wipe before placing the sensor to remove any oils or contaminants which could interfere with the electrical signal. The direction of the sensor must also match the direction of the muscle fibers; an example from the `Delsys Technical Notes on EMG Sensor Placement <https://www.delsys.com/downloads/TECHNICALNOTE/101-emg-sensor-placement.pdf>`_ is shown below.
+In general, the following procedure can be used to apply the sensors to prepare for data collection: 
+
+* Clean the surface of the skin with an alcohol wipe before placing the sensor to remove any oils or contaminants which could interfere with the electrical signal.
+* Remove the sensor from the base station and make the wireless connection (refer to the user manual for more details on the sensor connection and indicator lights).
+* Prepare one of the adhesive tabs and place it on the back of the sensor. Then, peel off the other side to prepare to place it on the skin.
+* To obtain high-quality data, place the sensor as close to the muscle as possible with the arrow in the direction of the muscle fibers (an example from the `Delsys Technical Notes on EMG Sensor Placement <https://www.delsys.com/downloads/TECHNICALNOTE/101-emg-sensor-placement.pdf>`_ is shown below). Once the correct location has been determined, stick the sensor to the skin --- and you're all set! Once you're done collecting data, simply peel it off and remove the adhesive tab.
 
 .. image:: ../../images/trigno_placement.png
     :width: 800
     :alt: A diagram showing an EMG sensor being placed along the direction of the muscle fibers.
-
-.. or consult Matt's tutorial once we have a link to it
 
 Traditionally, intramuscular electromyography (iEMG) is another technique used to measure muscle activity by sticking a needle inside the skin next to a particular muscle. While this is still used in some clinical applications, especially when muscles are deep into the skin or have a small cross-sectional area, it is losing popularity as it's more invasive for data collection.
 
@@ -77,7 +80,7 @@ For this tutorial, we will focus on the `Polar H10 <https://www.polar.com/us-en/
     :width: 800
     :alt: The Polar H10 device being worn around a man's chest.
 
-The Polar H10 is an example of an **electrocardiograph**, which is a type of HR sensor that measures the electrical potential of the heart's activity in order to extract the HR information. We refer to the resulting electrical signal as an **electrocardiogram (ECG, or EKG)**. A typical ECG is shown below (figure from [#]_). You can find a detailed description in the paper, but for now, just know that it shows the stages of depolarization and repolarization (changes in electric charge distribution) of different parts of the heart. In particular, notice the **RR interval** on the graph: the time (seconds) between two successive R peaks. To calculate the heart rate, simply divide 60 (seconds per minute) by the RR interval. We'll explore this process further in :ref:`sensors_to_analysis`.
+The Polar H10 is an example of an **electrocardiograph**, which is a type of HR sensor that measures the electrical potential of the heart's activity. We refer to the resulting electrical signal as an **electrocardiogram (ECG, or EKG)**. A typical ECG is shown below (figure from [#]_). You can find a detailed description in the paper, but for now, just know that it shows the stages of depolarization and repolarization (changes in electric charge distribution) of different parts of the heart. In particular, notice the **RR interval** on the graph: the time (seconds) between two successive R peaks. To calculate the heart rate, simply divide 60 (seconds per minute) by the RR interval. We'll explore this process further in :ref:`sensors_to_analysis`.
 
 .. image:: ../../images/ecg_graph.png
   :width: 800
@@ -115,7 +118,7 @@ For our tutorial, we'll use the `Moxy monitor <https://www.moxymonitor.com/shop/
     :width: 800
     :alt: Left: the Moxy monitor being worn on a runner's leg. Right: Close-up view of attaching the Moxy monitor.
 
-The Moxy sensor uses **near-infrared spectroscopy (NIRS)**, which is a system that sends near-infrared light through some medium and measures the light reflected back with a photodetector. Since oxygenated and deoxygenated hemoglobin absorb different amounts of light at different wavelengths, we can obtain a measurement of SmO\ :sub:`2`\  based on differences in reflectance. Again, refer to the `scientific explanation <https://www.moxymonitor.com/wp-content/themes/moxymonitor/documents/Moxy_Scientific_Explanation_march2014.pdf>`_ for more details.
+The Moxy sensor uses **near-infrared spectroscopy (NIRS)**, which is a system that sends near-infrared light through some medium and measures the light reflected back with a photodetector. Since oxygenated and deoxygenated hemoglobin absorb different amounts of light at different wavelengths, a measurement of SmO\ :sub:`2`\  can be obtained based on differences in reflectance. Again, refer to the `scientific explanation <https://www.moxymonitor.com/wp-content/themes/moxymonitor/documents/Moxy_Scientific_Explanation_march2014.pdf>`_ for more details.
 
 ^^^^^^^^^^^^
 Applications
