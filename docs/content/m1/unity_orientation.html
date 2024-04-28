@@ -34,7 +34,7 @@
   <div class="wy-grid-for-nav">
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
       <div class="wy-side-scroll">
-        <div class="wy-side-nav-search" >
+        <div class="wy-side-nav-search"  style="background: #343131" >
 
           
           
@@ -98,7 +98,7 @@
       </div>
     </nav>
 
-    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu"  style="background: #343131" >
           <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
           <a href="../../index.html">VRSensorIntegration</a>
       </nav>
@@ -112,7 +112,10 @@
       <li class="wy-breadcrumbs-aside">
             <a href="../../_sources/content/m1/unity_orientation.rst.txt" rel="nofollow"> View page source</a>
       </li>
-  </ul>
+  </ul><div class="rst-breadcrumbs-buttons" role="navigation" aria-label="Sequential page navigation">
+        <a href="install_unity.html" class="btn btn-neutral float-left" title="Installing Unity" accesskey="p"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="../m2/unity_vr.html" class="btn btn-neutral float-right" title="Unity VR Development" accesskey="n">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+  </div>
   <hr/>
 </div>
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
@@ -120,7 +123,11 @@
              
   <section id="getting-started-with-unity">
 <span id="install-to-new"></span><h1>Getting Started With Unity<a class="headerlink" href="#getting-started-with-unity" title="Link to this heading"></a></h1>
-<p>The Unity Game Engine is an incredible tool for application and game development. It allows for building projects on a multitude of platforms, ranging from mobile to desktop to virtual reality. It also has a large development community where people support each other and build upon each others’ work. Unity is an excellent choice for any developer seeking to integrate technologies or create their dream application.</p>
+<p>The Unity Game Engine is an incredible tool for application and game development. It allows for building projects on a multitude of platforms, ranging from mobile to desktop to virtual reality. It also has a large development community where people support each other and build upon each others’ work. Unity is an excellent choice for any developer seeking to integrate technologies or create their dream application. Because of how vast Unity is, this and the following modules will hone in on parts of Unity that are useful for the integration of physiological sensors. If you would like a more complete view of Unity, or even just want to bolster your Unity knowledge, check out Unity’s own <a class="reference external" href="https://learn.unity.com/pathway/unity-essentials">Unity Essentials</a> crash course.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>The mobile project presented in this module is intended <em>solely</em> as an introduction to Unity project creation. When it comes to implementing physiological sensors, as you will see later, mobile applications are inconsistent. Thus, it is recommended to use desktop or VR applications when creating integrated software.</p>
+</div>
 <section id="creating-your-first-project">
 <h2>Creating Your First Project<a class="headerlink" href="#creating-your-first-project" title="Link to this heading"></a></h2>
 <div class="video_wrapper" style="">
@@ -187,8 +194,18 @@
 <span id="to-mobile-setup"></span><h2>Setting Up For Mobile Development<a class="headerlink" href="#setting-up-for-mobile-development" title="Link to this heading"></a></h2>
 <p>Setting up for mobile development is mostly done for you when creating a project using the <em>2D Mobile</em> template. However, there are two important menus you should know about that may help you with any last minute configurations you want to make. These are the build settings and project settings menus. The build settings menu can be found by clicking the button labeled <em>File</em> on the ribbon at the top of the editor. From there, a dropdown menu will appear, where you can select the <em>Build Settings</em> option. In the same ribbon, there is a button labeled <em>Edit</em>, where a similar dropdown menu contains a button for <em>Project Settings</em>.</p>
 <a class="reference internal image-reference" href="../../_images/build_settings.png"><img alt="An Image of the Build Settings menu in the Unity Editor." src="../../_images/build_settings.png" style="width: 800px;" /></a>
-<p>The build settings menu is used for configuring how you want to package the final application. For example, it lets you change what platform you are building for, such as Windows or Android. While you are working on the mobile project, you should keep its build set to Windows. This lets you test the project directly on your computer. However, when you are done developing and want to port it to mobile, you can change the build setting to Android or iOS so it can run on a mobile device.</p>
-<a class="reference internal image-reference" href="../../_images/project_settings.png"><img alt="An Image of the Build Settings menu in the Unity Editor." src="../../_images/project_settings.png" style="width: 400px;" /></a>
+<p>The build settings menu is used for configuring how you want to package the final application. For example, it lets you change what platform you are building for, such as Windows or Android. While you are working on the mobile project, you should keep its build set to Windows. This lets you test the project directly on your computer.
+.. image:: ../../images/project_settings.png</p>
+<blockquote>
+<div><dl class="field-list simple">
+<dt class="field-odd">width<span class="colon">:</span></dt>
+<dd class="field-odd"><p>400</p>
+</dd>
+<dt class="field-even">alt<span class="colon">:</span></dt>
+<dd class="field-even"><p>An Image of the Build Settings menu in the Unity Editor.</p>
+</dd>
+</dl>
+</div></blockquote>
 <p>The project settings menu allows you to change a multitude of settings for your project, and additionally provides access to settings for any packages you have added to the project. The template has done a good job of setting up the project settings for you, so you don’t need to worry about it for this simple tutorial. However, in more advanced tutorials which we will get to later, project settings can be important for optimizing the application.</p>
 <p>For now, you can look around at both menus to see what kind of settings exist, but do not change any without knowing what they do, as this could negatively affect your project. If you want to learn more about a specific build or project setting, please check the Unity documentation  for the <a class="reference external" href="https://docs.unity3d.com/Manual/comp-ManagerGroup.html">project settings</a> and <a class="reference external" href="https://docs.unity3d.com/Manual/BuildSettings.html">build settings</a>.</p>
 </section>

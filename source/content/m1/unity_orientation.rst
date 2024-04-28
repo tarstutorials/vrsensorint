@@ -4,7 +4,10 @@
 Getting Started With Unity
 ===========================
 
-The Unity Game Engine is an incredible tool for application and game development. It allows for building projects on a multitude of platforms, ranging from mobile to desktop to virtual reality. It also has a large development community where people support each other and build upon each others' work. Unity is an excellent choice for any developer seeking to integrate technologies or create their dream application.
+The Unity Game Engine is an incredible tool for application and game development. It allows for building projects on a multitude of platforms, ranging from mobile to desktop to virtual reality. It also has a large development community where people support each other and build upon each others' work. Unity is an excellent choice for any developer seeking to integrate technologies or create their dream application. Because of how vast Unity is, this and the following modules will hone in on parts of Unity that are useful for the integration of physiological sensors. If you would like a more complete view of Unity, or even just want to bolster your Unity knowledge, check out Unity's own `Unity Essentials <https://learn.unity.com/pathway/unity-essentials>`_ crash course.
+
+.. note::
+     The mobile project presented in this module is intended *solely* as an introduction to Unity project creation. When it comes to implementing physiological sensors, as you will see later, mobile applications are inconsistent. Thus, it is recommended to use desktop or VR applications when creating integrated software.
 
 ---------------------------
 Creating Your First Project
@@ -111,8 +114,7 @@ Setting up for mobile development is mostly done for you when creating a project
   :width: 800
   :alt: An Image of the Build Settings menu in the Unity Editor.
 
-The build settings menu is used for configuring how you want to package the final application. For example, it lets you change what platform you are building for, such as Windows or Android. While you are working on the mobile project, you should keep its build set to Windows. This lets you test the project directly on your computer. However, when you are done developing and want to port it to mobile, you can change the build setting to Android or iOS so it can run on a mobile device. 
-
+The build settings menu is used for configuring how you want to package the final application. For example, it lets you change what platform you are building for, such as Windows or Android. While you are working on the mobile project, you should keep its build set to Windows. This lets you test the project directly on your computer.
 .. image:: ../../images/project_settings.png
   :width: 400
   :alt: An Image of the Build Settings menu in the Unity Editor.

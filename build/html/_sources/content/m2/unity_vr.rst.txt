@@ -6,8 +6,7 @@ Unity VR Development
 Introduction to VR Development
 --------------------------------
 
-Virtual Reality (VR) is a rapidly expanding technology that is becoming increasingly integrated into everyday life. As such, application development for this medium is at an all-time high. Learning how to create applications for VR is more important than ever, and Unity is the best tool for beginning this journey. Follow this tutorial closely, as the techniques learned here will not only be critical to your succsess in future tutorials, 
-but also in building your skills for the upcoming explosion in VR technology.
+Virtual Reality (VR) is a rapidly expanding technology that is becoming increasingly integrated into everyday life. As such, application development for this medium is at an all-time high. Learning how to create applications for VR is more important than ever, and Unity is the best tool for beginning this journey. Follow this tutorial closely, as the techniques learned here will not only be critical to your succsess in future tutorials, but also in building your skills for the upcoming explosion in VR technology. As mentioned in the previous module, this module will also focus on aspects of Unity that are applicable to integration with physiological sensors. For a more holistic view of Unity VR, see Unity's `VR Development Pathway <https://learn.unity.com/pathway/vr-development>`_.
 
 -----------
 Why Unity?
