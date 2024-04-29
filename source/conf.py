@@ -59,6 +59,12 @@ html_static_path = ['_static']
 html_logo = 'images/tars_logo.jpeg'
 # Options to change the HTML output for the site. Specific to the theme.
 html_theme_options = {
-    'style_nav_header_background':'#343131',
+    'style_nav_header_background':'#272727',
     'prev_next_buttons_location' : 'both',
+}
+html_css_files = [
+    'css/custom.css',
+]
+quizdown_config = {
+    'primary_color': '#31b457',
 }
