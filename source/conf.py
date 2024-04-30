@@ -57,6 +57,8 @@ html_theme = "sphinx_rtd_theme"
 html_static_path = ['_static']
 #Change the logo that appears on the website. Must be in same directory as conf.py file.
 html_logo = 'images/tars_logo_upscaled.jpeg'
+#Use the same image for the logo that appears on a browser tab.
+html_favicon = 'images/tars_logo_upscaled.jpeg'
 # Options to change the HTML output for the site. Specific to the theme.
 html_theme_options = {
     'style_nav_header_background':'#272727',
