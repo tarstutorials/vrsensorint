@@ -12,23 +12,20 @@ Introduction to Data Analysis
 
 Being able to collect physiological data and use it in VR is wonderful, but isn't really meaningful for making any observations or conclusions without performing analysis. The last section of this tutorial will focus on basic tools to analyze the data that we've collected from the VR application.
 
-Since we're collecting data from the user as they perform some tasks, with the sensors updating the results periodically, this is an example of **time-series** data. This is a unique type of data where the sequence of observations matters. Additionally, certain models may reflect the fact that observations closer together in time should be more closely related than those further apart. We'll go through some methods of extracting relevant information numerically and visually from the data provided by each sensor.
+Since we're collecting data from the user as they perform some tasks, with the sensors updating the results periodically, this is an example of **time series** data. This is a unique type of data where the sequence of observations matters. Additionally, certain models may reflect the fact that observations closer together in time should be more closely related than those further apart. We'll go through some methods of extracting relevant information numerically and visually from the data provided by each sensor.
+
+In this section of the tutorial, we'll focus on the basics of physiological data analysis, using a single data file to explore the steps of pre-processing, performing some exploratory analysis, and extracting some metrics. Once that is completed, we'll take a look at a more complete dataset and apply these skills to a real-world problem.
 
 ^^^^^^^^^^^^^^^^^^^^^^^^^
 Programming Prerequisites
 ^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Throughout this section, we'll be using Python as the tool for the analysis. Python is one of the most popular languages for this, as it has a wide variety of open source resources available and a strong community of developers that can provide feedback to each other throughout the process. However, much of these concepts could be implemented similarly in other languages. This tutorial will assume a basic understanding of programming concepts and some Python syntax.
+Throughout this section, we'll be using Python as the tool for the analysis. Python is one of the most popular languages for this, as it has a wide variety of open source resources available and a strong community of developers that can provide feedback to each other throughout the process. This tutorial will assume a basic understanding of programming concepts and some Python syntax.
 
-Python can be easily downloaded for free from their `website <https://www.python.org/downloads/>`_. You'll then need to install the following packages (documentation linked), using ``pip`` (the default installer) or your favorite package manager:
+Python can be easily downloaded for free from the `website <https://www.python.org/downloads/>`_. You'll then need to install the following packages (documentation linked), using ``pip`` (the default installer) or your favorite package manager:
 
-* General Data Analysis
-   - `Matplotlib <https://matplotlib.org/>`_
-   - `NumPy <https://numpy.org/>`_
-   - `SciPy <https://scipy.org/>`_
-* Working with Physiological Data 
-   - `LibEMG <https://libemg.github.io/libemg/>`_ [#]_
-   - `NeuroKit2 <https://neuropsychology.github.io/NeuroKit/introduction.html>`_ [#]_
+* *General Data Analysis*: `Matplotlib <https://matplotlib.org/>`_, `NumPy <https://numpy.org/>`_, and `SciPy <https://scipy.org/>`_.
+* *Working with Physiological Data*: `LibEMG <https://libemg.github.io/libemg/>`_ [#]_ and `NeuroKit2 <https://neuropsychology.github.io/NeuroKit/introduction.html>`_ [#]_. Both of these packages are from relatively recent publications and provide specific tools for working with certain types of data, as we'll see throughout the tutorial.
 
 .. note::
    `Pandas <https://pandas.pydata.org/>`_ is another common Python library for data analysis. However, for our purposes, NumPy will be simpler to use, and it's used natively by the other libraries we're using for physiological data.
@@ -52,21 +49,20 @@ Raw Data: Load and Plot
 
 The first step to the process of analyzing the data we've collected is, of course, loading it into memory. The data is in .csv format, which is a common text-based format for two-dimensional data. One simple way to load this data is to use ``numpy.loadtxt`` (documented `here <https://numpy.org/doc/stable/reference/generated/numpy.loadtxt.html>`_).
 
-There are options to access the data with column names, but this becomes inconvenient to work with later when we're passing the data to other library functions. Since the columns of our data are relatively simple to remember, it's better to just load it as a regular ``ndarray`` (NumPy: *n*-dimensional array). We can format our variable names by *slicing*, which is a common way to subset data in NumPy. A ``:`` grabs all rows or columns. A list with ``[]`` is used to grab only certain rows or columns by index. Lastly, a range (e.g., ``1:3``) is used to grab rows or columns within a range of indices. We'll separate the data into the time column and the EMG columns. Finally, to check the dimensionality of the raw and sliced data, we can use NumPy's ``shape`` function, which returns the number of elements in each dimension (rows, then columns).
+There are options to access the data with column names, but this becomes inconvenient to work with later when we're passing the data to other library functions. Since the columns of our data are relatively simple to remember, it's better to just load it as a regular ``ndarray`` (NumPy: *n*-dimensional array). Variables can be formatted by *slicing*, which is a common way to subset data in NumPy: the ``:`` grabs all rows or columns, a list with ``[]`` grabs only certain rows or columns by index, and a range (e.g., ``1:3``) is grabs rows or columns within a range of indices. We'll separate the data into the time column and the EMG signal columns. Finally, to check the dimensionality of the raw and sliced data, we can use NumPy's ``shape`` function, which returns the number of elements in each dimension (rows, then columns).
 
 .. code-block:: python
    :linenos:
 
    import numpy as np
 
-   TIME_CUTOFF = 15000
-
-   df = np.loadtxt('sample_semg.csv', delimiter=',', dtype=float, max_rows=TIME_CUTOFF)
+   df = np.loadtxt('sample_semg.csv', delimiter=',', dtype=float, skiprows = 1500, max_rows=6000)
    emg_channels = df[:,[1,2]]
    time = df[:,0]
+   nrows = b30_emg.shape[0]
    print(df.shape, emg_channels.shape, time.shape)
 
-Notice that we have 15,000 rows and 3 columns. Each row represents the signal values read from the sensor at a particular time, and the columns denote time (seconds), right bicep EMG (volts), and left bicep EMG (volts). Checking the shape is always a good step to ensure there wasn't an error in the data loading process.
+Notice that we have 6,000 rows and 3 columns. Each row represents the signal values read from the sensor at a particular time, and the columns denote time (seconds), right bicep EMG (volts), and left bicep EMG (volts). Checking the shape is always a good step to ensure there wasn't an error in the data loading process.
 
 Another step to check the data quality and give us an idea of what the data looks like is plotting. Let's use NumPy to calculate some basic summary statistics, such as the mean and standard deviation, and plot them on the data using ``matplotlib.pyplot``. Since we're plotting data from multiple EMG channels, it's a good idea to use ``pyplot.subplots``, which puts multiple plots in a grid into the figure. You can specify the grid layout with two parameters (rows and columns), but here we'll only need one since we just want to stack two plots on top of each other.
 
@@ -113,11 +109,11 @@ Notice that the raw signal looks pretty messy: we can sort of see that where the
 Filtering the Signal
 ^^^^^^^^^^^^^^^^^^^^
 
-The first step in any processing of signal data is to apply one or more filters to remove noise from the signal. Without doing this, the performance of any machine learning system using the signals will worsen due to unwanted artifacting. Specifically, there are two common sources of artifact noise in a biomedical signal such as EMG: **powerline interference**, caused by unwanted communication between other nearby electronic devices, and **motion**, caused by a small and relatively constant amount of energy being produced by the body at all times.
+The first step in any processing of signal data is to apply one or more filters to remove noise from the signal --- without doing this, the performance of any machine learning system will be worse. There are two common sources of artifact noise in a biomedical signal such as EMG: **powerline interference**, caused by unwanted communication between other nearby electronic devices, and **motion**, caused by a small and relatively constant amount of energy being produced by the body at all times.
 
-We won't spend too much time on the math behind how different types of filters work, but know that they essentially use a process called *convolution* to modify the contents of the signal *frequency*. There are four main types of filters, described succinctly by Cheveigné and Nelken (bold inserted for clarity): "The **low-pass filter** attenuates high frequencies, the **high-pass** attenuates low frequencies, the **band-pass** attenuates out-of band frequencies, the **notch** attenuates a narrow band of frequencies." [#]_ To *attenuate* means to reduce the effect of, so these filters are targeting and removing certain frequency ranges; for more details on filtering, refer to their article.
+We won't spend too much time on the math behind how different types of filters work, but know that they essentially use a process called *convolution* to modify the contents of the signal *frequency*. There are four main types of filters, described succinctly here (bold inserted for clarity): "The **low-pass filter** attenuates high frequencies, the **high-pass** attenuates low frequencies, the **band-pass** attenuates out-of-band frequencies, the **notch** attenuates a narrow band of frequencies." [#]_ To *attenuate* means to reduce the effect of, so these filters are targeting and removing certain frequency ranges.
 
-In our case, we'll use LibEMG to filter the EMG signals: the API takes the name, cutoff frequency, and bandwidth of the filter in a dictionary format. You can also just use the default, "common" filters. Don't worry too much about the parameter values for now; cutoff frequencies are recommended by the folks at LibEMG based on the frequencies at which these sources of noise commonly occur, and bandwidths can be modified later to remove frequency more or less harshly.
+In our case, we'll use LibEMG to filter the EMG signals. The API takes the name, cutoff frequency, and bandwidth of the filter in a dictionary format. You can also just use the default, "common" filters. Don't worry too much about the parameter values for now; cutoff frequencies are recommended by the authors of LibEMG based on the frequencies at which these sources of noise commonly occur, and bandwidths can be modified later to remove frequency more or less harshly.
 
 Finally, we have one more parameter to pass to the filter: sampling frequency. **Sampling frequency** is the rate at which samples are received from the sensor, in Hz. The Delsys Trigno sensors have several different options for this which can be configured during data collection; for this capture, our sampling frequency was 1259.259 Hz.
 
@@ -138,7 +134,7 @@ Finally, we have one more parameter to pass to the filter: sampling frequency. *
   :width: 800
   :alt: LibEMG visualization to show the effect of filtering the left and right bicep EMG signals, in both time and frequency domains.
 
-``visualize_effect`` is a useful function provided by LibEMG: it takes the raw signal and produces a visualization showing the signal pre- and post- filtering in the time and frequency domains. We'll explain what that last part means later, but for now, notice how the mean of the signal is now at 0V like we wanted, and  how the range of frequencies seen on the right are much more evenly distributed. This signal definitely has more desirable qualities than the raw signal from before.
+``visualize_effect`` is a useful function provided by LibEMG: it takes the raw signal and produces a visualization showing the signal pre- and post- filtering in the time and frequency domains. We'll explain what that last part means later, but for now, notice how the mean of the signal is now at 0V (like we wanted), and how the range of frequencies seen on the right are much more evenly distributed. We have successfully enhanced the quality of the signal without losing any of its key features.
 
 ^^^^^^^^^^^^^^^^^^^^^^^
 Types of Visualizations
@@ -146,11 +142,11 @@ Types of Visualizations
 
 There are some special visualizations commonly used with signal data, and we'll explore a few of them here.
 
-**Autocorrelation** and **cross-correlation** are used to measure the relationships between signals. Specifically, autocorrelation looks at *periodicity*, or repeating behavior, by *correlating* the signal with a lagged version of itself (correlation is a technical term, but again, don't worry too much about the math here). So, lag 1 represents all samples from the signal that are 1 observation ahead of another sample (as determined by the sampling frequency), lag -5 represents all samples 5 that are 5 observations behind another sample. Cross-correlation does the same, but uses two signals instead of the same signal with itself. Higher positive values of correlation indicate high similarity between the signals; higher negative values indicate higher reciprocity (i.e., they are opposite each other), and values closer to zero indicate little relationship at all.
+**Autocorrelation** and **cross-correlation** are used to measure the relationships between signals. Specifically, autocorrelation looks at *periodicity*, or repeating behavior, by *correlating* the signal with a lagged version of itself (correlation is a technical term, but again, don't worry too much about the math here). So, lag 1 represents all samples from the signal that are 1 observation ahead of another sample (as determined by the sampling frequency), while lag -5 represents all samples that are 5 observations behind another sample. Cross-correlation does the same, but uses two signals instead of the same signal with itself. Higher positive values of correlation indicate high similarity between the signals; higher negative values indicate higher reciprocity (i.e., they are opposite each other), and values closer to zero indicate little relationship at all.
 
-For an example of these concepts, suppose we were conducting a study to understand how people lift weights. Subjects wear sEMG sensors on their left and right biceps and complete successive bicep curls. If we wanted to see how regular the person's motion is over time (to see if they fatigue, let's say), we would use the autocorrelation of each arm's signal separately. Meanwhile, if we wanted to compare the functioning of the left and right arms (to see if they are symmetric, let's say), we would use the cross-correlation of the two signals. For more information about autocorrelaton and cross-correlation with EMG signals, see the referenced article. [#]_
+For an example of these concepts, suppose we were conducting a study to understand how people lift weights. Subjects wear sEMG sensors on their left and right biceps and complete successive bicep curls. If we wanted to see how regular the person's motion is over time (to see if they fatigue, let's say), we could use the autocorrelation of each arm's signal separately. Meanwhile, if we wanted to compare the functioning of the left and right arms (to see if they are symmetric, let's say), we would use the cross-correlation of the two signals. For more information about autocorrelaton and cross-correlation with EMG signals, see the referenced article. [#]_
 
-These can be calculated using the ``scipy.correlate`` function, which takes the two signals being correlated and some other optional parameters for the mode and method (we can use the default values for now). For plotting, this is a nice opportunity to learn how to use the nifty ``pyplot.subplots_mosaic`` function. It takes a string parameter for the pattern of grid layout that you'd like, and it's especially useful for irregular patterns. The ``;`` is used for a new row, and different letters each define their own plot, with the number of letters defining the relative spacing. Here, we have two plots for autocorrelation (left and right), but only one for cross-correlation. A clear way to display this visually is to place the autocorrelation plots next to each other but leave the cross-correlation on its own.
+These can be calculated using the ``scipy.correlate`` function, which takes the two signals being correlated and some other optional parameters for the mode and method (we can use the default values for now). For visualization, this is a nice opportunity to learn how to use the nifty ``pyplot.subplots_mosaic`` function. It takes a string parameter for the pattern of grid layout that you'd like, and it's especially useful for irregular patterns. The ``;`` is used for a new row, and different letters each define their own plot, with the number of letters defining the relative spacing. Here, we have two plots for autocorrelation (left and right), but only one for cross-correlation. A clear way to display this visually is to place the autocorrelation plots next to each other but leave the cross-correlation on its own.
 
 .. code-block:: python
    :linenos:
@@ -162,17 +158,17 @@ These can be calculated using the ``scipy.correlate`` function, which takes the 
    cross_corr = signal.correlate(in1=emg_filt[:,0], in2=emg_filt[:,1])
    fig2, ax2 = plt.subplot_mosaic("AB;CC") # two plots next to each other on the top row, then one on the bottom row
    
-   ax2["A"].plot(range(-TIME_CUTOFF,TIME_CUTOFF-1), auto_corr_left)
+   ax2["A"].plot(range(-nrows, nrows-1), auto_corr_left)
    ax2["A"].set_xlabel("Lag")
    ax2["A"].set_ylabel("Autocorrelation")
    ax2["A"].set_title("Autocorrelation, Left")
 
-   ax2["B"].plot(range(-TIME_CUTOFF,TIME_CUTOFF-1), auto_corr_right)
+   ax2["B"].plot(range(-nrows, nrows-1), auto_corr_right)
    ax2["B"].set_xlabel("Lag")
    ax2["B"].set_ylabel("Autocorrelation")
    ax2["B"].set_title("Autocorrelation, Right")
 
-   ax2["C"].plot(range(-TIME_CUTOFF,TIME_CUTOFF-1), cross_corr)
+   ax2["C"].plot(range(-nrows, nrows-1), cross_corr)
    ax2["C"].set_xlabel("Lag")
    ax2["C"].set_ylabel("Correlation")
    ax2["C"].set_title("Cross-Correlation, Left and Right")
@@ -233,7 +229,7 @@ Feature Extraction
 
 After using some advanced visualizations to understand patterns in the data, a process called **feature extraction** is used to perform calculations to transform the data into a form more useful for later algorithms. Specifically, the resulting features are often input into machine learning algorithms for tasks such as classification, and the features are used instead of the filtered data because they are more information dense.
 
-There are far too many features used for EMG classification for us to describe them all here. Many of the most popular options are implemented in LibEMG, so refer to their `documentation <https://libemg.github.io/libemg/documentation/features/features.html>`_ for more details. As an example for our data, we'll implement the Hudgin's Time Domain feature set, which is a classic group of features for analyzing how the signal changes over time. [#]_ It contains four features:
+There are far too many features used for EMG classification for us to describe them all here. Many of the most popular options are implemented in LibEMG, so refer to their `documentation <https://libemg.github.io/libemg/documentation/features/features.html>`_ for more details. As an example for our data, we'll implement the Hudgin's Time Domain feature set, which is a classic group of features for analyzing how the signal changes over time. [#]_ It contains four basic features:
 
 * **Mean Absolute Value (MAV)**: The average absolute value of the signal
 * **Zero Crossings (ZC)**: The number of times that the signal crosses zero amplitude
@@ -267,6 +263,12 @@ LibEMG allows you to compute feature groups or singular features at a time; as a
   :width: 800
   :alt: Plot of extracted features on left and right bicep EMG signals. Hudgin's Time Domain: mean absolute value (MAV), zero crossings (ZC), slope sign change (SSC), waveform length (WL). Additionally, root mean square (RMS).
 
+^^^^^^^^^^^^^
+Next Steps...
+^^^^^^^^^^^^^
+
+That's it for the basics of EMG analysis. Typically, the features we extracted would be fed to some classification algorithm: for example, you could try to classify the weight someone is lifting or the hand gesture they're making based on EMG signals. Broadly, there are *statistical* classifiers --- such as Random Forest, *k*-Nearest Neighbors, Naive Bayes, and others --- and *deep learning* classifiers --- such as multilayer perceptrons (MLPs), convolutional neural networks (CNNs), transformers, and others. Different features will lead to different accuracies based on the dataset and the classifier, so **feature selection** is an important process in modeling to obtain the best performance.
+
 -------------------
 Heart Rate Analysis
 -------------------
@@ -282,14 +284,12 @@ Similar to the EMG section above, we'll start by loading the raw data.
 .. code-block:: python
    :linenos:
 
-   import numpy as np 
-   
-   TIME_CUTOFF = 1000
+   import numpy as np
    
    ecg_data = np.loadtxt('sample_ecg_data.csv', delimiter=',', dtype=float)
    print(ecg_data.shape)
 
-Notice that we have 1,241 rows (and only 1 column, which is implied). Each row represents the signal values read from the sensor at a particular time. Since we don't have any timestamp information in this case, it's important to remember the sampling rate of the sensor (in our case, 130 Hz).
+Notice that we have 1,241 rows (and only 1 column, which is implied). Each row represents the signal values read from the sensor at a particular time. Since we don't have any timestamp information in this case, it's important to remember the sampling rate of the sensor --- in our case, 130 Hz.
 
 ^^^^^^^^^^^^^
 Preprocessing
@@ -321,9 +321,9 @@ In order to determine the heart rate and heart rate variability, we must determi
 
 As for the code from NeuroKit2, the ``ecg_process`` function returns two dataframes: one containing the raw and cleaned signal, and one containing peak locations and some other information. Behind the scenes, this function is actually doing quite a bit! It uses six helper functions:
 
-* `ecg_clean <https://neuropsychology.github.io/NeuroKit/functions/ecg.html#ecg-clean>`_ is used to to remove noise from the signal in order to improve peak detection accuracy.
-* `ecg_peaks <https://neuropsychology.github.io/NeuroKit/functions/ecg.html#ecg-peaks>`_ finds the R-peaks in the QRS complex. 
-* `signal_rate <https://neuropsychology.github.io/NeuroKit/functions/ecg.html#ecg-rate>`_ finds the signal rate from a series of peaks by using ``60/period``, where period is the time between peaks.
+* `ecg_clean <https://neuropsychology.github.io/NeuroKit/functions/ecg.html#ecg-clean>`_ removes noise from the signal in order to improve peak detection accuracy.
+* `ecg_peaks <https://neuropsychology.github.io/NeuroKit/functions/ecg.html#ecg-peaks>`_ finds the R peaks in the QRS complex. 
+* `signal_rate <https://neuropsychology.github.io/NeuroKit/functions/ecg.html#ecg-rate>`_ finds the signal rate from a series of peaks by using ``60/period`` (*period* is the time between peaks).
 * `ecg_quality <https://neuropsychology.github.io/NeuroKit/functions/ecg.html#ecg-quality>`_ assesses the quality by extracting a variety of features.
 * `ecg_delineate <https://neuropsychology.github.io/NeuroKit/functions/ecg.html#ecg-delineate>`_ delineates the QRS complex from the PQRST wave.
 * `ecg_phase <https://neuropsychology.github.io/NeuroKit/functions/ecg.html#ecg-phase>`_ computes the cardiac phase, i.e., the systole (heart empties) and diastole (heart fills).
@@ -360,9 +360,9 @@ We can also look at heart rate variability (HRV), which is explained in more det
 
 HRV can be analyzed in three different domains: with respect to time, frequency, or non-linear analysis.
 
-* `hrv_time <https://neuropsychology.github.io/NeuroKit/functions/hrv.html#hrv-time>`_ returns a data frame containing 25 pieces of data. The ones that are important to us are standard deviation of normal to normal (SDNN) and the standard deviation of average normal to normal (SDANN). SDNN is used to measure the heart rate variance over long periods of time, while SDANN is used over shorter periods (e.g., 24 hours versus five minutes). While HRV is effected by demographic factors such as age, gender, and race, generally those with a HRV of 50ms or less are considered unhealthy, those with a HRV between 50-100ms have compromised health, and those with 100ms or more are healthy. 
+* `hrv_time <https://neuropsychology.github.io/NeuroKit/functions/hrv.html#hrv-time>`_ returns a data frame containing 25 pieces of data. Important to note are standard deviation of NN intervals (*normal-to-normal*: intervals between QRS complexes) (SDNN) and the standard deviation of average NN intervals (SDANN). SDNN measures the heart rate variance over long periods of time, while SDANN is meant for shorter periods (e.g., 24 hours versus five minutes). While HRV is effected by demographic factors such as age, gender, and race, generally those with a HRV of 50ms or less are considered unhealthy, those with a HRV between 50-100ms have compromised health, and those with 100ms or more are healthy. 
 * `hrv_frequency <https://neuropsychology.github.io/NeuroKit/functions/hrv.html#hrv-frequency>`_ computes ten HRV frequency domain metrics. Two important metrics are the high frequency (HF) and the low frequency (LF). HF is an indicator for the parasympathetic nervous system, which is responsible for the body's functions during periods of relaxation, while LF is an indicator for the sympathetic nervous system, which is responsible for speeding up heart rate and slowing down digestion.
-* `hrv_nonlinear <https://neuropsychology.github.io/NeuroKit/functions/hrv.html#hrv-nonlinear>`_ computes 32 different metrics. Of these, the standard deviation perpendicular to the line of identity (SD1) is the most applicable to our application. Very simply, it can be used as a short term measure of HRV. It is actually equivalent to the root mean square of successive differences calculated by ``hrv_time``.
+* `hrv_nonlinear <https://neuropsychology.github.io/NeuroKit/functions/hrv.html#hrv-nonlinear>`_ computes 32 different metrics. Important to note is the standard deviation perpendicular to the line of identity (SD1). Put simply, it can be used as a short term measure of HRV. It is actually equivalent to the root mean square of successive differences calculated by ``hrv_time``.
 
 The code to compute these metrics is shown below.
 
@@ -412,6 +412,65 @@ Below is a great graphic to illustrate a slightly modified version of this lifec
 Section Review
 --------------
 
+In this section, you were introduced to basic data analysis techniques for physiological data using Python. For EMG signals, you learned about filtering the signal to remove noise, visualizing the signal, and extracting some features. For the ECG signals, you learned about processing the signal to identify certain key stages of the heart beat, visualizing the signal, and computing some metrics. All of this will be important in the next stage of analysis, where we apply some of these skills to a real-world classification problem on a larger dataset. Excellent work so far!
+
+^^^^^^^^^^^^^^^^^^^^^^^
+Module Self-Assessment
+^^^^^^^^^^^^^^^^^^^^^^^
+
+.. quizdown::
+
+   ---
+   shuffle_answers: false
+   ---
+
+   ## Which of the following Python libraries is commonly used for visualizations?
+
+   > Re-read the section on programming with Python.
+
+   1. [ ] SciPy
+        > The correct answer is Matplotlib.
+   2. [x] Matplotlib
+   3. [ ] Scikit-Learn
+        > The correct answer is Matplotlib.
+   4. [ ] Numpy
+        > The correct answer is Matplotlib.
+   
+   ## Which of the following techniques could be used to compare two different EMG signals?
+
+   > Re-read the section on EMG visualizations.
+
+   1. [ ] Autocorrelation
+        > The correct answer is cross-correlation.
+   2. [ ] Power spectral density
+        > The correct answer is cross-correlation.
+   3. [x] Cross-correlation
+   4. [ ] Root mean square
+        > The correct answer is cross-correlation.
+
+   ## What is the primary motivation to apply filtering and feature extraction to EMG signals?
+
+   > Re-read the sections on filtering and feature extraction for EMG signals.
+
+   1. [ ] To make the signal look better, which is useful for presentations.
+        > The correct answer is to improve the quality and information density of the signal for use in machine learning algorithms.
+   2. [ ] To store the processed signal in place of the raw data.
+        > The correct answer is to improve the quality and information density of the signal for use in machine learning algorithms.
+   3. [ ] To study the aspects of the filtered signal and associated features.
+        > The correct answer is to improve the quality and information density of the signal for use in machine learning algorithms.
+   4. [x] To improve the quality and information density of the signal for use in machine learning algorithms.
+
+   ## What are the points in the ECG signal called which are commonly identified by an algorithm when computing heart rate?
+
+   > Re-read the section on preprocessing the ECG signal.
+
+   1. [x] R peaks
+   2. [ ] P waves
+        > The correct answer is R peaks.
+   3. [ ] T waves
+        > The correct answer is R peaks.
+   4. [ ] NN intervals
+        > The correct answer is R peaks.
 
 ----------
 References
