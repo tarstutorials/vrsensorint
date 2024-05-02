@@ -12,7 +12,7 @@ This is a set of free online tutorials on integrating physiological sensing into
 Acknowledgements
 ----------------
 
-This work is graciously supported by the `De Luca Foundation <https://delucafoundation.org/>`_ and performed in collaboration with `Delsys, Inc. <https://delsys.com/>`_
+This work is supported by the `De Luca Foundation <https://delucafoundation.org/>`_.
 
 --------
 Contents
