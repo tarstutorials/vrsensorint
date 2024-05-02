@@ -6,7 +6,7 @@
 Welcome to VR Sensor Integration!
 =================================
 
-This is a set of free online tutorials on integrating physiological sensing into virtual reality applications. These tutorials are intended for a wide-ranging audience --- from health care professionals who have little background in programming, to software developers who have little background in wearable health sensors, to students looking to find a niche in these rapidly expanding fields.
+This is a set of free online tutorials on integrating physiological sensing into virtual reality applications. These tutorials are intended for a wide audience --- from health care professionals who have little background in programming, to software developers who have little background in wearable health sensors, and finally to any students looking to find a niche in these rapidly expanding fields.
 
 ----------------
 Acknowledgements
