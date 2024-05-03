@@ -61,7 +61,7 @@ html_logo = 'images/tars_logo_sq.png'
 html_favicon = 'images/tars_logo_sq.png'
 # Options to change the HTML output for the site. Specific to the theme.
 html_theme_options = {
-    'style_nav_header_background':'#252525',
+    'style_nav_header_background':'#292929                    ',
     'prev_next_buttons_location' : 'both',
 }
 html_css_files = [

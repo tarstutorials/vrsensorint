@@ -6308,7 +6308,7 @@ html {
     overflow-y: hidden;
     min-height: 100%;
     color: #9b9b9b;
-    background: #252525;
+    background: #292929;
     z-index: 200
 }
 
@@ -6552,7 +6552,7 @@ footer span.commit code {
 
 .rst-versions .rst-current-version {
     padding: 12px;
-    background-color: #272525;
+    background-color: #272727;
     display: block;
     text-align: right;
     font-size: 90%;
