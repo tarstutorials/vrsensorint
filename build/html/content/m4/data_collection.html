@@ -71,7 +71,6 @@
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="#connecting-to-unity">Connecting to Unity</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#a-simple-unity-application">A Simple Unity Application</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#section-review">Section Review</a></li>
 </ul>
 </li>
@@ -160,6 +159,10 @@
 </section>
 <section id="connecting-to-unity">
 <h2>Connecting to Unity<a class="headerlink" href="#connecting-to-unity" title="Link to this heading"></a></h2>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>There is a known bug preventing the usage of the Delsys API with specific versions of Unity. While it is unknown exactly which versions are affected, 2022.3.7f1 has been tested and is working, so that is what will be used here and what is recommended for you to use as well.</p>
+</div>
 <p>Now that you have your sensors connected and are ready to begin using them, it’s time to create a Unity application. Follow the steps below to get set up for Unity development with the Delsys API.</p>
 <a class="reference internal image-reference" href="../../_images/UnityLogin.png"><img alt="An Image of the Unity login screen." src="../../_images/UnityLogin.png" style="width: 800px;" /></a>
 <ol class="arabic simple">
@@ -170,25 +173,49 @@
 <li><p>On the sidebar on the left side of the application, select the <em>Projects</em> tab.</p></li>
 <li><p>On the top right of the application, press the button titled <em>New project</em>.</p></li>
 </ol>
-<a class="reference internal image-reference" href="../../_images/NewProject3D.png"><img alt="An Image of the 3D project template in Unity Hub." src="../../_images/NewProject3D.png" style="width: 800px;" /></a>
+<a class="reference internal image-reference" href="../../_images/create_link_project.png"><img alt="An Image of the 2D project template in Unity Hub." src="../../_images/create_link_project.png" style="width: 800px;" /></a>
 <ol class="arabic simple" start="4">
-<li><p>From here you can select any template project type you would like, depedning on the context of the application you are creating. For this basic introduction to the integration, we will use the <em>3D Core</em> template.</p></li>
+<li><p>From here you can select any template project type you would like, depedning on the context of the application you are creating. For this basic introduction to the integration, we will use the <em>2D Core</em> template.</p></li>
 <li><p>Likewise to the projects you created previously in this set of tutorials, you can name the project whatever you like and choose where it is saved.</p></li>
 <li><p>Click the <em>Create project</em> button in the bottom right corner of the application to create the project and launch the Unity editor.</p></li>
 </ol>
-<a class="reference internal image-reference" href="../../_images/PackageManager3D.png"><img alt="An Image of navigating to the package manager in the new 3D project." src="../../_images/PackageManager3D.png" style="width: 800px;" /></a>
+<a class="reference internal image-reference" href="../../_images/project_settings.png"><img alt="An Image of navigating to the package manager in the new 3D project." src="../../_images/project_settings.png" style="width: 800px;" /></a>
 <ol class="arabic simple" start="7">
-<li><p>In the editor, navigate to the <em>Window</em> option in the top ribbon, and select <em>Package Manager</em> from the dropdown menu.</p></li>
+<li><p>In the editor, navigate to the <em>Edit</em> option in the top ribbon, and select <em>Project Settings</em> from the dropdown menu.</p></li>
 </ol>
-<a class="reference internal image-reference" href="../../_images/Nuget.png"><img alt="An Image of adding the NuGet package to Unity." src="../../_images/Nuget.png" style="width: 800px;" /></a>
+<a class="reference internal image-reference" href="../../_images/il2cpp_net.png"><img alt="An Image of the configuration section of the Player Settings menu." src="../../_images/il2cpp_net.png" style="width: 800px;" /></a>
 <ol class="arabic simple" start="8">
-<li><p>In the package manager, click the “+” icon in the top left, and select the <em>Add package from git URL</em> option. Then, enter the following Github link and press <em>Add</em> to install NuGetForUnity: <code class="docutils literal notranslate"><span class="pre">https://github.com/GlitchEnzo/NuGetForUnity.git?path=/src/NuGetForUnity</span></code>. This is a package manager built to run inside Unity that will allow you to install the Delsys packages.</p></li>
-<li><p>Download the <strong>Delsys API</strong>. You will need this to collect data from your sensors and send that data to Unity. You can find the API <a class="reference external" href="http://data.delsys.com/DelsysServicePortal/api/index.html">here</a>, along with some tutorials, examples, and useful documentation to help you get acquainted to using it.</p></li>
-<li><p>Extract the downloaded zipped folder. You can do this by right clicking on it in the file explorer and selecting the <em>Extract All…</em> option from the dropdown.</p></li>
+<li><p>In the project settings menu, select the option on the right toolbar titled <em>Player</em>. In the menu for your selected platform (in this case Windows, Mac, and Linux), scroll down to the <em>Configuration</em> section. In this location, make sure the <em>Scripting Backend</em> is set to IL2CPP and that the <em>Api Compatibility Level</em> is set to .NET Framework. Your project may take a minute to apply these changes.</p></li>
 </ol>
-</section>
-<section id="a-simple-unity-application">
-<h2>A Simple Unity Application<a class="headerlink" href="#a-simple-unity-application" title="Link to this heading"></a></h2>
+<a class="reference internal image-reference" href="../../_images/plugins_folder.png"><img alt="An Image of the plugins folder in the assets folder." src="../../_images/plugins_folder.png" style="width: 800px;" /></a>
+<ol class="arabic simple" start="9">
+<li><p>In the assets folder of your Unity project, add an empty folder called <em>Plugins</em>. This is where you will put the API files.</p></li>
+</ol>
+<a class="reference internal image-reference" href="../../_images/delsys_github_repo.png"><img alt="An Image of the Delsys Example Applications Github Repository." src="../../_images/delsys_github_repo.png" style="width: 800px;" /></a>
+<ol class="arabic simple" start="10">
+<li><p>To get the API files you will need to add to your project, go to the <a class="reference external" href="https://github.com/delsys-inc/Example-Applications">Delsys Example Applications</a> Github page. Select the green button labeled <em>Code</em>, and select the <em>Download ZIP</em> option from the dropdown menu that appears. This should download a ZIP file containing the example projects, as well as the API files you’ll need.</p></li>
+<li><p>Right click the ZIP file you just downloaded in your file explorer, and Extract it. In Windows 11, this is done through an option called <em>Extract All…</em> in the right click menu.</p></li>
+</ol>
+<a class="reference internal image-reference" href="../../_images/assets_subfolder.png"><img alt="An Image of Assets subfolder in the Unity Example." src="../../_images/assets_subfolder.png" style="width: 800px;" /></a>
+<ol class="arabic simple" start="12">
+<li><p>Open the extracted folder, and navigate to the <code class="docutils literal notranslate"><span class="pre">~\Example-Applications-main\Delsys</span> <span class="pre">Unity</span> <span class="pre">Example\Assets</span></code> subdirectory.</p></li>
+<li><p>Copy every file that is in the Plugins folder of the assets folder and paste them into the empty Plugins folder you created in your project.</p></li>
+</ol>
+<a class="reference internal image-reference" href="../../_images/codedom.png"><img alt="An Image of the Plugins folder of your project with System.CodeDom.dll and System.CodeDom.dll.meta selected." src="../../_images/codedom.png" style="width: 800px;" /></a>
+<ol class="arabic simple" start="14">
+<li><p>In the plugins folder in your project, delete the file called <em>System.CodeDom.dll</em> and its associated meta file <em>System.CodeDom.dll.meta</em>.</p></li>
+</ol>
+<a class="reference internal image-reference" href="../../_images/project_root.png"><img alt="An Image of the project's root folder with the moved file in it." src="../../_images/project_root.png" style="width: 800px;" /></a>
+<ol class="arabic simple" start="15">
+<li><p>In the plugins folder in your project, Move the file called <em>SiUSBXp.dll</em> and its associated meta file <em>SiUSBXp.dll.meta</em> to the root folder of your project. This should result in something looking like the image above.</p></li>
+</ol>
+<a class="reference internal image-reference" href="../../_images/assets_unity_example.png"><img alt="An Image of Assets subfolder with the UnityScript.cs in it." src="../../_images/assets_unity_example.png" style="width: 800px;" /></a>
+<ol class="arabic simple" start="17">
+<li><p>Lastly, copy the <em>UnityExample.cs</em> script from the Delsys Unity Example project into the Assets folder of your project. You will be adding to this script to implement the Trigno Link, since it is easier than starting from scratch.</p></li>
+</ol>
+<ol class="arabic simple" start="16">
+<li><p>Allow your Unity project time to reload its domain, and then ensure there are no compilation errors with the project (You may see warnings, indicated with a yellow exclamation mark, these are okay). If there are none, you are ready to move on. If not, retry the steps above on a different version of Unity or try and troubleshoot the compilation error using the <span class="xref std std-ref">troubleshooting</span> page of this site.</p></li>
+</ol>
 </section>
 <section id="section-review">
 <h2>Section Review<a class="headerlink" href="#section-review" title="Link to this heading"></a></h2>

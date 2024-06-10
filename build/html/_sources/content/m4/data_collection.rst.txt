@@ -73,6 +73,9 @@ Using the Trigno Link, Trigno Wireless BioFeedback System, and Trigno Discover, 
 Connecting to Unity
 -------------------------------
 
+.. warning::
+  There is a known bug preventing the usage of the Delsys API with specific versions of Unity. While it is unknown exactly which versions are affected, 2022.3.7f1 has been tested and is working, so that is what will be used here and what is recommended for you to use as well. 
+
 Now that you have your sensors connected and are ready to begin using them, it's time to create a Unity application. Follow the steps below to get set up for Unity development with the Delsys API. 
 
 .. image:: ../../images/UnityLogin.png
@@ -89,33 +92,70 @@ Now that you have your sensors connected and are ready to begin using them, it's
 
 3. On the top right of the application, press the button titled *New project*.
 
-.. image:: ../../images/NewProject3D.png
+.. image:: ../../images/create_link_project.png
   :width: 800
-  :alt: An Image of the 3D project template in Unity Hub.
+  :alt: An Image of the 2D project template in Unity Hub.
 
-4. From here you can select any template project type you would like, depedning on the context of the application you are creating. For this basic introduction to the integration, we will use the *3D Core* template. 
+4. From here you can select any template project type you would like, depedning on the context of the application you are creating. For this basic introduction to the integration, we will use the *2D Core* template. 
 
 5. Likewise to the projects you created previously in this set of tutorials, you can name the project whatever you like and choose where it is saved.
 
 6. Click the *Create project* button in the bottom right corner of the application to create the project and launch the Unity editor.
 
-.. image:: ../../images/PackageManager3D.png
+.. image:: ../../images/project_settings.png
   :width: 800
   :alt: An Image of navigating to the package manager in the new 3D project.
 
-7. In the editor, navigate to the *Window* option in the top ribbon, and select *Package Manager* from the dropdown menu.
+7. In the editor, navigate to the *Edit* option in the top ribbon, and select *Project Settings* from the dropdown menu.
 
-.. image:: ../../images/Nuget.png
+.. image:: ../../images/il2cpp_net.png
   :width: 800
-  :alt: An Image of adding the NuGet package to Unity.
+  :alt: An Image of the configuration section of the Player Settings menu.
 
-8. In the package manager, click the "+" icon in the top left, and select the *Add package from git URL* option. Then, enter the following Github link and press *Add* to install NuGetForUnity: ``https://github.com/GlitchEnzo/NuGetForUnity.git?path=/src/NuGetForUnity``. This is a package manager built to run inside Unity that will allow you to install the Delsys packages.
+8. In the project settings menu, select the option on the right toolbar titled *Player*. In the menu for your selected platform (in this case Windows, Mac, and Linux), scroll down to the *Configuration* section. In this location, make sure the *Scripting Backend* is set to IL2CPP and that the *Api Compatibility Level* is set to .NET Framework. Your project may take a minute to apply these changes. 
 
-#. Download the **Delsys API**. You will need this to collect data from your sensors and send that data to Unity. You can find the API `here <http://data.delsys.com/DelsysServicePortal/api/index.html>`_, along with some tutorials, examples, and useful documentation to help you get acquainted to using it.
+.. image:: ../../images/plugins_folder.png
+  :width: 800
+  :alt: An Image of the plugins folder in the assets folder.
 
-#. Extract the downloaded zipped folder. You can do this by right clicking on it in the file explorer and selecting the *Extract All...* option from the dropdown.
+9. In the assets folder of your Unity project, add an empty folder called *Plugins*. This is where you will put the API files.
 
--------------------------------
+.. image:: ../../images/delsys_github_repo.png
+  :width: 800
+  :alt: An Image of the Delsys Example Applications Github Repository.
+
+10. To get the API files you will need to add to your project, go to the `Delsys Example Applications <https://github.com/delsys-inc/Example-Applications>`_ Github page. Select the green button labeled *Code*, and select the *Download ZIP* option from the dropdown menu that appears. This should download a ZIP file containing the example projects, as well as the API files you'll need.
+
+11. Right click the ZIP file you just downloaded in your file explorer, and Extract it. In Windows 11, this is done through an option called *Extract All...* in the right click menu.
+
+.. image:: ../../images/assets_subfolder.png
+  :width: 800
+  :alt: An Image of Assets subfolder in the Unity Example.
+
+12. Open the extracted folder, and navigate to the ``~\Example-Applications-main\Delsys Unity Example\Assets`` subdirectory. 
+
+13. Copy every file that is in the Plugins folder of the assets folder and paste them into the empty Plugins folder you created in your project. 
+
+.. image:: ../../images/codedom.png
+  :width: 800
+  :alt: An Image of the Plugins folder of your project with System.CodeDom.dll and System.CodeDom.dll.meta selected.
+
+14. In the plugins folder in your project, delete the file called *System.CodeDom.dll* and its associated meta file *System.CodeDom.dll.meta*. 
+
+.. image:: ../../images/project_root.png
+  :width: 800
+  :alt: An Image of the project's root folder with the moved file in it.
+
+15. In the plugins folder in your project, Move the file called *SiUSBXp.dll* and its associated meta file *SiUSBXp.dll.meta* to the root folder of your project. This should result in something looking like the image above.
+
+.. image:: ../../images/assets_unity_example.png
+  :width: 800
+  :alt: An Image of Assets subfolder with the UnityScript.cs in it.
+
+17. Lastly, copy the *UnityExample.cs* script from the Delsys Unity Example project into the Assets folder of your project. You will be adding to this script to implement the Trigno Link, since it is easier than starting from scratch.
+
+16. Allow your Unity project time to reload its domain, and then ensure there are no compilation errors with the project (You may see warnings, indicated with a yellow exclamation mark, these are okay). If there are none, you are ready to move on. If not, retry the steps above on a different version of Unity or try and troubleshoot the compilation error using the :ref:`troubleshooting` page of this site.
+
 A Simple Unity Application
 -------------------------------
 
