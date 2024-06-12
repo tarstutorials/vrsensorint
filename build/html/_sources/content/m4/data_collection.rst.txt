@@ -156,9 +156,15 @@ Now that you have your sensors connected and are ready to begin using them, it's
 
 16. Allow your Unity project time to reload its domain, and then ensure there are no compilation errors with the project (You may see warnings, indicated with a yellow exclamation mark, these are okay). If there are none, you are ready to move on. If not, retry the steps above on a different version of Unity or try and troubleshoot the compilation error using the :ref:`troubleshooting` page of this site.
 
+-------------------------------
 A Simple Unity Application
 -------------------------------
 
+For this simple application, you are going to be slightly modifying the Unity Example script that you got from the Delsys Unity Example Application. It is entirely possible to make your own script utilizing the Delsys API, and if you wish to do so you may, but using the Example script as a template offers useful and working functions right from the start, saving you time and providing you with something you know works. If you do decide to create your own scripts utilizing the Delsys API in the future, you can use the Example script alongside the `Delsys API Quickstart Guide <http://data.delsys.com/DelsysServicePortal/api/web-downloads/MAN-032-1-1%20API%20Quick%20Start%20Guide.pdf>`_ and `Delsys API User Guide <https://delsys.com/downloads/USERSGUIDE/delsys-api.pdf>`_ to learn about the available functionality.
+
+The following steps will tell you how to modify the copy of the Unity Example Script in order to search for Trigno Link components:
+
+1. 
 -------------------------------
 Section Review
 -------------------------------

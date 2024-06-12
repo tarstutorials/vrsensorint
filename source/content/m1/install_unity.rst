@@ -13,9 +13,9 @@ From here, do the following:
 
 1. Create a Unity account.
 
-2. Install the latest LTS Unity Editor
+2. Install a Delsys API compatible Unity Editor(see :ref:`troubleshooting`) for details.
 
-    * A list of all the currently supported releases can be found `here <https://unity.com/releases/editor/qa/lts-releases?major_version=&minor_version=&version=&page=1>`_.
+    * A list of all the currently supported releases can be found `here <https://unity.com/releases/editor/qa/lts-releases?major_version=&minor_version=&version=&page=1>`_. However, not all releases will work with the API. 
 .. warning::
     Make sure to install the "Android Build Support" module and Visual Studio (if you do not already have it) alongside the editor install. You will need these later.
 

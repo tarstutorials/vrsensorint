@@ -65,7 +65,7 @@
 <li class="toctree-l1"><a class="reference internal" href="../m3/intro_to_sensors.html">Introduction to Physiological Sensors</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../m4/data_collection.html">Data Collection with Physiological Sensors</a></li>
 <li class="toctree-l1 current"><a class="current reference internal" href="#">Integration with VR</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="#delsys-software-development-kit">Delsys Software Development Kit</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#creating-a-new-vr-project-with-delsys-api">Creating A New VR Project with Delsys API</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#integrating-sensors-with-our-gameobjects">Integrating Sensors with Our GameObjects</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#testing-and-refining-integration">Testing and Refining Integration</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#section-review">Section Review</a></li>
@@ -108,8 +108,58 @@
              
   <section id="integration-with-vr">
 <span id="sensors-to-int"></span><h1>Integration with VR<a class="headerlink" href="#integration-with-vr" title="Link to this heading"></a></h1>
-<section id="delsys-software-development-kit">
-<h2>Delsys Software Development Kit<a class="headerlink" href="#delsys-software-development-kit" title="Link to this heading"></a></h2>
+<p>Now that you have successfully managed to create a simple 2D application that integrates the Trigno Link and some physiological sensors, it is time to take what you know and apply it to a virtual reality project. The core principles used are exactly the same as with the 2D application, it is just a matter of modifying the approach to create a VR app instead.</p>
+<section id="creating-a-new-vr-project-with-delsys-api">
+<h2>Creating A New VR Project with Delsys API<a class="headerlink" href="#creating-a-new-vr-project-with-delsys-api" title="Link to this heading"></a></h2>
+<p>In order to properly set up your VR project for physiological sensor integration, you will be combining the steps used in modules 2 and 4 to build your project. The combined instructions will be repeated below for your convenience:</p>
+<a class="reference internal image-reference" href="../../_images/UnityLogin.png"><img alt="An image of the Unity login screen." src="../../_images/UnityLogin.png" style="width: 800px;" /></a>
+<ol class="arabic simple">
+<li><p>Launch Unity Hub and login to your Unity account. If you do not have either of these completed, see <a class="reference internal" href="../m1/install_unity.html#new-to-install"><span class="std std-ref">Installing Unity</span></a>.</p></li>
+</ol>
+<a class="reference internal image-reference" href="../../_images/EmptyProjects.png"><img alt="An image of the projects tab in Unity Hub." src="../../_images/EmptyProjects.png" style="width: 800px;" /></a>
+<ol class="arabic simple" start="2">
+<li><p>On the sidebar on the left side of the application, select the <em>Projects</em> tab.</p></li>
+<li><p>On the top right of the application, press the button titled <em>New project</em>.</p></li>
+</ol>
+<a class="reference internal image-reference" href="../../_images/NewVRProject.png"><img alt="An image of a 2D Mobile template for a project in Unity Hub." src="../../_images/NewVRProject.png" style="width: 800px;" /></a>
+<ol class="arabic simple" start="4">
+<li><p>Under the templates section, select the <em>VR Core</em> option. You may have to download the template if you have not used it already. The button to download it can be seen on the right side of the application after clicking on the template.</p></li>
+<li><p>Choose a name for your project. It can be anything you like, but we recommend naming it with one word in order to make file access easier.</p></li>
+<li><p>Choose the where you’d like to store your project. Be sure to pick a location that is easy to find.</p></li>
+<li><p>Click the <em>Create project</em> button in the bottom right corner of the application. This will create the project and launch the editor, which will contain a pre-made sample scene for you to start with.</p></li>
+<li><p>In the editor, navigate to the <em>Edit</em> option in the top ribbon, and select <em>Project Settings</em> from the dropdown menu.</p></li>
+</ol>
+<a class="reference internal image-reference" href="../../_images/il2cpp_net.png"><img alt="An Image of the configuration section of the Player Settings menu." src="../../_images/il2cpp_net.png" style="width: 800px;" /></a>
+<ol class="arabic simple" start="9">
+<li><p>In the project settings menu, select the option on the right toolbar titled <em>Player</em>. In the menu for your selected platform (in this case Windows, Mac, and Linux), scroll down to the <em>Configuration</em> section. In this location, make sure the <em>Scripting Backend</em> is set to IL2CPP and that the <em>Api Compatibility Level</em> is set to .NET Framework. Your project may take a minute to apply these changes.</p></li>
+</ol>
+<a class="reference internal image-reference" href="../../_images/plugins_folder.png"><img alt="An Image of the plugins folder in the assets folder." src="../../_images/plugins_folder.png" style="width: 800px;" /></a>
+<ol class="arabic simple" start="10">
+<li><p>In the assets folder of your Unity project, add an empty folder called <em>Plugins</em>. This is where you will put the API files.</p></li>
+</ol>
+<a class="reference internal image-reference" href="../../_images/delsys_github_repo.png"><img alt="An Image of the Delsys Example Applications Github Repository." src="../../_images/delsys_github_repo.png" style="width: 800px;" /></a>
+<ol class="arabic simple" start="11">
+<li><p>To get the API files you will need to add to your project, go to the <a class="reference external" href="https://github.com/delsys-inc/Example-Applications">Delsys Example Applications</a> Github page. Select the green button labeled <em>Code</em>, and select the <em>Download ZIP</em> option from the dropdown menu that appears. This should download a ZIP file containing the example projects, as well as the API files you’ll need.</p></li>
+<li><p>Right click the ZIP file you just downloaded in your file explorer, and Extract it. In Windows 11, this is done through an option called <em>Extract All…</em> in the right click menu.</p></li>
+</ol>
+<a class="reference internal image-reference" href="../../_images/assets_subfolder.png"><img alt="An Image of Assets subfolder in the Unity Example." src="../../_images/assets_subfolder.png" style="width: 800px;" /></a>
+<ol class="arabic simple" start="13">
+<li><p>Open the extracted folder, and navigate to the <code class="docutils literal notranslate"><span class="pre">~\Example-Applications-main\Delsys</span> <span class="pre">Unity</span> <span class="pre">Example\Assets</span></code> subdirectory.</p></li>
+<li><p>Copy every file that is in the Plugins folder of the assets folder and paste them into the empty Plugins folder you created in your project.</p></li>
+</ol>
+<a class="reference internal image-reference" href="../../_images/codedom.png"><img alt="An Image of the Plugins folder of your project with System.CodeDom.dll and System.CodeDom.dll.meta selected." src="../../_images/codedom.png" style="width: 800px;" /></a>
+<ol class="arabic simple" start="15">
+<li><p>In the plugins folder in your project, delete the file called <em>System.CodeDom.dll</em> and its associated meta file <em>System.CodeDom.dll.meta</em>.</p></li>
+</ol>
+<a class="reference internal image-reference" href="../../_images/project_root.png"><img alt="An Image of the project's root folder with the moved file in it." src="../../_images/project_root.png" style="width: 800px;" /></a>
+<ol class="arabic simple" start="16">
+<li><p>In the plugins folder in your project, Move the file called <em>SiUSBXp.dll</em> and its associated meta file <em>SiUSBXp.dll.meta</em> to the root folder of your project. This should result in something looking like the image above.</p></li>
+</ol>
+<a class="reference internal image-reference" href="../../_images/assets_unity_example.png"><img alt="An Image of Assets subfolder with the UnityScript.cs in it." src="../../_images/assets_unity_example.png" style="width: 800px;" /></a>
+<ol class="arabic simple" start="17">
+<li><p>Lastly, copy the <em>UnityExample.cs</em> script from the Delsys Unity Example project into the Assets folder of your project. You will be adding to this script to implement the Trigno Link, since it is easier than starting from scratch.</p></li>
+<li><p>Allow your Unity project time to reload its domain, and then ensure there are no compilation errors with the project (You may see warnings, indicated with a yellow exclamation mark, these are okay). If there are none, you are ready to move on. If not, retry the steps above on a different version of Unity or try and troubleshoot the compilation error using the <a class="reference internal" href="../m7/error_handling.html#troubleshooting"><span class="std std-ref">Troubleshooting Resources</span></a> page of this site.</p></li>
+</ol>
 </section>
 <section id="integrating-sensors-with-our-gameobjects">
 <h2>Integrating Sensors with Our GameObjects<a class="headerlink" href="#integrating-sensors-with-our-gameobjects" title="Link to this heading"></a></h2>
