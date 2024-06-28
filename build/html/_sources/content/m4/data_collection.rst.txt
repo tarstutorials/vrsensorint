@@ -162,9 +162,536 @@ A Simple Unity Application
 
 For this simple application, you are going to be slightly modifying the Unity Example script that you got from the Delsys Unity Example Application. It is entirely possible to make your own script utilizing the Delsys API, and if you wish to do so you may, but using the Example script as a template offers useful and working functions right from the start, saving you time and providing you with something you know works. If you do decide to create your own scripts utilizing the Delsys API in the future, you can use the Example script alongside the `Delsys API Quickstart Guide <http://data.delsys.com/DelsysServicePortal/api/web-downloads/MAN-032-1-1%20API%20Quick%20Start%20Guide.pdf>`_ and `Delsys API User Guide <https://delsys.com/downloads/USERSGUIDE/delsys-api.pdf>`_ to learn about the available functionality.
 
-The following steps will tell you how to modify the copy of the Unity Example Script in order to search for Trigno Link components:
 
-1. 
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+Modifying the Example Script
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Below is the modified code for the Example script that allows it to search for Trigno Link components alongside the Trigno RF ones. Beneath that you will be given descriptions of what each modification does, so you can use it in your future projects. 
+
+.. code-block:: cs
+  :linenos:
+
+  using DelsysAPI.Channels.Transform;
+  using DelsysAPI.Configurations;
+  using DelsysAPI.Configurations.DataSource;
+  using DelsysAPI.Contracts;
+  using DelsysAPI.DelsysDevices;
+  using DelsysAPI.Events;
+  using DelsysAPI.Pipelines;
+  using DelsysAPI.Transforms;
+  using DelsysAPI.Utils;
+  using System;
+  using System.Collections.Generic;
+  using System.IO;
+  using System.Linq;
+  using System.Threading.Tasks;
+  using UnityEngine;
+  using UnityEngine.UI;
+  using UnityEngine.Events;
+  using TMPro;
+  using DelsysAPI.Components.TrignoLink;
+  public class UnityExample : MonoBehaviour
+  {
+      //Paste key/license strings here
+      private string key = "";
+      private string license = "";
+
+
+      /// <summary>
+      /// Data structure for recording every channel of data.
+      /// </summary>
+      List<List<double>> Data = new List<List<double>>();
+      public Button ScanButton;
+      public Button StartButton;
+      public Button StopButton;
+      public Button SelectButton;
+      public Button PairButton;
+      IDelsysDevice DeviceSource = null;
+      int TotalLostPackets = 0;
+      int TotalDataPoints = 0;
+      public TMP_Text APIStatusText, TestText, PipelineState;
+      Pipeline RFPipeline;
+      ITransformManager TransformManager;
+      string text, pipeline_state;
+      UnityEvent m_scan;
+      bool select, scan, start, stop, pair;
+      string[] compoentNames;
+      List<List<List<double>>> AllCollectionData = new List<List<List<double>>>();
+      VerticalLayoutGroup verticalLayoutGroup;
+
+      private bool usingTrignoLink;
+
+      // Use this for initialization
+      void Start()
+      {
+
+          Debug.Log("Entered Start Function.");
+
+          usingTrignoLink = true;
+
+          //Finding references to all the buttons in the scene
+          ScanButton = GameObject.Find("ScanButton").GetComponent<Button>();
+          ScanButton.onClick.AddListener((UnityEngine.Events.UnityAction) this.clk_Scan);
+          
+          StartButton = GameObject.Find("StartButton").GetComponent<Button>();
+          StartButton.onClick.AddListener((UnityEngine.Events.UnityAction) this.clk_Start);
+
+          StopButton = GameObject.Find("StopButton").GetComponent<Button>();
+          StopButton.onClick.AddListener((UnityEngine.Events.UnityAction) this.clk_Stop);
+
+          SelectButton = GameObject.Find("SelectButton").GetComponent<Button>();
+          SelectButton.onClick.AddListener((UnityEngine.Events.UnityAction) this.clk_Select);
+
+          PairButton = GameObject.Find("PairButton").GetComponent<Button>();
+          PairButton.onClick.AddListener((UnityEngine.Events.UnityAction) this.clk_Pair);
+          
+          scan = true; //Enabling only the Scan button for now.
+          start = false;
+          stop = false;
+          select = false;
+          pair = false;
+
+          CopyUSBDriver(); // Copying the SiUSBXp.dll file if not present
+          InitializeDataSource(); //Initializing the Delsys API Data source
+      }
+
+
+      // Update is called once per frame
+      void Update()
+      {
+          APIStatusText.text = text;
+          SelectButton.enabled = select;
+          ScanButton.enabled = scan;
+          StartButton.enabled = start;
+          StopButton.enabled = stop;
+          PairButton.enabled = pair;
+          PipelineState.text = PipelineController.Instance.PipelineIds[0].CurrentState.ToString();
+      }
+
+      public void CopyUSBDriver()
+      {
+          string unityAssetPath = Application.streamingAssetsPath + "/SiUSBXp.dll";
+          string adjacentToExePath = Application.dataPath + "/../SiUSBXp.dll";
+          if (!File.Exists(adjacentToExePath))
+          {
+              File.Copy(unityAssetPath, adjacentToExePath);
+          }
+      }
+
+      /// <summary>
+      /// Dumping all the debug statements from DelsysAPI into the Unity's Log file, see https://docs.unity3d.com/Manual/LogFiles.html for more details.
+      /// </summary>
+      /// <returns> None </returns>
+      public void TraceWriteline(string s, object[] args)
+      {
+          for(int i=0; i< args.Count();i++){
+              s = s + "; " + args[i];
+          }
+          Debug.Log("Delsys API:- " + s);
+          
+      }
+    
+      #region Initialization
+      public void InitializeDataSource()
+      {
+          
+          text = "Creating device source . . . ";
+          if(key.Equals("") || license.Equals("")){
+              text = "Please add your license details from the code.";
+          }
+          var deviceSourceCreator = new DeviceSourcePortable(key, license);
+          deviceSourceCreator.SetDebugOutputStream(TraceWriteline);
+          DeviceSource = deviceSourceCreator.GetDataSource(new SourceType[2] { SourceType.TRIGNO_RF, SourceType.TRIGNO_LINK });
+          text  = "Device source created.";
+          DeviceSource.Key = key;
+          DeviceSource.License = license;
+          text = "Loading data source . . . ";
+
+          try
+          {
+              LoadDataSource(DeviceSource);
+          }
+          catch(Exception exception)
+          {
+              text = "Something went wrong: " + exception.Message;
+              return;
+          }
+          text = "Data source loaded and ready to Scan.";
+      }
+
+      public void LoadDataSource(IDelsysDevice ds)
+      {
+          PipelineController.Instance.AddPipeline(ds);
+
+          RFPipeline = PipelineController.Instance.PipelineIds[0];
+          TransformManager = PipelineController.Instance.PipelineIds[0].TransformManager;
+          
+          RFPipeline.TrignoRfManager.ComponentScanComplete += ComponentScanComplete;
+          RFPipeline.CollectionStarted += CollectionStarted;
+          RFPipeline.CollectionDataReady += CollectionDataReady;
+          RFPipeline.CollectionComplete += CollectionComplete;
+          RFPipeline.TrignoRfManager.ComponentAdded += ComponentAdded;
+          RFPipeline.TrignoRfManager.ComponentLost += ComponentLost;
+          RFPipeline.TrignoRfManager.ComponentRemoved += ComponentRemoved;        
+      }
+
+      #endregion
+
+      #region Button Click events: clk_Scan, clk_Select, clk_Start, clk_Stop, clk_Pair
+      public virtual async void clk_Scan()
+      {
+          Console.WriteLine("Scan Clicked");
+          foreach(var comp in RFPipeline.TrignoRfManager.Components)
+          {
+              await RFPipeline.TrignoRfManager.DeselectComponentAsync(comp);
+          }
+          //Trying to search for Link components - will set link bool to false if fail
+          try{
+              foreach (var component in RFPipeline.TrignoLinkManager.Components)
+                  await RFPipeline.TrignoLinkManager.DeselectComponentAsync(component);
+                  Debug.Log("Trigno Link has sensors connected.");
+          }
+          catch(Exception e){
+              Debug.Log("Trigno Link has no sensors connected.");
+              usingTrignoLink = false;
+          }
+          text = "Scanning . . .";
+          await RFPipeline.Scan();
+      }
+
+      public virtual void clk_Select()
+      {
+          SelectSensors();
+      }
+
+      public virtual async void clk_Start()
+      {
+          
+          // The pipeline must be reconfigured before it can be started again.      
+          bool success = ConfigurePipeline();
+          if(success){
+              Debug.Log("Starting data streaming....");
+              text = "Starting data streaming....";
+              await RFPipeline.Start(); 
+              stop = true; 
+          }
+          else{
+              Debug.Log("Configuration failed. Cannot start streaming!!");  
+              text = "Fatal error!";
+          }
+        
+      }
+
+      public virtual async void clk_Stop()
+      {
+          await RFPipeline.StopInformationStream();
+          await RFPipeline.Stop();
+          RFPipeline.SetActiveDataSources(new List<SourceType>{SourceType.TRIGNO_RF, SourceType.TRIGNO_LINK});
+          await RFPipeline.DisarmPipeline();
+          PipelineController.Instance.RemovePipeline(0);
+
+      }
+
+      public virtual async void clk_Pair()
+      {
+          text = "Awaiting a sensor pair . . .";
+          await RFPipeline.TrignoRfManager.AddTrignoComponent(new System.Threading.CancellationToken());
+      }
+
+      #endregion
+
+      public void SelectSensors()
+      {
+          text = "Selecting all sensors . . .";
+
+          // Select every component we found and didn't filter out.
+          foreach (var component in RFPipeline.TrignoRfManager.Components)
+          {
+              bool success = RFPipeline.TrignoRfManager.SelectComponentAsync(component).Result;
+              if(success){
+                  text = component.FriendlyName + " selected!";
+              }
+              else{
+                  text = "Could not select sensor!!";
+              }
+          }
+          //Now doing search for link components if link is enabled.
+          if(usingTrignoLink == true){
+              foreach(var component in RFPipeline.TrignoLinkManager.Components){
+                  bool success = RFPipeline.TrignoLinkManager.SelectComponentAsync(component).Result;
+                  if (success == true){
+                      text = component.FriendlyName + "selected!";
+                  }else{
+                      text = "Could not select sensor!!";
+                  }
+              }
+          }    
+          start = true;
+      }
+
+
+      /// <summary>
+      /// Configures the input and output of the pipeline.
+      /// </summary>
+      /// <returns></returns>
+      private bool ConfigurePipeline()
+      {
+          var inputConfiguration = new TrignoDsConfig();
+
+          if (PortableIoc.Instance.CanResolve<TrignoDsConfig>())
+          {
+              PortableIoc.Instance.Unregister<TrignoDsConfig>();
+          }
+
+          PortableIoc.Instance.Register(ioc => inputConfiguration);
+
+          foreach (var somecomp in RFPipeline.TrignoRfManager.Components.Where(x => x.State == SelectionState.Allocated))
+          {       
+              somecomp.SelectSampleMode(somecomp.DefaultMode);      
+          }
+
+          try
+          {
+              Debug.Log("Applying Input configurations");
+              bool success_1 = RFPipeline.ApplyInputConfigurations(inputConfiguration);
+              if(success_1){
+                  text =  "Applied input configuration";
+                  Debug.Log("Applied input configuration");
+              }
+              else{
+                  text = "Input configurations failed";
+                  Debug.Log("Input configurations failed");
+              }
+          }
+          catch (Exception exception)
+          {
+              text = exception.Message;
+          }
+          RFPipeline.RunTime = int.MaxValue;
+
+          TransformConnector transformConnector = new TransformConnector(RFPipeline);
+          OutputConfig outputConfig = transformConnector.SetupTransforms();
+
+          bool success_2 = RFPipeline.ApplyOutputConfigurations(outputConfig);
+          if(success_2){
+              text = "Applied Output configurations";
+              Debug.Log("Applied Output configurations");
+              return true;
+          }
+          else{
+              text = "Output configurations failed!";
+              Debug.Log("Output configurations failed!");
+              return false;
+          }        
+      }
+      
+
+
+      #region Collection Callbacks -- Data Ready, Colleciton Started, and Collection Complete
+      public virtual void CollectionDataReady(object sender, ComponentDataReadyEventArgs e)
+      {
+          //Channel based list of data for this frame interval
+          List<List<double>> data = new List<List<double>>();
+
+          for (int k = 0; k < e.Data.Count(); k++)
+          {
+              // Loops through each connected sensor
+              for (int i = 0; i < e.Data[k].SensorData.Count(); i++)
+              {
+                  // Loops through each channel for a sensor
+                  for (int j = 0; j < e.Data[k].SensorData[i].ChannelData.Count(); j++)
+                  {
+                      data.Add(e.Data[k].SensorData[i].ChannelData[j].Data);
+                      for (int k2 = 0; k2 <e.Data[k].SensorData[i].ChannelData[j].Data.Count(); k2++){
+                          Debug.Log(e.Data[k].SensorData[i].ChannelData[j].Data[k2]);
+                      }
+                  }
+              }
+
+          }
+
+          //Add frame data to entire collection data buffer
+          AllCollectionData.Add(data);
+          text = AllCollectionData.Count.ToString();
+      }
+
+      public virtual void CollectionStarted(object sender, DelsysAPI.Events.CollectionStartedEvent e)
+      {
+          AllCollectionData = new List<List<List<double>>>();
+          text = "CollectionStarted event triggered!";
+          var comps = PipelineController.Instance.PipelineIds[0].TrignoRfManager.Components;
+          
+          // Refresh the counters for display.
+          TotalDataPoints = 0;
+          TotalLostPackets = 0;
+
+          // Recreate the list of data channels for recording
+          int totalChannels = 0;
+          for (int i = 0; i < comps.Count; i++)
+          {
+              for (int j = 0; j < comps[i].TrignoChannels.Count; j++)
+              {
+                  if (Data.Count <= totalChannels)
+                  {
+                      Data.Add(new List<double>());
+                  }
+                  else
+                  {
+                      Data[totalChannels] = new List<double>();
+                  }
+                  totalChannels++;
+              }
+          }
+      }
+
+      public virtual async void CollectionComplete(object sender, DelsysAPI.Events.CollectionCompleteEvent e)
+      {
+          text = "CollectionComplete event triggered!";
+          await RFPipeline.DisarmPipeline();
+      }
+
+      #endregion
+
+      #region Component Events: Scan complete, Component Added, Lost, Removed
+      public virtual void ComponentScanComplete(object sender, DelsysAPI.Events.ComponentScanCompletedEventArgs e)
+      {
+          text = "Scan Complete";
+
+          select = true;
+          pair = true;
+
+      }
+
+      public async void ComponentAdded(object sender, ComponentAddedEventArgs e)
+      {
+
+      }
+
+      public virtual void ComponentLost(object sender, ComponentLostEventArgs e)
+      {
+          int sensorStickerNumber = RFPipeline.TrignoRfManager.Components.Where(sensor => sensor.Id == e.Component.Id).First().PairNumber;
+          Console.WriteLine("It appears sensor " + sensorStickerNumber + " has lost connection. Please power cycle this sensor.");
+          text = "It appears sensor " + sensorStickerNumber + " has lost connection";
+
+      }
+
+      public virtual void ComponentRemoved(object sender, ComponentRemovedEventArgs e)
+      {
+
+      }
+
+      #endregion
+
+  }
+
+
+The first change made to the code from the original example script was the addition of the  lines ``using TMPro;`` and ``using DelsysAPI.Components.TrignoLink``. These lines add necessary functionality for Unity's updated text system and the Trigno Link, respectively.
+
+The next modification that was made was the creation of the boolean variable ``usingTrignoLink``. This variable lets the script know whether or not a Trigno Link is being used. In the start method, its default value is set to true. Later, you will see that the scan function can change this value.  
+
+Also in the start method, the lines: 
+
+.. code-block:: cs
+  
+
+  ScanButton = GameObject.FindGameObjectWithTag ("ScanButton").GetComponent<Button>();
+  ScanButton.onClick.AddListener((UnityEngine.Events.UnityAction) this.clk_Scan);
+  
+  StartButton = GameObject.FindGameObjectWithTag ("StartButton").GetComponent<Button>();
+  StartButton.onClick.AddListener((UnityEngine.Events.UnityAction) this.clk_Start);
+
+  StopButton = GameObject.FindGameObjectWithTag ("StopButton").GetComponent<Button>();
+  StopButton.onClick.AddListener((UnityEngine.Events.UnityAction) this.clk_Stop);
+
+  SelectButton = GameObject.FindGameObjectWithTag ("SelectButton").GetComponent<Button>();
+  SelectButton.onClick.AddListener((UnityEngine.Events.UnityAction) this.clk_Select);
+
+  PairButton = GameObject.FindGameObjectWithTag ("PairButton").GetComponent<Button>();
+  PairButton.onClick.AddListener((UnityEngine.Events.UnityAction) this.clk_Pair);
+
+are changed to:
+
+.. code-block:: cs
+
+  
+  ScanButton = GameObject.Find("ScanButton").GetComponent<Button>();
+  ScanButton.onClick.AddListener((UnityEngine.Events.UnityAction) this.clk_Scan);
+  
+  StartButton = GameObject.Find("StartButton").GetComponent<Button>();
+  StartButton.onClick.AddListener((UnityEngine.Events.UnityAction) this.clk_Start);
+
+  StopButton = GameObject.Find("StopButton").GetComponent<Button>();
+  StopButton.onClick.AddListener((UnityEngine.Events.UnityAction) this.clk_Stop);
+
+  SelectButton = GameObject.Find("SelectButton").GetComponent<Button>();
+  SelectButton.onClick.AddListener((UnityEngine.Events.UnityAction) this.clk_Select);
+
+  PairButton = GameObject.Find("PairButton").GetComponent<Button>();
+  PairButton.onClick.AddListener((UnityEngine.Events.UnityAction) this.clk_Pair);
+
+This is because the Unity tag system used in the ``FindGameObjectWithTag`` method is outdated and no longer functions. Simply changing each instance of this function to the newer ``Find`` method will fix this.
+
+.. Note::
+  You must name the ``GameObject`` s the same name as given to the Find method. For example, the button you want to use as a "Stop" button must be named "StopButton" for it to be found by ``Find``. You can change the argument of ``Find`` to whatever you like, but just know that the corresponding ``GameObject`` must share that name, and it is case-sensitive.
+
+
+Now getting into more substantial changes, in the function ``InitializeDataSource``, the line ``DeviceSource = deviceSourceCreator.GetDataSource(SourceType.TRIGNO_RF);`` must be changed to ``DeviceSource = deviceSourceCreator.GetDataSource(new SourceType[2] { SourceType.TRIGNO_RF, SourceType.TRIGNO_LINK });`` . This is what tells the API to search for Trigno Link components alongside the regular RF ones.
+
+Another important change to make is to the ``clk_Scan`` method. Here, add a new try-catch block right after the foreach loop but before the assigning variable ``text`` to "scanning" and awaiting the scan. The try-catch should be composed of the following:
+
+.. code-block:: cs
+
+  
+  try{
+    foreach (var component in RFPipeline.TrignoLinkManager.Components)
+        await RFPipeline.TrignoLinkManager.DeselectComponentAsync(component);
+        Debug.Log("Trigno Link has sensors connected.");
+  }
+    catch(Exception e){
+    Debug.Log("Trigno Link has no sensors connected.");
+    usingTrignoLink = false;
+  }
+
+
+This block of code tries to check for Trigno Link components connected to the system. If it finds them, it adds them to the list of components. If none are found, the system sets the boolean ``usingTrignoLink`` to false, and the Trigno Link is not considered connected.
+
+Next, in the ``clk_stop`` method, add the following four lines of code:
+
+.. code-block:: cs
+
+  
+  await RFPipeline.StopInformationStream();
+  RFPipeline.SetActiveDataSources(new List<SourceType>{SourceType.TRIGNO_RF, SourceType.TRIGNO_LINK});
+  await RFPipeline.DisarmPipeline();
+  PipelineController.Instance.RemovePipeline(0);
+
+The purpose of these lines is to ensure a smooth disconnection of the devices connected to the API, now including the Trigno Link.
+
+Lastly, the final modification to make is to the ``SelectSensors`` method. Here, you are going to want to add an additional foreach loop that only runs if the Trigno Link is being used (as determined by the  value of ``usingTrignoLink``). This loop will search through the Trigno Link's connected sensors and select each of them for data collection. The code should be written as follows, and should be placed right below the outermost closing bracket of the first loop, before ``start`` is set to true:
+
+.. code-block:: cs
+
+  
+  if(usingTrignoLink == true){
+      foreach(var component in RFPipeline.TrignoLinkManager.Components){
+          bool success = RFPipeline.TrignoLinkManager.SelectComponentAsync(component).Result;
+          if (success == true){
+              text = component.FriendlyName + "selected!";
+          }else{
+              text = "Could not select sensor!!";
+          }
+      }
+  }
+
+
+Now that all of the modifications have been made, save your script using *ctrl + S* on Windows, or *cmd + S* on Mac, and ensure that Unity does not display any compiler errors. If you encounter errors, you can always copy and paste the entire script from this page and overwrite yours, since the script here is known to work. You are now ready to move on to adding the necessary ``GameObject`` s to the project.
+
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+Adding GameObjects
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+
 -------------------------------
 Section Review
 -------------------------------
