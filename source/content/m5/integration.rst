@@ -84,7 +84,7 @@ In order to properly set up your VR project for physiological sensor integration
   :width: 800
   :alt: An Image of Assets subfolder with the UnityScript.cs in it.
 
-17. Lastly, copy the *UnityExample.cs* script from the Delsys Unity Example project into the Assets folder of your project. You will be adding to this script to implement the Trigno Link, since it is easier than starting from scratch.
+17. Lastly, copy the modified *UnityExample.cs* script from the project you created in the previous module into the Assets folder of your project. This way, you do not have to reimplement Trigno Link functionality.
 
 18. Allow your Unity project time to reload its domain, and then ensure there are no compilation errors with the project (You may see warnings, indicated with a yellow exclamation mark, these are okay). If there are none, you are ready to move on. If not, retry the steps above on a different version of Unity or try and troubleshoot the compilation error using the :ref:`troubleshooting` page of this site.
 

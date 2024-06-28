@@ -588,6 +588,8 @@ Below is the modified code for the Example script that allows it to search for T
 
 The first change made to the code from the original example script was the addition of the  lines ``using TMPro;`` and ``using DelsysAPI.Components.TrignoLink``. These lines add necessary functionality for Unity's updated text system and the Trigno Link, respectively.
 
+After adding TMPro, change the line ``public Text APIStatusText, TestText, PipelineState;`` to ``public TMP_Text APIStatusText, TestText, PipelineState;``. This will convert the text variables used to the updated text system.
+
 The next modification that was made was the creation of the boolean variable ``usingTrignoLink``. This variable lets the script know whether or not a Trigno Link is being used. In the start method, its default value is set to true. Later, you will see that the scan function can change this value.  
 
 Also in the start method, the lines: 
@@ -691,8 +693,200 @@ Now that all of the modifications have been made, save your script using *ctrl +
 Adding GameObjects
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
+.. image:: ../../images/added_game_objects.png
+  :width: 1000
+  :alt: An Image of the layout for the project.
+
+
+If you are building from the example script, you are going to need a few ``GameObject`` s in order to create the scene for your application. Please create the following:
+
+* A Canvas Object: This will be the parent object for your buttons and text, and defines what the screen shows. The sample scene given when you start your 2D project should already have this.
+
+* An Event System Object: This is used to make your UI elements interactable. Again, the sample scene should already have this created for you.
+
+* A Main Camera: This is the last object included with the sample scene, and it just defines the view of the game. It should be created for you already.
+
+* A Unity Example Object: This is the first object you must add yourself, and it is the **most** important object for the integration. It should be an Empty object, and should have the modified Example Script attached as a component. 
+
+* A Scan Button: This will be used to scan for sensors connected to the base station and the Trigno Link. Ensure that the name for this ``GameObject`` matches the one given as argument in the ``Find`` function for the ``GameObject`` ScanButton in the Example Script. If you have not changed the arguments, the name should be "ScanButton".
+
+* A Start Button: This will be used to start collecting data once all of the sensors have been connected. Ensure that the name for this ``GameObject`` matches the one given as argument in the ``Find`` function for the ``GameObject`` StartButton in the Example Script. If you have not changed the arguments, the name should be "StartButton".
+
+* A Pair Button: This will be used to pair sensors to the base station that were not previously paired in Trigno Discover. A sensor *must* be paired to the system before it can be picked up by a scan. Ensure that the name for this ``GameObject`` matches the one given as argument in the ``Find`` function for the ``GameObject`` PairButton in the Example Script. If you have not changed the arguments, the name should be "StartButton".
+
+* A Stop Button: This will be used to disarm the Delsys API pipeline and safely stop data collection once clicked.  Ensure that the name for this ``GameObject`` matches the one given as argument in the ``Find`` function for the ``GameObject`` StopButton in the Example Script. If you have not changed the arguments, the name should be "StopButton".
+
+* A Select Button: This wil be used after the scan button to select every sensor found by the scan, and must be used before clicking the start button. Ensure that the name for this ``GameObject`` matches the one given as argument in the ``Find`` function for the ``GameObject`` SelectButton in the Example Script. If you have not changed the arguments, the name should be "SelectButton".
+
+These five buttons provide the core functionality for the API, but there are two additional ``GameObject`` s you should add that can provide additional information about the API's status. These should both be Text Mesh Pro Text objects. They are as follows:
+
+* An API Status Text: This will display the current status of the API in real-time, so you an get a better idea of what state it's in while your application is running. You will need to select the Unity Example object, and in the script component section of the inspector, drag and drop the API status into the "API Status Text" slot. You will do the same for the following object as well.
+
+* A Pipeline State Text: This will display the current state of the pipeline, and whether or not the base station is properly connected. As with the previous object, assign this object to its respective slot in the script component of the Unity Example object.
+
+At the end of the object creation, your object hierarchy should look like the following: 
+
+.. image:: ../../images/2d_hierachy.png
+  :width: 800
+  :alt: An Image of the project's object hierarchy containing the Canvas, Event System, Main Camera, Unity Example, Scan Button, Pair Button, Start Button, Stop Button, Select Button,  API Status Text, and Pipeline State Text ``GameObject`` s. The Scan Button, Pair Button, Start Button, Stop Button, Select Button,  API Status Text, and Pipeline State Text are all children of the Canvas.
+
+And, your Unity Example Script Object's script component should have the following filled in for it's public variable slots. You can drag and drop any of the objects that are missing or incorrectly placed in the slots from the object hierarchy into the slots:
+
+.. image:: ../../images/example_script_inspector.png
+  :width: 800
+  :alt: An Image of the Unity Example Object's inspector window with the Scan Button assigned to ``ScanButton`` , the Start Button assigned to ``StartButton`` , the Stop Button assigned to ``StopButton`` , the Select Button assigned to ``SelectButton`` , the Pair Button assigned to ``PairButton`` , the API Status Text assigned to ``API Status`` , and the Pipeline State assigned to ``PipelineState`` .
+
+
+You have now created all the necessary ``GameObject`` s for this project, and are ready to run it and begin collecting data!
+
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+Collecting Sensor Data in Non-Real Time
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. Note::
+  Before you begin collecting data, please remember to put your API  license and key into the ``private string key = "";`` and ``private string license = "";`` variables of your modified Example script. You cannot use the API without them.
+
+There are two ways to easily access the data collected from using the API. The first method is for non-real-time data collection. You will notice that there is a variable in the modified example script you made called ``List<List<List<double>>> AllCollectionData`` . This list is filled with the data collected during real-time collection. Once data is no longer collected, you can read from this list to access the collected data.  Notice that this list is a list of lists of lists of doubles. The outermost list contains the components connected to the system (the sensors), the first inner list contains the channels for each component, so if your sensor reads multiple types of data at once you can access all of it. The innermost list contains the actual data for the specific sensors specified channel. So for instance, if I only had one Avanti EMG connected and wanted to read the EMG data from it, I could access the data with ``AllCollectionData[0][0]`` . This would return the list of data contained within the first sensor, and in its first channel. If I were looking for a specific piece of data at, for example, time stamp 70, I could access that specific data with ``AllCollectionData[0][0][69]`` . Remember that C# starts indexing at zero, so your timestamp will be offset by one. You can access this data in a separate script by modifying the declaration of the variable in the Unity Example script. Unchanged, the declaration is ``List<List<List<double>>> AllCollectionData = new List<List<List<double>>>();`` . By simply adding ``public`` in front of the declaration, you can make the variable accessible to other scripts. This should look like ``public List<List<List<double>>> AllCollectionData = new List<List<List<double>>>();`` . To access this in another script, you can use the following code block as a template:
+
+.. code-block:: cs
+
+    //first create a GameObject the script whose data you're trying to access is attached to
+    public GameObject ScriptHolder;
+    //then define the script you are looking for (In our case, type_of_script would be UnityExample, but in other cases it will be the name of the script;s class)
+    private type_of_script ExampleScript;
+    //last, define where to store the data. Must be same type as the data. If you don't know what type it is, you can use "var" and C# will auto-assign its type;
+    var data;
+
+    //then, in start function get the script component from the GameObject
+    private void Start()
+    {
+        ExampleScript = ScriptHolder.GetComponent<type_of_script>();
+    }
+
+    //to access the data use this line of code. In or case, data_to_access would be AllCollectionData. You can also change the data this way too, so be careful!
+    data = ExampleScript.data_to_access;
+
+
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+Collecting Sensor Data in Real Time
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+To access the data in real-time, as it comes in from the sensor, you need to get the data at its source. The easiest way to do this is to modify the ``CollectionDataReady`` method in your Unity Example script. be default, the method should look like this:
+
+.. code-block:: cs
+
+    public virtual void CollectionDataReady(object sender, ComponentDataReadyEventArgs e)
+      {
+          //Channel based list of data for this frame interval
+          List<List<double>> data = new List<List<double>>();
+
+          for (int k = 0; k < e.Data.Count(); k++)
+          {
+              // Loops through each connected sensor
+              for (int i = 0; i < e.Data[k].SensorData.Count(); i++)
+              {
+                  // Loops through each channel for a sensor
+                  for (int j = 0; j < e.Data[k].SensorData[i].ChannelData.Count(); j++)
+                  {
+                      data.Add(e.Data[k].SensorData[i].ChannelData[j].Data);
+                      for (int k2 = 0; k2 <e.Data[k].SensorData[i].ChannelData[j].Data.Count(); k2++){
+                          Debug.Log(e.Data[k].SensorData[i].ChannelData[j].Data[k2]);
+                      }
+                  }
+              }
+
+          }
+
+          //Add frame data to entire collection data buffer
+          AllCollectionData.Add(data);
+          text = AllCollectionData.Count.ToString();
+      }
+
+
+Basically, what is happening in this function is the data for the specific frame your application is on is being read, and the three for-loops make sure that the data from each channel of every sensor is read. Notice the line ``Debug.Log(e.Data[k].SensorData[i].ChannelData[j].Data[k2]);`` in the innermost for-loop. This line prints out every single piece of data from every sensor for this frame to the Unity log. So, if you wish to access data from a specific sensor, you can add a line into the innermost for-loop to looking for that specific data. For example, you could add the line ``latestDataFromSensor1Channel1 = e.Data[k].SensorData[0].ChannelData[0].Data[k2];`` to the innermost for-loop, and collect new data every frame. And similarly to the above non-real time method, if you want to access this data outside of the Example Script, you can define ``data`` as ``latestDataFromSensor1Channel1`` and access it using the template. This will give you access to the data as it comes. If you have multiple sensors connected, make sure you are accessing the data from the correct sensor and channel. You can find out more about the sensors and their channels from the `Delsys API User Guide <https://delsys.com/downloads/USERSGUIDE/delsys-api.pdf>`_.
+
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+Running the Application
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. youtube:: kMafpMTUzn0
+
+**[Click on the above video for our YouTube tutorial on Trigno Link Data Collection.]**
+
+Now that you have the application properly set up and know how the data is being read, you are ready to actually run the application you've created. Follow the steps below to do so:
+
+1. Connect your Trigno Base Station to your computer via USB, and ensure it's power supply is connected to an outlet.
+
+2. Connect your Trigno Link to your computer via USB. 
+
+3. Press the Play Button in the top-center of the Unity editor and ensure that the API Status is displayed as "Data source loaded and ready to Scan." and the Pipeline State is displayed as "Off".
+
+4. Pull out an Avanti sensor from the base station and press it against a magnet to put it in scanning mode. Remember you need at least one Avanti sensor active to use the Link.
+
+5. Turn on your Trigno Link compatible sensor and put it in scanning mode.
+
+6. In Unity, select the Scan Button and wait for the system to pick up the powered on sensors. (You can check the Unity Console to see if they were found.)
+
+7. After scanning is complete, press the Select Button. Make sure that all the sensors were selected. (again, you can use the Unity Console to check this.)
+
+8. Click the Start Button. If you check the Console, you should see all of the data being printed out from the sensors in real-time. Note that sensors may have different sampling rates, so data may come at different times. If you have accessed the data anywhere else, you should be seeing its effects now.
+
+9. When you are done collecting data, click the Stop Button. While the application is still running, you can access all of the data from the ``AllCollectionData`` variable.
+
+10. Return the sensors to the base station or power them off. You have successfully collected data using the Trigno Link and Unity!
 
 -------------------------------
 Section Review
 -------------------------------
 
+Now that you have collected data from the Trigno Link in a regular 2D Unity project, you are ready to extend that knowledge to VR! Luckily, almost nothing changes in the implementation going from 2D to VR, so it should be a quick process for the next module, especially because you already learned the basics of VR in module two. Thank you so much for sticking around, your hard work is appreciated! 
+
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+Module Self-Assessment
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. quizdown::
+
+   ---
+   shuffle_answers: false
+   ---
+
+   ## True or False? You need to have at least one Avanti sensor connected to use the Trigno Link
+
+   > Re-read the Getting Started section.
+
+   1. [x] True
+   2. [ ] False
+        > The correct answer is True.
+
+    ## True or False? The Unity Example ``GameObject`` is not necessary for the Trigno Link Integration.
+
+    > Re-read the section on Adding GameObjects.
+
+    1. [ ] True
+        > The correct answer is False.
+    2. [x] False
+
+    ## Which of the following is not one of the lists in ``AllCollectionData`` ?
+
+    > Re-read the section on Collecting Sensor Data in Non-Real Time.
+
+    1. [ ] Component
+        > The correct answer is Time Stamp.
+    2. [x] Time Stamp
+    3. [ ] Channel
+        > The correct answer is Time Stamp.
+    4. [ ] Data
+        > The correct answer is Time Stamp.
+
+    ## Where can you find logged information about the application while it's running?
+
+    > Re-read the sections on Running the Application.
+
+    1. [ ] The Trigno Base Station
+        > The correct answer is The Unity Console.
+    2. [ ] The Inspector Window
+        > The correct answer is The Unity Console.
+    3. [ ] The Trigno Link
+        > The correct answer is The Unity Console.
+    4. [x] The Unity Console

@@ -74,9 +74,15 @@
 <li class="toctree-l2"><a class="reference internal" href="#a-simple-unity-application">A Simple Unity Application</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#modifying-the-example-script">Modifying the Example Script</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#adding-gameobjects">Adding GameObjects</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#collecting-sensor-data-in-non-real-time">Collecting Sensor Data in Non-Real Time</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#collecting-sensor-data-in-real-time">Collecting Sensor Data in Real Time</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#running-the-application">Running the Application</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="#section-review">Section Review</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#section-review">Section Review</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#module-self-assessment">Module Self-Assessment</a></li>
+</ul>
+</li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../m5/integration.html">Integration with VR</a></li>
@@ -643,6 +649,7 @@
 </pre></div>
 </div>
 <p>The first change made to the code from the original example script was the addition of the  lines <code class="docutils literal notranslate"><span class="pre">using</span> <span class="pre">TMPro;</span></code> and <code class="docutils literal notranslate"><span class="pre">using</span> <span class="pre">DelsysAPI.Components.TrignoLink</span></code>. These lines add necessary functionality for Unity’s updated text system and the Trigno Link, respectively.</p>
+<p>After adding TMPro, change the line <code class="docutils literal notranslate"><span class="pre">public</span> <span class="pre">Text</span> <span class="pre">APIStatusText,</span> <span class="pre">TestText,</span> <span class="pre">PipelineState;</span></code> to <code class="docutils literal notranslate"><span class="pre">public</span> <span class="pre">TMP_Text</span> <span class="pre">APIStatusText,</span> <span class="pre">TestText,</span> <span class="pre">PipelineState;</span></code>. This will convert the text variables used to the updated text system.</p>
 <p>The next modification that was made was the creation of the boolean variable <code class="docutils literal notranslate"><span class="pre">usingTrignoLink</span></code>. This variable lets the script know whether or not a Trigno Link is being used. In the start method, its default value is set to true. Later, you will see that the scan function can change this value.</p>
 <p>Also in the start method, the lines:</p>
 <div class="highlight-cs notranslate"><div class="highlight"><pre><span></span><span class="n">ScanButton</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">GameObject</span><span class="p">.</span><span class="n">FindGameObjectWithTag</span><span class="w"> </span><span class="p">(</span><span class="s">&quot;ScanButton&quot;</span><span class="p">).</span><span class="n">GetComponent</span><span class="o">&lt;</span><span class="n">Button</span><span class="o">&gt;</span><span class="p">();</span>
@@ -722,10 +729,156 @@
 </section>
 <section id="adding-gameobjects">
 <h3>Adding GameObjects<a class="headerlink" href="#adding-gameobjects" title="Link to this heading"></a></h3>
+<a class="reference internal image-reference" href="../../_images/added_game_objects.png"><img alt="An Image of the layout for the project." src="../../_images/added_game_objects.png" style="width: 1000px;" /></a>
+<p>If you are building from the example script, you are going to need a few <code class="docutils literal notranslate"><span class="pre">GameObject</span></code> s in order to create the scene for your application. Please create the following:</p>
+<ul class="simple">
+<li><p>A Canvas Object: This will be the parent object for your buttons and text, and defines what the screen shows. The sample scene given when you start your 2D project should already have this.</p></li>
+<li><p>An Event System Object: This is used to make your UI elements interactable. Again, the sample scene should already have this created for you.</p></li>
+<li><p>A Main Camera: This is the last object included with the sample scene, and it just defines the view of the game. It should be created for you already.</p></li>
+<li><p>A Unity Example Object: This is the first object you must add yourself, and it is the <strong>most</strong> important object for the integration. It should be an Empty object, and should have the modified Example Script attached as a component.</p></li>
+<li><p>A Scan Button: This will be used to scan for sensors connected to the base station and the Trigno Link. Ensure that the name for this <code class="docutils literal notranslate"><span class="pre">GameObject</span></code> matches the one given as argument in the <code class="docutils literal notranslate"><span class="pre">Find</span></code> function for the <code class="docutils literal notranslate"><span class="pre">GameObject</span></code> ScanButton in the Example Script. If you have not changed the arguments, the name should be “ScanButton”.</p></li>
+<li><p>A Start Button: This will be used to start collecting data once all of the sensors have been connected. Ensure that the name for this <code class="docutils literal notranslate"><span class="pre">GameObject</span></code> matches the one given as argument in the <code class="docutils literal notranslate"><span class="pre">Find</span></code> function for the <code class="docutils literal notranslate"><span class="pre">GameObject</span></code> StartButton in the Example Script. If you have not changed the arguments, the name should be “StartButton”.</p></li>
+<li><p>A Pair Button: This will be used to pair sensors to the base station that were not previously paired in Trigno Discover. A sensor <em>must</em> be paired to the system before it can be picked up by a scan. Ensure that the name for this <code class="docutils literal notranslate"><span class="pre">GameObject</span></code> matches the one given as argument in the <code class="docutils literal notranslate"><span class="pre">Find</span></code> function for the <code class="docutils literal notranslate"><span class="pre">GameObject</span></code> PairButton in the Example Script. If you have not changed the arguments, the name should be “StartButton”.</p></li>
+<li><p>A Stop Button: This will be used to disarm the Delsys API pipeline and safely stop data collection once clicked.  Ensure that the name for this <code class="docutils literal notranslate"><span class="pre">GameObject</span></code> matches the one given as argument in the <code class="docutils literal notranslate"><span class="pre">Find</span></code> function for the <code class="docutils literal notranslate"><span class="pre">GameObject</span></code> StopButton in the Example Script. If you have not changed the arguments, the name should be “StopButton”.</p></li>
+<li><p>A Select Button: This wil be used after the scan button to select every sensor found by the scan, and must be used before clicking the start button. Ensure that the name for this <code class="docutils literal notranslate"><span class="pre">GameObject</span></code> matches the one given as argument in the <code class="docutils literal notranslate"><span class="pre">Find</span></code> function for the <code class="docutils literal notranslate"><span class="pre">GameObject</span></code> SelectButton in the Example Script. If you have not changed the arguments, the name should be “SelectButton”.</p></li>
+</ul>
+<p>These five buttons provide the core functionality for the API, but there are two additional <code class="docutils literal notranslate"><span class="pre">GameObject</span></code> s you should add that can provide additional information about the API’s status. These should both be Text Mesh Pro Text objects. They are as follows:</p>
+<ul class="simple">
+<li><p>An API Status Text: This will display the current status of the API in real-time, so you an get a better idea of what state it’s in while your application is running. You will need to select the Unity Example object, and in the script component section of the inspector, drag and drop the API status into the “API Status Text” slot. You will do the same for the following object as well.</p></li>
+<li><p>A Pipeline State Text: This will display the current state of the pipeline, and whether or not the base station is properly connected. As with the previous object, assign this object to its respective slot in the script component of the Unity Example object.</p></li>
+</ul>
+<p>At the end of the object creation, your object hierarchy should look like the following:</p>
+<a class="reference internal image-reference" href="../../_images/2d_hierachy.png"><img alt="An Image of the project's object hierarchy containing the Canvas, Event System, Main Camera, Unity Example, Scan Button, Pair Button, Start Button, Stop Button, Select Button,  API Status Text, and Pipeline State Text ``GameObject`` s. The Scan Button, Pair Button, Start Button, Stop Button, Select Button,  API Status Text, and Pipeline State Text are all children of the Canvas." src="../../_images/2d_hierachy.png" style="width: 800px;" /></a>
+<p>And, your Unity Example Script Object’s script component should have the following filled in for it’s public variable slots. You can drag and drop any of the objects that are missing or incorrectly placed in the slots from the object hierarchy into the slots:</p>
+<a class="reference internal image-reference" href="../../_images/example_script_inspector.png"><img alt="An Image of the Unity Example Object's inspector window with the Scan Button assigned to ``ScanButton`` , the Start Button assigned to ``StartButton`` , the Stop Button assigned to ``StopButton`` , the Select Button assigned to ``SelectButton`` , the Pair Button assigned to ``PairButton`` , the API Status Text assigned to ``API Status`` , and the Pipeline State assigned to ``PipelineState`` ." src="../../_images/example_script_inspector.png" style="width: 800px;" /></a>
+<p>You have now created all the necessary <code class="docutils literal notranslate"><span class="pre">GameObject</span></code> s for this project, and are ready to run it and begin collecting data!</p>
+</section>
+<section id="collecting-sensor-data-in-non-real-time">
+<h3>Collecting Sensor Data in Non-Real Time<a class="headerlink" href="#collecting-sensor-data-in-non-real-time" title="Link to this heading"></a></h3>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Before you begin collecting data, please remember to put your API  license and key into the <code class="docutils literal notranslate"><span class="pre">private</span> <span class="pre">string</span> <span class="pre">key</span> <span class="pre">=</span> <span class="pre">&quot;&quot;;</span></code> and <code class="docutils literal notranslate"><span class="pre">private</span> <span class="pre">string</span> <span class="pre">license</span> <span class="pre">=</span> <span class="pre">&quot;&quot;;</span></code> variables of your modified Example script. You cannot use the API without them.</p>
+</div>
+<p>There are two ways to easily access the data collected from using the API. The first method is for non-real-time data collection. You will notice that there is a variable in the modified example script you made called <code class="docutils literal notranslate"><span class="pre">List&lt;List&lt;List&lt;double&gt;&gt;&gt;</span> <span class="pre">AllCollectionData</span></code> . This list is filled with the data collected during real-time collection. Once data is no longer collected, you can read from this list to access the collected data.  Notice that this list is a list of lists of lists of doubles. The outermost list contains the components connected to the system (the sensors), the first inner list contains the channels for each component, so if your sensor reads multiple types of data at once you can access all of it. The innermost list contains the actual data for the specific sensors specified channel. So for instance, if I only had one Avanti EMG connected and wanted to read the EMG data from it, I could access the data with <code class="docutils literal notranslate"><span class="pre">AllCollectionData[0][0]</span></code> . This would return the list of data contained within the first sensor, and in its first channel. If I were looking for a specific piece of data at, for example, time stamp 70, I could access that specific data with <code class="docutils literal notranslate"><span class="pre">AllCollectionData[0][0][69]</span></code> . Remember that C# starts indexing at zero, so your timestamp will be offset by one. You can access this data in a separate script by modifying the declaration of the variable in the Unity Example script. Unchanged, the declaration is <code class="docutils literal notranslate"><span class="pre">List&lt;List&lt;List&lt;double&gt;&gt;&gt;</span> <span class="pre">AllCollectionData</span> <span class="pre">=</span> <span class="pre">new</span> <span class="pre">List&lt;List&lt;List&lt;double&gt;&gt;&gt;();</span></code> . By simply adding <code class="docutils literal notranslate"><span class="pre">public</span></code> in front of the declaration, you can make the variable accessible to other scripts. This should look like <code class="docutils literal notranslate"><span class="pre">public</span> <span class="pre">List&lt;List&lt;List&lt;double&gt;&gt;&gt;</span> <span class="pre">AllCollectionData</span> <span class="pre">=</span> <span class="pre">new</span> <span class="pre">List&lt;List&lt;List&lt;double&gt;&gt;&gt;();</span></code> . To access this in another script, you can use the following code block as a template:</p>
+<div class="highlight-cs notranslate"><div class="highlight"><pre><span></span><span class="c1">//first create a GameObject the script whose data you&#39;re trying to access is attached to</span>
+<span class="k">public</span><span class="w"> </span><span class="n">GameObject</span><span class="w"> </span><span class="n">ScriptHolder</span><span class="p">;</span>
+<span class="c1">//then define the script you are looking for (In our case, type_of_script would be UnityExample, but in other cases it will be the name of the script;s class)</span>
+<span class="k">private</span><span class="w"> </span><span class="n">type_of_script</span><span class="w"> </span><span class="n">ExampleScript</span><span class="p">;</span>
+<span class="c1">//last, define where to store the data. Must be same type as the data. If you don&#39;t know what type it is, you can use &quot;var&quot; and C# will auto-assign its type;</span>
+<span class="kt">var</span><span class="w"> </span><span class="n">data</span><span class="p">;</span>
+
+<span class="c1">//then, in start function get the script component from the GameObject</span>
+<span class="k">private</span><span class="w"> </span><span class="k">void</span><span class="w"> </span><span class="nf">Start</span><span class="p">()</span>
+<span class="p">{</span>
+<span class="w">    </span><span class="n">ExampleScript</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">ScriptHolder</span><span class="p">.</span><span class="n">GetComponent</span><span class="o">&lt;</span><span class="n">type_of_script</span><span class="o">&gt;</span><span class="p">();</span>
+<span class="p">}</span>
+
+<span class="c1">//to access the data use this line of code. In or case, data_to_access would be AllCollectionData. You can also change the data this way too, so be careful!</span>
+<span class="n">data</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">ExampleScript</span><span class="p">.</span><span class="n">data_to_access</span><span class="p">;</span>
+</pre></div>
+</div>
+</section>
+<section id="collecting-sensor-data-in-real-time">
+<h3>Collecting Sensor Data in Real Time<a class="headerlink" href="#collecting-sensor-data-in-real-time" title="Link to this heading"></a></h3>
+<p>To access the data in real-time, as it comes in from the sensor, you need to get the data at its source. The easiest way to do this is to modify the <code class="docutils literal notranslate"><span class="pre">CollectionDataReady</span></code> method in your Unity Example script. be default, the method should look like this:</p>
+<div class="highlight-cs notranslate"><div class="highlight"><pre><span></span><span class="k">public</span><span class="w"> </span><span class="k">virtual</span><span class="w"> </span><span class="k">void</span><span class="w"> </span><span class="nf">CollectionDataReady</span><span class="p">(</span><span class="kt">object</span><span class="w"> </span><span class="n">sender</span><span class="p">,</span><span class="w"> </span><span class="n">ComponentDataReadyEventArgs</span><span class="w"> </span><span class="n">e</span><span class="p">)</span>
+<span class="w">  </span><span class="p">{</span>
+<span class="w">      </span><span class="c1">//Channel based list of data for this frame interval</span>
+<span class="w">      </span><span class="n">List</span><span class="o">&lt;</span><span class="n">List</span><span class="o">&lt;</span><span class="kt">double</span><span class="o">&gt;&gt;</span><span class="w"> </span><span class="n">data</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">List</span><span class="o">&lt;</span><span class="n">List</span><span class="o">&lt;</span><span class="kt">double</span><span class="o">&gt;&gt;</span><span class="p">();</span>
+
+<span class="w">      </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">k</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">0</span><span class="p">;</span><span class="w"> </span><span class="n">k</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">e</span><span class="p">.</span><span class="n">Data</span><span class="p">.</span><span class="n">Count</span><span class="p">();</span><span class="w"> </span><span class="n">k</span><span class="o">++</span><span class="p">)</span>
+<span class="w">      </span><span class="p">{</span>
+<span class="w">          </span><span class="c1">// Loops through each connected sensor</span>
+<span class="w">          </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">0</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">e</span><span class="p">.</span><span class="n">Data</span><span class="p">[</span><span class="n">k</span><span class="p">].</span><span class="n">SensorData</span><span class="p">.</span><span class="n">Count</span><span class="p">();</span><span class="w"> </span><span class="n">i</span><span class="o">++</span><span class="p">)</span>
+<span class="w">          </span><span class="p">{</span>
+<span class="w">              </span><span class="c1">// Loops through each channel for a sensor</span>
+<span class="w">              </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">j</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">0</span><span class="p">;</span><span class="w"> </span><span class="n">j</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">e</span><span class="p">.</span><span class="n">Data</span><span class="p">[</span><span class="n">k</span><span class="p">].</span><span class="n">SensorData</span><span class="p">[</span><span class="n">i</span><span class="p">].</span><span class="n">ChannelData</span><span class="p">.</span><span class="n">Count</span><span class="p">();</span><span class="w"> </span><span class="n">j</span><span class="o">++</span><span class="p">)</span>
+<span class="w">              </span><span class="p">{</span>
+<span class="w">                  </span><span class="n">data</span><span class="p">.</span><span class="n">Add</span><span class="p">(</span><span class="n">e</span><span class="p">.</span><span class="n">Data</span><span class="p">[</span><span class="n">k</span><span class="p">].</span><span class="n">SensorData</span><span class="p">[</span><span class="n">i</span><span class="p">].</span><span class="n">ChannelData</span><span class="p">[</span><span class="n">j</span><span class="p">].</span><span class="n">Data</span><span class="p">);</span>
+<span class="w">                  </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">k2</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">0</span><span class="p">;</span><span class="w"> </span><span class="n">k2</span><span class="w"> </span><span class="o">&lt;</span><span class="n">e</span><span class="p">.</span><span class="n">Data</span><span class="p">[</span><span class="n">k</span><span class="p">].</span><span class="n">SensorData</span><span class="p">[</span><span class="n">i</span><span class="p">].</span><span class="n">ChannelData</span><span class="p">[</span><span class="n">j</span><span class="p">].</span><span class="n">Data</span><span class="p">.</span><span class="n">Count</span><span class="p">();</span><span class="w"> </span><span class="n">k2</span><span class="o">++</span><span class="p">){</span>
+<span class="w">                      </span><span class="n">Debug</span><span class="p">.</span><span class="n">Log</span><span class="p">(</span><span class="n">e</span><span class="p">.</span><span class="n">Data</span><span class="p">[</span><span class="n">k</span><span class="p">].</span><span class="n">SensorData</span><span class="p">[</span><span class="n">i</span><span class="p">].</span><span class="n">ChannelData</span><span class="p">[</span><span class="n">j</span><span class="p">].</span><span class="n">Data</span><span class="p">[</span><span class="n">k2</span><span class="p">]);</span>
+<span class="w">                  </span><span class="p">}</span>
+<span class="w">              </span><span class="p">}</span>
+<span class="w">          </span><span class="p">}</span>
+
+<span class="w">      </span><span class="p">}</span>
+
+<span class="w">      </span><span class="c1">//Add frame data to entire collection data buffer</span>
+<span class="w">      </span><span class="n">AllCollectionData</span><span class="p">.</span><span class="n">Add</span><span class="p">(</span><span class="n">data</span><span class="p">);</span>
+<span class="w">      </span><span class="n">text</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">AllCollectionData</span><span class="p">.</span><span class="n">Count</span><span class="p">.</span><span class="n">ToString</span><span class="p">();</span>
+<span class="w">  </span><span class="p">}</span>
+</pre></div>
+</div>
+<p>Basically, what is happening in this function is the data for the specific frame your application is on is being read, and the three for-loops make sure that the data from each channel of every sensor is read. Notice the line <code class="docutils literal notranslate"><span class="pre">Debug.Log(e.Data[k].SensorData[i].ChannelData[j].Data[k2]);</span></code> in the innermost for-loop. This line prints out every single piece of data from every sensor for this frame to the Unity log. So, if you wish to access data from a specific sensor, you can add a line into the innermost for-loop to looking for that specific data. For example, you could add the line <code class="docutils literal notranslate"><span class="pre">latestDataFromSensor1Channel1</span> <span class="pre">=</span> <span class="pre">e.Data[k].SensorData[0].ChannelData[0].Data[k2];</span></code> to the innermost for-loop, and collect new data every frame. And similarly to the above non-real time method, if you want to access this data outside of the Example Script, you can define <code class="docutils literal notranslate"><span class="pre">data</span></code> as <code class="docutils literal notranslate"><span class="pre">latestDataFromSensor1Channel1</span></code> and access it using the template. This will give you access to the data as it comes. If you have multiple sensors connected, make sure you are accessing the data from the correct sensor and channel. You can find out more about the sensors and their channels from the <a class="reference external" href="https://delsys.com/downloads/USERSGUIDE/delsys-api.pdf">Delsys API User Guide</a>.</p>
+</section>
+<section id="running-the-application">
+<h3>Running the Application<a class="headerlink" href="#running-the-application" title="Link to this heading"></a></h3>
+<div class="video_wrapper" style="">
+<iframe allowfullscreen="true" src="https://www.youtube.com/embed/kMafpMTUzn0" style="border: 0; height: 345px; width: 560px">
+</iframe></div><p><strong>[Click on the above video for our YouTube tutorial on Trigno Link Data Collection.]</strong></p>
+<p>Now that you have the application properly set up and know how the data is being read, you are ready to actually run the application you’ve created. Follow the steps below to do so:</p>
+<ol class="arabic simple">
+<li><p>Connect your Trigno Base Station to your computer via USB, and ensure it’s power supply is connected to an outlet.</p></li>
+<li><p>Connect your Trigno Link to your computer via USB.</p></li>
+<li><p>Press the Play Button in the top-center of the Unity editor and ensure that the API Status is displayed as “Data source loaded and ready to Scan.” and the Pipeline State is displayed as “Off”.</p></li>
+<li><p>Pull out an Avanti sensor from the base station and press it against a magnet to put it in scanning mode. Remember you need at least one Avanti sensor active to use the Link.</p></li>
+<li><p>Turn on your Trigno Link compatible sensor and put it in scanning mode.</p></li>
+<li><p>In Unity, select the Scan Button and wait for the system to pick up the powered on sensors. (You can check the Unity Console to see if they were found.)</p></li>
+<li><p>After scanning is complete, press the Select Button. Make sure that all the sensors were selected. (again, you can use the Unity Console to check this.)</p></li>
+<li><p>Click the Start Button. If you check the Console, you should see all of the data being printed out from the sensors in real-time. Note that sensors may have different sampling rates, so data may come at different times. If you have accessed the data anywhere else, you should be seeing its effects now.</p></li>
+<li><p>When you are done collecting data, click the Stop Button. While the application is still running, you can access all of the data from the <code class="docutils literal notranslate"><span class="pre">AllCollectionData</span></code> variable.</p></li>
+<li><p>Return the sensors to the base station or power them off. You have successfully collected data using the Trigno Link and Unity!</p></li>
+</ol>
 </section>
 </section>
 <section id="section-review">
 <h2>Section Review<a class="headerlink" href="#section-review" title="Link to this heading"></a></h2>
+<p>Now that you have collected data from the Trigno Link in a regular 2D Unity project, you are ready to extend that knowledge to VR! Luckily, almost nothing changes in the implementation going from 2D to VR, so it should be a quick process for the next module, especially because you already learned the basics of VR in module two. Thank you so much for sticking around, your hard work is appreciated!</p>
+<section id="module-self-assessment">
+<h3>Module Self-Assessment<a class="headerlink" href="#module-self-assessment" title="Link to this heading"></a></h3>
+<div class="quizdown">---
+shuffle_answers: false
+---
+
+## True or False? You need to have at least one Avanti sensor connected to use the Trigno Link
+
+&gt; Re-read the Getting Started section.
+
+1. [x] True
+2. [ ] False
+     &gt; The correct answer is True.
+
+ ## True or False? The Unity Example ``GameObject`` is not necessary for the Trigno Link Integration.
+
+ &gt; Re-read the section on Adding GameObjects.
+
+ 1. [ ] True
+     &gt; The correct answer is False.
+ 2. [x] False
+
+ ## Which of the following is not one of the lists in ``AllCollectionData`` ?
+
+ &gt; Re-read the section on Collecting Sensor Data in Non-Real Time.
+
+ 1. [ ] Component
+     &gt; The correct answer is Time Stamp.
+ 2. [x] Time Stamp
+ 3. [ ] Channel
+     &gt; The correct answer is Time Stamp.
+ 4. [ ] Data
+     &gt; The correct answer is Time Stamp.
+
+ ## Where can you find logged information about the application while it&#x27;s running?
+
+ &gt; Re-read the sections on Running the Application.
+
+ 1. [ ] The Trigno Base Station
+     &gt; The correct answer is The Unity Console.
+ 2. [ ] The Inspector Window
+     &gt; The correct answer is The Unity Console.
+ 3. [ ] The Trigno Link
+     &gt; The correct answer is The Unity Console.
+ 4. [x] The Unity Console</div></section>
 </section>
 </section>
 
