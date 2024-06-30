@@ -50,7 +50,7 @@ Creating a new Unity project for VR is very similar to the way you created the m
 
 4. Under the templates section, select the *VR Core* option. You may have to download the template if you have not used it already. The button to download it can be seen on the right side of the application after clicking on the template.
 
-5. Choose a name for your project. It can be anything you like, but we recommend naming it with one word in order to make file access easier. For now, let's call it *MyFirstVRProject*.
+5. Choose a name for your project. It can be anything you like. In this example, let's call it *MyFirstVRProject*.
 
 6. Choose the where you'd like to store your project. Be sure to pick a location that is easy to find.
 

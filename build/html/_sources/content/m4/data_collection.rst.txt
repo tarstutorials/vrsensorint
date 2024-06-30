@@ -96,7 +96,7 @@ Now that you have your sensors connected and are ready to begin using them, it's
   :width: 800
   :alt: An Image of the 2D project template in Unity Hub.
 
-4. From here you can select any template project type you would like, depedning on the context of the application you are creating. For this basic introduction to the integration, we will use the *2D Core* template. 
+4. From here you can select any template project type you would like, depending on the context of the application you are creating. For this basic introduction to the integration, we will use the *2D Core* template. 
 
 5. Likewise to the projects you created previously in this set of tutorials, you can name the project whatever you like and choose where it is saved.
 
@@ -134,19 +134,21 @@ Now that you have your sensors connected and are ready to begin using them, it's
 
 12. Open the extracted folder, and navigate to the ``~\Example-Applications-main\Delsys Unity Example\Assets`` subdirectory. 
 
-13. Copy every file that is in the Plugins folder of the assets folder and paste them into the empty Plugins folder you created in your project. 
+13. Copy the Streaming Assets folder into your project.
+
+14. Navigate to the ``~\Example-Applications-main\Delsys Unity Example\Assets\Plugins``folder and copy everything contained in it to the Plugins folder you created for your project. 
 
 .. image:: ../../images/codedom.png
   :width: 800
   :alt: An Image of the Plugins folder of your project with System.CodeDom.dll and System.CodeDom.dll.meta selected.
 
-14. In the plugins folder in your project, delete the file called *System.CodeDom.dll* and its associated meta file *System.CodeDom.dll.meta*. 
+15. In the plugins folder in your project, delete the file called *System.CodeDom.dll* and its associated meta file *System.CodeDom.dll.meta*. 
 
 .. image:: ../../images/project_root.png
   :width: 800
   :alt: An Image of the project's root folder with the moved file in it.
 
-15. In the plugins folder in your project, Move the file called *SiUSBXp.dll* and its associated meta file *SiUSBXp.dll.meta* to the root folder of your project. This should result in something looking like the image above.
+16. In the plugins folder in your project, Move the file called *SiUSBXp.dll* and its associated meta file *SiUSBXp.dll.meta* to the root folder of your project. This should result in something looking like the image above.
 
 .. image:: ../../images/assets_unity_example.png
   :width: 800
@@ -154,7 +156,7 @@ Now that you have your sensors connected and are ready to begin using them, it's
 
 17. Lastly, copy the *UnityExample.cs* script from the Delsys Unity Example project into the Assets folder of your project. You will be adding to this script to implement the Trigno Link, since it is easier than starting from scratch.
 
-16. Allow your Unity project time to reload its domain, and then ensure there are no compilation errors with the project (You may see warnings, indicated with a yellow exclamation mark, these are okay). If there are none, you are ready to move on. If not, retry the steps above on a different version of Unity or try and troubleshoot the compilation error using the :ref:`troubleshooting` page of this site.
+18. Allow your Unity project time to reload its domain, and then ensure there are no compilation errors with the project (You may see warnings, indicated with a yellow exclamation mark, these are okay). If there are none, you are ready to move on. If not, retry the steps above on a different version of Unity or try and troubleshoot the compilation error using the :ref:`troubleshooting` page of this site.
 
 -------------------------------
 A Simple Unity Application
@@ -803,7 +805,43 @@ To access the data in real-time, as it comes in from the sensor, you need to get
       }
 
 
-Basically, what is happening in this function is the data for the specific frame your application is on is being read, and the three for-loops make sure that the data from each channel of every sensor is read. Notice the line ``Debug.Log(e.Data[k].SensorData[i].ChannelData[j].Data[k2]);`` in the innermost for-loop. This line prints out every single piece of data from every sensor for this frame to the Unity log. So, if you wish to access data from a specific sensor, you can add a line into the innermost for-loop to looking for that specific data. For example, you could add the line ``latestDataFromSensor1Channel1 = e.Data[k].SensorData[0].ChannelData[0].Data[k2];`` to the innermost for-loop, and collect new data every frame. And similarly to the above non-real time method, if you want to access this data outside of the Example Script, you can define ``data`` as ``latestDataFromSensor1Channel1`` and access it using the template. This will give you access to the data as it comes. If you have multiple sensors connected, make sure you are accessing the data from the correct sensor and channel. You can find out more about the sensors and their channels from the `Delsys API User Guide <https://delsys.com/downloads/USERSGUIDE/delsys-api.pdf>`_.
+Basically, what is happening in this function is the data for the specific frame your application is on is being read, and the three for-loops make sure that the data from each channel of every sensor is read. Notice the line ``Debug.Log(e.Data[k].SensorData[i].ChannelData[j].Data[k2]);`` in the innermost for-loop. This line prints out every single piece of data from every sensor for this frame to the Unity log. So, if you wish to access data from a specific sensor, you can add a line into the innermost for-loop to looking for that specific data. For example, you could add the line ``latestDataFromSensor1Channel1 = e.Data[k].SensorData[0].ChannelData[0].Data[k2];`` to the innermost for-loop, and collect new data every frame. And similarly to the above non-real time method, if you want to access this data outside of the Example Script, you can define ``data`` as ``latestDataFromSensor1Channel1`` and access it using the template. This will give you access to the data as it comes. If you have multiple sensors connected, make sure you are accessing the data from the correct sensor and channel. Alternatively, if you know the sensor's index, you can access it's data in real time using an if statement like this:
+
+.. code-block:: cs
+
+        //Channel based list of data for this frame interval
+        List<List<double>> data = new List<List<double>>();
+
+        for (int k = 0; k < e.Data.Count(); k++)
+        {
+            // Loops through each connected sensor
+            for (int i = 0; i < e.Data[k].SensorData.Count(); i++)
+            {
+                // Loops through each channel for a sensor
+                for (int j = 0; j < e.Data[k].SensorData[i].ChannelData.Count(); j++)
+                {
+                    data.Add(e.Data[k].SensorData[i].ChannelData[j].Data);
+                    for (int k2 = 0; k2 <e.Data[k].SensorData[i].ChannelData[j].Data.Count(); k2++){
+                        if (i == 1)//Heart Rate Sensor Index
+                        {
+                            latestHRData = e.Data[k].SensorData[i].ChannelData[j].Data[k2].ToString();
+                        }
+                        else if (i == 0)//Avanti Sensor Index
+                        {
+                            latestEMGData = e.Data[k].SensorData[i].ChannelData[j].Data[k2].ToString();
+                        }
+                        Debug.Log(e.Data[k].SensorData[i].ChannelData[j].Data[k2]);
+                    }
+                }
+            }
+
+        }
+
+        //Add frame data to entire collection data buffer
+        AllCollectionData.Add(data);
+        text = AllCollectionData.Count.ToString();
+
+You can find out more about the sensors and their channels from the `Delsys API User Guide <https://delsys.com/downloads/USERSGUIDE/delsys-api.pdf>`_.
 
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 Running the Application
@@ -839,7 +877,7 @@ Now that you have the application properly set up and know how the data is being
 Section Review
 -------------------------------
 
-Now that you have collected data from the Trigno Link in a regular 2D Unity project, you are ready to extend that knowledge to VR! Luckily, almost nothing changes in the implementation going from 2D to VR, so it should be a quick process for the next module, especially because you already learned the basics of VR in module two. Thank you so much for sticking around, your hard work is appreciated! 
+Now that you have collected data from the Trigno Link in a regular 2D Unity project, you are ready to extend that knowledge to VR! Luckily, not much changes in the implementation going from 2D to VR, so it should be a quick process for the next module, especially because you already learned the basics of VR in module two. Thank you so much for sticking around, your hard work is appreciated! 
 
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 Module Self-Assessment

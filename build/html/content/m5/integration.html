@@ -66,9 +66,17 @@
 <li class="toctree-l1"><a class="reference internal" href="../m4/data_collection.html">Data Collection with Physiological Sensors</a></li>
 <li class="toctree-l1 current"><a class="current reference internal" href="#">Integration with VR</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="#creating-a-new-vr-project-with-delsys-api">Creating A New VR Project with Delsys API</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#integrating-sensors-with-our-gameobjects">Integrating Sensors with Our GameObjects</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#testing-and-refining-integration">Testing and Refining Integration</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#section-review">Section Review</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#a-simple-vr-application">A Simple VR Application</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#slightly-modifying-the-example-script">Slightly Modifying the Example Script</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#adding-gameobjects">Adding GameObjects</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#running-the-application">Running the Application</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#a-large-scale-project-for-inspiration">A Large Scale Project for Inspiration</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#section-review">Section Review</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#module-self-assessment">Module Self-Assessment</a></li>
+</ul>
+</li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../m6/data_analysis.html">Data Analysis</a></li>
@@ -124,7 +132,7 @@
 <a class="reference internal image-reference" href="../../_images/NewVRProject.png"><img alt="An image of a 2D Mobile template for a project in Unity Hub." src="../../_images/NewVRProject.png" style="width: 800px;" /></a>
 <ol class="arabic simple" start="4">
 <li><p>Under the templates section, select the <em>VR Core</em> option. You may have to download the template if you have not used it already. The button to download it can be seen on the right side of the application after clicking on the template.</p></li>
-<li><p>Choose a name for your project. It can be anything you like, but we recommend naming it with one word in order to make file access easier.</p></li>
+<li><p>Choose a name for your project. It can be anything you like.</p></li>
 <li><p>Choose the where you’d like to store your project. Be sure to pick a location that is easy to find.</p></li>
 <li><p>Click the <em>Create project</em> button in the bottom right corner of the application. This will create the project and launch the editor, which will contain a pre-made sample scene for you to start with.</p></li>
 <li><p>In the editor, navigate to the <em>Edit</em> option in the top ribbon, and select <em>Project Settings</em> from the dropdown menu.</p></li>
@@ -145,30 +153,174 @@
 <a class="reference internal image-reference" href="../../_images/assets_subfolder.png"><img alt="An Image of Assets subfolder in the Unity Example." src="../../_images/assets_subfolder.png" style="width: 800px;" /></a>
 <ol class="arabic simple" start="13">
 <li><p>Open the extracted folder, and navigate to the <code class="docutils literal notranslate"><span class="pre">~\Example-Applications-main\Delsys</span> <span class="pre">Unity</span> <span class="pre">Example\Assets</span></code> subdirectory.</p></li>
-<li><p>Copy every file that is in the Plugins folder of the assets folder and paste them into the empty Plugins folder you created in your project.</p></li>
+<li><p>Copy the Streaming Assets folder into your project.</p></li>
+<li><p>Navigate to the <code class="docutils literal notranslate"><span class="pre">~\Example-Applications-main\Delsys</span> <span class="pre">Unity</span> <span class="pre">Example\Assets\Plugins</span></code> folder and copy everything contained in it to the Plugins folder you created for your project.</p></li>
 </ol>
 <a class="reference internal image-reference" href="../../_images/codedom.png"><img alt="An Image of the Plugins folder of your project with System.CodeDom.dll and System.CodeDom.dll.meta selected." src="../../_images/codedom.png" style="width: 800px;" /></a>
-<ol class="arabic simple" start="15">
+<ol class="arabic simple" start="16">
 <li><p>In the plugins folder in your project, delete the file called <em>System.CodeDom.dll</em> and its associated meta file <em>System.CodeDom.dll.meta</em>.</p></li>
 </ol>
 <a class="reference internal image-reference" href="../../_images/project_root.png"><img alt="An Image of the project's root folder with the moved file in it." src="../../_images/project_root.png" style="width: 800px;" /></a>
-<ol class="arabic simple" start="16">
+<ol class="arabic simple" start="17">
 <li><p>In the plugins folder in your project, Move the file called <em>SiUSBXp.dll</em> and its associated meta file <em>SiUSBXp.dll.meta</em> to the root folder of your project. This should result in something looking like the image above.</p></li>
 </ol>
-<a class="reference internal image-reference" href="../../_images/assets_unity_example.png"><img alt="An Image of Assets subfolder with the UnityScript.cs in it." src="../../_images/assets_unity_example.png" style="width: 800px;" /></a>
-<ol class="arabic simple" start="17">
+<a class="reference internal image-reference" href="../../_images/assets_unity_example.png"><img alt="An Image of Assets subfolder with the modified UnityScript.cs in it." src="../../_images/assets_unity_example.png" style="width: 800px;" /></a>
+<ol class="arabic simple" start="18">
 <li><p>Lastly, copy the modified <em>UnityExample.cs</em> script from the project you created in the previous module into the Assets folder of your project. This way, you do not have to reimplement Trigno Link functionality.</p></li>
 <li><p>Allow your Unity project time to reload its domain, and then ensure there are no compilation errors with the project (You may see warnings, indicated with a yellow exclamation mark, these are okay). If there are none, you are ready to move on. If not, retry the steps above on a different version of Unity or try and troubleshoot the compilation error using the <a class="reference internal" href="../m7/error_handling.html#troubleshooting"><span class="std std-ref">Troubleshooting Resources</span></a> page of this site.</p></li>
 </ol>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>A VR project built using the Delsys API must use the Windows build platform. This is necessary because the base station and Trigno Link are connected to your PC via USB, and therefore your VR headset must be connected to your PC as well. This requirement prevents a standalone Android application from being an option. Meta Quest Link was used to connect the VR headset to the PC for these applications, but for a different brand of headset you may need an alternative method to run your application. Your project should already be set to the Windoos build platform be default, but this information is important regardless.</p>
+</div>
 </section>
-<section id="integrating-sensors-with-our-gameobjects">
-<h2>Integrating Sensors with Our GameObjects<a class="headerlink" href="#integrating-sensors-with-our-gameobjects" title="Link to this heading"></a></h2>
+<section id="a-simple-vr-application">
+<h2>A Simple VR Application<a class="headerlink" href="#a-simple-vr-application" title="Link to this heading"></a></h2>
+<p>You will be building off of the BasicScene included in the VR template. Since most of the work for this project was completed in the previous module, you only have to make slight changes to the copied Example script and set up your <code class="docutils literal notranslate"><span class="pre">GameObject</span></code> s to get this VR project up and running.</p>
+<section id="slightly-modifying-the-example-script">
+<h3>Slightly Modifying the Example Script<a class="headerlink" href="#slightly-modifying-the-example-script" title="Link to this heading"></a></h3>
+<p>There are very few changes to make here, and they are as follows.</p>
+<p>Add two new variables to the example script, called <code class="docutils literal notranslate"><span class="pre">public</span> <span class="pre">string</span> <span class="pre">latestEMGData;</span></code> and <code class="docutils literal notranslate"><span class="pre">public</span> <span class="pre">string</span> <span class="pre">latestHRData;</span></code> . These will display the incoming data from the EMG and heart rate sensors in VR.</p>
+<p>Modify the update function to include the last two lines:</p>
+<div class="highlight-cs notranslate"><div class="highlight"><pre><span></span><span class="k">void</span><span class="w"> </span><span class="nf">Update</span><span class="p">()</span>
+<span class="p">{</span>
+<span class="w">    </span><span class="n">APIStatusText</span><span class="p">.</span><span class="n">text</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">text</span><span class="p">;</span>
+<span class="w">    </span><span class="n">SelectButton</span><span class="p">.</span><span class="n">enabled</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">select</span><span class="p">;</span>
+<span class="w">    </span><span class="n">ScanButton</span><span class="p">.</span><span class="n">enabled</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">scan</span><span class="p">;</span>
+<span class="w">    </span><span class="n">StartButton</span><span class="p">.</span><span class="n">enabled</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">start</span><span class="p">;</span>
+<span class="w">    </span><span class="n">StopButton</span><span class="p">.</span><span class="n">enabled</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">stop</span><span class="p">;</span>
+<span class="w">    </span><span class="n">PairButton</span><span class="p">.</span><span class="n">enabled</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">pair</span><span class="p">;</span>
+<span class="w">    </span><span class="n">PipelineState</span><span class="p">.</span><span class="n">text</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">PipelineController</span><span class="p">.</span><span class="n">Instance</span><span class="p">.</span><span class="n">PipelineIds</span><span class="p">[</span><span class="m">0</span><span class="p">].</span><span class="n">CurrentState</span><span class="p">.</span><span class="n">ToString</span><span class="p">();</span>
+<span class="w">    </span><span class="n">EMGDataText</span><span class="p">.</span><span class="n">text</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;Latest EMG Data: &quot;</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">latestEMGData</span><span class="p">;</span>
+<span class="w">    </span><span class="n">HRDataText</span><span class="p">.</span><span class="n">text</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;Latest HR Data: &quot;</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">latestHRData</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>These lines will update the text displaying the data every frame the application is running.</p>
+<p>Lastly, modify the <code class="docutils literal notranslate"><span class="pre">CollectionDataReady</span></code> method to collect the data in real time, as discussed in the previous module. It should look like this, if you are collecting the data using the sensor indices:</p>
+<div class="highlight-cs notranslate"><div class="highlight"><pre><span></span><span class="w">  </span><span class="k">public</span><span class="w"> </span><span class="k">virtual</span><span class="w"> </span><span class="k">void</span><span class="w"> </span><span class="nf">CollectionDataReady</span><span class="p">(</span><span class="kt">object</span><span class="w"> </span><span class="n">sender</span><span class="p">,</span><span class="w"> </span><span class="n">ComponentDataReadyEventArgs</span><span class="w"> </span><span class="n">e</span><span class="p">)</span>
+<span class="p">{</span>
+<span class="w">    </span><span class="c1">//Channel based list of data for this frame interval</span>
+<span class="w">    </span><span class="n">List</span><span class="o">&lt;</span><span class="n">List</span><span class="o">&lt;</span><span class="kt">double</span><span class="o">&gt;&gt;</span><span class="w"> </span><span class="n">data</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">List</span><span class="o">&lt;</span><span class="n">List</span><span class="o">&lt;</span><span class="kt">double</span><span class="o">&gt;&gt;</span><span class="p">();</span>
+
+<span class="w">    </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">k</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">0</span><span class="p">;</span><span class="w"> </span><span class="n">k</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">e</span><span class="p">.</span><span class="n">Data</span><span class="p">.</span><span class="n">Count</span><span class="p">();</span><span class="w"> </span><span class="n">k</span><span class="o">++</span><span class="p">)</span>
+<span class="w">    </span><span class="p">{</span>
+<span class="w">        </span><span class="c1">// Loops through each connected sensor</span>
+<span class="w">        </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">0</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">e</span><span class="p">.</span><span class="n">Data</span><span class="p">[</span><span class="n">k</span><span class="p">].</span><span class="n">SensorData</span><span class="p">.</span><span class="n">Count</span><span class="p">();</span><span class="w"> </span><span class="n">i</span><span class="o">++</span><span class="p">)</span>
+<span class="w">        </span><span class="p">{</span>
+<span class="w">            </span><span class="c1">// Loops through each channel for a sensor</span>
+<span class="w">            </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">j</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">0</span><span class="p">;</span><span class="w"> </span><span class="n">j</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">e</span><span class="p">.</span><span class="n">Data</span><span class="p">[</span><span class="n">k</span><span class="p">].</span><span class="n">SensorData</span><span class="p">[</span><span class="n">i</span><span class="p">].</span><span class="n">ChannelData</span><span class="p">.</span><span class="n">Count</span><span class="p">();</span><span class="w"> </span><span class="n">j</span><span class="o">++</span><span class="p">)</span>
+<span class="w">            </span><span class="p">{</span>
+<span class="w">                </span><span class="n">data</span><span class="p">.</span><span class="n">Add</span><span class="p">(</span><span class="n">e</span><span class="p">.</span><span class="n">Data</span><span class="p">[</span><span class="n">k</span><span class="p">].</span><span class="n">SensorData</span><span class="p">[</span><span class="n">i</span><span class="p">].</span><span class="n">ChannelData</span><span class="p">[</span><span class="n">j</span><span class="p">].</span><span class="n">Data</span><span class="p">);</span>
+<span class="w">                </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">k2</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">0</span><span class="p">;</span><span class="w"> </span><span class="n">k2</span><span class="w"> </span><span class="o">&lt;</span><span class="n">e</span><span class="p">.</span><span class="n">Data</span><span class="p">[</span><span class="n">k</span><span class="p">].</span><span class="n">SensorData</span><span class="p">[</span><span class="n">i</span><span class="p">].</span><span class="n">ChannelData</span><span class="p">[</span><span class="n">j</span><span class="p">].</span><span class="n">Data</span><span class="p">.</span><span class="n">Count</span><span class="p">();</span><span class="w"> </span><span class="n">k2</span><span class="o">++</span><span class="p">){</span>
+<span class="w">                    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">i</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="m">1</span><span class="p">)</span><span class="c1">//Heart Rate Sensor Index</span>
+<span class="w">                    </span><span class="p">{</span>
+<span class="w">                        </span><span class="n">latestHRData</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">e</span><span class="p">.</span><span class="n">Data</span><span class="p">[</span><span class="n">k</span><span class="p">].</span><span class="n">SensorData</span><span class="p">[</span><span class="n">i</span><span class="p">].</span><span class="n">ChannelData</span><span class="p">[</span><span class="n">j</span><span class="p">].</span><span class="n">Data</span><span class="p">[</span><span class="n">k2</span><span class="p">].</span><span class="n">ToString</span><span class="p">();</span>
+<span class="w">                    </span><span class="p">}</span>
+<span class="w">                    </span><span class="k">else</span><span class="w"> </span><span class="nf">if</span><span class="w"> </span><span class="p">(</span><span class="n">i</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="m">0</span><span class="p">)</span><span class="c1">//Avanti Sensor Index</span>
+<span class="w">                    </span><span class="p">{</span>
+<span class="w">                        </span><span class="n">latestEMGData</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">e</span><span class="p">.</span><span class="n">Data</span><span class="p">[</span><span class="n">k</span><span class="p">].</span><span class="n">SensorData</span><span class="p">[</span><span class="n">i</span><span class="p">].</span><span class="n">ChannelData</span><span class="p">[</span><span class="n">j</span><span class="p">].</span><span class="n">Data</span><span class="p">[</span><span class="n">k2</span><span class="p">].</span><span class="n">ToString</span><span class="p">();</span>
+<span class="w">                    </span><span class="p">}</span>
+<span class="w">                    </span><span class="n">Debug</span><span class="p">.</span><span class="n">Log</span><span class="p">(</span><span class="n">e</span><span class="p">.</span><span class="n">Data</span><span class="p">[</span><span class="n">k</span><span class="p">].</span><span class="n">SensorData</span><span class="p">[</span><span class="n">i</span><span class="p">].</span><span class="n">ChannelData</span><span class="p">[</span><span class="n">j</span><span class="p">].</span><span class="n">Data</span><span class="p">[</span><span class="n">k2</span><span class="p">]);</span>
+<span class="w">                </span><span class="p">}</span>
+<span class="w">            </span><span class="p">}</span>
+<span class="w">        </span><span class="p">}</span>
+
+<span class="w">    </span><span class="p">}</span>
+</pre></div>
+</div>
+<p>That’s every modification you need to make, and you are ready to move on to adding <code class="docutils literal notranslate"><span class="pre">GameObject</span></code> s.</p>
 </section>
-<section id="testing-and-refining-integration">
-<h2>Testing and Refining Integration<a class="headerlink" href="#testing-and-refining-integration" title="Link to this heading"></a></h2>
+<section id="adding-gameobjects">
+<h3>Adding GameObjects<a class="headerlink" href="#adding-gameobjects" title="Link to this heading"></a></h3>
+<a class="reference internal image-reference" href="../../_images/vr_trigno_demo.png"><img alt="An Image of the layout for the project." src="../../_images/vr_trigno_demo.png" style="width: 1000px;" /></a>
+<p>You will need a similar set of <code class="docutils literal notranslate"><span class="pre">GameObject</span></code> s as in the previous module, however there are important differences that will meaningfully affect your project so please read carefully:</p>
+<ul class="simple">
+<li><p>Directional Light and Plane: These provide the lighting and surface the player stands on, and should be included in the BasicScene by default.</p></li>
+<li><p>A UI Canvas: This will function the same as the canvas from the last module, and will contain your text and buttons. The only difference being that this canvas contains a <em>Tracked Graphic Device Raycaster</em> that allows it to work in VR (You may recall hearing about this in module 2). You can find a canvas that has one prebuilt by right clicking in the object hierarchy, clicking <em>UI</em> in the dropdown, and selecting <em>UI Canvas</em>. Or, you can add one to any regular canvas by searching for it in the <em>Add Component</em> menu. Again, all your buttons and texts will be children of this object.</p></li>
+<li><p>A Complete XR Origin Set Up: This contains the event system, main camera, and player controller for the VR application. This should be included in the BasicScene preset provided with the template, but if it isn’t you can search for it in the Project window, assuming you have all of the OpenXR packages installed that come with the template.</p></li>
+<li><p>A Unity Example Object: Just like with the previous module, this is the <strong>most</strong> important object for the integration, and should be an empty object with the modified example script attached.</p></li>
+<li><p>Scan, Start, Pair, Stop, and Select Buttons: You will need the same set of five buttons as before, with their names matching their corresponding references in the Unity Example Script. The only difference here is that their texts will located in a child object titled <em>Text (TMP)</em> instead of being directly on the button.</p></li>
+<li><p>API Status and Pipeline State Texts: Exactly the same as the previous module. Make sure to drag and drop them into their respective slots in the script component of the Unity Example Object.</p></li>
+<li><p>Latest EMG Data Text: Since you no longer have access to the Unity Console in VR, you will want a new way to display the incoming data for your EMG and heart rate sensors. Assign this to its appropriate slot in the script component of the Unity Example Object.</p></li>
+<li><p>Latest HR Data Text: The same case as the latest EMG Data Text, except used to display incoming HR data. Make sure to assign it to its appropriate slot in the script component of the Unity Example Object.</p></li>
+</ul>
+<p>At the end of the object creation, your object hierarchy should look like the following:</p>
+<a class="reference internal image-reference" href="../../_images/vr_hierachy.png"><img alt="An Image of the project's object hierarchy containing the UI Canvas, Complete XR Origin Set Up, Unity Example, Scan Button, Pair Button, Start Button, Stop Button, Select Button,  API Status Text, Pipeline State Text, Latest EMG Data Text, and Latest HR Data Text ``GameObject`` s. The Scan Button, Pair Button, Start Button, Stop Button, Select Button,  API Status Text, and Pipeline State Text are all children of the UI Canvas." src="../../_images/vr_hierachy.png" style="width: 800px;" /></a>
+<p>And, your Unity Example Script Object’s script component should have the following filled in for it’s public variable slots. You can drag and drop any of the objects that are missing or incorrectly placed in the slots from the object hierarchy into the slots:</p>
+<a class="reference internal image-reference" href="../../_images/vr_example_script_inspector.png"><img alt="An Image of the Unity Example Object's inspector window with the Scan Button assigned to ``ScanButton`` , the Start Button assigned to ``StartButton`` , the Stop Button assigned to ``StopButton`` , the Select Button assigned to ``SelectButton`` , the Pair Button assigned to ``PairButton`` , the API Status Text assigned to ``API Status`` , the Pipeline State assigned to ``PipelineState`` , the EMG Data Text assigned to ``LatestEMGData`` , and the HR Data Text assigned to ``LatestHRData`` ." src="../../_images/vr_example_script_inspector.png" style="width: 800px;" /></a>
+</section>
+<section id="running-the-application">
+<h3>Running the Application<a class="headerlink" href="#running-the-application" title="Link to this heading"></a></h3>
+<div class="video_wrapper" style="">
+<iframe allowfullscreen="true" src="https://www.youtube.com/embed/0wVglArvtSk" style="border: 0; height: 345px; width: 560px">
+</iframe></div><p><strong>[Click on the above video for our YouTube tutorial on the Trigno Link Example Project.]</strong></p>
+<p>While running the project may differ depending on your headset, no matter what you are going to have to build to the Windows platform. Here is how to do that:</p>
+<ol class="arabic simple">
+<li><p>On the ribbon in the top left of the editor, select the <em>File</em> option. This will open a drop-down menu with several options.</p></li>
+</ol>
+<a class="reference internal image-reference" href="../../_images/build_settings.png"><img alt="An image of the build settings in the top ribbon of the Unity Editor." src="../../_images/build_settings.png" style="width: 800px;" /></a>
+<ol class="arabic simple" start="2">
+<li><p>In the drop-down menu that appears, select the <em>Build Settings</em> option. This will open the build settings in a new window. This is where you will change your desired platform to Android.</p></li>
+</ol>
+<a class="reference internal image-reference" href="../../_images/windows_build.png"><img alt="An image of the Windows build platform." src="../../_images/windows_build.png" style="width: 500px;" /></a>
+<ol class="arabic simple" start="3">
+<li><p>Make sure that the build platform in the bottom right corner of the menu is set to <em>Windows, Linux, and Mac</em>.</p></li>
+</ol>
+<p>When you are ready to build your project, return to the build settings window and select the <em>Build</em> button. Unity will ask you to choose a location to store your new build. It is recommended that you make a folder to contain the build, because you may lose files otherwise. The main piece to pay attention to is the .EXE file that is produced. This is how you actually run the application. If you are using a Meta Quest 2, you can hook your headset up to your PC with a USB-C cable or use Air Link to connect to Quest Link. Then, simply run the EXE from your computer and it will appear on the headset. You will also need the Quest Link application on your computer, and the hardware to run it. You can find out more <a class="reference external" href="https://www.meta.com/help/quest/articles/headsets-and-accessories/oculus-link/set-up-link/">here</a>. If you are using another type of headset, look up how your device can run Windows applications, as the process will be different.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>The Delsys API is only natively supported with Windows applications. Using unsupported platforms could prevent its usage.</p>
+</div>
+</section>
+</section>
+<section id="a-large-scale-project-for-inspiration">
+<h2>A Large Scale Project for Inspiration<a class="headerlink" href="#a-large-scale-project-for-inspiration" title="Link to this heading"></a></h2>
+<div class="video_wrapper" style="">
+<iframe allowfullscreen="true" src="https://www.youtube.com/embed/ynoksXQvZWc" style="border: 0; height: 345px; width: 560px">
+</iframe></div><p><strong>[Click on the above video for our YouTube video on the VR Maze using EMG and HR Data.]</strong></p>
+<p>While the example project you created above may only serve to display the data from the EMG and HR sensors, that is only the tip of the iceberg for potential creations using physiological sensors and the Delsys API. Here is a more complex application, similar to the VR Maze you saw back in module two that integrates both EMG and heart rate sensors to control player movement. Hopefully this gives you some inspiration for your own applications!</p>
 </section>
 <section id="section-review">
 <h2>Section Review<a class="headerlink" href="#section-review" title="Link to this heading"></a></h2>
+<p>In this module, you learned how to successfully integrate physiological sensing with virtual reality in Unity. This is the aggregation of all of the Unity work you have done in the past, and will prepare you to make your own VR applications using physiological sensors. The final module will teach you about proper data analysis techniques, so that you can ensure any data you collect from the sensors provides you with meaningful results. This is the final stretch, hang in there!</p>
+<section id="module-self-assessment">
+<h3>Module Self-Assessment<a class="headerlink" href="#module-self-assessment" title="Link to this heading"></a></h3>
+<div class="quizdown">---
+shuffle_answers: false
+---
+
+## Which of the following is not a ``GameObject`` needed for the example project?
+
+&gt; Adding GameObjects section.
+
+1. [ ] UI Canvas
+   &gt; The correct answer is Main Camera.
+2. [ ] Complete XR Origin Set Up
+   &gt; The correct answer is Main Camera.
+3. [x] Main Camera
+4. [ ] Unity Example
+   &gt; The correct answer is Main Camera.
+
+ ## True or False? The Streaming Assets folder is necessary for the Trigno Link Integration with VR.
+
+ &gt; Re-read the Creating A New VR Project with Delsys API section.
+
+ 1. [x] True
+ 2. [ ] False
+     &gt; The correct answer is False.
+
+ ## What Build Platform is used for VR applications using the Delsys API?
+
+ &gt; Re-read the Creating A New VR Project with Delsys API section.
+
+ 1. [x] Windows
+ 2. [ ] Android
+     &gt; The correct answer is Windows.
+ 3. [ ] PS5
+     &gt; The correct answer is Windows.
+ 4. [ ] WebGL
+     &gt; The correct answer is Windows.</div></section>
 </section>
 </section>
 
