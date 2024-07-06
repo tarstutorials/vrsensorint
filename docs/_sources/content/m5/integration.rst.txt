@@ -97,7 +97,7 @@ In order to properly set up your VR project for physiological sensor integration
 A Simple VR Application
 -----------------------------------------
 
-You will be building off of the BasicScene included in the VR template. Since most of the work for this project was completed in the previous module, you only have to make slight changes to the copied Example script and set up your ``GameObject`` s to get this VR project up and running.
+You will be building off of the BasicScene included in the VR template. Since most of the work for this project was completed in the previous module, you only have to make slight changes to the copied Example script and set up your ``GameObject`` s to get this VR project up and running. You can find the Unity project on our `GitHub page <https://github.com/tarstutorials/vrsensorint-trignolinkvrdemo>`_.
 
 
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -242,7 +242,7 @@ A Large Scale Project for Inspiration
 
 **[Click on the above video for our YouTube video on the VR Maze using EMG and HR Data.]**
 
-While the example project you created above may only serve to display the data from the EMG and HR sensors, that is only the tip of the iceberg for potential creations using physiological sensors and the Delsys API. Here is a more complex application, similar to the VR Maze you saw back in module two that integrates both EMG and heart rate sensors to control player movement. Hopefully this gives you some inspiration for your own applications!
+While the example project you created above may only serve to display the data from the EMG and HR sensors, that is only the tip of the iceberg for potential creations using physiological sensors and the Delsys API. Here is a more complex application, similar to the VR Maze you saw back in module two that integrates both EMG and heart rate sensors to control player movement. Hopefully this gives you some inspiration for your own applications! You can find the Unity project on our `GitHub page <https://github.com/tarstutorials/vrsensorint-EMGHRVRMaze>`_.
 
 
 --------------------------------
