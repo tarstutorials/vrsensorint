@@ -115,6 +115,7 @@ Setting up for mobile development is mostly done for you when creating a project
   :alt: An Image of the Build Settings menu in the Unity Editor.
 
 The build settings menu is used for configuring how you want to package the final application. For example, it lets you change what platform you are building for, such as Windows or Android. While you are working on the mobile project, you should keep its build set to Windows. This lets you test the project directly on your computer.
+
 .. image:: ../../images/project_settings.png
   :width: 400
   :alt: An Image of the Build Settings menu in the Unity Editor.
