@@ -103,26 +103,6 @@ Shaded in red in the image above, the object hierarchy contains any ``GameObject
 
 Try exploring by adding different types of ``GameObject`` s to the scene and creating multiple levels of parents and children until you feel comfortable. Note that you can delete any object you create by right clicking on it in the hierarchy and clicking delete.
 
-.. _to_mobile_setup:
----------------------------------
-Setting Up For Mobile Development
----------------------------------
-
-Setting up for mobile development is mostly done for you when creating a project using the *2D Mobile* template. However, there are two important menus you should know about that may help you with any last minute configurations you want to make. These are the build settings and project settings menus. The build settings menu can be found by clicking the button labeled *File* on the ribbon at the top of the editor. From there, a dropdown menu will appear, where you can select the *Build Settings* option. In the same ribbon, there is a button labeled *Edit*, where a similar dropdown menu contains a button for *Project Settings*. 
-
-.. image:: ../../images/build_settings.png
-  :width: 800
-  :alt: An Image of the Build Settings menu in the Unity Editor.
-
-The build settings menu is used for configuring how you want to package the final application. For example, it lets you change what platform you are building for, such as Windows or Android. While you are working on the mobile project, you should keep its build set to Windows. This lets you test the project directly on your computer.
-
-.. image:: ../../images/project_settings.png
-  :width: 400
-  :alt: An Image of the Build Settings menu in the Unity Editor.
-
-The project settings menu allows you to change a multitude of settings for your project, and additionally provides access to settings for any packages you have added to the project. The template has done a good job of setting up the project settings for you, so you don't need to worry about it for this simple tutorial. However, in more advanced tutorials which we will get to later, project settings can be important for optimizing the application.
-
-For now, you can look around at both menus to see what kind of settings exist, but do not change any without knowing what they do, as this could negatively affect your project. If you want to learn more about a specific build or project setting, please check the Unity documentation  for the `project settings <https://docs.unity3d.com/Manual/comp-ManagerGroup.html>`_ and `build settings <https://docs.unity3d.com/Manual/BuildSettings.html>`_.
 
 -----------------
 Basic Techniques
@@ -200,6 +180,27 @@ Scenes
 Throughout your Unity practice, the canvas that you have been working on is called the scene. By default, Unity projects begin with a single scene, called *Main Scene*. More complex Unity applications can have multiple scenes, and each has its own set of ``GameObject`` s. While there are ways to have interactions persist between scenes, for the most part scenes remain seperate from one another. Think of scenes like the levels of a game, for example, you could have a different scene for the main menu, level 1, level 2, and so on. For simple applications, most work can be done in a single scene. You can access scenes from the ``~/Assets/Scenes`` in the project window. You will see more about multi-scene applications in a later part of this tutorial.
 
 Moving around the scene to place ``GameObject`` s and build your aplication is necessary to get the most out of the scene view. Some important hotkeys for this movement are the w, a, s, and d keys which allow you to move around the scene, and the shift key to inrease or decrease your movement speed. You can find out more about these controls `here <https://docs.unity3d.com/2019.1/Documentation/Manual/SceneViewNavigation.html>`_. Additional useful shortcuts for the Unity Editor as a whole are also useful to learn, and the `Hotkey Documentation <https://docs.unity3d.com/2018.1/Documentation/Manual/UnityHotkeys.html>`_ can help you learn the ones that work on your operating system.
+
+.. _to_mobile_setup:
+---------------------------------
+Build and Project Settings
+---------------------------------
+
+Setting up for mobile development is mostly done for you when creating a project using the *2D Mobile* template. However, there are two important menus you should know about that may help you with any last minute configurations you want to make. These are the build settings and project settings menus. The build settings menu can be found by clicking the button labeled *File* on the ribbon at the top of the editor. From there, a dropdown menu will appear, where you can select the *Build Settings* option. In the same ribbon, there is a button labeled *Edit*, where a similar dropdown menu contains a button for *Project Settings*. 
+
+.. image:: ../../images/build_settings.png
+  :width: 800
+  :alt: An Image of the Build Settings menu in the Unity Editor.
+
+The build settings menu is used for configuring how you want to package the final application. For example, it lets you change what platform you are building for, such as Windows or Android. While you are working on the mobile project, you should keep its build set to Windows. This lets you test the project directly on your computer.
+
+.. image:: ../../images/project_settings.png
+  :width: 400
+  :alt: An Image of the Build Settings menu in the Unity Editor.
+
+The project settings menu allows you to change a multitude of settings for your project, and additionally provides access to settings for any packages you have added to the project. The template has done a good job of setting up the project settings for you, so you don't need to worry about it for this simple tutorial. However, in more advanced tutorials which we will get to later, project settings can be important for optimizing the application.
+
+For now, you can look around at both menus to see what kind of settings exist, but do not change any without knowing what they do, as this could negatively affect your project. If you want to learn more about a specific build or project setting, please check the Unity documentation  for the `project settings <https://docs.unity3d.com/Manual/comp-ManagerGroup.html>`_ and `build settings <https://docs.unity3d.com/Manual/BuildSettings.html>`_.
 
 ------------------
 Section Review
