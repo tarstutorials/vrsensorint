@@ -64,11 +64,11 @@ In order to properly set up your VR project for physiological sensor integration
   :width: 800
   :alt: An Image of Assets subfolder in the Unity Example.
 
-13. Open the extracted folder, and navigate to the ``~\Example-Applications-main\Delsys Unity Example\Assets`` subdirectory. 
+13. Open the extracted folder, and navigate to the ``~\Example-Applications-main\Unity\Assets`` subdirectory. 
 
-14. Copy the Streaming Assets folder into your project.
+14. Copy the Streaming Assets folder into your project's assets folder.
 
-15. Navigate to the ``~\Example-Applications-main\Delsys Unity Example\Assets\Plugins`` folder and copy everything contained in it to the Plugins folder you created for your project. 
+15. Navigate to the ``~\Example-Applications-main\Unity\Assets\Plugins`` folder and copy everything contained in it to the Plugins folder you created for your project. 
 
 .. image:: ../../images/codedom.png
   :width: 800

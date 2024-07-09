@@ -18,8 +18,8 @@
 # -- Project information -----------------------------------------------------
 
 project = 'VRSensorIntegration'
-copyright = '2024, E. Matzek, T. Yankee, O. Kohler, M. White, M. Duver, R. Licata, N. Pepper, R. Almutairi, N.K. Banerjee, and S. Banerjee'
-author = 'Ethan Matzek, Tyler Yankee, Odin Kohler, Maryangela White, Matt Duver, Robert Licata, Niall Pepper, Ruzan Almutairi, Natasha Kholgade Banerjee, and Sean Banerjee'
+copyright = '2024, E. Matzek, T. Yankee, O. Kohler, M. White, M. Duver, R. Licata, N. Pepper, R. Almutairi, A. Megyeri, N.K. Banerjee, and S. Banerjee'
+author = 'Ethan Matzek, Tyler Yankee, Odin Kohler, Ava Megyeri, Maryangela White, Matt Duver, Robert Licata, Niall Pepper, Ruzan Almutairi, Natasha Kholgade Banerjee, and Sean Banerjee'
 
 # The full version, including alpha/beta/rc tags
 release = '0.1'

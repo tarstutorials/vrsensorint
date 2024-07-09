@@ -209,13 +209,13 @@
 </ol>
 <a class="reference internal image-reference" href="../../_images/assets_subfolder.png"><img alt="An Image of Assets subfolder in the Unity Example." src="../../_images/assets_subfolder.png" style="width: 800px;" /></a>
 <ol class="arabic simple" start="12">
-<li><p>Open the extracted folder, and navigate to the <code class="docutils literal notranslate"><span class="pre">~\Example-Applications-main\Delsys</span> <span class="pre">Unity</span> <span class="pre">Example\Assets</span></code> subdirectory.</p></li>
-<li><p>Copy the Streaming Assets folder into your project.</p></li>
-<li><p>Navigate to the <a href="#id3"><span class="problematic" id="id4">``</span></a>~Example-Applications-mainDelsys Unity ExampleAssetsPlugins``folder and copy everything contained in it to the Plugins folder you created for your project.</p></li>
+<li><p>Open the extracted folder, and navigate to the <code class="docutils literal notranslate"><span class="pre">~\Example-Applications-main\Unity\Assets</span></code> subdirectory.</p></li>
+<li><p>Copy the Streaming Assets folder into your project’s assets folder.</p></li>
+<li><p>Navigate to the <code class="docutils literal notranslate"><span class="pre">~\Example-Applications-main\Delsys</span> <span class="pre">Unity</span> <span class="pre">Example\Assets\Plugins</span></code> folder and copy everything contained in it to the Plugins folder you created for your project.</p></li>
 </ol>
-<a class="reference internal image-reference" href="../../_images/codedom.png"><img alt="An Image of the Plugins folder of your project with System.CodeDom.dll and System.CodeDom.dll.meta selected." src="../../_images/codedom.png" style="width: 800px;" /></a>
+<a class="reference internal image-reference" href="../../_images/codedom.png"><img alt="An Image of the Plugins folder of your project with System.Reactive.Linq.dll and System.Reactive.Linq.dll.meta, and System.Management.dll, and System.Management.dll.meta removed, and System.CodeDom.dll and System.CodeDom.dll.meta selected." src="../../_images/codedom.png" style="width: 800px;" /></a>
 <ol class="arabic simple" start="15">
-<li><p>In the plugins folder in your project, delete the file called <em>System.CodeDom.dll</em> and its associated meta file <em>System.CodeDom.dll.meta</em>.</p></li>
+<li><p>In the plugins folder in your project, delete the file called <em>System.CodeDom.dll</em> and its associated meta file <em>System.CodeDom.dll.meta</em>. Delete <em>System.Reactive.Linq.dll</em> and its associated meta file <em>System.Reactive.Linq.dll.meta</em>.  Delete <em>System.Management.dll</em> and its associated meta file <em>System.Management.dll.meta</em>.</p></li>
 </ol>
 <a class="reference internal image-reference" href="../../_images/project_root.png"><img alt="An Image of the project's root folder with the moved file in it." src="../../_images/project_root.png" style="width: 800px;" /></a>
 <ol class="arabic simple" start="16">
@@ -731,13 +731,19 @@
 <a class="reference internal image-reference" href="../../_images/added_game_objects.png"><img alt="An Image of the layout for the project." src="../../_images/added_game_objects.png" style="width: 1000px;" /></a>
 <p>If you are building from the example script, you are going to need a few <code class="docutils literal notranslate"><span class="pre">GameObject</span></code> s in order to create the scene for your application. Please create the following:</p>
 <ul class="simple">
-<li><p>A Canvas Object: This will be the parent object for your buttons and text, and defines what the screen shows. The sample scene given when you start your 2D project should already have this.</p></li>
-<li><p>An Event System Object: This is used to make your UI elements interactable. Again, the sample scene should already have this created for you.</p></li>
-<li><p>A Main Camera: This is the last object included with the sample scene, and it just defines the view of the game. It should be created for you already.</p></li>
+<li><p>A Canvas Object: This will be the parent object for your buttons and text, and defines what the screen shows. This is added through the UI section of the object creation dropdown, and creates an Event System with it.</p></li>
+<li><p>An Event System Object: This is used to make your UI elements interactable. Again, this should be created alongside your canvas.</p></li>
+<li><p>A Main Camera: This is included with the sample scene, and it just defines the view of the game. It should be created for you already.</p></li>
 <li><p>A Unity Example Object: This is the first object you must add yourself, and it is the <strong>most</strong> important object for the integration. It should be an Empty object, and should have the modified Example Script attached as a component.</p></li>
+</ul>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>TMP Buttons are set up slightly differently than the ones you used in earlier modules. For these, the text for the button is contained in a child Text(TMP) object. TO change the text displayed on the button, got to this child object and change the text input component.</p>
+</div>
+<ul class="simple">
 <li><p>A Scan Button: This will be used to scan for sensors connected to the base station and the Trigno Link. Ensure that the name for this <code class="docutils literal notranslate"><span class="pre">GameObject</span></code> matches the one given as argument in the <code class="docutils literal notranslate"><span class="pre">Find</span></code> function for the <code class="docutils literal notranslate"><span class="pre">GameObject</span></code> ScanButton in the Example Script. If you have not changed the arguments, the name should be “ScanButton”.</p></li>
 <li><p>A Start Button: This will be used to start collecting data once all of the sensors have been connected. Ensure that the name for this <code class="docutils literal notranslate"><span class="pre">GameObject</span></code> matches the one given as argument in the <code class="docutils literal notranslate"><span class="pre">Find</span></code> function for the <code class="docutils literal notranslate"><span class="pre">GameObject</span></code> StartButton in the Example Script. If you have not changed the arguments, the name should be “StartButton”.</p></li>
-<li><p>A Pair Button: This will be used to pair sensors to the base station that were not previously paired in Trigno Discover. A sensor <em>must</em> be paired to the system before it can be picked up by a scan. Ensure that the name for this <code class="docutils literal notranslate"><span class="pre">GameObject</span></code> matches the one given as argument in the <code class="docutils literal notranslate"><span class="pre">Find</span></code> function for the <code class="docutils literal notranslate"><span class="pre">GameObject</span></code> PairButton in the Example Script. If you have not changed the arguments, the name should be “StartButton”.</p></li>
+<li><p>A Pair Button: This will be used to pair sensors to the base station that were not previously paired in Trigno Discover. A sensor <em>must</em> be paired to the system before it can be picked up by a scan. Ensure that the name for this <code class="docutils literal notranslate"><span class="pre">GameObject</span></code> matches the one given as argument in the <code class="docutils literal notranslate"><span class="pre">Find</span></code> function for the <code class="docutils literal notranslate"><span class="pre">GameObject</span></code> PairButton in the Example Script. If you have not changed the arguments, the name should be “PairButton”.</p></li>
 <li><p>A Stop Button: This will be used to disarm the Delsys API pipeline and safely stop data collection once clicked.  Ensure that the name for this <code class="docutils literal notranslate"><span class="pre">GameObject</span></code> matches the one given as argument in the <code class="docutils literal notranslate"><span class="pre">Find</span></code> function for the <code class="docutils literal notranslate"><span class="pre">GameObject</span></code> StopButton in the Example Script. If you have not changed the arguments, the name should be “StopButton”.</p></li>
 <li><p>A Select Button: This wil be used after the scan button to select every sensor found by the scan, and must be used before clicking the start button. Ensure that the name for this <code class="docutils literal notranslate"><span class="pre">GameObject</span></code> matches the one given as argument in the <code class="docutils literal notranslate"><span class="pre">Find</span></code> function for the <code class="docutils literal notranslate"><span class="pre">GameObject</span></code> SelectButton in the Example Script. If you have not changed the arguments, the name should be “SelectButton”.</p></li>
 </ul>
@@ -750,7 +756,7 @@
 <a class="reference internal image-reference" href="../../_images/2d_hierachy.png"><img alt="An Image of the project's object hierarchy containing the Canvas, Event System, Main Camera, Unity Example, Scan Button, Pair Button, Start Button, Stop Button, Select Button,  API Status Text, and Pipeline State Text ``GameObject`` s. The Scan Button, Pair Button, Start Button, Stop Button, Select Button,  API Status Text, and Pipeline State Text are all children of the Canvas." src="../../_images/2d_hierachy.png" style="width: 800px;" /></a>
 <p>And, your Unity Example Script Object’s script component should have the following filled in for it’s public variable slots. You can drag and drop any of the objects that are missing or incorrectly placed in the slots from the object hierarchy into the slots:</p>
 <a class="reference internal image-reference" href="../../_images/example_script_inspector.png"><img alt="An Image of the Unity Example Object's inspector window with the Scan Button assigned to ``ScanButton`` , the Start Button assigned to ``StartButton`` , the Stop Button assigned to ``StopButton`` , the Select Button assigned to ``SelectButton`` , the Pair Button assigned to ``PairButton`` , the API Status Text assigned to ``API Status`` , and the Pipeline State assigned to ``PipelineState`` ." src="../../_images/example_script_inspector.png" style="width: 800px;" /></a>
-<p>You have now created all the necessary <code class="docutils literal notranslate"><span class="pre">GameObject</span></code> s for this project, and are ready to run it and begin collecting data!</p>
+<p>Make sure to move all of the text and button objectws so that they are not overlapping each other. You have now created all the necessary <code class="docutils literal notranslate"><span class="pre">GameObject</span></code> s for this project, and are ready to run it and begin collecting data!</p>
 </section>
 <section id="collecting-sensor-data-in-non-real-time">
 <h3>Collecting Sensor Data in Non-Real Time<a class="headerlink" href="#collecting-sensor-data-in-non-real-time" title="Link to this heading"></a></h3>
@@ -926,7 +932,7 @@ shuffle_answers: false
   <hr/>
 
   <div role="contentinfo">
-    <p>&#169; Copyright 2024, E. Matzek, T. Yankee, O. Kohler, M. White, M. Duver, R. Licata, N. Pepper, R. Almutairi, N.K. Banerjee, and S. Banerjee.</p>
+    <p>&#169; Copyright 2024, E. Matzek, T. Yankee, O. Kohler, M. White, M. Duver, R. Licata, N. Pepper, R. Almutairi, A. Megyeri, N.K. Banerjee, and S. Banerjee.</p>
   </div>
 
   Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
