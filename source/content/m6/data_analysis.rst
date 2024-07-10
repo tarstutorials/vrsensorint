@@ -59,7 +59,6 @@ There are options to access the data with column names, but this becomes inconve
    df = np.loadtxt('sample_semg.csv', delimiter=',', dtype=float, skiprows = 1500, max_rows=6000)
    emg_channels = df[:,[1,2]]
    time = df[:,0]
-   nrows = b30_emg.shape[0]
    print(df.shape, emg_channels.shape, time.shape)
 
 Notice that we have 6,000 rows and 3 columns. Each row represents the signal values read from the sensor at a particular time, and the columns denote time (seconds), right bicep EMG (volts), and left bicep EMG (volts). Checking the shape is always a good step to ensure there wasn't an error in the data loading process.
@@ -74,7 +73,7 @@ The ``pyplot.plot`` function is a universal plotting function: it takes ``x`` an
    import matplotlib.pyplot as plt
 
    mean_raw = emg_channels.mean(axis=0) # 'axis=0' calculates mean of the columns
-   std_raw = emg_channels.std(axis=0)
+   stddev_raw = emg_channels.std(axis=0)
    fig1, ax1 = plt.subplots(2)
 
    ax1[0].plot(time, emg_channels[:,1], label = 'signal')
