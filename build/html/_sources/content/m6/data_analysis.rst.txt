@@ -73,7 +73,7 @@ The ``pyplot.plot`` function is a universal plotting function: it takes ``x`` an
    import matplotlib.pyplot as plt
 
    mean_raw = emg_channels.mean(axis=0) # 'axis=0' calculates mean of the columns
-   std_raw = emg_channels.std(axis=0)
+   stddev_raw = emg_channels.std(axis=0)
    fig1, ax1 = plt.subplots(2)
 
    ax1[0].plot(time, emg_channels[:,1], label = 'signal')
