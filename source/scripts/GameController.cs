@@ -5,7 +5,7 @@ using TMPro;
 
 public class GameController : MonoBehaviour
 {
-    static public int score;
+    public int score;
     static private int finalTime;
     public TextMeshProUGUI timeText;
     public TextMeshProUGUI scoreText;

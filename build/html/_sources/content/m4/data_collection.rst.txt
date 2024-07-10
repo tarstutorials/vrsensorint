@@ -169,6 +169,9 @@ For this simple application, you are going to be slightly modifying the Unity Ex
 Modifying the Example Script
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
+.. Note::
+  Before you begin modifying your script, please remember to put your API license and key into the ``private string key = "";`` and ``private string license = "";`` variables of your modified Example script. You cannot use the API without them.
+
 Below is the modified code for the Example script that allows it to search for Trigno Link components alongside the Trigno RF ones. Beneath that you will be given descriptions of what each modification does, so you can use it in your future projects. 
 
 .. code-block:: cs
@@ -743,14 +746,47 @@ And, your Unity Example Script Object's script component should have the followi
   :alt: An Image of the Unity Example Object's inspector window with the Scan Button assigned to ``ScanButton`` , the Start Button assigned to ``StartButton`` , the Stop Button assigned to ``StopButton`` , the Select Button assigned to ``SelectButton`` , the Pair Button assigned to ``PairButton`` , the API Status Text assigned to ``API Status`` , and the Pipeline State assigned to ``PipelineState`` .
 
 
-Make sure to move all of the text and button objectws so that they are not overlapping each other. You have now created all the necessary ``GameObject`` s for this project, and are ready to run it and begin collecting data!
+Make sure to move all of the text and button objectws so that they are not overlapping each other. You have now created all the necessary ``GameObject`` s for this project, and are ready to run it and begin running your project.
+
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+Running the Application
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. youtube:: kMafpMTUzn0
+
+**[Click on the above video for our YouTube tutorial on Trigno Link Data Collection.]**
+
+Now that you have the application properly set up and know how the data is being read, you are ready to actually run the application you've created. Follow the steps below to do so:
+
+1. Connect your Trigno Base Station to your computer via USB, and ensure it's power supply is connected to an outlet.
+
+2. Connect your Trigno Link to your computer via USB. 
+
+3. Press the Play Button in the top-center of the Unity editor and ensure that the API Status is displayed as "Data source loaded and ready to Scan." and the Pipeline State is displayed as "Off".
+
+4. Pull out an Avanti sensor from the base station and press it against a magnet to put it in scanning mode. Remember you need at least one Avanti sensor active to use the Link.
+
+5. Turn on your Trigno Link compatible sensor and put it in scanning mode.
+
+6. In Unity, select the Scan Button and wait for the system to pick up the powered on sensors. (You can check the Unity Console to see if they were found.)
+
+7. After scanning is complete, press the Select Button. Make sure that all the sensors were selected. (again, you can use the Unity Console to check this.)
+
+8. Click the Start Button. If you check the Console, you should see all of the data being printed out from the sensors in real-time. Note that sensors may have different sampling rates, so data may come at different times. If you have accessed the data anywhere else, you should be seeing its effects now.
+
+9. When you are done collecting data, click the Stop Button. While the application is still running, you can access all of the data from the ``AllCollectionData`` variable.
+
+10. Return the sensors to the base station or power them off. You have successfully collected data using the Trigno Link and Unity!
+
+
+---------------------------------------
+Additional Information
+---------------------------------------
+
 
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 Collecting Sensor Data in Non-Real Time
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-
-.. Note::
-  Before you begin collecting data, please remember to put your API  license and key into the ``private string key = "";`` and ``private string license = "";`` variables of your modified Example script. You cannot use the API without them.
 
 There are two ways to easily access the data collected from using the API. The first method is for non-real-time data collection. You will notice that there is a variable in the modified example script you made called ``List<List<List<double>>> AllCollectionData`` . This list is filled with the data collected during real-time collection. Once data is no longer collected, you can read from this list to access the collected data.  Notice that this list is a list of lists of lists of doubles. The outermost list contains the components connected to the system (the sensors), the first inner list contains the channels for each component, so if your sensor reads multiple types of data at once you can access all of it. The innermost list contains the actual data for the specific sensors specified channel. So for instance, if I only had one Avanti EMG connected and wanted to read the EMG data from it, I could access the data with ``AllCollectionData[0][0]`` . This would return the list of data contained within the first sensor, and in its first channel. If I were looking for a specific piece of data at, for example, time stamp 70, I could access that specific data with ``AllCollectionData[0][0][69]`` . Remember that C# starts indexing at zero, so your timestamp will be offset by one. You can access this data in a separate script by modifying the declaration of the variable in the Unity Example script. Unchanged, the declaration is ``List<List<List<double>>> AllCollectionData = new List<List<List<double>>>();`` . By simply adding ``public`` in front of the declaration, you can make the variable accessible to other scripts. This should look like ``public List<List<List<double>>> AllCollectionData = new List<List<List<double>>>();`` . To access this in another script, you can use the following code block as a template:
 
@@ -777,7 +813,7 @@ There are two ways to easily access the data collected from using the API. The f
 Collecting Sensor Data in Real Time
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-To access the data in real-time, as it comes in from the sensor, you need to get the data at its source. The easiest way to do this is to modify the ``CollectionDataReady`` method in your Unity Example script. be default, the method should look like this:
+To access the data in real-time, as it comes in from the sensor, you need to get the data at its source. The easiest way to do this is to modify the ``CollectionDataReady`` method in your Unity Example script. by default, the method should look like this:
 
 .. code-block:: cs
 
@@ -847,35 +883,6 @@ Basically, what is happening in this function is the data for the specific frame
 
 You can find out more about the sensors and their channels from the `Delsys API User Guide <https://delsys.com/downloads/USERSGUIDE/delsys-api.pdf>`_.
 
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-Running the Application
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-
-.. youtube:: kMafpMTUzn0
-
-**[Click on the above video for our YouTube tutorial on Trigno Link Data Collection.]**
-
-Now that you have the application properly set up and know how the data is being read, you are ready to actually run the application you've created. Follow the steps below to do so:
-
-1. Connect your Trigno Base Station to your computer via USB, and ensure it's power supply is connected to an outlet.
-
-2. Connect your Trigno Link to your computer via USB. 
-
-3. Press the Play Button in the top-center of the Unity editor and ensure that the API Status is displayed as "Data source loaded and ready to Scan." and the Pipeline State is displayed as "Off".
-
-4. Pull out an Avanti sensor from the base station and press it against a magnet to put it in scanning mode. Remember you need at least one Avanti sensor active to use the Link.
-
-5. Turn on your Trigno Link compatible sensor and put it in scanning mode.
-
-6. In Unity, select the Scan Button and wait for the system to pick up the powered on sensors. (You can check the Unity Console to see if they were found.)
-
-7. After scanning is complete, press the Select Button. Make sure that all the sensors were selected. (again, you can use the Unity Console to check this.)
-
-8. Click the Start Button. If you check the Console, you should see all of the data being printed out from the sensors in real-time. Note that sensors may have different sampling rates, so data may come at different times. If you have accessed the data anywhere else, you should be seeing its effects now.
-
-9. When you are done collecting data, click the Stop Button. While the application is still running, you can access all of the data from the ``AllCollectionData`` variable.
-
-10. Return the sensors to the base station or power them off. You have successfully collected data using the Trigno Link and Unity!
 
 -------------------------------
 Section Review

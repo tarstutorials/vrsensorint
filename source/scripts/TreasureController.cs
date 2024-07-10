@@ -5,6 +5,7 @@ using UnityEngine;
 public class TreasureController : MonoBehaviour
 { 
     private float timePassed;
+    public GameController p;
     // Start is called before the first frame update
     void Start()
     {

@@ -71,16 +71,16 @@
 </li>
 <li class="toctree-l2"><a class="reference internal" href="#basic-techniques">Basic Techniques</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#object-creation">Object Creation</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#c-scripting">C# Scripting</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="#now-that-you-have-the-content-of-each-script-complete-you-are-ready-to-attach-them-to-the-gameobject-s-you-made-in-the-last-section">Now that you have the content of each script complete, you are ready to attach them to the <code class="docutils literal notranslate"><span class="pre">GameObject</span></code> s you made in the last section.</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#camera-system">Camera System</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#c-scripting">C# Scripting</a></li>
 </ul>
 </li>
+<li class="toctree-l2"><a class="reference internal" href="#build-and-project-settings">Build and Project Settings</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#additional-information">Additional Information</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#camera-system">Camera System</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#physics-system">Physics System</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#scenes">Scenes</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="#build-and-project-settings">Build and Project Settings</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#section-review">Section Review</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#module-self-assessment">Module Self-Assessment</a></li>
 </ul>
@@ -221,270 +221,80 @@
 <ol class="arabic simple" start="4">
 <li><p>Click the “+” button again. Now select 2D Object –&gt; Sprites –&gt; Circle​. This will be the treasure.</p></li>
 </ol>
-<dl class="simple">
-<dt>​.. image:: ../../images/treasure.png</dt><dd><dl class="field-list simple">
-<dt class="field-odd">width<span class="colon">:</span></dt>
-<dd class="field-odd"><p>800</p>
-</dd>
-<dt class="field-even">alt<span class="colon">:</span></dt>
-<dd class="field-even"><p>An Image of the renamed treasure.</p>
-</dd>
-</dl>
-</dd>
-</dl>
+<a class="reference internal image-reference" href="../../_images/treasure.png"><img alt="An Image of the renamed treasure." src="../../_images/treasure.png" style="width: 800px;" /></a>
 <ol class="arabic simple" start="5">
 <li><p>Rename the <code class="docutils literal notranslate"><span class="pre">GameObject</span></code> “Treasure”.</p></li>
 </ol>
-<dl class="simple">
-<dt>​.. image:: ../../images/changecolor.png</dt><dd><dl class="field-list simple">
-<dt class="field-odd">width<span class="colon">:</span></dt>
-<dd class="field-odd"><p>800</p>
-</dd>
-<dt class="field-even">alt<span class="colon">:</span></dt>
-<dd class="field-even"><p>An Image of the recolored treasure.</p>
-</dd>
-</dl>
-</dd>
-</dl>
+<a class="reference internal image-reference" href="../../_images/changecolor.png"><img alt="An Image of the recolored treasure." src="../../_images/changecolor.png" style="width: 800px;" /></a>
 <ol class="arabic simple" start="6">
 <li><p>Change the color of the Circle <code class="docutils literal notranslate"><span class="pre">GameObject</span></code> Treasure in the SpriteRenderer component of the Inspector window​ to differentiate it from the player.</p></li>
 </ol>
-<dl class="simple">
-<dt>​.. image:: ../../images/movetool.png</dt><dd><dl class="field-list simple">
-<dt class="field-odd">width<span class="colon">:</span></dt>
-<dd class="field-odd"><p>800</p>
-</dd>
-<dt class="field-even">alt<span class="colon">:</span></dt>
-<dd class="field-even"><p>An Image of the selected move tool.</p>
-</dd>
-</dl>
-</dd>
-</dl>
+<a class="reference internal image-reference" href="../../_images/movetool.png"><img alt="An Image of the selected move tool." src="../../_images/movetool.png" style="width: 800px;" /></a>
 <ol class="arabic simple" start="7">
 <li><p>Select the Treasure and click the move tool in the top left of the scene view.</p></li>
 </ol>
-<dl class="simple">
-<dt>​.. image:: ../../images/movetreasure.png</dt><dd><dl class="field-list simple">
-<dt class="field-odd">width<span class="colon">:</span></dt>
-<dd class="field-odd"><p>800</p>
-</dd>
-<dt class="field-even">alt<span class="colon">:</span></dt>
-<dd class="field-even"><p>An Image of the moved treasure.</p>
-</dd>
-</dl>
-</dd>
-</dl>
+<a class="reference internal image-reference" href="../../_images/movetreasure.png"><img alt="An Image of the moved treasure." src="../../_images/movetreasure.png" style="width: 800px;" /></a>
 <ol class="arabic simple" start="8">
 <li><p>Move the Treasure away from the player.</p></li>
 </ol>
-<dl class="simple">
-<dt>​.. image:: ../../images/addcanvas.png</dt><dd><dl class="field-list simple">
-<dt class="field-odd">width<span class="colon">:</span></dt>
-<dd class="field-odd"><p>800</p>
-</dd>
-<dt class="field-even">alt<span class="colon">:</span></dt>
-<dd class="field-even"><p>An Image of the canvas being added.</p>
-</dd>
-</dl>
-</dd>
-</dl>
+<a class="reference internal image-reference" href="../../_images/addcanvas.png"><img alt="An Image of the canvas being added." src="../../_images/addcanvas.png" style="width: 800px;" /></a>
 <ol class="arabic simple" start="9">
 <li><p>Click the “+” button in the top left of the object hierarchy. Select UI –&gt; Canvas​. This will create a canvas to store all the text elements. This will also automatically add an event system, which allows you to interact with the UI.</p></li>
 </ol>
-<dl class="simple">
-<dt>​.. image:: ../../images/testgame1.png</dt><dd><dl class="field-list simple">
-<dt class="field-odd">width<span class="colon">:</span></dt>
-<dd class="field-odd"><p>800</p>
-</dd>
-<dt class="field-even">alt<span class="colon">:</span></dt>
-<dd class="field-even"><p>An Image of the game at it’s current state.</p>
-</dd>
-</dl>
-</dd>
-</dl>
+<a class="reference internal image-reference" href="../../_images/testgame1.png"><img alt="An Image of the game at it's current state." src="../../_images/testgame1.png" style="width: 800px;" /></a>
 <ol class="arabic simple" start="10">
 <li><p>Click the play button above the center of the scene view to test the game. It should look similar to the above image. You can do this wheneve you want to test your game in its current state.</p></li>
 </ol>
-<dl class="simple">
-<dt>​.. image:: ../../images/addchild1.png</dt><dd><dl class="field-list simple">
-<dt class="field-odd">width<span class="colon">:</span></dt>
-<dd class="field-odd"><p>800</p>
-</dd>
-<dt class="field-even">alt<span class="colon">:</span></dt>
-<dd class="field-even"><p>An Image of the child of the canvas being added.</p>
-</dd>
-</dl>
-</dd>
-</dl>
+<a class="reference internal image-reference" href="../../_images/addchild1.png"><img alt="An Image of the child of the canvas being added." src="../../_images/addchild1.png" style="width: 800px;" /></a>
 <ol class="arabic simple" start="11">
 <li><p>Add a text element as a child of the canvas. To do this click on the canvas, right-click and select UI –&gt; Text - TextMeshPro​.</p></li>
 </ol>
-<dl class="simple">
-<dt>​.. image:: ../../images/tmp.png</dt><dd><dl class="field-list simple">
-<dt class="field-odd">width<span class="colon">:</span></dt>
-<dd class="field-odd"><p>800</p>
-</dd>
-<dt class="field-even">alt<span class="colon">:</span></dt>
-<dd class="field-even"><p>An Image of TMPro essentials being imported.</p>
-</dd>
-</dl>
-</dd>
-</dl>
+<a class="reference internal image-reference" href="../../_images/tmp.png"><img alt="An Image of TMPro essentials being imported." src="../../_images/tmp.png" style="width: 800px;" /></a>
 <ol class="arabic simple" start="12">
 <li><p>If you have not used a TextMeshPro (TMP) before, you will see a menu to import TMP-related material. Click <em>Import TMP Essentials</em>.</p></li>
 </ol>
-<dl class="simple">
-<dt>​.. image:: ../../images/scoretext.png</dt><dd><dl class="field-list simple">
-<dt class="field-odd">width<span class="colon">:</span></dt>
-<dd class="field-odd"><p>800</p>
-</dd>
-<dt class="field-even">alt<span class="colon">:</span></dt>
-<dd class="field-even"><p>An Image of the object being renamed to Score Text.</p>
-</dd>
-</dl>
-</dd>
-</dl>
+<a class="reference internal image-reference" href="../../_images/scoretext.png"><img alt="An Image of the object being renamed to Score Text." src="../../_images/scoretext.png" style="width: 800px;" /></a>
 <ol class="arabic simple" start="13">
 <li><p>Rename the newly created button object to “Score Text”.</p></li>
 </ol>
-<dl class="simple">
-<dt>​.. image:: ../../images/changescoretext.png</dt><dd><dl class="field-list simple">
-<dt class="field-odd">width<span class="colon">:</span></dt>
-<dd class="field-odd"><p>800</p>
-</dd>
-<dt class="field-even">alt<span class="colon">:</span></dt>
-<dd class="field-even"><p>An Image of the Score Text input being changed.</p>
-</dd>
-</dl>
-</dd>
-</dl>
+<a class="reference internal image-reference" href="../../_images/changescoretext.png"><img alt="An Image of the Score Text input being changed." src="../../_images/changescoretext.png" style="width: 800px;" /></a>
 <ol class="arabic simple" start="14">
 <li><p>In the TextMeshPro – Text (UI) subwindow, change the Text Input from New Text to “Score: 0​“.</p></li>
 </ol>
-<dl class="simple">
-<dt>​.. image:: ../../images/scoretext.png</dt><dd><dl class="field-list simple">
-<dt class="field-odd">width<span class="colon">:</span></dt>
-<dd class="field-odd"><p>800</p>
-</dd>
-<dt class="field-even">alt<span class="colon">:</span></dt>
-<dd class="field-even"><p>An Image of the Score Text being moved upwards.</p>
-</dd>
-</dl>
-</dd>
-</dl>
+<a class="reference internal image-reference" href="../../_images/scoretext.png"><img alt="An Image of the Score Text being moved upwards." src="../../_images/scoretext.png" style="width: 800px;" /></a>
 <ol class="arabic simple" start="15">
 <li><p>Move the Score Text upwards so that it is out of the way of the player. You can focus on it by double-clicking it in the Object Hierarchy, and then move it using the move tool.</p></li>
 </ol>
-<dl class="simple">
-<dt>​.. image:: ../../images/testgame2.png</dt><dd><dl class="field-list simple">
-<dt class="field-odd">width<span class="colon">:</span></dt>
-<dd class="field-odd"><p>800</p>
-</dd>
-<dt class="field-even">alt<span class="colon">:</span></dt>
-<dd class="field-even"><p>An Image of the game at it’s current state.</p>
-</dd>
-</dl>
-</dd>
-</dl>
+<a class="reference internal image-reference" href="../../_images/testgame2.png"><img alt="An Image of the game at it's current state." src="../../_images/testgame2.png" style="width: 800px;" /></a>
 <ol class="arabic simple" start="16">
 <li><p>Test your game to make sure the Score text is out of the way of the player and still visible in the application.</p></li>
 </ol>
-<dl class="simple">
-<dt>​.. image:: ../../images/copyscore.png</dt><dd><dl class="field-list simple">
-<dt class="field-odd">width<span class="colon">:</span></dt>
-<dd class="field-odd"><p>800</p>
-</dd>
-<dt class="field-even">alt<span class="colon">:</span></dt>
-<dd class="field-even"><p>An Image of the Score Text being copied.</p>
-</dd>
-</dl>
-</dd>
-</dl>
+<a class="reference internal image-reference" href="../../_images/copyscore.png"><img alt="An Image of the Score Text being copied." src="../../_images/copyscore.png" style="width: 800px;" /></a>
 <ol class="arabic simple" start="17">
 <li><p>Copy the Score Text by right-clicking on it in the object hierarchy.</p></li>
 </ol>
-<dl class="simple">
-<dt>​.. image:: ../../images/pastescore.png</dt><dd><dl class="field-list simple">
-<dt class="field-odd">width<span class="colon">:</span></dt>
-<dd class="field-odd"><p>800</p>
-</dd>
-<dt class="field-even">alt<span class="colon">:</span></dt>
-<dd class="field-even"><p>An Image of the Score Text being pasted as a child of the canvas.</p>
-</dd>
-</dl>
-</dd>
-</dl>
+<a class="reference internal image-reference" href="../../_images/pastescore.png"><img alt="An Image of the Score Text being pasted as a child of the canvas." src="../../_images/pastescore.png" style="width: 800px;" /></a>
 <ol class="arabic simple" start="18">
 <li><p>Right-click the score canvas and click <em>Paste As Child</em>.</p></li>
 </ol>
-<dl class="simple">
-<dt>​.. image:: ../../images/renametimetext.png</dt><dd><dl class="field-list simple">
-<dt class="field-odd">width<span class="colon">:</span></dt>
-<dd class="field-odd"><p>800</p>
-</dd>
-<dt class="field-even">alt<span class="colon">:</span></dt>
-<dd class="field-even"><p>An Image of the pasted Score Text being renamed to TimeText.</p>
-</dd>
-</dl>
-</dd>
-</dl>
+<a class="reference internal image-reference" href="../../_images/renametimetext.png"><img alt="An Image of the pasted Score Text being renamed to TimeText." src="../../_images/renametimetext.png" style="width: 800px;" /></a>
 <ol class="arabic simple" start="19">
 <li><p>Rename the pasted Score Text(1) to TimeText.</p></li>
 </ol>
-<dl class="simple">
-<dt>​.. image:: ../../images/timetext.png</dt><dd><dl class="field-list simple">
-<dt class="field-odd">width<span class="colon">:</span></dt>
-<dd class="field-odd"><p>800</p>
-</dd>
-<dt class="field-even">alt<span class="colon">:</span></dt>
-<dd class="field-even"><p>An Image of the input text of TimeText being changed.</p>
-</dd>
-</dl>
-</dd>
-</dl>
+<a class="reference internal image-reference" href="../../_images/timetext.png"><img alt="An Image of the input text of TimeText being changed." src="../../_images/timetext.png" style="width: 800px;" /></a>
 <ol class="arabic simple" start="20">
 <li><p>Change the text input of the TimeText to “Time: 0” and move it downward so that it is away from the player and still visible.</p></li>
 </ol>
-<dl class="simple">
-<dt>​.. image:: ../../images/testgame2.png</dt><dd><dl class="field-list simple">
-<dt class="field-odd">width<span class="colon">:</span></dt>
-<dd class="field-odd"><p>800</p>
-</dd>
-<dt class="field-even">alt<span class="colon">:</span></dt>
-<dd class="field-even"><p>An Image of the game at it’s current state.</p>
-</dd>
-</dl>
-</dd>
-</dl>
+<a class="reference internal image-reference" href="../../_images/testgame2.png"><img alt="An Image of the game at it's current state." src="../../_images/testgame2.png" style="width: 800px;" /></a>
 <ol class="arabic simple" start="21">
 <li><p>Test your game to make sure the Score text is out of the way of the player and still visible in the application.</p></li>
 </ol>
-<dl class="simple">
-<dt>​.. image:: ../../images/addgamecontroller.png</dt><dd><dl class="field-list simple">
-<dt class="field-odd">width<span class="colon">:</span></dt>
-<dd class="field-odd"><p>800</p>
-</dd>
-<dt class="field-even">alt<span class="colon">:</span></dt>
-<dd class="field-even"><p>An Image of adding the GameController object.</p>
-</dd>
-</dl>
-</dd>
-</dl>
+<a class="reference internal image-reference" href="../../_images/addgamecontroller.png"><img alt="An Image of adding the GameController object." src="../../_images/addgamecontroller.png" style="width: 800px;" /></a>
 <ol class="arabic simple" start="22">
 <li><p>Click the “+” button in the top left of the object hierarchy. Select Create Empty to create a new object. Call it GameController.</p></li>
 </ol>
-<dl class="simple">
-<dt>​.. image:: ../../images/mobilehierarchy.png</dt><dd><dl class="field-list simple">
-<dt class="field-odd">width<span class="colon">:</span></dt>
-<dd class="field-odd"><p>800</p>
-</dd>
-<dt class="field-even">alt<span class="colon">:</span></dt>
-<dd class="field-even"><p>An Image of the final object hierarchy.</p>
-</dd>
-</dl>
-</dd>
-</dl>
-<p>Your final object hierachy shoould look like the above. You are now ready to start adding scripts to your game.</p>
+<a class="reference internal image-reference" href="../../_images/mobilehierarchy.png"><img alt="An Image of the final object hierarchy." src="../../_images/mobilehierarchy.png" style="width: 800px;" /></a>
+<p>Your final object hierachy should look like the above. You are now ready to start adding scripts to your game.</p>
 </section>
 <section id="c-scripting">
 <h3>C# Scripting<a class="headerlink" href="#c-scripting" title="Link to this heading"></a></h3>
@@ -534,7 +344,7 @@
 
 <span class="n">public</span> <span class="k">class</span> <span class="nc">GameController</span> <span class="p">:</span> <span class="n">MonoBehaviour</span>
 <span class="p">{</span>
-    <span class="n">static</span> <span class="n">public</span> <span class="nb">int</span> <span class="n">score</span><span class="p">;</span>
+    <span class="n">public</span> <span class="nb">int</span> <span class="n">score</span><span class="p">;</span>
     <span class="n">static</span> <span class="n">private</span> <span class="nb">int</span> <span class="n">finalTime</span><span class="p">;</span>
     <span class="n">public</span> <span class="n">TextMeshProUGUI</span> <span class="n">timeText</span><span class="p">;</span>
     <span class="n">public</span> <span class="n">TextMeshProUGUI</span> <span class="n">scoreText</span><span class="p">;</span>
@@ -575,48 +385,101 @@
 <span class="linenos"> 5</span><span class="k">public</span><span class="w"> </span><span class="k">class</span><span class="w"> </span><span class="nc">TreasureController</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="n">MonoBehaviour</span>
 <span class="linenos"> 6</span><span class="p">{</span><span class="w"> </span>
 <span class="linenos"> 7</span><span class="w">    </span><span class="k">private</span><span class="w"> </span><span class="kt">float</span><span class="w"> </span><span class="n">timePassed</span><span class="p">;</span>
-<span class="linenos"> 8</span><span class="w">    </span><span class="c1">// Start is called before the first frame update</span>
-<span class="linenos"> 9</span><span class="w">    </span><span class="k">void</span><span class="w"> </span><span class="nf">Start</span><span class="p">()</span>
-<span class="linenos">10</span><span class="w">    </span><span class="p">{</span>
-<span class="linenos">11</span><span class="w">        </span><span class="n">timePassed</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">0f</span><span class="p">;</span>
-<span class="linenos">12</span><span class="w">    </span><span class="p">}</span>
-<span class="linenos">13</span>
-<span class="linenos">14</span><span class="w">    </span><span class="c1">// Update is called once per frame</span>
-<span class="linenos">15</span><span class="w">    </span><span class="k">void</span><span class="w"> </span><span class="nf">Update</span><span class="p">()</span>
-<span class="linenos">16</span><span class="w">    </span><span class="p">{</span>
-<span class="linenos">17</span><span class="w">        </span><span class="n">timePassed</span><span class="w"> </span><span class="o">+=</span><span class="w"> </span><span class="n">Time</span><span class="p">.</span><span class="n">deltaTime</span><span class="p">;</span>
-<span class="linenos">18</span><span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">timePassed</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="m">1f</span><span class="p">)</span>
-<span class="linenos">19</span><span class="w">        </span><span class="p">{</span>
-<span class="linenos">20</span><span class="w">            </span><span class="n">transform</span><span class="p">.</span><span class="n">position</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">Vector3</span><span class="p">(</span><span class="n">Random</span><span class="p">.</span><span class="n">Range</span><span class="p">(</span><span class="o">-</span><span class="m">5f</span><span class="p">,</span><span class="w"> </span><span class="m">5f</span><span class="p">),</span><span class="w"> </span><span class="n">Random</span><span class="p">.</span><span class="n">Range</span><span class="p">(</span><span class="o">-</span><span class="m">5f</span><span class="p">,</span><span class="w"> </span><span class="m">5f</span><span class="p">),</span><span class="w"> </span><span class="m">0.0f</span><span class="p">);</span>
-<span class="linenos">21</span><span class="w">            </span><span class="n">timePassed</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">0f</span><span class="p">;</span>
-<span class="linenos">22</span><span class="w">        </span><span class="p">}</span>
-<span class="linenos">23</span><span class="w">    </span><span class="p">}</span>
-<span class="linenos">24</span><span class="w">    </span><span class="k">void</span><span class="w"> </span><span class="nf">OnTriggerExit2D</span><span class="p">(</span><span class="n">Collider2D</span><span class="w"> </span><span class="n">other</span><span class="p">)</span>
-<span class="linenos">25</span><span class="w">    </span><span class="p">{</span>
-<span class="linenos">26</span><span class="w">        </span><span class="n">p</span><span class="p">.</span><span class="n">score</span><span class="w"> </span><span class="o">+=</span><span class="w"> </span><span class="m">1</span><span class="p">;</span>
-<span class="linenos">27</span><span class="w">    </span><span class="p">}</span>
-<span class="linenos">28</span><span class="p">}</span>
+<span class="linenos"> 8</span><span class="w">    </span><span class="k">public</span><span class="w"> </span><span class="n">GameController</span><span class="w"> </span><span class="n">p</span><span class="p">;</span>
+<span class="linenos"> 9</span><span class="w">    </span><span class="c1">// Start is called before the first frame update</span>
+<span class="linenos">10</span><span class="w">    </span><span class="k">void</span><span class="w"> </span><span class="nf">Start</span><span class="p">()</span>
+<span class="linenos">11</span><span class="w">    </span><span class="p">{</span>
+<span class="linenos">12</span><span class="w">        </span><span class="n">timePassed</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">0f</span><span class="p">;</span>
+<span class="linenos">13</span><span class="w">    </span><span class="p">}</span>
+<span class="linenos">14</span>
+<span class="linenos">15</span><span class="w">    </span><span class="c1">// Update is called once per frame</span>
+<span class="linenos">16</span><span class="w">    </span><span class="k">void</span><span class="w"> </span><span class="nf">Update</span><span class="p">()</span>
+<span class="linenos">17</span><span class="w">    </span><span class="p">{</span>
+<span class="linenos">18</span><span class="w">        </span><span class="n">timePassed</span><span class="w"> </span><span class="o">+=</span><span class="w"> </span><span class="n">Time</span><span class="p">.</span><span class="n">deltaTime</span><span class="p">;</span>
+<span class="linenos">19</span><span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">timePassed</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="m">1f</span><span class="p">)</span>
+<span class="linenos">20</span><span class="w">        </span><span class="p">{</span>
+<span class="linenos">21</span><span class="w">            </span><span class="n">transform</span><span class="p">.</span><span class="n">position</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">Vector3</span><span class="p">(</span><span class="n">Random</span><span class="p">.</span><span class="n">Range</span><span class="p">(</span><span class="o">-</span><span class="m">5f</span><span class="p">,</span><span class="w"> </span><span class="m">5f</span><span class="p">),</span><span class="w"> </span><span class="n">Random</span><span class="p">.</span><span class="n">Range</span><span class="p">(</span><span class="o">-</span><span class="m">5f</span><span class="p">,</span><span class="w"> </span><span class="m">5f</span><span class="p">),</span><span class="w"> </span><span class="m">0.0f</span><span class="p">);</span>
+<span class="linenos">22</span><span class="w">            </span><span class="n">timePassed</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">0f</span><span class="p">;</span>
+<span class="linenos">23</span><span class="w">        </span><span class="p">}</span>
+<span class="linenos">24</span><span class="w">    </span><span class="p">}</span>
+<span class="linenos">25</span><span class="w">    </span><span class="k">void</span><span class="w"> </span><span class="nf">OnTriggerExit2D</span><span class="p">(</span><span class="n">Collider2D</span><span class="w"> </span><span class="n">other</span><span class="p">)</span>
+<span class="linenos">26</span><span class="w">    </span><span class="p">{</span>
+<span class="linenos">27</span><span class="w">        </span><span class="n">p</span><span class="p">.</span><span class="n">score</span><span class="w"> </span><span class="o">+=</span><span class="w"> </span><span class="m">1</span><span class="p">;</span>
+<span class="linenos">28</span><span class="w">    </span><span class="p">}</span>
+<span class="linenos">29</span><span class="p">}</span>
 </pre></div>
 </div>
-<section id="now-that-you-have-the-content-of-each-script-complete-you-are-ready-to-attach-them-to-the-gameobject-s-you-made-in-the-last-section">
-<h4>Now that you have the content of each script complete, you are ready to attach them to the <code class="docutils literal notranslate"><span class="pre">GameObject</span></code> s you made in the last section.<a class="headerlink" href="#now-that-you-have-the-content-of-each-script-complete-you-are-ready-to-attach-them-to-the-gameobject-s-you-made-in-the-last-section" title="Link to this heading"></a></h4>
-</section>
-<section id="camera-system">
-<h4>Camera System<a class="headerlink" href="#camera-system" title="Link to this heading"></a></h4>
-<p>The camera system in Unity is very dependent on the application you desire to create. For instance, one project may involve having a player character serve as the main camera, while another may simply have a stationary overhead camera. Regardless of how you want to set up your camera system, Unity has the tools to help you do it. You can add a camera object by creating an empty object and attaching the “Camera” component to it. You can move this camera around in the scene to position it how you’d like, and can even see a pop-up when the camera is selected that shows its perspective. By default, Unity has a camera set up for you when you create a scene. In simple projects, the default camera is usually enough, but you may have to move it around to get it to your liking.</p>
-<p>Practice moving the camera around, and pressing the play button to see how changing the camera position affects the visuals of the game. A an in-depth description of the camera component can be found <a class="reference external" href="https://docs.unity3d.com/Manual/class-Camera.html">here</a>.</p>
-</section>
-</section>
-<section id="physics-system">
-<span id="to-physics"></span><h3>Physics System<a class="headerlink" href="#physics-system" title="Link to this heading"></a></h3>
-<p>The physics system in Unity is how <code class="docutils literal notranslate"><span class="pre">GameObject</span></code> s interact with one another and with the player. There are different physics systems for 2D and 3D games. In this introduction, we’ll be refering to the physics used in a 2D game. By default, the physics system is ignored for most objects but this can be changed by adding specific physics-based components to the object. The main two physics-based components are colliders and rigid bodies. Colliders are invisible, and allow objects to collide with other objects. You can use scripting to make events happen when colliders are triggered, making them very useful for interaction. Rigid bodies are what allow physics-based events to occur with the object. You need a rigid body on an object if you want any physics to occur with it <strong>including</strong> collisions. Rigid bodies also allow an object to have mass and react to gravity. These two components are all you need to get started with Unity’s physics system, but there is much more to explore in the 2D physics system that you can explore in the <a class="reference external" href="https://docs.unity3d.com/Manual/Physics2DReference.html">documentation</a>.</p>
-<p>You can add either component to a <code class="docutils literal notranslate"><span class="pre">GameObject</span></code> in the Inspector Window while that object is selected by using the <em>Add Component</em> button. There are many parameters associated with both components that can be changed here as well, and you can find out more about each in the documentation linked in the previous paragraph.</p>
-<p>You are encouraged to try adding colliders and rigid bodies to objects, and seeing how they respond when the game is played.</p>
-</section>
-<section id="scenes">
-<h3>Scenes<a class="headerlink" href="#scenes" title="Link to this heading"></a></h3>
-<p>Throughout your Unity practice, the canvas that you have been working on is called the scene. By default, Unity projects begin with a single scene, called <em>Main Scene</em>. More complex Unity applications can have multiple scenes, and each has its own set of <code class="docutils literal notranslate"><span class="pre">GameObject</span></code> s. While there are ways to have interactions persist between scenes, for the most part scenes remain seperate from one another. Think of scenes like the levels of a game, for example, you could have a different scene for the main menu, level 1, level 2, and so on. For simple applications, most work can be done in a single scene. You can access scenes from the <code class="docutils literal notranslate"><span class="pre">~/Assets/Scenes</span></code> in the project window. You will see more about multi-scene applications in a later part of this tutorial.</p>
-<p>Moving around the scene to place <code class="docutils literal notranslate"><span class="pre">GameObject</span></code> s and build your aplication is necessary to get the most out of the scene view. Some important hotkeys for this movement are the w, a, s, and d keys which allow you to move around the scene, and the shift key to inrease or decrease your movement speed. You can find out more about these controls <a class="reference external" href="https://docs.unity3d.com/2019.1/Documentation/Manual/SceneViewNavigation.html">here</a>. Additional useful shortcuts for the Unity Editor as a whole are also useful to learn, and the <a class="reference external" href="https://docs.unity3d.com/2018.1/Documentation/Manual/UnityHotkeys.html">Hotkey Documentation</a> can help you learn the ones that work on your operating system.</p>
+<p>Now that you have the content of each script complete, you are ready to attach them to the <code class="docutils literal notranslate"><span class="pre">GameObject</span></code> s you made in the last section. follow the below steps, and your game should be all set to play within the editor.</p>
+<a class="reference internal image-reference" href="../../_images/newscriptsfolder.png"><img alt="An Image of creating the Scripts folder." src="../../_images/newscriptsfolder.png" style="width: 800px;" /></a>
+<ol class="arabic simple">
+<li><p>Create a new folder called Scripts in your Assets folder. In the Project Window, right click, and select Create –&gt; Folder.</p></li>
+</ol>
+<a class="reference internal image-reference" href="../../_images/scriptsfolder.png"><img alt="An Image of the Scripts folder." src="../../_images/scriptsfolder.png" style="width: 800px;" /></a>
+<ol class="arabic simple" start="2">
+<li><p>Double click on the Scripts folder to open it.</p></li>
+</ol>
+<a class="reference internal image-reference" href="../../_images/addnewscript.png"><img alt="An Image of adding a new script." src="../../_images/addnewscript.png" style="width: 800px;" /></a>
+<ol class="arabic simple" start="3">
+<li><p>Right click in the Scripts folder within the Project Window  and select Create –&gt; C# Scripts.</p></li>
+</ol>
+<a class="reference internal image-reference" href="../../_images/createplayercontrollerscript.png"><img alt="An Image of the Player Controller Script in the Project Window." src="../../_images/createplayercontrollerscript.png" style="width: 800px;" /></a>
+<ol class="arabic simple" start="4">
+<li><p>Name the new script “Player Controller Script”.</p></li>
+</ol>
+<a class="reference internal image-reference" href="../../_images/playercontrollerscript.png"><img alt="An Image of the Player Controller Script." src="../../_images/playercontrollerscript.png" style="width: 800px;" /></a>
+<ol class="arabic simple" start="5">
+<li><p>Delete everything from the script and copy and paste the corresponding code from earlier in this page into the script.</p></li>
+</ol>
+<a class="reference internal image-reference" href="../../_images/creategamecontrollerscript.png"><img alt="An Image of the Game Controller Script in the Project Window." src="../../_images/creategamecontrollerscript.png" style="width: 800px;" /></a>
+<ol class="arabic simple" start="6">
+<li><p>Add another script to the Scripts folder and name it “Game Controller Script”.</p></li>
+</ol>
+<a class="reference internal image-reference" href="../../_images/gamecontrollerscript.png"><img alt="An Image of the Game Controller Script." src="../../_images/gamecontrollerscript.png" style="width: 800px;" /></a>
+<ol class="arabic simple" start="7">
+<li><p>Just as before, delete everything from the script and copy and paste the corresponding code from earlier in this page into the script.</p></li>
+</ol>
+<a class="reference internal image-reference" href="../../_images/createtreasurecontrollerscript.png"><img alt="An Image of the Treasure Controller Script in the Project Window." src="../../_images/createtreasurecontrollerscript.png" style="width: 800px;" /></a>
+<ol class="arabic simple" start="8">
+<li><p>Add one more script and call it “Treasure Controller Script”.</p></li>
+</ol>
+<a class="reference internal image-reference" href="../../_images/treasurecontrollerscript.png"><img alt="An Image of the Treasure Controller Script." src="../../_images/treasurecontrollerscript.png" style="width: 800px;" /></a>
+<ol class="arabic simple" start="9">
+<li><p>Just as before, delete everything from the script and copy and paste the corresponding code from earlier in this page into the script.</p></li>
+</ol>
+<a class="reference internal image-reference" href="../../_images/clickplayer.png"><img alt="An Image of the Player clicked." src="../../_images/clickplayer.png" style="width: 800px;" /></a>
+<ol class="arabic simple" start="10">
+<li><p>Click on the Player object in the Object Hierarchy. Then, select the Add Component button in the Inspector Window.</p></li>
+</ol>
+<a class="reference internal image-reference" href="../../_images/addplayercollider.png"><img alt="An Image of the a polygon collider being added to the Player." src="../../_images/addplayercollider.png" style="width: 800px;" /></a>
+<p>11. Locate “Player Controller Script” which you can find by either scrolling or typing “Player” to narrow your search options. Add it to the Player.
+.. image:: ../../images/addplayercollider.png</p>
+<blockquote>
+<div><dl class="field-list simple">
+<dt class="field-odd">width<span class="colon">:</span></dt>
+<dd class="field-odd"><p>800</p>
+</dd>
+<dt class="field-even">alt<span class="colon">:</span></dt>
+<dd class="field-even"><p>An Image of the a polygon collider being added to the Player.</p>
+</dd>
+</dl>
+</div></blockquote>
+<ol class="arabic simple" start="12">
+<li><p>Add another component to the Player, a Polygon Collider 2D, and check the IsTrigger box.</p></li>
+</ol>
+<a class="reference internal image-reference" href="../../_images/addplayerrigid.png"><img alt="An Image of the a rigid body being added to the Player." src="../../_images/addplayerrigid.png" style="width: 800px;" /></a>
+<ol class="arabic simple" start="13">
+<li><p>Add the last component to the Player, a Rigidbody 2D. Set the Body Type to Kinematic.</p></li>
+</ol>
+<a class="reference internal image-reference" href="../../_images/treasurecomponents.png"><img alt="An Image of the Treasure with all of its attached components." src="../../_images/treasurecomponents.png" style="width: 800px;" /></a>
+<ol class="arabic simple" start="14">
+<li><p>Repeat the process of adding the script, collider, and rigidbody to the Treasure <code class="docutils literal notranslate"><span class="pre">GameObject</span></code> . This time, you will use a Circle Collider 2D. Make sure to check the IsTrigger box and change the Body Type to Kinematic.</p></li>
+</ol>
+<a class="reference internal image-reference" href="../../_images/changep.png"><img alt="An Image of the Treasure Controller Script Component with p empty." src="../../_images/changep.png" style="width: 800px;" /></a>
+<ol class="arabic simple" start="15">
+<li><p>Now, in the Treasure Controller Script Component you added to the Treasure, locate the variable called “p”. Replace it with GameController as shown above.</p></li>
+<li><p>Similarly to what you did in the previous step, select your GameManager object and change the two variables “Time Text” and “Score Text” to TimeText and Score Text, respectively.</p></li>
+</ol>
+<p>You can continue to test your project in Unity using the play feature as much as you like, but you are now ready to begin building your project for Android. Learn about the required Build and Project settings to do so below.</p>
 </section>
 </section>
 <section id="build-and-project-settings">
@@ -630,6 +493,26 @@
 <p>Here is what the project settings menu should look like. Yours may differ slightly, and you may have to expand the some tabs to get a similar result:</p>
 <a class="reference internal image-reference" href="../../_images/project_settings_window.png"><img alt="An Image of the Project Settings menu in the Unity Editor." src="../../_images/project_settings_window.png" style="width: 400px;" /></a>
 <p>For now, you can look around at both menus to see what kind of settings exist, but do not change any without knowing what they do, as this could negatively affect your project. If you want to learn more about a specific build or project setting, please check the Unity documentation  for the <a class="reference external" href="https://docs.unity3d.com/Manual/comp-ManagerGroup.html">project settings</a> and <a class="reference external" href="https://docs.unity3d.com/Manual/BuildSettings.html">build settings</a>.</p>
+<p>When you are ready to build your game for an Android device, switch your build platform to the Android platform in the Build Settings. Once this is done, you can click the Build button that takes the place of the Switch Platform button to generate the APK to run your game. After the APK is created what you do with it is up to you. It is beyond the scope of this tutorial to teach you how to side load it to your Android device, but a potential resource for doing so can be found <a class="reference external" href="https://www.airdroid.com/app-management/sideload-apps/">here</a>.</p>
+</section>
+<section id="additional-information">
+<h2>Additional Information<a class="headerlink" href="#additional-information" title="Link to this heading"></a></h2>
+<section id="camera-system">
+<h3>Camera System<a class="headerlink" href="#camera-system" title="Link to this heading"></a></h3>
+<p>The camera system in Unity is very dependent on the application you desire to create. For instance, one project may involve having a player character serve as the main camera, while another may simply have a stationary overhead camera. Regardless of how you want to set up your camera system, Unity has the tools to help you do it. You can add a camera object by creating an empty object and attaching the “Camera” component to it. You can move this camera around in the scene to position it how you’d like, and can even see a pop-up when the camera is selected that shows its perspective. By default, Unity has a camera set up for you when you create a scene. In simple projects, the default camera is usually enough, but you may have to move it around to get it to your liking.</p>
+<p>Practice moving the camera around, and pressing the play button to see how changing the camera position affects the visuals of the game. A an in-depth description of the camera component can be found <a class="reference external" href="https://docs.unity3d.com/Manual/class-Camera.html">here</a>.</p>
+</section>
+<section id="physics-system">
+<span id="to-physics"></span><h3>Physics System<a class="headerlink" href="#physics-system" title="Link to this heading"></a></h3>
+<p>The physics system in Unity is how <code class="docutils literal notranslate"><span class="pre">GameObject</span></code> s interact with one another and with the player. There are different physics systems for 2D and 3D games. In this introduction, we’ll be refering to the physics used in a 2D game. By default, the physics system is ignored for most objects but this can be changed by adding specific physics-based components to the object. The main two physics-based components are colliders and rigid bodies. Colliders are invisible, and allow objects to collide with other objects. You can use scripting to make events happen when colliders are triggered, making them very useful for interaction. Rigid bodies are what allow physics-based events to occur with the object. You need a rigid body on an object if you want any physics to occur with it <strong>including</strong> collisions. Rigid bodies also allow an object to have mass and react to gravity. These two components are all you need to get started with Unity’s physics system, but there is much more to explore in the 2D physics system that you can explore in the <a class="reference external" href="https://docs.unity3d.com/Manual/Physics2DReference.html">documentation</a>.</p>
+<p>You can add either component to a <code class="docutils literal notranslate"><span class="pre">GameObject</span></code> in the Inspector Window while that object is selected by using the <em>Add Component</em> button. There are many parameters associated with both components that can be changed here as well, and you can find out more about each in the documentation linked in the previous paragraph.</p>
+<p>You are encouraged to try adding colliders and rigid bodies to objects, and seeing how they respond when the game is played.</p>
+</section>
+<section id="scenes">
+<h3>Scenes<a class="headerlink" href="#scenes" title="Link to this heading"></a></h3>
+<p>Throughout your Unity practice, the canvas that you have been working on is called the scene. By default, Unity projects begin with a single scene, called <em>Main Scene</em>. More complex Unity applications can have multiple scenes, and each has its own set of <code class="docutils literal notranslate"><span class="pre">GameObject</span></code> s. While there are ways to have interactions persist between scenes, for the most part scenes remain seperate from one another. Think of scenes like the levels of a game, for example, you could have a different scene for the main menu, level 1, level 2, and so on. For simple applications, most work can be done in a single scene. You can access scenes from the <code class="docutils literal notranslate"><span class="pre">~/Assets/Scenes</span></code> in the project window. You will see more about multi-scene applications in a later part of this tutorial.</p>
+<p>Moving around the scene to place <code class="docutils literal notranslate"><span class="pre">GameObject</span></code> s and build your aplication is necessary to get the most out of the scene view. Some important hotkeys for this movement are the w, a, s, and d keys which allow you to move around the scene, and the shift key to inrease or decrease your movement speed. You can find out more about these controls <a class="reference external" href="https://docs.unity3d.com/2019.1/Documentation/Manual/SceneViewNavigation.html">here</a>. Additional useful shortcuts for the Unity Editor as a whole are also useful to learn, and the <a class="reference external" href="https://docs.unity3d.com/2018.1/Documentation/Manual/UnityHotkeys.html">Hotkey Documentation</a> can help you learn the ones that work on your operating system.</p>
+</section>
 </section>
 <section id="section-review">
 <h2>Section Review<a class="headerlink" href="#section-review" title="Link to this heading"></a></h2>

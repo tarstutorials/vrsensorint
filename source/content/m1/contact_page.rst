@@ -29,6 +29,14 @@ Odin Kohler
 
 Odin Kohler is an undergraduate student at Clarkson University pursuing a degree in Computer Science as well as a minor in Mathematics and Political Science. His research focuses on a wide variety of computer vision topics. His most recent work was on the hand tracking system for a piano playing form trainer, the results of which were published in AIxVR 2024.
 
+-----------------
+Ava Megyeri
+-----------------
+
+**Email:** avamegyeri1@gmail.com
+
+Ava Megyeri is a graduate Computer Science student at Wright State university. Her research is focused in Robotics, specifically human-robot collaboration, looking into how robots can hand off objects in a more human like / natural way. She was second author in HOH: Markerless Multimodal Human-Object-Human Handover Dataset with Large Object Count, the largest handover dataset in number of objects, participants, pairs with role reversal accounted for, and total interactions captured. She also has two first author papers out in IEEE RO-MAN 2024. In her free time she plays basketball and volunteers at a cat shelter. Recently, she attended CVPR 2024 as a demo exhibitionist for physiological sensing with Robotics.
+
 -------------
 Niall Pepper
 -------------
@@ -44,3 +52,4 @@ Matt Duver
 **Email:** mtduver@gmail.com
 
 Matt Duver is an undergraduate at Clarkson University, finishing his Computer Science degree and Digital Arts minor in May of 2024. His research focuses primarily on creating virtual reality software for real world applications, utilizing his love for 3D modeling and art. Matt's latest project, *Hand-in-Hand*, a VR application for annotating point cloud handover data, won best demo at AIxVR 2024 in Los Angeles.
+
