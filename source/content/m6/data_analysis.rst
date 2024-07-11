@@ -59,7 +59,9 @@ There are options to access the data with column names, but this becomes inconve
    df = np.loadtxt('sample_semg.csv', delimiter=',', dtype=float, skiprows = 1500, max_rows=6000)
    emg_channels = df[:,[1,2]]
    time = df[:,0]
+   nrows = emg_channels.shape[0]
    print(df.shape, emg_channels.shape, time.shape)
+   
 
 Notice that we have 6,000 rows and 3 columns. Each row represents the signal values read from the sensor at a particular time, and the columns denote time (seconds), right bicep EMG (volts), and left bicep EMG (volts). Checking the shape is always a good step to ensure there wasn't an error in the data loading process.
 
