@@ -215,7 +215,7 @@ Below is the modified code for the Example script that allows it to search for T
         IDelsysDevice DeviceSource = null;
         int TotalLostPackets = 0;
         int TotalDataPoints = 0;
-        public TMP_Text APIStatusText, TestText, PipelineState, EMGDataText, HRDataText;
+        public TMP_Text APIStatusText, TestText, PipelineState, EMGText, HRText;
         Pipeline RFPipeline;
         ITransformManager TransformManager;
         string text, pipeline_state;
@@ -224,6 +224,8 @@ Below is the modified code for the Example script that allows it to search for T
         string[] compoentNames;
         List<List<List<double>>> AllCollectionData = new List<List<List<double>>>();
         VerticalLayoutGroup verticalLayoutGroup;
+        public string latestEMGData;
+        public string latestHRData;
 
         private bool usingTrignoLink;
         public string latestEMGData;
@@ -274,8 +276,8 @@ Below is the modified code for the Example script that allows it to search for T
             StopButton.enabled = stop;
             PairButton.enabled = pair;
             PipelineState.text = PipelineController.Instance.PipelineIds[0].CurrentState.ToString();
-            EMGDataText.text = "Latest EMG Data: " + latestEMGData;
-            HRDataText.text = "Latest HR Data: " + latestHRData;
+            EMGText.text = "Latest EMG Data: " + latestEMGData;
+            HRText.text = "Latest HR Data: " + latestHRData;
         }
 
         public void CopyUSBDriver()
@@ -604,6 +606,7 @@ Below is the modified code for the Example script that allows it to search for T
 
 
 
+
 The first change made to the code from the original example script was the addition of the  lines ``using TMPro;`` and ``using DelsysAPI.Components.TrignoLink``. These lines add necessary functionality for Unity's updated text system and the Trigno Link, respectively.
 
 After adding TMPro, change the line ``public Text APIStatusText, TestText, PipelineState;`` to ``public TMP_Text APIStatusText, TestText, PipelineState;``. This will convert the text variables used to the updated text system.
@@ -657,7 +660,7 @@ This is because the Unity tag system used in the ``FindGameObjectWithTag`` metho
 .. Note::
   You must name the ``GameObject`` s the same name as given to the Find method. For example, the button you want to use as a "Stop" button must be named "StopButton" for it to be found by ``Find``. You can change the argument of ``Find`` to whatever you like, but just know that the corresponding ``GameObject`` must share that name, and it is case-sensitive.
 
-Next, in the ``Update`` method, add the lines ``EMGDataText.text = "Latest EMG Data: " + latestEMGData;`` and ``HRDataText.text = "Latest HR Data: " + latestHRData;``. Doing this makes sure that Unity updates the on-screen text displaying the latest data every frame.
+Next, in the ``Update`` method, add the lines ``EMGText.text = "Latest EMG Data: " + latestEMGData;`` and ``HRData.text = "Latest HR Data: " + latestHRData;``. Doing this makes sure that Unity updates the on-screen text displaying the latest data every frame.
 
 Now getting into more substantial changes, in the function ``InitializeDataSource``, the line ``DeviceSource = deviceSourceCreator.GetDataSource(SourceType.TRIGNO_RF);`` must be changed to ``DeviceSource = deviceSourceCreator.GetDataSource(new SourceType[2] { SourceType.TRIGNO_RF, SourceType.TRIGNO_LINK });`` . This is what tells the API to search for Trigno Link components alongside the regular RF ones.
 
