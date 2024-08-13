@@ -74,9 +74,12 @@
 <li class="toctree-l2"><a class="reference internal" href="#a-simple-unity-application">A Simple Unity Application</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#modifying-the-example-script">Modifying the Example Script</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#adding-gameobjects">Adding GameObjects</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#running-the-application">Running the Application</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#additional-information">Additional Information</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#collecting-sensor-data-in-non-real-time">Collecting Sensor Data in Non-Real Time</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#collecting-sensor-data-in-real-time">Collecting Sensor Data in Real Time</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#running-the-application">Running the Application</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="#section-review">Section Review</a><ul>
@@ -209,13 +212,13 @@
 </ol>
 <a class="reference internal image-reference" href="../../_images/assets_subfolder.png"><img alt="An Image of Assets subfolder in the Unity Example." src="../../_images/assets_subfolder.png" style="width: 800px;" /></a>
 <ol class="arabic simple" start="12">
-<li><p>Open the extracted folder, and navigate to the <code class="docutils literal notranslate"><span class="pre">~\Example-Applications-main\Delsys</span> <span class="pre">Unity</span> <span class="pre">Example\Assets</span></code> subdirectory.</p></li>
-<li><p>Copy the Streaming Assets folder into your project.</p></li>
-<li><p>Navigate to the <a href="#id3"><span class="problematic" id="id4">``</span></a>~Example-Applications-mainDelsys Unity ExampleAssetsPlugins``folder and copy everything contained in it to the Plugins folder you created for your project.</p></li>
+<li><p>Open the extracted folder, and navigate to the <code class="docutils literal notranslate"><span class="pre">~\Example-Applications-main\Unity\Assets</span></code> subdirectory.</p></li>
+<li><p>Copy the Streaming Assets folder into your project’s assets folder.</p></li>
+<li><p>Navigate to the <code class="docutils literal notranslate"><span class="pre">~\Example-Applications-main\Delsys</span> <span class="pre">Unity</span> <span class="pre">Example\Assets\Plugins</span></code> folder and copy everything contained in it to the Plugins folder you created for your project.</p></li>
 </ol>
-<a class="reference internal image-reference" href="../../_images/codedom.png"><img alt="An Image of the Plugins folder of your project with System.CodeDom.dll and System.CodeDom.dll.meta selected." src="../../_images/codedom.png" style="width: 800px;" /></a>
+<a class="reference internal image-reference" href="../../_images/codedom.png"><img alt="An Image of the Plugins folder of your project with System.Reactive.Linq.dll and System.Reactive.Linq.dll.meta, and System.Management.dll, and System.Management.dll.meta removed, and System.CodeDom.dll and System.CodeDom.dll.meta selected." src="../../_images/codedom.png" style="width: 800px;" /></a>
 <ol class="arabic simple" start="15">
-<li><p>In the plugins folder in your project, delete the file called <em>System.CodeDom.dll</em> and its associated meta file <em>System.CodeDom.dll.meta</em>.</p></li>
+<li><p>In the plugins folder in your project, delete the file called <em>System.CodeDom.dll</em> and its associated meta file <em>System.CodeDom.dll.meta</em>. Delete <em>System.Reactive.Linq.dll</em> and its associated meta file <em>System.Reactive.Linq.dll.meta</em>.  Delete <em>System.Management.dll</em> and its associated meta file <em>System.Management.dll.meta</em>.</p></li>
 </ol>
 <a class="reference internal image-reference" href="../../_images/project_root.png"><img alt="An Image of the project's root folder with the moved file in it." src="../../_images/project_root.png" style="width: 800px;" /></a>
 <ol class="arabic simple" start="16">
@@ -232,6 +235,10 @@
 <p>For this simple application, you are going to be slightly modifying the Unity Example script that you got from the Delsys Unity Example Application. It is entirely possible to make your own script utilizing the Delsys API, and if you wish to do so you may, but using the Example script as a template offers useful and working functions right from the start, saving you time and providing you with something you know works. If you do decide to create your own scripts utilizing the Delsys API in the future, you can use the Example script alongside the <a class="reference external" href="http://data.delsys.com/DelsysServicePortal/api/web-downloads/MAN-032-1-1%20API%20Quick%20Start%20Guide.pdf">Delsys API Quickstart Guide</a> and <a class="reference external" href="https://delsys.com/downloads/USERSGUIDE/delsys-api.pdf">Delsys API User Guide</a> to learn about the available functionality. You can find the Unity project on our <a class="reference external" href="https://github.com/tarstutorials/vrsensorint-trignolinkdemo">GitHub page</a>.</p>
 <section id="modifying-the-example-script">
 <h3>Modifying the Example Script<a class="headerlink" href="#modifying-the-example-script" title="Link to this heading"></a></h3>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Before you begin modifying your script, please remember to put your API license and key into the <code class="docutils literal notranslate"><span class="pre">private</span> <span class="pre">string</span> <span class="pre">key</span> <span class="pre">=</span> <span class="pre">&quot;&quot;;</span></code> and <code class="docutils literal notranslate"><span class="pre">private</span> <span class="pre">string</span> <span class="pre">license</span> <span class="pre">=</span> <span class="pre">&quot;&quot;;</span></code> variables of your modified Example script. You cannot use the API without them.</p>
+</div>
 <p>Below is the modified code for the Example script that allows it to search for Trigno Link components alongside the Trigno RF ones. Beneath that you will be given descriptions of what each modification does, so you can use it in your future projects.</p>
 <div class="highlight-cs notranslate"><div class="highlight"><pre><span></span><span class="linenos">  1</span><span class="w">  </span><span class="k">using</span><span class="w"> </span><span class="nn">DelsysAPI.Channels.Transform</span><span class="p">;</span>
 <span class="linenos">  2</span><span class="w">  </span><span class="k">using</span><span class="w"> </span><span class="nn">DelsysAPI.Configurations</span><span class="p">;</span>
@@ -794,13 +801,19 @@
 <a class="reference internal image-reference" href="../../_images/added_game_objects.png"><img alt="An Image of the layout for the project." src="../../_images/added_game_objects.png" style="width: 1000px;" /></a>
 <p>If you are building from the example script, you are going to need a few <code class="docutils literal notranslate"><span class="pre">GameObject</span></code> s in order to create the scene for your application. Please create the following:</p>
 <ul class="simple">
-<li><p>A Canvas Object: This will be the parent object for your buttons and text, and defines what the screen shows. The sample scene given when you start your 2D project should already have this.</p></li>
-<li><p>An Event System Object: This is used to make your UI elements interactable. Again, the sample scene should already have this created for you.</p></li>
-<li><p>A Main Camera: This is the last object included with the sample scene, and it just defines the view of the game. It should be created for you already.</p></li>
+<li><p>A Canvas Object: This will be the parent object for your buttons and text, and defines what the screen shows. This is added through the UI section of the object creation dropdown, and creates an Event System with it.</p></li>
+<li><p>An Event System Object: This is used to make your UI elements interactable. Again, this should be created alongside your canvas.</p></li>
+<li><p>A Main Camera: This is included with the sample scene, and it just defines the view of the game. It should be created for you already.</p></li>
 <li><p>A Unity Example Object: This is the first object you must add yourself, and it is the <strong>most</strong> important object for the integration. It should be an Empty object, and should have the modified Example Script attached as a component.</p></li>
+</ul>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>TMP Buttons are set up slightly differently than the ones you used in earlier modules. For these, the text for the button is contained in a child Text(TMP) object. TO change the text displayed on the button, got to this child object and change the text input component.</p>
+</div>
+<ul class="simple">
 <li><p>A Scan Button: This will be used to scan for sensors connected to the base station and the Trigno Link. Ensure that the name for this <code class="docutils literal notranslate"><span class="pre">GameObject</span></code> matches the one given as argument in the <code class="docutils literal notranslate"><span class="pre">Find</span></code> function for the <code class="docutils literal notranslate"><span class="pre">GameObject</span></code> ScanButton in the Example Script. If you have not changed the arguments, the name should be “ScanButton”.</p></li>
 <li><p>A Start Button: This will be used to start collecting data once all of the sensors have been connected. Ensure that the name for this <code class="docutils literal notranslate"><span class="pre">GameObject</span></code> matches the one given as argument in the <code class="docutils literal notranslate"><span class="pre">Find</span></code> function for the <code class="docutils literal notranslate"><span class="pre">GameObject</span></code> StartButton in the Example Script. If you have not changed the arguments, the name should be “StartButton”.</p></li>
-<li><p>A Pair Button: This will be used to pair sensors to the base station that were not previously paired in Trigno Discover. A sensor <em>must</em> be paired to the system before it can be picked up by a scan. Ensure that the name for this <code class="docutils literal notranslate"><span class="pre">GameObject</span></code> matches the one given as argument in the <code class="docutils literal notranslate"><span class="pre">Find</span></code> function for the <code class="docutils literal notranslate"><span class="pre">GameObject</span></code> PairButton in the Example Script. If you have not changed the arguments, the name should be “StartButton”.</p></li>
+<li><p>A Pair Button: This will be used to pair sensors to the base station that were not previously paired in Trigno Discover. A sensor <em>must</em> be paired to the system before it can be picked up by a scan. Ensure that the name for this <code class="docutils literal notranslate"><span class="pre">GameObject</span></code> matches the one given as argument in the <code class="docutils literal notranslate"><span class="pre">Find</span></code> function for the <code class="docutils literal notranslate"><span class="pre">GameObject</span></code> PairButton in the Example Script. If you have not changed the arguments, the name should be “PairButton”.</p></li>
 <li><p>A Stop Button: This will be used to disarm the Delsys API pipeline and safely stop data collection once clicked.  Ensure that the name for this <code class="docutils literal notranslate"><span class="pre">GameObject</span></code> matches the one given as argument in the <code class="docutils literal notranslate"><span class="pre">Find</span></code> function for the <code class="docutils literal notranslate"><span class="pre">GameObject</span></code> StopButton in the Example Script. If you have not changed the arguments, the name should be “StopButton”.</p></li>
 <li><p>A Select Button: This wil be used after the scan button to select every sensor found by the scan, and must be used before clicking the start button. Ensure that the name for this <code class="docutils literal notranslate"><span class="pre">GameObject</span></code> matches the one given as argument in the <code class="docutils literal notranslate"><span class="pre">Find</span></code> function for the <code class="docutils literal notranslate"><span class="pre">GameObject</span></code> SelectButton in the Example Script. If you have not changed the arguments, the name should be “SelectButton”.</p></li>
 </ul>
@@ -815,14 +828,32 @@
 <a class="reference internal image-reference" href="../../_images/2d_hierachy.png"><img alt="An Image of the project's object hierarchy containing the Canvas, Event System, Main Camera, Unity Example, Scan Button, Pair Button, Start Button, Stop Button, Select Button,  API Status Text, and Pipeline State Text ``GameObject`` s. The Scan Button, Pair Button, Start Button, Stop Button, Select Button,  API Status Text, Pipeline State Text, HR Data Text, and EMG Data Text are all children of the Canvas." src="../../_images/2d_hierachy.png" style="width: 800px;" /></a>
 <p>And, your Unity Example Script Object’s script component should have the following filled in for it’s public variable slots. You can drag and drop any of the objects that are missing or incorrectly placed in the slots from the object hierarchy into the slots:</p>
 <a class="reference internal image-reference" href="../../_images/example_script_inspector.png"><img alt="An Image of the Unity Example Object's inspector window with the Scan Button assigned to ``ScanButton`` , the Start Button assigned to ``StartButton`` , the Stop Button assigned to ``StopButton`` , the Select Button assigned to ``SelectButton`` , the Pair Button assigned to ``PairButton`` , the API Status Text assigned to ``API Status`` , and the Pipeline State assigned to ``PipelineState`` ." src="../../_images/example_script_inspector.png" style="width: 800px;" /></a>
-<p>You have now created all the necessary <code class="docutils literal notranslate"><span class="pre">GameObject</span></code> s for this project, and are ready to run it and begin collecting data!</p>
+<p>Make sure to move all of the text and button objectws so that they are not overlapping each other. You have now created all the necessary <code class="docutils literal notranslate"><span class="pre">GameObject</span></code> s for this project, and are ready to run it and begin running your project.</p>
 </section>
+<section id="running-the-application">
+<h3>Running the Application<a class="headerlink" href="#running-the-application" title="Link to this heading"></a></h3>
+<div class="video_wrapper" style="">
+<iframe allowfullscreen="true" src="https://www.youtube.com/embed/kMafpMTUzn0" style="border: 0; height: 345px; width: 560px">
+</iframe></div><p><strong>[Click on the above video for our YouTube tutorial on Trigno Link Data Collection.]</strong></p>
+<p>Now that you have the application properly set up and know how the data is being read, you are ready to actually run the application you’ve created. Follow the steps below to do so:</p>
+<ol class="arabic simple">
+<li><p>Connect your Trigno Base Station to your computer via USB, and ensure it’s power supply is connected to an outlet.</p></li>
+<li><p>Connect your Trigno Link to your computer via USB.</p></li>
+<li><p>Press the Play Button in the top-center of the Unity editor and ensure that the API Status is displayed as “Data source loaded and ready to Scan.” and the Pipeline State is displayed as “Off”.</p></li>
+<li><p>Pull out an Avanti sensor from the base station and press it against a magnet to put it in scanning mode. Remember you need at least one Avanti sensor active to use the Link.</p></li>
+<li><p>Turn on your Trigno Link compatible sensor and put it in scanning mode.</p></li>
+<li><p>In Unity, select the Scan Button and wait for the system to pick up the powered on sensors. (You can check the Unity Console to see if they were found.)</p></li>
+<li><p>After scanning is complete, press the Select Button. Make sure that all the sensors were selected. (again, you can use the Unity Console to check this.)</p></li>
+<li><p>Click the Start Button. If you check the Console, you should see all of the data being printed out from the sensors in real-time. Note that sensors may have different sampling rates, so data may come at different times. If you have accessed the data anywhere else, you should be seeing its effects now.</p></li>
+<li><p>When you are done collecting data, click the Stop Button. While the application is still running, you can access all of the data from the <code class="docutils literal notranslate"><span class="pre">AllCollectionData</span></code> variable.</p></li>
+<li><p>Return the sensors to the base station or power them off. You have successfully collected data using the Trigno Link and Unity!</p></li>
+</ol>
+</section>
+</section>
+<section id="additional-information">
+<h2>Additional Information<a class="headerlink" href="#additional-information" title="Link to this heading"></a></h2>
 <section id="collecting-sensor-data-in-non-real-time">
 <h3>Collecting Sensor Data in Non-Real Time<a class="headerlink" href="#collecting-sensor-data-in-non-real-time" title="Link to this heading"></a></h3>
-<div class="admonition note">
-<p class="admonition-title">Note</p>
-<p>Before you begin collecting data, please remember to put your API  license and key into the <code class="docutils literal notranslate"><span class="pre">private</span> <span class="pre">string</span> <span class="pre">key</span> <span class="pre">=</span> <span class="pre">&quot;&quot;;</span></code> and <code class="docutils literal notranslate"><span class="pre">private</span> <span class="pre">string</span> <span class="pre">license</span> <span class="pre">=</span> <span class="pre">&quot;&quot;;</span></code> variables of your modified Example script. You cannot use the API without them.</p>
-</div>
 <p>There are two ways to easily access the data collected from using the API. The first method is for non-real-time data collection. You will notice that there is a variable in the modified example script you made called <code class="docutils literal notranslate"><span class="pre">List&lt;List&lt;List&lt;double&gt;&gt;&gt;</span> <span class="pre">AllCollectionData</span></code> . This list is filled with the data collected during real-time collection. Once data is no longer collected, you can read from this list to access the collected data.  Notice that this list is a list of lists of lists of doubles. The outermost list contains the components connected to the system (the sensors), the first inner list contains the channels for each component, so if your sensor reads multiple types of data at once you can access all of it. The innermost list contains the actual data for the specific sensors specified channel. So for instance, if I only had one Avanti EMG connected and wanted to read the EMG data from it, I could access the data with <code class="docutils literal notranslate"><span class="pre">AllCollectionData[0][0]</span></code> . This would return the list of data contained within the first sensor, and in its first channel. If I were looking for a specific piece of data at, for example, time stamp 70, I could access that specific data with <code class="docutils literal notranslate"><span class="pre">AllCollectionData[0][0][69]</span></code> . Remember that C# starts indexing at zero, so your timestamp will be offset by one. You can access this data in a separate script by modifying the declaration of the variable in the Unity Example script. Unchanged, the declaration is <code class="docutils literal notranslate"><span class="pre">List&lt;List&lt;List&lt;double&gt;&gt;&gt;</span> <span class="pre">AllCollectionData</span> <span class="pre">=</span> <span class="pre">new</span> <span class="pre">List&lt;List&lt;List&lt;double&gt;&gt;&gt;();</span></code> . By simply adding <code class="docutils literal notranslate"><span class="pre">public</span></code> in front of the declaration, you can make the variable accessible to other scripts. This should look like <code class="docutils literal notranslate"><span class="pre">public</span> <span class="pre">List&lt;List&lt;List&lt;double&gt;&gt;&gt;</span> <span class="pre">AllCollectionData</span> <span class="pre">=</span> <span class="pre">new</span> <span class="pre">List&lt;List&lt;List&lt;double&gt;&gt;&gt;();</span></code> . To access this in another script, you can use the following code block as a template:</p>
 <div class="highlight-cs notranslate"><div class="highlight"><pre><span></span><span class="c1">//first create a GameObject the script whose data you&#39;re trying to access is attached to</span>
 <span class="k">public</span><span class="w"> </span><span class="n">GameObject</span><span class="w"> </span><span class="n">ScriptHolder</span><span class="p">;</span>
@@ -844,7 +875,7 @@
 </section>
 <section id="collecting-sensor-data-in-real-time">
 <h3>Collecting Sensor Data in Real Time<a class="headerlink" href="#collecting-sensor-data-in-real-time" title="Link to this heading"></a></h3>
-<p>To access the data in real-time, as it comes in from the sensor, you need to get the data at its source. The easiest way to do this is to modify the <code class="docutils literal notranslate"><span class="pre">CollectionDataReady</span></code> method in your Unity Example script. be default, the method should look like this:</p>
+<p>To access the data in real-time, as it comes in from the sensor, you need to get the data at its source. The easiest way to do this is to modify the <code class="docutils literal notranslate"><span class="pre">CollectionDataReady</span></code> method in your Unity Example script. by default, the method should look like this:</p>
 <div class="highlight-cs notranslate"><div class="highlight"><pre><span></span><span class="k">public</span><span class="w"> </span><span class="k">virtual</span><span class="w"> </span><span class="k">void</span><span class="w"> </span><span class="nf">CollectionDataReady</span><span class="p">(</span><span class="kt">object</span><span class="w"> </span><span class="n">sender</span><span class="p">,</span><span class="w"> </span><span class="n">ComponentDataReadyEventArgs</span><span class="w"> </span><span class="n">e</span><span class="p">)</span>
 <span class="w">  </span><span class="p">{</span>
 <span class="w">      </span><span class="c1">//Channel based list of data for this frame interval</span>
@@ -909,25 +940,6 @@
 </div>
 <p>You can find out more about the sensors and their channels from the <a class="reference external" href="https://delsys.com/downloads/USERSGUIDE/delsys-api.pdf">Delsys API User Guide</a>.</p>
 </section>
-<section id="running-the-application">
-<h3>Running the Application<a class="headerlink" href="#running-the-application" title="Link to this heading"></a></h3>
-<div class="video_wrapper" style="">
-<iframe allowfullscreen="true" src="https://www.youtube.com/embed/kMafpMTUzn0" style="border: 0; height: 345px; width: 560px">
-</iframe></div><p><strong>[Click on the above video for our YouTube tutorial on Trigno Link Data Collection.]</strong></p>
-<p>Now that you have the application properly set up and know how the data is being read, you are ready to actually run the application you’ve created. Follow the steps below to do so:</p>
-<ol class="arabic simple">
-<li><p>Connect your Trigno Base Station to your computer via USB, and ensure it’s power supply is connected to an outlet.</p></li>
-<li><p>Connect your Trigno Link to your computer via USB.</p></li>
-<li><p>Press the Play Button in the top-center of the Unity editor and ensure that the API Status is displayed as “Data source loaded and ready to Scan.” and the Pipeline State is displayed as “Off”.</p></li>
-<li><p>Pull out an Avanti sensor from the base station and press it against a magnet to put it in scanning mode. Remember you need at least one Avanti sensor active to use the Link.</p></li>
-<li><p>Turn on your Trigno Link compatible sensor and put it in scanning mode.</p></li>
-<li><p>In Unity, select the Scan Button and wait for the system to pick up the powered on sensors. (You can check the Unity Console to see if they were found.)</p></li>
-<li><p>After scanning is complete, press the Select Button. Make sure that all the sensors were selected. (again, you can use the Unity Console to check this.)</p></li>
-<li><p>Click the Start Button. If you check the Console, you should see all of the data being printed out from the sensors in real-time. Note that sensors may have different sampling rates, so data may come at different times. If you have accessed the data anywhere else, you should be seeing its effects now.</p></li>
-<li><p>When you are done collecting data, click the Stop Button. While the application is still running, you can access all of the data from the <code class="docutils literal notranslate"><span class="pre">AllCollectionData</span></code> variable.</p></li>
-<li><p>Return the sensors to the base station or power them off. You have successfully collected data using the Trigno Link and Unity!</p></li>
-</ol>
-</section>
 </section>
 <section id="section-review">
 <h2>Section Review<a class="headerlink" href="#section-review" title="Link to this heading"></a></h2>
@@ -991,7 +1003,7 @@ shuffle_answers: false
   <hr/>
 
   <div role="contentinfo">
-    <p>&#169; Copyright 2024, E. Matzek, T. Yankee, O. Kohler, M. White, M. Duver, R. Licata, N. Pepper, R. Almutairi, N.K. Banerjee, and S. Banerjee.</p>
+    <p>&#169; Copyright 2024, E. Matzek, T. Yankee, O. Kohler, M. White, M. Duver, R. Licata, N. Pepper, R. Almutairi, A. Megyeri, N.K. Banerjee, and S. Banerjee.</p>
   </div>
 
   Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a

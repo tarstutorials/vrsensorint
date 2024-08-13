@@ -64,17 +64,18 @@ In order to properly set up your VR project for physiological sensor integration
   :width: 800
   :alt: An Image of Assets subfolder in the Unity Example.
 
-13. Open the extracted folder, and navigate to the ``~\Example-Applications-main\Delsys Unity Example\Assets`` subdirectory. 
+13. Open the extracted folder, and navigate to the ``~\Example-Applications-main\Unity\Assets`` subdirectory. 
 
-14. Copy the Streaming Assets folder into your project.
+14. Copy the Streaming Assets folder into your project's assets folder.
 
-15. Navigate to the ``~\Example-Applications-main\Delsys Unity Example\Assets\Plugins`` folder and copy everything contained in it to the Plugins folder you created for your project. 
+15. Navigate to the ``~\Example-Applications-main\Unity\Assets\Plugins`` folder and copy everything contained in it to the Plugins folder you created for your project. 
 
 .. image:: ../../images/codedom.png
   :width: 800
-  :alt: An Image of the Plugins folder of your project with System.CodeDom.dll and System.CodeDom.dll.meta selected.
+  :alt: An Image of the Plugins folder of your project with System.Reactive.Linq.dll and System.Reactive.Linq.dll.meta, and System.Management.dll, and System.Management.dll.meta removed, and System.CodeDom.dll and System.CodeDom.dll.meta selected.
 
-16. In the plugins folder in your project, delete the file called *System.CodeDom.dll* and its associated meta file *System.CodeDom.dll.meta*. 
+16. In the plugins folder in your project, delete the file called *System.CodeDom.dll* and its associated meta file *System.CodeDom.dll.meta*. Delete *System.Reactive.Linq.dll* and its associated meta file *System.Reactive.Linq.dll.meta*.  Delete *System.Management.dll* and its associated meta file *System.Management.dll.meta*.
+
 
 .. image:: ../../images/project_root.png
   :width: 800
@@ -97,7 +98,7 @@ In order to properly set up your VR project for physiological sensor integration
 A Simple VR Application
 -----------------------------------------
 
-You will be building off of the BasicScene included in the VR template. Since most of the work for this project was completed in the previous module, you only have to make slight changes to the copied Example script and set up your ``GameObject`` s to get this VR project up and running. You can find the Unity project on our `GitHub page <https://github.com/tarstutorials/vrsensorint-trignolinkvrdemo>`_.
+You will be building off of the BasicScene included in the VR template. This can be found in the Scenes folder located in the Assets folder in the Project Window. Note that by default, Unity will load the SampleScene, so you must change scenes. Since most of the work for this project was completed in the previous module, you only have to make slight changes to the copied Example script and set up your ``GameObject`` s to get this VR project up and running. You can find the Unity project on our `GitHub page <https://github.com/tarstutorials/vrsensorint-trignolinkvrdemo>`_.
 
 
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -107,6 +108,8 @@ Slightly Modifying the Example Script
 There are very few changes to make here, and they are as follows.
 
 Add two new variables to the example script, called ``public string latestEMGData;`` and ``public string latestHRData;`` . These will display the incoming data from the EMG and heart rate sensors in VR.
+
+Update the line ``public TMP_Text APIStatusText, TestText, PipelineState`` to include ``EMGDataText, HRDataText``. The edited line should read as follows: ``public TMP_Text APIStatusText, TestText, PipelineState, EMGDataText, HRDataText``.
 
 Modify the update function to include the last two lines:
 
@@ -178,7 +181,7 @@ You will need a similar set of ``GameObject`` s as in the previous module, howev
 
 * Directional Light and Plane: These provide the lighting and surface the player stands on, and should be included in the BasicScene by default.
 
-* A UI Canvas: This will function the same as the canvas from the last module, and will contain your text and buttons. The only difference being that this canvas contains a *Tracked Graphic Device Raycaster* that allows it to work in VR (You may recall hearing about this in module 2). You can find a canvas that has one prebuilt by right clicking in the object hierarchy, clicking *UI* in the dropdown, and selecting *UI Canvas*. Or, you can add one to any regular canvas by searching for it in the *Add Component* menu. Again, all your buttons and texts will be children of this object.
+* A UI Canvas: This will function the same as the canvas from the last module, and will contain your text and buttons. The only difference being that this canvas contains a *Tracked Graphic Device Raycaster* that allows it to work in VR (You may recall hearing about this in module 2). You can find a canvas that has one prebuilt by right clicking in the object hierarchy, clicking *XR* in the dropdown, and selecting *UI Canvas*. Or, you can add one to any regular canvas by searching for it in the *Add Component* menu. Again, all your buttons and texts will be children of this object.
 
 * A Complete XR Origin Set Up: This contains the event system, main camera, and player controller for the VR application. This should be included in the BasicScene preset provided with the template, but if it isn't you can search for it in the Project window, assuming you have all of the OpenXR packages installed that come with the template.
 
@@ -220,8 +223,7 @@ While running the project may differ depending on your headset, no matter what y
   :width: 800
   :alt: An image of the build settings in the top ribbon of the Unity Editor.
 
-2. In the drop-down menu that appears, select the *Build Settings* option. This will open the build settings in a new window. This is where you will change your desired platform to Android.
-
+2. In the drop-down menu that appears, select the *Build Settings* option. This will open the build settings in a new window. 
 
 .. image:: ../../images/windows_build.png
   :width: 500
@@ -229,7 +231,7 @@ While running the project may differ depending on your headset, no matter what y
 
 3. Make sure that the build platform in the bottom right corner of the menu is set to *Windows, Linux, and Mac*. 
 
-When you are ready to build your project, return to the build settings window and select the *Build* button. Unity will ask you to choose a location to store your new build. It is recommended that you make a folder to contain the build, because you may lose files otherwise. The main piece to pay attention to is the .EXE file that is produced. This is how you actually run the application. If you are using a Meta Quest 2, you can hook your headset up to your PC with a USB-C cable or use Air Link to connect to Quest Link. Then, simply run the EXE from your computer and it will appear on the headset. You will also need the Quest Link application on your computer, and the hardware to run it. You can find out more `here <https://www.meta.com/help/quest/articles/headsets-and-accessories/oculus-link/set-up-link/>`_. If you are using another type of headset, look up how your device can run Windows applications, as the process will be different.
+When you are ready to build your project, return to the build settings window and make sure that the seleected scene to build is BasicScene and not SampleScene. These options are found at the top of the menu. Then select the *Build* button. Unity will ask you to choose a location to store your new build. It is recommended that you make a folder to contain the build, because you may lose files otherwise. The main piece to pay attention to is the .EXE file that is produced. This is how you actually run the application. If you are using a Meta Quest 2, you can hook your headset up to your PC with a USB-C cable or use Air Link to connect to Quest Link. Then, simply run the EXE from your computer and it will appear on the headset. You will also need the Quest Link application on your computer, and the hardware to run it. You can find out more `here <https://www.meta.com/help/quest/articles/headsets-and-accessories/oculus-link/set-up-link/>`_. If you are using another type of headset, look up how your device can run Windows applications, as the process will be different.
 
 .. note::
   The Delsys API is only natively supported with Windows applications. Using unsupported platforms could prevent its usage.

@@ -103,25 +103,6 @@ Shaded in red in the image above, the object hierarchy contains any ``GameObject
 
 Try exploring by adding different types of ``GameObject`` s to the scene and creating multiple levels of parents and children until you feel comfortable. Note that you can delete any object you create by right clicking on it in the hierarchy and clicking delete.
 
-.. _to_mobile_setup:
----------------------------------
-Setting Up For Mobile Development
----------------------------------
-
-Setting up for mobile development is mostly done for you when creating a project using the *2D Mobile* template. However, there are two important menus you should know about that may help you with any last minute configurations you want to make. These are the build settings and project settings menus. The build settings menu can be found by clicking the button labeled *File* on the ribbon at the top of the editor. From there, a dropdown menu will appear, where you can select the *Build Settings* option. In the same ribbon, there is a button labeled *Edit*, where a similar dropdown menu contains a button for *Project Settings*. 
-
-.. image:: ../../images/build_settings.png
-  :width: 800
-  :alt: An Image of the Build Settings menu in the Unity Editor.
-
-The build settings menu is used for configuring how you want to package the final application. For example, it lets you change what platform you are building for, such as Windows or Android. While you are working on the mobile project, you should keep its build set to Windows. This lets you test the project directly on your computer.
-.. image:: ../../images/project_settings.png
-  :width: 400
-  :alt: An Image of the Build Settings menu in the Unity Editor.
-
-The project settings menu allows you to change a multitude of settings for your project, and additionally provides access to settings for any packages you have added to the project. The template has done a good job of setting up the project settings for you, so you don't need to worry about it for this simple tutorial. However, in more advanced tutorials which we will get to later, project settings can be important for optimizing the application.
-
-For now, you can look around at both menus to see what kind of settings exist, but do not change any without knowing what they do, as this could negatively affect your project. If you want to learn more about a specific build or project setting, please check the Unity documentation  for the `project settings <https://docs.unity3d.com/Manual/comp-ManagerGroup.html>`_ and `build settings <https://docs.unity3d.com/Manual/BuildSettings.html>`_.
 
 -----------------
 Basic Techniques
@@ -141,6 +122,192 @@ Object Creation
 ^^^^^^^^^^^^^^^^
 
 ``GameObject`` s are the building blocks of Unity, and can be created using the "+" button in the top left of the window. Additionally, you can right click anywhere in the window to open the ``GameObject`` creation menu. There are many built in ``GameObject`` types, but savvy users can create their own type of object if it is not available. An object can be a "parent" or "child" of another object, and each object can have many levels of parents and children, creating "grandparents" and "grandchildren", so to speak. The purpose of these relationships are that some actions, such as transforming an object, will apply to the children of the object as well. For example, if you had a snowman object, but wanted to add a hat on the snowman, making the hat a child of the snowman would move the hat along with it. ``GameObject`` s can have components added to them, such as scripts or colliders, that control how they interact with the scene. Lastly, Unity uses two different coordinate systems: world coordinates and local coordinates. By default, an objects coordinate values are in world coordinates, which are the general coordinates for the scene. However, if the object is a child of another object, it will use a coordinate system relative to that object called local coordinates.
+
+In this project you'll need to follow the steps below to create your game:
+
+
+.. image:: ../../images/clickplus.png
+  :width: 800
+  :alt: An Image of the plus button in the top left of the editor.
+
+
+1. Click the "+" sign in the top left of the editor.
+
+
+.. image:: ../../images/addplayer.png
+  :width: 800
+  :alt: An Image of the player being added.
+
+
+2. Select 2D Object --> Sprite Shape --> Hexagon Flat-Top. This will be the player.
+
+
+.. image:: ../../images/player.png
+  :width: 800
+  :alt: An Image of the renamed player.
+
+
+3. Rename the ``GameObject`` "Player". This can be done in the top of the inspector window or by right-clicking the object and clicking *rename*.
+
+
+.. image:: ../../images/addtreasure.png
+  :width: 800
+  :alt: An Image of the treasure being added.
+
+
+4. Click the "+" button again. Now select 2D Object --> Sprites --> Circle​. This will be the treasure.
+
+.. image:: ../../images/treasure.png
+  :width: 800
+  :alt: An Image of the renamed treasure.
+
+
+5. Rename the ``GameObject`` "Treasure".
+
+
+.. image:: ../../images/changecolor.png
+  :width: 800
+  :alt: An Image of the recolored treasure.
+
+
+6. Change the color of the Circle ``GameObject`` Treasure in the SpriteRenderer component of the Inspector window​ to differentiate it from the player.
+
+
+.. image:: ../../images/movetool.png
+  :width: 800
+  :alt: An Image of the selected move tool.
+
+
+7. Select the Treasure and click the move tool in the top left of the scene view.
+
+
+.. image:: ../../images/movetreasure.png
+  :width: 800
+  :alt: An Image of the moved treasure.
+
+
+8. Move the Treasure away from the player.
+
+
+.. image:: ../../images/addcanvas.png
+  :width: 800
+  :alt: An Image of the canvas being added.
+
+
+9. Click the "+" button in the top left of the object hierarchy. Select UI --> Canvas​. This will create a canvas to store all the text elements. This will also automatically add an event system, which allows you to interact with the UI.
+
+
+.. image:: ../../images/testgame1.png
+  :width: 800
+  :alt: An Image of the game at it's current state.
+
+
+10. Click the play button above the center of the scene view to test the game. It should look similar to the above image. You can do this wheneve you want to test your game in its current state.
+
+
+.. image:: ../../images/addchild1.png
+  :width: 800
+  :alt: An Image of the child of the canvas being added.
+
+
+11. Add a text element as a child of the canvas. To do this click on the canvas, right-click and select UI --> Text - TextMeshPro​.
+
+
+.. image:: ../../images/tmp.png
+  :width: 800
+  :alt: An Image of TMPro essentials being imported.
+
+
+12. If you have not used a TextMeshPro (TMP) before, you will see a menu to import TMP-related material. Click *Import TMP Essentials*.
+
+
+.. image:: ../../images/scoretext.png
+  :width: 800
+  :alt: An Image of the object being renamed to Score Text.
+
+
+13. Rename the newly created button object to "Score Text".
+
+
+.. image:: ../../images/changescoretext.png
+  :width: 800
+  :alt: An Image of the Score Text input being changed.
+
+
+14. In the TextMeshPro – Text (UI) subwindow, change the Text Input from New Text to "Score: 0​". 
+
+
+.. image:: ../../images/scoretext.png
+  :width: 800
+  :alt: An Image of the Score Text being moved upwards.
+
+
+15. Move the Score Text upwards so that it is out of the way of the player. You can focus on it by double-clicking it in the Object Hierarchy, and then move it using the move tool. 
+
+
+.. image:: ../../images/testgame2.png
+  :width: 800
+  :alt: An Image of the game at it's current state.
+
+
+16. Test your game to make sure the Score text is out of the way of the player and still visible in the application.
+
+
+.. image:: ../../images/copyscore.png
+  :width: 800
+  :alt: An Image of the Score Text being copied.
+
+
+17. Copy the Score Text by right-clicking on it in the object hierarchy. 
+
+
+.. image:: ../../images/pastescore.png
+  :width: 800
+  :alt: An Image of the Score Text being pasted as a child of the canvas.
+
+
+18. Right-click the score canvas and click *Paste As Child*.
+
+
+.. image:: ../../images/renametimetext.png
+  :width: 800
+  :alt: An Image of the pasted Score Text being renamed to TimeText.
+
+
+19. Rename the pasted Score Text(1) to TimeText.
+
+
+.. image:: ../../images/timetext.png
+  :width: 800
+  :alt: An Image of the input text of TimeText being changed.
+
+
+20. Change the text input of the TimeText to "Time: 0" and move it downward so that it is away from the player and still visible.
+
+
+.. image:: ../../images/testgame2.png
+  :width: 800
+  :alt: An Image of the game at it's current state.
+
+
+21. Test your game to make sure the Score text is out of the way of the player and still visible in the application.
+
+
+.. image:: ../../images/addgamecontroller.png
+  :width: 800
+  :alt: An Image of adding the GameController object.
+
+
+22. Click the "+" button in the top left of the object hierarchy. Select Create Empty to create a new object. Call it GameController.
+
+
+.. image:: ../../images/mobilehierarchy.png
+  :width: 800
+  :alt: An Image of the final object hierarchy.
+
+
+Your final object hierachy should look like the above. You are now ready to start adding scripts to your game.
+
 
 ^^^^^^^^^^^^^
 C# Scripting
@@ -173,6 +340,142 @@ If you ever get stuck while programming, don't forget to use the `C# documentati
      :language: c#
      :linenos:
 
+
+Now that you have the content of each script complete, you are ready to attach them to the ``GameObject`` s you made in the last section. follow the below steps, and your game should be all set to play within the editor. 
+
+.. image:: ../../images/newscriptsfolder.png
+  :width: 800
+  :alt: An Image of creating the Scripts folder.
+
+1. Create a new folder called Scripts in your Assets folder. In the Project Window, right click, and select Create --> Folder.
+
+.. image:: ../../images/scriptsfolder.png
+  :width: 800
+  :alt: An Image of the Scripts folder.
+
+2. Double click on the Scripts folder to open it.
+
+.. image:: ../../images/addnewscript.png
+  :width: 800
+  :alt: An Image of adding a new script.
+
+3. Right click in the Scripts folder within the Project Window  and select Create --> C# Scripts.
+
+.. image:: ../../images/createplayercontrollerscript.png
+  :width: 800
+  :alt: An Image of the Player Controller Script in the Project Window.
+
+4. Name the new script "Player Controller Script".
+
+.. image:: ../../images/playercontrollerscript.png
+  :width: 800
+  :alt: An Image of the Player Controller Script.
+
+5. Delete everything from the script and copy and paste the corresponding code from earlier in this page into the script.
+
+.. image:: ../../images/creategamecontrollerscript.png
+  :width: 800
+  :alt: An Image of the Game Controller Script in the Project Window.
+
+6. Add another script to the Scripts folder and name it "Game Controller Script".
+
+.. image:: ../../images/gamecontrollerscript.png
+  :width: 800
+  :alt: An Image of the Game Controller Script.
+
+7. Just as before, delete everything from the script and copy and paste the corresponding code from earlier in this page into the script.
+
+.. image:: ../../images/createtreasurecontrollerscript.png
+  :width: 800
+  :alt: An Image of the Treasure Controller Script in the Project Window.
+
+8. Add one more script and call it "Treasure Controller Script".
+
+.. image:: ../../images/treasurecontrollerscript.png
+  :width: 800
+  :alt: An Image of the Treasure Controller Script.
+
+9. Just as before, delete everything from the script and copy and paste the corresponding code from earlier in this page into the script.
+
+.. image:: ../../images/clickplayer.png
+  :width: 800
+  :alt: An Image of the Player clicked.
+
+10. Click on the Player object in the Object Hierarchy. Then, select the Add Component button in the Inspector Window.
+
+.. image:: ../../images/addplayercollider.png
+  :width: 800
+  :alt: An Image of the a polygon collider being added to the Player.
+
+11. Locate "Player Controller Script" which you can find by either scrolling or typing "Player" to narrow your search options. Add it to the Player.
+.. image:: ../../images/addplayercollider.png
+  :width: 800
+  :alt: An Image of the a polygon collider being added to the Player.
+
+12. Add another component to the Player, a Polygon Collider 2D, and check the IsTrigger box.
+
+.. image:: ../../images/addplayerrigid.png
+  :width: 800
+  :alt: An Image of the a rigid body being added to the Player.
+
+13. Add the last component to the Player, a Rigidbody 2D. Set the Body Type to Kinematic.
+
+.. image:: ../../images/treasurecomponents.png
+  :width: 800
+  :alt: An Image of the Treasure with all of its attached components.
+
+14. Repeat the process of adding the script, collider, and rigidbody to the Treasure ``GameObject`` . This time, you will use a Circle Collider 2D. Make sure to check the IsTrigger box and change the Body Type to Kinematic.
+
+.. image:: ../../images/changep.png
+  :width: 800
+  :alt: An Image of the Treasure Controller Script Component with p empty.
+
+15. Now, in the Treasure Controller Script Component you added to the Treasure, locate the variable called "p". Replace it with GameController as shown above.
+
+16. Similarly to what you did in the previous step, select your GameManager object and change the two variables "Time Text" and "Score Text" to TimeText and Score Text, respectively.
+
+You can continue to test your project in Unity using the play feature as much as you like, but you are now ready to begin building your project for Android. Learn about the required Build and Project settings to do so below.
+
+
+.. _to_mobile_setup:
+---------------------------------
+Build and Project Settings
+---------------------------------
+
+Setting up for mobile development is mostly done for you when creating a project using the *2D Mobile* template. However, there are two important menus you should know about that may help you with any last minute configurations you want to make. These are the build settings and project settings menus. The build settings menu can be found by clicking the button labeled *File* on the ribbon at the top of the editor. From there, a dropdown menu will appear, where you can select the *Build Settings* option. In the same ribbon, there is a button labeled *Edit*, where a similar dropdown menu contains a button for *Project Settings*. 
+
+.. image:: ../../images/build_settings.png
+  :width: 800
+  :alt: An Image of the Build Settings option in the file dropdown in the Unity Editor.
+
+The build settings menu is used for configuring how you want to package the final application. For example, it lets you change what platform you are building for, such as Windows or Android. While you are working on the mobile project, you should keep its build set to Windows. This lets you test the project directly on your computer. Below is what the build settings menu should look like:
+
+.. image:: ../../images/android_build.png
+  :width: 400
+  :alt: An Image of the Build Settings menu in the Unity Editor.
+
+
+The project settings menu allows you to change a multitude of settings for your project, and additionally provides access to settings for any packages you have added to the project. The template has done a good job of setting up the project settings for you, so you don't need to worry about it for this simple tutorial. However, in more advanced tutorials which we will get to later, project settings can be important for optimizing the application.
+
+.. image:: ../../images/project_settings.png
+  :width: 400
+  :alt: An Image of the Project Settings option in the window dropdown in the Unity Editor.
+
+Here is what the project settings menu should look like. Yours may differ slightly, and you may have to expand the some tabs to get a similar result:
+
+.. image:: ../../images/project_settings_window.png
+  :width: 400
+  :alt: An Image of the Project Settings menu in the Unity Editor.
+
+For now, you can look around at both menus to see what kind of settings exist, but do not change any without knowing what they do, as this could negatively affect your project. If you want to learn more about a specific build or project setting, please check the Unity documentation  for the `project settings <https://docs.unity3d.com/Manual/comp-ManagerGroup.html>`_ and `build settings <https://docs.unity3d.com/Manual/BuildSettings.html>`_.
+
+When you are ready to build your game for an Android device, switch your build platform to the Android platform in the Build Settings. Once this is done, you can click the Build button that takes the place of the Switch Platform button to generate the APK to run your game. After the APK is created what you do with it is up to you. It is beyond the scope of this tutorial to teach you how to side load it to your Android device, but a potential resource for doing so can be found `here <https://www.airdroid.com/app-management/sideload-apps/>`_.
+
+
+------------------------
+Additional Information
+------------------------
+
 ^^^^^^^^^^^^^^^
 Camera System
 ^^^^^^^^^^^^^^^
@@ -199,6 +502,8 @@ Scenes
 Throughout your Unity practice, the canvas that you have been working on is called the scene. By default, Unity projects begin with a single scene, called *Main Scene*. More complex Unity applications can have multiple scenes, and each has its own set of ``GameObject`` s. While there are ways to have interactions persist between scenes, for the most part scenes remain seperate from one another. Think of scenes like the levels of a game, for example, you could have a different scene for the main menu, level 1, level 2, and so on. For simple applications, most work can be done in a single scene. You can access scenes from the ``~/Assets/Scenes`` in the project window. You will see more about multi-scene applications in a later part of this tutorial.
 
 Moving around the scene to place ``GameObject`` s and build your aplication is necessary to get the most out of the scene view. Some important hotkeys for this movement are the w, a, s, and d keys which allow you to move around the scene, and the shift key to inrease or decrease your movement speed. You can find out more about these controls `here <https://docs.unity3d.com/2019.1/Documentation/Manual/SceneViewNavigation.html>`_. Additional useful shortcuts for the Unity Editor as a whole are also useful to learn, and the `Hotkey Documentation <https://docs.unity3d.com/2018.1/Documentation/Manual/UnityHotkeys.html>`_ can help you learn the ones that work on your operating system.
+
+
 
 ------------------
 Section Review

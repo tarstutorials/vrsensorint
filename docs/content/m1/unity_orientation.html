@@ -69,10 +69,13 @@
 <li class="toctree-l3"><a class="reference internal" href="#object-hierarchy">Object Hierarchy</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="#setting-up-for-mobile-development">Setting Up For Mobile Development</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#basic-techniques">Basic Techniques</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#object-creation">Object Creation</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#c-scripting">C# Scripting</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#build-and-project-settings">Build and Project Settings</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#additional-information">Additional Information</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#camera-system">Camera System</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#physics-system">Physics System</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#scenes">Scenes</a></li>
@@ -192,25 +195,6 @@
 <p>Try exploring by adding different types of <code class="docutils literal notranslate"><span class="pre">GameObject</span></code> s to the scene and creating multiple levels of parents and children until you feel comfortable. Note that you can delete any object you create by right clicking on it in the hierarchy and clicking delete.</p>
 </section>
 </section>
-<section id="setting-up-for-mobile-development">
-<span id="to-mobile-setup"></span><h2>Setting Up For Mobile Development<a class="headerlink" href="#setting-up-for-mobile-development" title="Link to this heading"></a></h2>
-<p>Setting up for mobile development is mostly done for you when creating a project using the <em>2D Mobile</em> template. However, there are two important menus you should know about that may help you with any last minute configurations you want to make. These are the build settings and project settings menus. The build settings menu can be found by clicking the button labeled <em>File</em> on the ribbon at the top of the editor. From there, a dropdown menu will appear, where you can select the <em>Build Settings</em> option. In the same ribbon, there is a button labeled <em>Edit</em>, where a similar dropdown menu contains a button for <em>Project Settings</em>.</p>
-<a class="reference internal image-reference" href="../../_images/build_settings.png"><img alt="An Image of the Build Settings menu in the Unity Editor." src="../../_images/build_settings.png" style="width: 800px;" /></a>
-<p>The build settings menu is used for configuring how you want to package the final application. For example, it lets you change what platform you are building for, such as Windows or Android. While you are working on the mobile project, you should keep its build set to Windows. This lets you test the project directly on your computer.
-.. image:: ../../images/project_settings.png</p>
-<blockquote>
-<div><dl class="field-list simple">
-<dt class="field-odd">width<span class="colon">:</span></dt>
-<dd class="field-odd"><p>400</p>
-</dd>
-<dt class="field-even">alt<span class="colon">:</span></dt>
-<dd class="field-even"><p>An Image of the Build Settings menu in the Unity Editor.</p>
-</dd>
-</dl>
-</div></blockquote>
-<p>The project settings menu allows you to change a multitude of settings for your project, and additionally provides access to settings for any packages you have added to the project. The template has done a good job of setting up the project settings for you, so you don’t need to worry about it for this simple tutorial. However, in more advanced tutorials which we will get to later, project settings can be important for optimizing the application.</p>
-<p>For now, you can look around at both menus to see what kind of settings exist, but do not change any without knowing what they do, as this could negatively affect your project. If you want to learn more about a specific build or project setting, please check the Unity documentation  for the <a class="reference external" href="https://docs.unity3d.com/Manual/comp-ManagerGroup.html">project settings</a> and <a class="reference external" href="https://docs.unity3d.com/Manual/BuildSettings.html">build settings</a>.</p>
-</section>
 <section id="basic-techniques">
 <h2>Basic Techniques<a class="headerlink" href="#basic-techniques" title="Link to this heading"></a></h2>
 <p>Here are some basic techniques for mobile development in Unity. Be sure to mess around with all of these techniques until you feel comfortable with them. The <a class="reference external" href="https://docs.unity.com/">Unity documentation</a> contains additional in depth information about each, but this tutorial should give you all the fundamentals you need to get started. Additonally, watch the video below to see a mobile project created in Unity. You will see videos for the scripting of the project in the scripting section.</p>
@@ -220,6 +204,97 @@
 <section id="object-creation">
 <span id="oh-to-oc"></span><h3>Object Creation<a class="headerlink" href="#object-creation" title="Link to this heading"></a></h3>
 <p><code class="docutils literal notranslate"><span class="pre">GameObject</span></code> s are the building blocks of Unity, and can be created using the “+” button in the top left of the window. Additionally, you can right click anywhere in the window to open the <code class="docutils literal notranslate"><span class="pre">GameObject</span></code> creation menu. There are many built in <code class="docutils literal notranslate"><span class="pre">GameObject</span></code> types, but savvy users can create their own type of object if it is not available. An object can be a “parent” or “child” of another object, and each object can have many levels of parents and children, creating “grandparents” and “grandchildren”, so to speak. The purpose of these relationships are that some actions, such as transforming an object, will apply to the children of the object as well. For example, if you had a snowman object, but wanted to add a hat on the snowman, making the hat a child of the snowman would move the hat along with it. <code class="docutils literal notranslate"><span class="pre">GameObject</span></code> s can have components added to them, such as scripts or colliders, that control how they interact with the scene. Lastly, Unity uses two different coordinate systems: world coordinates and local coordinates. By default, an objects coordinate values are in world coordinates, which are the general coordinates for the scene. However, if the object is a child of another object, it will use a coordinate system relative to that object called local coordinates.</p>
+<p>In this project you’ll need to follow the steps below to create your game:</p>
+<a class="reference internal image-reference" href="../../_images/clickplus.png"><img alt="An Image of the plus button in the top left of the editor." src="../../_images/clickplus.png" style="width: 800px;" /></a>
+<ol class="arabic simple">
+<li><p>Click the “+” sign in the top left of the editor.</p></li>
+</ol>
+<a class="reference internal image-reference" href="../../_images/addplayer.png"><img alt="An Image of the player being added." src="../../_images/addplayer.png" style="width: 800px;" /></a>
+<ol class="arabic simple" start="2">
+<li><p>Select 2D Object –&gt; Sprite Shape –&gt; Hexagon Flat-Top. This will be the player.</p></li>
+</ol>
+<a class="reference internal image-reference" href="../../_images/player.png"><img alt="An Image of the renamed player." src="../../_images/player.png" style="width: 800px;" /></a>
+<ol class="arabic simple" start="3">
+<li><p>Rename the <code class="docutils literal notranslate"><span class="pre">GameObject</span></code> “Player”. This can be done in the top of the inspector window or by right-clicking the object and clicking <em>rename</em>.</p></li>
+</ol>
+<a class="reference internal image-reference" href="../../_images/addtreasure.png"><img alt="An Image of the treasure being added." src="../../_images/addtreasure.png" style="width: 800px;" /></a>
+<ol class="arabic simple" start="4">
+<li><p>Click the “+” button again. Now select 2D Object –&gt; Sprites –&gt; Circle​. This will be the treasure.</p></li>
+</ol>
+<a class="reference internal image-reference" href="../../_images/treasure.png"><img alt="An Image of the renamed treasure." src="../../_images/treasure.png" style="width: 800px;" /></a>
+<ol class="arabic simple" start="5">
+<li><p>Rename the <code class="docutils literal notranslate"><span class="pre">GameObject</span></code> “Treasure”.</p></li>
+</ol>
+<a class="reference internal image-reference" href="../../_images/changecolor.png"><img alt="An Image of the recolored treasure." src="../../_images/changecolor.png" style="width: 800px;" /></a>
+<ol class="arabic simple" start="6">
+<li><p>Change the color of the Circle <code class="docutils literal notranslate"><span class="pre">GameObject</span></code> Treasure in the SpriteRenderer component of the Inspector window​ to differentiate it from the player.</p></li>
+</ol>
+<a class="reference internal image-reference" href="../../_images/movetool.png"><img alt="An Image of the selected move tool." src="../../_images/movetool.png" style="width: 800px;" /></a>
+<ol class="arabic simple" start="7">
+<li><p>Select the Treasure and click the move tool in the top left of the scene view.</p></li>
+</ol>
+<a class="reference internal image-reference" href="../../_images/movetreasure.png"><img alt="An Image of the moved treasure." src="../../_images/movetreasure.png" style="width: 800px;" /></a>
+<ol class="arabic simple" start="8">
+<li><p>Move the Treasure away from the player.</p></li>
+</ol>
+<a class="reference internal image-reference" href="../../_images/addcanvas.png"><img alt="An Image of the canvas being added." src="../../_images/addcanvas.png" style="width: 800px;" /></a>
+<ol class="arabic simple" start="9">
+<li><p>Click the “+” button in the top left of the object hierarchy. Select UI –&gt; Canvas​. This will create a canvas to store all the text elements. This will also automatically add an event system, which allows you to interact with the UI.</p></li>
+</ol>
+<a class="reference internal image-reference" href="../../_images/testgame1.png"><img alt="An Image of the game at it's current state." src="../../_images/testgame1.png" style="width: 800px;" /></a>
+<ol class="arabic simple" start="10">
+<li><p>Click the play button above the center of the scene view to test the game. It should look similar to the above image. You can do this wheneve you want to test your game in its current state.</p></li>
+</ol>
+<a class="reference internal image-reference" href="../../_images/addchild1.png"><img alt="An Image of the child of the canvas being added." src="../../_images/addchild1.png" style="width: 800px;" /></a>
+<ol class="arabic simple" start="11">
+<li><p>Add a text element as a child of the canvas. To do this click on the canvas, right-click and select UI –&gt; Text - TextMeshPro​.</p></li>
+</ol>
+<a class="reference internal image-reference" href="../../_images/tmp.png"><img alt="An Image of TMPro essentials being imported." src="../../_images/tmp.png" style="width: 800px;" /></a>
+<ol class="arabic simple" start="12">
+<li><p>If you have not used a TextMeshPro (TMP) before, you will see a menu to import TMP-related material. Click <em>Import TMP Essentials</em>.</p></li>
+</ol>
+<a class="reference internal image-reference" href="../../_images/scoretext.png"><img alt="An Image of the object being renamed to Score Text." src="../../_images/scoretext.png" style="width: 800px;" /></a>
+<ol class="arabic simple" start="13">
+<li><p>Rename the newly created button object to “Score Text”.</p></li>
+</ol>
+<a class="reference internal image-reference" href="../../_images/changescoretext.png"><img alt="An Image of the Score Text input being changed." src="../../_images/changescoretext.png" style="width: 800px;" /></a>
+<ol class="arabic simple" start="14">
+<li><p>In the TextMeshPro – Text (UI) subwindow, change the Text Input from New Text to “Score: 0​“.</p></li>
+</ol>
+<a class="reference internal image-reference" href="../../_images/scoretext.png"><img alt="An Image of the Score Text being moved upwards." src="../../_images/scoretext.png" style="width: 800px;" /></a>
+<ol class="arabic simple" start="15">
+<li><p>Move the Score Text upwards so that it is out of the way of the player. You can focus on it by double-clicking it in the Object Hierarchy, and then move it using the move tool.</p></li>
+</ol>
+<a class="reference internal image-reference" href="../../_images/testgame2.png"><img alt="An Image of the game at it's current state." src="../../_images/testgame2.png" style="width: 800px;" /></a>
+<ol class="arabic simple" start="16">
+<li><p>Test your game to make sure the Score text is out of the way of the player and still visible in the application.</p></li>
+</ol>
+<a class="reference internal image-reference" href="../../_images/copyscore.png"><img alt="An Image of the Score Text being copied." src="../../_images/copyscore.png" style="width: 800px;" /></a>
+<ol class="arabic simple" start="17">
+<li><p>Copy the Score Text by right-clicking on it in the object hierarchy.</p></li>
+</ol>
+<a class="reference internal image-reference" href="../../_images/pastescore.png"><img alt="An Image of the Score Text being pasted as a child of the canvas." src="../../_images/pastescore.png" style="width: 800px;" /></a>
+<ol class="arabic simple" start="18">
+<li><p>Right-click the score canvas and click <em>Paste As Child</em>.</p></li>
+</ol>
+<a class="reference internal image-reference" href="../../_images/renametimetext.png"><img alt="An Image of the pasted Score Text being renamed to TimeText." src="../../_images/renametimetext.png" style="width: 800px;" /></a>
+<ol class="arabic simple" start="19">
+<li><p>Rename the pasted Score Text(1) to TimeText.</p></li>
+</ol>
+<a class="reference internal image-reference" href="../../_images/timetext.png"><img alt="An Image of the input text of TimeText being changed." src="../../_images/timetext.png" style="width: 800px;" /></a>
+<ol class="arabic simple" start="20">
+<li><p>Change the text input of the TimeText to “Time: 0” and move it downward so that it is away from the player and still visible.</p></li>
+</ol>
+<a class="reference internal image-reference" href="../../_images/testgame2.png"><img alt="An Image of the game at it's current state." src="../../_images/testgame2.png" style="width: 800px;" /></a>
+<ol class="arabic simple" start="21">
+<li><p>Test your game to make sure the Score text is out of the way of the player and still visible in the application.</p></li>
+</ol>
+<a class="reference internal image-reference" href="../../_images/addgamecontroller.png"><img alt="An Image of adding the GameController object." src="../../_images/addgamecontroller.png" style="width: 800px;" /></a>
+<ol class="arabic simple" start="22">
+<li><p>Click the “+” button in the top left of the object hierarchy. Select Create Empty to create a new object. Call it GameController.</p></li>
+</ol>
+<a class="reference internal image-reference" href="../../_images/mobilehierarchy.png"><img alt="An Image of the final object hierarchy." src="../../_images/mobilehierarchy.png" style="width: 800px;" /></a>
+<p>Your final object hierachy should look like the above. You are now ready to start adding scripts to your game.</p>
 </section>
 <section id="c-scripting">
 <h3>C# Scripting<a class="headerlink" href="#c-scripting" title="Link to this heading"></a></h3>
@@ -269,7 +344,7 @@
 
 <span class="n">public</span> <span class="k">class</span> <span class="nc">GameController</span> <span class="p">:</span> <span class="n">MonoBehaviour</span>
 <span class="p">{</span>
-    <span class="n">static</span> <span class="n">public</span> <span class="nb">int</span> <span class="n">score</span><span class="p">;</span>
+    <span class="n">public</span> <span class="nb">int</span> <span class="n">score</span><span class="p">;</span>
     <span class="n">static</span> <span class="n">private</span> <span class="nb">int</span> <span class="n">finalTime</span><span class="p">;</span>
     <span class="n">public</span> <span class="n">TextMeshProUGUI</span> <span class="n">timeText</span><span class="p">;</span>
     <span class="n">public</span> <span class="n">TextMeshProUGUI</span> <span class="n">scoreText</span><span class="p">;</span>
@@ -310,30 +385,118 @@
 <span class="linenos"> 5</span><span class="k">public</span><span class="w"> </span><span class="k">class</span><span class="w"> </span><span class="nc">TreasureController</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="n">MonoBehaviour</span>
 <span class="linenos"> 6</span><span class="p">{</span><span class="w"> </span>
 <span class="linenos"> 7</span><span class="w">    </span><span class="k">private</span><span class="w"> </span><span class="kt">float</span><span class="w"> </span><span class="n">timePassed</span><span class="p">;</span>
-<span class="linenos"> 8</span><span class="w">    </span><span class="c1">// Start is called before the first frame update</span>
-<span class="linenos"> 9</span><span class="w">    </span><span class="k">void</span><span class="w"> </span><span class="nf">Start</span><span class="p">()</span>
-<span class="linenos">10</span><span class="w">    </span><span class="p">{</span>
-<span class="linenos">11</span><span class="w">        </span><span class="n">timePassed</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">0f</span><span class="p">;</span>
-<span class="linenos">12</span><span class="w">    </span><span class="p">}</span>
-<span class="linenos">13</span>
-<span class="linenos">14</span><span class="w">    </span><span class="c1">// Update is called once per frame</span>
-<span class="linenos">15</span><span class="w">    </span><span class="k">void</span><span class="w"> </span><span class="nf">Update</span><span class="p">()</span>
-<span class="linenos">16</span><span class="w">    </span><span class="p">{</span>
-<span class="linenos">17</span><span class="w">        </span><span class="n">timePassed</span><span class="w"> </span><span class="o">+=</span><span class="w"> </span><span class="n">Time</span><span class="p">.</span><span class="n">deltaTime</span><span class="p">;</span>
-<span class="linenos">18</span><span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">timePassed</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="m">1f</span><span class="p">)</span>
-<span class="linenos">19</span><span class="w">        </span><span class="p">{</span>
-<span class="linenos">20</span><span class="w">            </span><span class="n">transform</span><span class="p">.</span><span class="n">position</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">Vector3</span><span class="p">(</span><span class="n">Random</span><span class="p">.</span><span class="n">Range</span><span class="p">(</span><span class="o">-</span><span class="m">5f</span><span class="p">,</span><span class="w"> </span><span class="m">5f</span><span class="p">),</span><span class="w"> </span><span class="n">Random</span><span class="p">.</span><span class="n">Range</span><span class="p">(</span><span class="o">-</span><span class="m">5f</span><span class="p">,</span><span class="w"> </span><span class="m">5f</span><span class="p">),</span><span class="w"> </span><span class="m">0.0f</span><span class="p">);</span>
-<span class="linenos">21</span><span class="w">            </span><span class="n">timePassed</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">0f</span><span class="p">;</span>
-<span class="linenos">22</span><span class="w">        </span><span class="p">}</span>
-<span class="linenos">23</span><span class="w">    </span><span class="p">}</span>
-<span class="linenos">24</span><span class="w">    </span><span class="k">void</span><span class="w"> </span><span class="nf">OnTriggerExit2D</span><span class="p">(</span><span class="n">Collider2D</span><span class="w"> </span><span class="n">other</span><span class="p">)</span>
-<span class="linenos">25</span><span class="w">    </span><span class="p">{</span>
-<span class="linenos">26</span><span class="w">        </span><span class="n">p</span><span class="p">.</span><span class="n">score</span><span class="w"> </span><span class="o">+=</span><span class="w"> </span><span class="m">1</span><span class="p">;</span>
-<span class="linenos">27</span><span class="w">    </span><span class="p">}</span>
-<span class="linenos">28</span><span class="p">}</span>
+<span class="linenos"> 8</span><span class="w">    </span><span class="k">public</span><span class="w"> </span><span class="n">GameController</span><span class="w"> </span><span class="n">p</span><span class="p">;</span>
+<span class="linenos"> 9</span><span class="w">    </span><span class="c1">// Start is called before the first frame update</span>
+<span class="linenos">10</span><span class="w">    </span><span class="k">void</span><span class="w"> </span><span class="nf">Start</span><span class="p">()</span>
+<span class="linenos">11</span><span class="w">    </span><span class="p">{</span>
+<span class="linenos">12</span><span class="w">        </span><span class="n">timePassed</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">0f</span><span class="p">;</span>
+<span class="linenos">13</span><span class="w">    </span><span class="p">}</span>
+<span class="linenos">14</span>
+<span class="linenos">15</span><span class="w">    </span><span class="c1">// Update is called once per frame</span>
+<span class="linenos">16</span><span class="w">    </span><span class="k">void</span><span class="w"> </span><span class="nf">Update</span><span class="p">()</span>
+<span class="linenos">17</span><span class="w">    </span><span class="p">{</span>
+<span class="linenos">18</span><span class="w">        </span><span class="n">timePassed</span><span class="w"> </span><span class="o">+=</span><span class="w"> </span><span class="n">Time</span><span class="p">.</span><span class="n">deltaTime</span><span class="p">;</span>
+<span class="linenos">19</span><span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">timePassed</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="m">1f</span><span class="p">)</span>
+<span class="linenos">20</span><span class="w">        </span><span class="p">{</span>
+<span class="linenos">21</span><span class="w">            </span><span class="n">transform</span><span class="p">.</span><span class="n">position</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">Vector3</span><span class="p">(</span><span class="n">Random</span><span class="p">.</span><span class="n">Range</span><span class="p">(</span><span class="o">-</span><span class="m">5f</span><span class="p">,</span><span class="w"> </span><span class="m">5f</span><span class="p">),</span><span class="w"> </span><span class="n">Random</span><span class="p">.</span><span class="n">Range</span><span class="p">(</span><span class="o">-</span><span class="m">5f</span><span class="p">,</span><span class="w"> </span><span class="m">5f</span><span class="p">),</span><span class="w"> </span><span class="m">0.0f</span><span class="p">);</span>
+<span class="linenos">22</span><span class="w">            </span><span class="n">timePassed</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">0f</span><span class="p">;</span>
+<span class="linenos">23</span><span class="w">        </span><span class="p">}</span>
+<span class="linenos">24</span><span class="w">    </span><span class="p">}</span>
+<span class="linenos">25</span><span class="w">    </span><span class="k">void</span><span class="w"> </span><span class="nf">OnTriggerExit2D</span><span class="p">(</span><span class="n">Collider2D</span><span class="w"> </span><span class="n">other</span><span class="p">)</span>
+<span class="linenos">26</span><span class="w">    </span><span class="p">{</span>
+<span class="linenos">27</span><span class="w">        </span><span class="n">p</span><span class="p">.</span><span class="n">score</span><span class="w"> </span><span class="o">+=</span><span class="w"> </span><span class="m">1</span><span class="p">;</span>
+<span class="linenos">28</span><span class="w">    </span><span class="p">}</span>
+<span class="linenos">29</span><span class="p">}</span>
 </pre></div>
 </div>
+<p>Now that you have the content of each script complete, you are ready to attach them to the <code class="docutils literal notranslate"><span class="pre">GameObject</span></code> s you made in the last section. follow the below steps, and your game should be all set to play within the editor.</p>
+<a class="reference internal image-reference" href="../../_images/newscriptsfolder.png"><img alt="An Image of creating the Scripts folder." src="../../_images/newscriptsfolder.png" style="width: 800px;" /></a>
+<ol class="arabic simple">
+<li><p>Create a new folder called Scripts in your Assets folder. In the Project Window, right click, and select Create –&gt; Folder.</p></li>
+</ol>
+<a class="reference internal image-reference" href="../../_images/scriptsfolder.png"><img alt="An Image of the Scripts folder." src="../../_images/scriptsfolder.png" style="width: 800px;" /></a>
+<ol class="arabic simple" start="2">
+<li><p>Double click on the Scripts folder to open it.</p></li>
+</ol>
+<a class="reference internal image-reference" href="../../_images/addnewscript.png"><img alt="An Image of adding a new script." src="../../_images/addnewscript.png" style="width: 800px;" /></a>
+<ol class="arabic simple" start="3">
+<li><p>Right click in the Scripts folder within the Project Window  and select Create –&gt; C# Scripts.</p></li>
+</ol>
+<a class="reference internal image-reference" href="../../_images/createplayercontrollerscript.png"><img alt="An Image of the Player Controller Script in the Project Window." src="../../_images/createplayercontrollerscript.png" style="width: 800px;" /></a>
+<ol class="arabic simple" start="4">
+<li><p>Name the new script “Player Controller Script”.</p></li>
+</ol>
+<a class="reference internal image-reference" href="../../_images/playercontrollerscript.png"><img alt="An Image of the Player Controller Script." src="../../_images/playercontrollerscript.png" style="width: 800px;" /></a>
+<ol class="arabic simple" start="5">
+<li><p>Delete everything from the script and copy and paste the corresponding code from earlier in this page into the script.</p></li>
+</ol>
+<a class="reference internal image-reference" href="../../_images/creategamecontrollerscript.png"><img alt="An Image of the Game Controller Script in the Project Window." src="../../_images/creategamecontrollerscript.png" style="width: 800px;" /></a>
+<ol class="arabic simple" start="6">
+<li><p>Add another script to the Scripts folder and name it “Game Controller Script”.</p></li>
+</ol>
+<a class="reference internal image-reference" href="../../_images/gamecontrollerscript.png"><img alt="An Image of the Game Controller Script." src="../../_images/gamecontrollerscript.png" style="width: 800px;" /></a>
+<ol class="arabic simple" start="7">
+<li><p>Just as before, delete everything from the script and copy and paste the corresponding code from earlier in this page into the script.</p></li>
+</ol>
+<a class="reference internal image-reference" href="../../_images/createtreasurecontrollerscript.png"><img alt="An Image of the Treasure Controller Script in the Project Window." src="../../_images/createtreasurecontrollerscript.png" style="width: 800px;" /></a>
+<ol class="arabic simple" start="8">
+<li><p>Add one more script and call it “Treasure Controller Script”.</p></li>
+</ol>
+<a class="reference internal image-reference" href="../../_images/treasurecontrollerscript.png"><img alt="An Image of the Treasure Controller Script." src="../../_images/treasurecontrollerscript.png" style="width: 800px;" /></a>
+<ol class="arabic simple" start="9">
+<li><p>Just as before, delete everything from the script and copy and paste the corresponding code from earlier in this page into the script.</p></li>
+</ol>
+<a class="reference internal image-reference" href="../../_images/clickplayer.png"><img alt="An Image of the Player clicked." src="../../_images/clickplayer.png" style="width: 800px;" /></a>
+<ol class="arabic simple" start="10">
+<li><p>Click on the Player object in the Object Hierarchy. Then, select the Add Component button in the Inspector Window.</p></li>
+</ol>
+<a class="reference internal image-reference" href="../../_images/addplayercollider.png"><img alt="An Image of the a polygon collider being added to the Player." src="../../_images/addplayercollider.png" style="width: 800px;" /></a>
+<p>11. Locate “Player Controller Script” which you can find by either scrolling or typing “Player” to narrow your search options. Add it to the Player.
+.. image:: ../../images/addplayercollider.png</p>
+<blockquote>
+<div><dl class="field-list simple">
+<dt class="field-odd">width<span class="colon">:</span></dt>
+<dd class="field-odd"><p>800</p>
+</dd>
+<dt class="field-even">alt<span class="colon">:</span></dt>
+<dd class="field-even"><p>An Image of the a polygon collider being added to the Player.</p>
+</dd>
+</dl>
+</div></blockquote>
+<ol class="arabic simple" start="12">
+<li><p>Add another component to the Player, a Polygon Collider 2D, and check the IsTrigger box.</p></li>
+</ol>
+<a class="reference internal image-reference" href="../../_images/addplayerrigid.png"><img alt="An Image of the a rigid body being added to the Player." src="../../_images/addplayerrigid.png" style="width: 800px;" /></a>
+<ol class="arabic simple" start="13">
+<li><p>Add the last component to the Player, a Rigidbody 2D. Set the Body Type to Kinematic.</p></li>
+</ol>
+<a class="reference internal image-reference" href="../../_images/treasurecomponents.png"><img alt="An Image of the Treasure with all of its attached components." src="../../_images/treasurecomponents.png" style="width: 800px;" /></a>
+<ol class="arabic simple" start="14">
+<li><p>Repeat the process of adding the script, collider, and rigidbody to the Treasure <code class="docutils literal notranslate"><span class="pre">GameObject</span></code> . This time, you will use a Circle Collider 2D. Make sure to check the IsTrigger box and change the Body Type to Kinematic.</p></li>
+</ol>
+<a class="reference internal image-reference" href="../../_images/changep.png"><img alt="An Image of the Treasure Controller Script Component with p empty." src="../../_images/changep.png" style="width: 800px;" /></a>
+<ol class="arabic simple" start="15">
+<li><p>Now, in the Treasure Controller Script Component you added to the Treasure, locate the variable called “p”. Replace it with GameController as shown above.</p></li>
+<li><p>Similarly to what you did in the previous step, select your GameManager object and change the two variables “Time Text” and “Score Text” to TimeText and Score Text, respectively.</p></li>
+</ol>
+<p>You can continue to test your project in Unity using the play feature as much as you like, but you are now ready to begin building your project for Android. Learn about the required Build and Project settings to do so below.</p>
 </section>
+</section>
+<section id="build-and-project-settings">
+<span id="to-mobile-setup"></span><h2>Build and Project Settings<a class="headerlink" href="#build-and-project-settings" title="Link to this heading"></a></h2>
+<p>Setting up for mobile development is mostly done for you when creating a project using the <em>2D Mobile</em> template. However, there are two important menus you should know about that may help you with any last minute configurations you want to make. These are the build settings and project settings menus. The build settings menu can be found by clicking the button labeled <em>File</em> on the ribbon at the top of the editor. From there, a dropdown menu will appear, where you can select the <em>Build Settings</em> option. In the same ribbon, there is a button labeled <em>Edit</em>, where a similar dropdown menu contains a button for <em>Project Settings</em>.</p>
+<a class="reference internal image-reference" href="../../_images/build_settings.png"><img alt="An Image of the Build Settings option in the file dropdown in the Unity Editor." src="../../_images/build_settings.png" style="width: 800px;" /></a>
+<p>The build settings menu is used for configuring how you want to package the final application. For example, it lets you change what platform you are building for, such as Windows or Android. While you are working on the mobile project, you should keep its build set to Windows. This lets you test the project directly on your computer. Below is what the build settings menu should look like:</p>
+<a class="reference internal image-reference" href="../../_images/android_build.png"><img alt="An Image of the Build Settings menu in the Unity Editor." src="../../_images/android_build.png" style="width: 400px;" /></a>
+<p>The project settings menu allows you to change a multitude of settings for your project, and additionally provides access to settings for any packages you have added to the project. The template has done a good job of setting up the project settings for you, so you don’t need to worry about it for this simple tutorial. However, in more advanced tutorials which we will get to later, project settings can be important for optimizing the application.</p>
+<a class="reference internal image-reference" href="../../_images/project_settings.png"><img alt="An Image of the Project Settings option in the window dropdown in the Unity Editor." src="../../_images/project_settings.png" style="width: 400px;" /></a>
+<p>Here is what the project settings menu should look like. Yours may differ slightly, and you may have to expand the some tabs to get a similar result:</p>
+<a class="reference internal image-reference" href="../../_images/project_settings_window.png"><img alt="An Image of the Project Settings menu in the Unity Editor." src="../../_images/project_settings_window.png" style="width: 400px;" /></a>
+<p>For now, you can look around at both menus to see what kind of settings exist, but do not change any without knowing what they do, as this could negatively affect your project. If you want to learn more about a specific build or project setting, please check the Unity documentation  for the <a class="reference external" href="https://docs.unity3d.com/Manual/comp-ManagerGroup.html">project settings</a> and <a class="reference external" href="https://docs.unity3d.com/Manual/BuildSettings.html">build settings</a>.</p>
+<p>When you are ready to build your game for an Android device, switch your build platform to the Android platform in the Build Settings. Once this is done, you can click the Build button that takes the place of the Switch Platform button to generate the APK to run your game. After the APK is created what you do with it is up to you. It is beyond the scope of this tutorial to teach you how to side load it to your Android device, but a potential resource for doing so can be found <a class="reference external" href="https://www.airdroid.com/app-management/sideload-apps/">here</a>.</p>
+</section>
+<section id="additional-information">
+<h2>Additional Information<a class="headerlink" href="#additional-information" title="Link to this heading"></a></h2>
 <section id="camera-system">
 <h3>Camera System<a class="headerlink" href="#camera-system" title="Link to this heading"></a></h3>
 <p>The camera system in Unity is very dependent on the application you desire to create. For instance, one project may involve having a player character serve as the main camera, while another may simply have a stationary overhead camera. Regardless of how you want to set up your camera system, Unity has the tools to help you do it. You can add a camera object by creating an empty object and attaching the “Camera” component to it. You can move this camera around in the scene to position it how you’d like, and can even see a pop-up when the camera is selected that shows its perspective. By default, Unity has a camera set up for you when you create a scene. In simple projects, the default camera is usually enough, but you may have to move it around to get it to your liking.</p>
@@ -411,7 +574,7 @@ shuffle_answers: false
   <hr/>
 
   <div role="contentinfo">
-    <p>&#169; Copyright 2024, E. Matzek, T. Yankee, O. Kohler, M. White, M. Duver, R. Licata, N. Pepper, R. Almutairi, N.K. Banerjee, and S. Banerjee.</p>
+    <p>&#169; Copyright 2024, E. Matzek, T. Yankee, O. Kohler, M. White, M. Duver, R. Licata, N. Pepper, R. Almutairi, A. Megyeri, N.K. Banerjee, and S. Banerjee.</p>
   </div>
 
   Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
