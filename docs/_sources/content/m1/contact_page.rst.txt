@@ -11,7 +11,11 @@ Ethan Matzek
 
 **Email:** ecmatzek@gmail.com
 
+<<<<<<< HEAD
 Ethan Matzek is a graduate Computer Science student at Wright State University who specializes in hardware and software support in physiological sensing, and virtual reality development. He wrote up most of the documentation for the first, second, fourth, and fifth modules, and was the project lead for this site. Ethan is an avid pianist, reader, and gym-goer, and has found success in his paper *VRMonic: A VR Piano Playing Form Trainer* which was demoed at the AIxVR 2024 conference in Los Angeles. He attended CVPR 2024 as an demo exhibitionist for physiological sensing in VR. He also publish a paper titled *VitaMaze: A VR Exergame Driven using Feedback from Physiological Sensors* which was published at AIxVR 2025.
+=======
+Ethan Matzek is a PhD Computer Science student at Wright State University who specializes in virtual reality development in Unity. He wrote up most of the documentation for the first, second, fourth, and fifth modules, and was the project lead for this site. Ethan is an avid pianist, reader, and gym-goer, and has found success in his paper *VRMonic: A VR Piano Playing Form Trainer* which was demoed at the AIxVR 2024 conference in Los Angeles. Recently, he attended CVPR 2024 as an demo exhibitionist for physiological sensing in VR.
+>>>>>>> 835eab673a9d7a5e8804cbdfe9801dae1b72441d
 
 ------------
 Tyler Yankee

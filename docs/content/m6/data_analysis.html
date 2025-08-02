@@ -85,7 +85,7 @@
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="#overview-of-data-analysis-techniques">Overview of Data Analysis Techniques</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#time-series-data">Time Series Data</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#time-series-and-signal-processing">Time Series and Signal Processing</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#data-science-process">Data Science Process</a></li>
 </ul>
 </li>
@@ -135,7 +135,7 @@
 <section id="introduction-to-data-analysis">
 <h2>Introduction to Data Analysis<a class="headerlink" href="#introduction-to-data-analysis" title="Link to this heading"></a></h2>
 <p>Being able to collect physiological data and use it in VR is wonderful, but isn’t really meaningful for making any observations or conclusions without performing analysis. The last section of this tutorial will focus on basic tools to analyze the data that we’ve collected from the VR application.</p>
-<p>Since we’re collecting data from the user as they perform some tasks, with the sensors updating the results periodically, this is an example of <strong>time series</strong> data. This is a unique type of data where the sequence of observations matters. Additionally, certain models may reflect the fact that observations closer together in time should be more closely related than those further apart. We’ll go through some methods of extracting relevant information numerically and visually from the data provided by each sensor.</p>
+<p>Since we’re collecting data from the user as they perform some tasks, with the sensors updating the results periodically, this is an example of <strong>time series</strong> data. This is a unique type of data where the sequence of observations matters. Certain models may reflect the fact that observations closer together in time should be more closely related than those further apart. Additionally, since the data is being periodically sampled from a sensor, we’ll have to use some <strong>signal processing</strong> techniques to extract relevant metrics from the data. We’ll go through some methods of visualization and computation throughout the analysis.</p>
 <p>In this section of the tutorial, we’ll focus on the basics of physiological data analysis, using a single data file to explore the steps of pre-processing, performing some exploratory analysis, and extracting some metrics. Once that is completed, we’ll take a look at a more complete dataset and apply these skills to a real-world problem.</p>
 <section id="programming-prerequisites">
 <h3>Programming Prerequisites<a class="headerlink" href="#programming-prerequisites" title="Link to this heading"></a></h3>
@@ -350,17 +350,24 @@
 <span class="linenos">3</span><span class="n">SAMPLE_FREQ</span> <span class="o">=</span> <span class="mi">130</span>
 <span class="linenos">4</span>
 <span class="linenos">5</span><span class="n">signals</span><span class="p">,</span> <span class="n">info</span> <span class="o">=</span> <span class="n">nk</span><span class="o">.</span><span class="n">ecg_process</span><span class="p">(</span><span class="n">ecg_data</span><span class="p">,</span> <span class="n">sampling_rate</span><span class="o">=</span><span class="n">SAMPLE_FREQ</span><span class="p">)</span>
-<span class="linenos">6</span><span class="n">nk</span><span class="o">.</span><span class="n">events_plot</span><span class="p">(</span><span class="n">signals</span><span class="p">,</span> <span class="n">info</span><span class="p">)</span>
+<span class="linenos">6</span>
+<span class="linenos">7</span><span class="n">rpeaks</span> <span class="o">=</span> <span class="n">info</span><span class="p">[</span><span class="s2">&quot;ECG_R_Peaks&quot;</span><span class="p">]</span>
+<span class="linenos">8</span><span class="n">cleaned_ecg</span> <span class="o">=</span> <span class="n">signals</span><span class="p">[</span><span class="s2">&quot;ECG_Clean&quot;</span><span class="p">]</span>
+<span class="linenos">9</span><span class="n">nk</span><span class="o">.</span><span class="n">events_plot</span><span class="p">(</span><span class="n">rpeaks</span><span class="p">,</span> <span class="n">cleaned_ecg</span><span class="p">)</span>
 </pre></div>
 </div>
 <a class="reference internal image-reference" href="../../_images/signal_peaks.png"><img alt="Plot of the ECG signal with the R-peaks detected shown as red dotted lines." src="../../_images/signal_peaks.png" style="width: 800px;" /></a>
 <p>Let’s take a step back to understand what’s going on in the ECG signal, and then we’ll return to tackle the code. In general, an ECG signal can be divided into different sections based on what is happening physiologically as the heart beats. One cycle is referred to from start to finish as a PQRST complex, which has three distinct parts:</p>
 <ul class="simple">
-<li><p><strong>The P Wave</strong> represents the depolarization of the atria. This causes the atria to contract, pushing blood into the ventricles.</p></li>
-<li><p><strong>The QRS complex</strong> represents the depolarization of the ventricles. This causes the ventricles to contract, pumping blood throughout the body.</p></li>
-<li><p><strong>The T wave</strong> represents the repolarization of the ventricles. This causes the ventricles to relax, allowing them to fill back up with blood.</p></li>
+<li><p>The <strong>P Wave</strong> represents the depolarization of the atria. This causes the atria to contract, pushing blood into the ventricles.</p></li>
+<li><p>The <strong>QRS complex</strong> represents the depolarization of the ventricles. This causes the ventricles to contract, pumping blood throughout the body.</p></li>
+<li><p>The <strong>T wave</strong> represents the repolarization of the ventricles. This causes the ventricles to relax, allowing them to fill back up with blood.</p></li>
 </ul>
-<p>In order to determine the heart rate and heart rate variability, we must determine the time from beat to beat, or the time between two consecutive QRS peaks. So, the red dotted lines on the plot above represent the peaks detected using one of the wide variety of algorithms that exist for this purpose.</p>
+<p>In order to determine the heart rate and heart rate variability, we must determine the time from beat to beat, or the time between two consecutive QRS peaks. So, the red dotted lines on the plot above represent the peaks determined using a peak detection algorithm.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>In many of the functions throughout the library, NeuroKit2 implements several algorithms which have been published and verified and allows the developer to select which one they would like to use. We’ll stick to the default options for our purposes here, but feel free to explore the differences between these algorithms on your own. For this particular function, the default option <code class="docutils literal notranslate"><span class="pre">method='neurokit2'</span></code> is unpublished, but according to the documentation: “QRS complexes are detected based on the steepness of the absolute gradient of the ECG signal. Subsequently, R-peaks are detected as local maxima in the QRS complexes.”</p>
+</div>
 <p>As for the code from NeuroKit2, the <code class="docutils literal notranslate"><span class="pre">ecg_process</span></code> function returns two dataframes: one containing the raw and cleaned signal, and one containing peak locations and some other information. Behind the scenes, this function is actually doing quite a bit! It uses six helper functions:</p>
 <ul class="simple">
 <li><p><a class="reference external" href="https://neuropsychology.github.io/NeuroKit/functions/ecg.html#ecg-clean">ecg_clean</a> removes noise from the signal in order to improve peak detection accuracy.</p></li>
@@ -370,6 +377,7 @@
 <li><p><a class="reference external" href="https://neuropsychology.github.io/NeuroKit/functions/ecg.html#ecg-delineate">ecg_delineate</a> delineates the QRS complex from the PQRST wave.</p></li>
 <li><p><a class="reference external" href="https://neuropsychology.github.io/NeuroKit/functions/ecg.html#ecg-phase">ecg_phase</a> computes the cardiac phase, i.e., the systole (heart empties) and diastole (heart fills).</p></li>
 </ul>
+<p>From there, we use the R peaks and the cleaned ECG signal extracted from <code class="docutils literal notranslate"><span class="pre">ecg_process</span></code> to make an <code class="docutils literal notranslate"><span class="pre">events_plot</span></code>, which displays this information graphically.</p>
 </section>
 <section id="analysis">
 <h3>Analysis<a class="headerlink" href="#analysis" title="Link to this heading"></a></h3>
@@ -385,10 +393,12 @@
 </pre></div>
 </div>
 <a class="reference internal image-reference" href="../../_images/ecg_summary.png"><img alt="Plots of the ECG signal showing signal quality and raw and cleaned signal (top left), heart rate (bottom left), and individual heart beats (right)." src="../../_images/ecg_summary.png" style="width: 800px;" /></a>
-<p>This combined plot shows several pieces of information:</p>
+<p>You’ll notice that this plot contains some of the same information as above in the events plot (the R peaks and the cleaned signal), plus a little bit more. However, the <code class="docutils literal notranslate"><span class="pre">ecg_plot</span></code> function computes these features automatically behind the scenes. Altogether, we now have:</p>
 <ul class="simple">
-<li><p>It computes the heart rate over time from the ECG signal.</p></li>
-<li><p>It plots individual heart beats — i.e., PQRST complexes — over each other and shows the average wave shape. Looking at individual heart beats is valuable to see any abnormalities within beats.</p></li>
+<li><p>R peaks detected from the processed ECG signal.</p></li>
+<li><p>Some relative assessment of signal quality at each point throughout the ECG signal.</p></li>
+<li><p>Heart rate over time computed from the processed ECG signal, including an average heart rate over the entire time.</p></li>
+<li><p>Individual heart beats (PQRST complexes) overlaid with average wave shape, which is useful for determining any abnormal beats.</p></li>
 </ul>
 <p>We can also look at heart rate variability (HRV), which is explained in more detail in <a class="reference internal" href="../m3/intro_to_sensors.html#analysis-to-sensors"><span class="std std-ref">Introduction to Physiological Sensors</span></a>. We can look for a few different things with HRV: a decrease in HRV during training can indicate fatigue, and a significant decrease can even indicate over-training. Generally, a higher baseline HRV indicates a higher level of cardiovascular fitness.</p>
 <p>HRV can be analyzed in three different domains: with respect to time, frequency, or non-linear analysis.</p>
@@ -413,9 +423,9 @@
 <section id="overview-of-data-analysis-techniques">
 <h2>Overview of Data Analysis Techniques<a class="headerlink" href="#overview-of-data-analysis-techniques" title="Link to this heading"></a></h2>
 <p>Let’s recap what we’ve learned by analyzing the data from each of these sensors, with a focus on the overarching processes and concepts that we followed. This section will serve as a useful reference for future work.</p>
-<section id="time-series-data">
-<h3>Time Series Data<a class="headerlink" href="#time-series-data" title="Link to this heading"></a></h3>
-<p>With each of the data types we saw two overarching methods of analysis: one looking at how the signal changed over time, and the other looking at how the signal was distributed over a range of frequencies. It turns out that these have been given conventional names as the two primary ways of analyzing time series data. The former is called <strong>time domain analysis</strong>, and the latter is called <strong>frequency domain analysis</strong>. Methods from both groups are highly valuable, and it’s important to incorporate both depending on the context of the problem.</p>
+<section id="time-series-and-signal-processing">
+<h3>Time Series and Signal Processing<a class="headerlink" href="#time-series-and-signal-processing" title="Link to this heading"></a></h3>
+<p>With each of the data types we saw two overarching methods of analysis: one looking at how the signal changed over time, and the other looking at how the signal was distributed over a range of frequencies. It turns out that these have been given conventional names as the two primary ways of analyzing signal data. The former is called <strong>time domain analysis</strong>, and the latter is called <strong>frequency domain analysis</strong>. Methods from both groups are highly valuable, and it’s important to incorporate both depending on the context of the problem.</p>
 </section>
 <section id="data-science-process">
 <h3>Data Science Process<a class="headerlink" href="#data-science-process" title="Link to this heading"></a></h3>
